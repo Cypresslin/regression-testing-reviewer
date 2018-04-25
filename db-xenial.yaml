@@ -1,0 +1,119 @@
+# 4.4 Xenial
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+aio_dio_bugs:
+    kernel01:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+    s2lp3:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+    s2lp6g001:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+hwclock:
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
+                issue for HP m400 (bug 1716603)
+libhugetlbfs:
+    kernel01:
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+    s2lp3:
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+    s2lp6g001:
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+monotonic_time:
+    onibi:
+        gtod:
+            "FAIL: gtod-worst-warp=":
+                gtod tend to fail on onibi
+scrashme:
+    kernel01:
+        scrashme:
+            "make: *** [scrashme.o] Error 1":
+                Test failed to build (bug 1689240)
+    s2lp3:
+        scrashme:
+            "make: *** [scrashme.o] Error 1":
+                Test failed to build (bug 1689240)
+    s2lp6g001:
+        scrashme:
+            "make: *** [scrashme.o] Error 1":
+                Test failed to build (bug 1689240)
+ubuntu_kvm_smoke_test:
+    ms10-35-mcdivittB0-kernel:
+        kvm_smoke_test:
+            "qemu-system-aarch64: Cirrus VGA not available":
+                unable to create KVM with uvtool (bug 1749427)
+    s2lp3:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool issue (bug 1729854)
+    s2lp6g001:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool issue (bug 1729854)
+    kernel01:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool issue (bug 1729854)
+ubuntu_kvm_unit_tests:
+    modoc:
+        all:
+            "FAIL emulator":
+                emulator failed (bug 1723914)
+            "FAIL sprs":
+                sprs failed (bug 1723904)
+    ms10-34-mcdivittB0-kernel:
+        all:
+            "FAIL pmu":
+                pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+    starmie-kernel:
+        all:
+            "FAIL pmu (3 tests, 3 unexpected failures)":
+                pmu on starmie (bug 1751000)
+            "FAIL gicv2-ipi (terminated on SIGABRT)":
+                gicv2-ipi and gicv2-active on starmie
+            "FAIL gicv2-active (terminated on SIGABRT)":
+                gicv2-ipi and gicv2-active on starmie
+ubuntu_zfs_xfs_generic:
+    starmie-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)
+    ms10-34-mcdivittB0-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)

@@ -1,0 +1,44 @@
+# 4.15 Xenial KVM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_qrt_kernel_security:
+    harpo:
+        test-kernel-security.py:
+            "FAIL: test_074_config_security_default_mmap_min_addr":
+                test_074_config_security_default_mmap_min_addr (bug 1760650)
+            "FAIL: test_076_config_security_acl_ext4":
+                test_076_config_security_acl_ext4 (bug 1760652)
+            "FAIL: test_077_config_security_ipsec":
+                test_077_config_security_ipsec (bug 1760653)
+            "FAIL: test_078_SLAB_freelist_randomization":
+                test_078_SLAB_freelist_randomization (bug 1764975)
+            "FAIL: test_095_kernel_symbols_missing_proc_modules":
+                test_095_kernel_symbols_missing_proc_modules (bug 1764980)
+            "FAIL: test_151_sysctl_disables_bpf_unpriv_userns":
+                test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
+            "FAIL: test_160_setattr_CVE_2015_1350":
+                test_160_setattr_CVE_2015_1350 (bug 1760657)
+            "FAIL: test_181_config_vmap_stack":
+                test_181_config_vmap_stack (bug 1764985)
+ubuntu_stress_smoke_test:
+    gummo:
+        stress-smoke-test:
+            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+ubuntu_unionmount_overlayfs_suite:
+    gummo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)

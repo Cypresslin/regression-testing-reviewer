@@ -1,0 +1,177 @@
+# 4.13 Artful
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+aio_dio_bugs:
+    kernel04:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+    s2lp6g004:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+hwclock:
+    lodygin:
+        hwclock:
+            "2080-02-02 03:04":
+                unable to change time back to 19th centry on lodygin (bug 1714229)
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
+                issue for HP m400 (bug 1716603)
+libhugetlbfs:
+    wright-kernel:
+        libhugetlbfs:
+            "FAIL:     0      1":
+                failed 1
+            "Killed by signal:     0      1":
+                killed by signal 1
+            "Bad configuration:     0      1":
+                bad config 1
+    modoc:
+        libhugetlbfs:
+            "FAIL:     0      7":
+                failed 7
+            "Killed by signal:     0      6":
+                killed by signal 6
+    kernel04:
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+    s2lp6g004:
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+    onibi:
+        libhugetlbfs:
+            "FAIL:     4      0":
+                failed 4
+            "Killed by signal:     4      0":
+                killed by signal 4
+            "Bad configuration:     1      0":
+                bad config 1
+    lodygin:
+        libhugetlbfs:
+            "FAIL:     0      7":
+                failed 7
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+monotonic_time:
+    lodygin:
+        tsc:
+            "TestFail: FAIL: tsc-worst-warp=-":
+                lodygin constantly failed with tsc test (bug 1732620)
+scrashme:
+    kernel04:
+        scrashme:
+            "make: *** [scrashme.o] Error 1":
+                Test failed to build (bug 1689240)
+    s2lp6g004:
+        scrashme:
+            "make: *** [scrashme.o] Error 1":
+                Test failed to build (bug 1689240)
+ubuntu_bpf:
+    pepe:
+        ubuntu-bjf:
+            "(core dumped) bpf/test_maps":
+                test_maps failed (bug 1750724)
+            "Summary: 501 PASSED, 5 FAILED":
+                test_verifier failed on Artful i386 (bug 1755101)
+    daedalus:
+        ubuntu-bjf:
+            "Aborted (core dumped) bpf/test_maps":
+                test_maps failed (bug 1750724)
+    starmie-kernel:
+        ubuntu-bjf:
+            "error: field ‘regs’ has incomplete type":
+                failed to build on ARM64 (bug 1675395)
+    ms10-34-mcdivittB0-kernel:
+        ubuntu-bjf:
+            "error: field ‘regs’ has incomplete type":
+                failed to build on ARM64 (bug 1675395)
+    kernel04:
+        ubuntu-bjf:
+            "error: field 'regs' has incomplete type":
+                failed to build on s390x (bug 1711299)
+    s2lp6g004:
+        ubuntu-bjf:
+            "error: field 'regs' has incomplete type":
+                failed to build on s390x (bug 1711299)
+    modoc:
+        ubuntu-bjf:
+            "fatal error: 'bits/libc-header-start.h' file not found":
+                failed to build on ppc64le (bug 1750793)
+ubuntu_ecryptfs:
+    wright-kernel:
+        directory-concurrent.sh.ext4:
+            "Timed out after 30 seconds doing mkdir() - possible eCryptfs hang":
+                directory-concurrent.sh.ext4 in ubuntu_ecryptfs failed on A/B ARM64 (bug 1765653)
+ubuntu_kernel_selftests:
+    ms10-34-mcdivittB0-kernel:
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
+    starmie-kernel:
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
+ubuntu_kvm_smoke_test:
+    kernel04:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool-libvirt needs arch specific template (bug 1729854)
+    ms10-35-mcdivittB0-kernel:
+        kvm_smoke_test:
+            "ACPI requires UEFI on this architecture":
+                Unable to create KVM with uvtool on arm64 system (bug 1749427)
+    wright-kernel:
+        kvm_smoke_test:
+            "ACPI requires UEFI on this architecture":
+                Unable to create KVM with uvtool on arm64 system (bug 1749427)
+ubuntu_kvm_unit_tests:
+    s2lp6g004:
+        all:
+            "Test skipped, this systems does not have KVM extension support":
+                Nested virtualization with KVM is not supported on s390x
+ubuntu_lxc:
+    daedalus:
+        exercise:
+            "Failed to start networking in ubuntu-cloud container":
+                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+    michael:
+        exercise:
+            "Failed to start networking in ubuntu-cloud container":
+                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+    pepe:
+        exercise:
+            "Failed to start networking in ubuntu-cloud container":
+                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+ubuntu_zfs_xfs_generic:
+    starmie-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)
+    ms10-34-mcdivittB0-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)

@@ -1,0 +1,72 @@
+# 3.13 Trusty
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+hwclock:
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
+libhugetlbfs:
+    ms10-35-mcdivittB0-kernel:
+        libhugetlbfs:
+            "noresv-preserve-resv-page (2M: 64):	FAIL	Steal reserved page":
+                noresv-preserve-resv-page failed (bug 1747823)
+            "chunk-overcommit (2M: 64):	FAIL	Killed by signal \"Bus error\" due to overcommit":
+                chunk-overcommit failed (bug 1747828)
+ubuntu_cts_kernel:
+    modoc:
+        lp1262692:
+            "Error: either \"dev\" is duplicate, or \"enP3p5s0f0\" is a garbage.":
+                lp1262692 failed, bug for iproute2 (bug 1715376)
+    ms10-34-mcdivittB0-kernel:
+        lp1262692:
+            "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
+                lp1262692 failed, bug for iproute2 (bug 1715376)
+ubuntu_kvm_smoke_test:
+    modoc:
+        kvm_smoke_test:
+           "internal error: no supported architecture for os type 'hvm'":
+                no supported architecture for 'hvm' (bug 1752550)
+ubuntu_qrt_apparmor:
+    ms10-35-mcdivittB0-kernel:
+        test-apparmor.py:
+            "error: ‘PTRACE_GETREGS’ undeclared":
+                test_old_trusty_regression_testsuite failed to build (bug 1699987)
+ubuntu_qrt_kernel_security:
+    ms10-35-mcdivittB0-kernel:
+        test-kernel-security.py:
+            "FAIL: ASLR not functional (libs always at 0x0000200002f130)":
+                test 021, 022 (bug 1747847)
+            "FAIL: ASLR not functional (mmap always at 0x0000200018e010)":
+                test 021, 022 (bug 1747847)
+            "FAIL: ASLR not functional (vdso always at 0x0000200001c000)":
+                test 021, 022 (bug 1747847)
+            "AssertionError: /proc/1/personality contains 00400000 (expected 00000000)":
+                test 050 (bug 1684776)
+            "skipped: ARM64 older than 4.4 has READ_IMPLIES_EXEC personality set) FAIL":
+                test 060 should be skipped (bug 1712038)
+            "FAIL: test_072_config_debug_rodata":
+                test 072 (bug 1747850)
+            "FAIL: scanned memory without EPERMs, and can read actual values":
+                test 072 (bug 1747852)
+            "FAIL: test_075_config_stack_protector":
+                test 075 (bug 1712007)
+            "__stack_chk_fail missing from kernel (tested befs.ko)":
+                test 82 (bug 1747853)
+            "AssertionError: Module 'signpost' is tainted: (OX)":
+                test 140 (bug 1747855)
+ubuntu_zram_smoke_test:
+    modoc:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found.":
+                zram module not found on ppc64le (bug 1752551)

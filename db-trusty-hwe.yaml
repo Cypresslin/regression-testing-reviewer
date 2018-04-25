@@ -1,0 +1,61 @@
+# 4.4 Trusty LTS
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+hwclock:
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
+ubuntu_cts_kernel:
+    modoc:
+        lp1262692:
+            "Error: either \"dev\" is duplicate, or \"enP3p5s0f0\" is a garbage.":
+                lp1262692 failed, bug for iproute2 (bug 1715376)
+    ms10-34-mcdivittB0-kernel:
+        lp1262692:
+            "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
+                lp1262692 failed, bug for iproute2 (bug 1715376)
+ubuntu_ecryptfs:
+    onza:
+        extend-file-random.sh.btrfs:
+            "size should be > 0":
+                extend-file-random.sh.btrfs (bug 1684788)
+        trunc-file.sh.btrfs:
+            "size should be > 0":
+                trunc-file.sh.btrfs (bug 1684789)
+    ms10-35-mcdivittB0-kernel:
+        extend-file-random.sh.btrfs:
+            "size should be > 0":
+                extend-file-random.sh.btrfs (bug 1684788)
+        trunc-file.sh.btrfs:
+            "size should be > 0":
+                trunc-file.sh.btrfs (bug 1684789)
+ubuntu_kvm_smoke_test:
+    modoc:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool issue (bug 1729854)
+    ms10-35-mcdivittB0-kernel:
+        kvm_smoke_test:
+            "libvirt: internal error: process exited while connecting to monitor: Error: Cirrus VGA not available":
+                unable to create KVM with uvtool (bug 1749427)
+ubuntu_qrt_kernel_security:
+    ms10-35-mcdivittB0-kernel:
+        test-kernel-security.py:
+            "init missing READ_IMPLIES_EXEC ... (/proc/1/personality) FAIL":
+                050 failed (bug 1684776)
+ubuntu_qrt_apparmor:
+    ms10-35-mcdivittB0-kernel:
+        test-apparmor.py:
+            "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
+                test_old_trusty_regression_testsuite failed to build (bug 1699987)

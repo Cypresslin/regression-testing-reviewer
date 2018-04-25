@@ -1,0 +1,233 @@
+# 4.15 Bionic
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+aio_dio_bugs:
+    s2lp4:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+    s2lp6g002:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+    kernel02:
+        aio_dio_bugs:
+            "event res -22":
+                event res -22 (bug 1730895)
+hwclock:
+    lodygin:
+        hwclock:
+            "2080-02-02 03:04":
+                unable to change time back to 19th century on lodygin (bug 1714229)
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
+libhugetlbfs:
+    daedalus:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+    gummo:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+    lodygin:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+    onibi:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+    rumford:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+    wright-kernel:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+monotonic_time:
+    lodygin:
+        tsc:
+            "TestFail: FAIL: tsc-worst-warp":
+                lodygin constantly failed with tsc test (bug 1732620)
+scrashme:
+    s2lp4:
+        scrashme:
+            "make: *** [Makefile:13: scrashme.o] Error":
+                Test failed to build (bug 1689240)
+    s2lp6g002:
+        scrashme:
+            "make: *** [Makefile:13: scrashme.o] Error":
+                Test failed to build (bug 1689240)
+    kernel02:
+        scrashme:
+            "make: *** [Makefile:13: scrashme.o] Error":
+                Test failed to build (bug 1689240)
+ubuntu_bpf:
+    starmie-kernel:
+        ubuntu-bjf:
+            "error: field ‘regs’ has incomplete type":
+                failed to build on ARM64 (bug 1675395)
+    ms10-34-mcdivittB0-kernel:
+        ubuntu-bjf:
+            "error: field ‘regs’ has incomplete type":
+                failed to build on ARM64 (bug 1675395)
+    modoc:
+        ubuntu-bjf:
+            "'bits/libc-header-start.h' file not found":
+                failed to build on ppc64le (bug 1750793)
+    s2lp4:
+        ubuntu-bjf:
+            "bits/libc-header-start.h' file not found":
+                failed to build on s390x (bug 1711299)
+    s2lp6g002:
+        ubuntu-bjf:
+            "bits/libc-header-start.h' file not found":
+                failed to build on s390x (bug 1711299)
+    kernel02:
+        ubuntu-bjf:
+            "bits/libc-header-start.h' file not found":
+                failed to build on s390x (bug 1711299)
+ubuntu_bpf_jit:
+    kernel02:
+        ubuntu-bjf-jit:
+            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+    s2lp4:
+        ubuntu-bjf-jit:
+            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+ubuntu_kernel_selftests:
+    ms10-34-mcdivittB0-kernel:
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
+    starmie-kernel:
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
+ubuntu_kvm_unit_tests:
+    modoc:
+        all:
+            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                sprs timed out (bug 1740017)
+            " sprs (":
+                YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    s2lp6g002:
+        all:
+            "FAIL selftest-setup (14 tests, 1 unexpected failures)":
+                selftest-setup failed (bug 1750809)
+            "FAIL intercept (20 tests, 3 unexpected failures)":
+                intercept test failed (bug 1750808)
+ubuntu_qrt_kernel_security:
+    daedalus:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+    lodygin:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+    rumford:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+    modoc:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+    kernel02:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                lttng_probe_writeback is tainted (bug 1751213)
+    s2lp4:
+        test-kernel-security.py:
+            "ERROR: test_095_kernel_symbols_missing":
+                test_095_kernel_symbols_missing (bug 1751202)
+            "FAIL: test_072_config_security_apparmor":
+                test_072_config_security_apparmor (bug 1751207)
+            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                lttng_probe_writeback is tainted (bug 1751213)
+ubuntu_unionmount_overlayfs_suite:
+    daedalus:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    gummo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    lodygin:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    michael:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    rizzo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    s2lp4:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    kernel02:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    starmie-kernel:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+ubuntu_zfs_xfs_generic:
+    starmie-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)
+    ms10-34-mcdivittB0-kernel:
+        079:
+            "acl: Function not implemented":
+                failed with test 079 (bug 1732370)
