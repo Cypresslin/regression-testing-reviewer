@@ -13,17 +13,35 @@
 #
 aio_dio_bugs:
     s2lp4:
-        aio_dio_bugs:
+        aio-dio-invalidate-failure:
             "event res -22":
-                event res -22 (bug 1730895)
+                invalidate-failure failed (bug 1730895)
+        aio-dio-subblock-eof-read:
+            "buffered read returned -1, should be 300":
+                subblock-eof-read failed (bug 1768430)
+        aio-dio-extend-stat:
+            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                extend-stat failed (bug 1768435)
     s2lp6g002:
-        aio_dio_bugs:
+        aio-dio-invalidate-failure:
             "event res -22":
-                event res -22 (bug 1730895)
+                invalidate-failure failed (bug 1730895)
+        aio-dio-subblock-eof-read:
+            "buffered read returned -1, should be 300":
+                subblock-eof-read failed (bug 1768430)
+        aio-dio-extend-stat:
+            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                extend-stat failed (bug 1768435)
     kernel02:
-        aio_dio_bugs:
+        aio-dio-invalidate-failure:
             "event res -22":
-                event res -22 (bug 1730895)
+                invalidate-failure failed (bug 1730895)
+        aio-dio-subblock-eof-read:
+            "buffered read returned -1, should be 300":
+                subblock-eof-read failed (bug 1768430)
+        aio-dio-extend-stat:
+            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                extend-stat failed (bug 1768435)
 hwclock:
     lodygin:
         hwclock:
