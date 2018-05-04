@@ -11,6 +11,15 @@
 #       "errmsg2":
 #         reason
 #
+libhugetlbfs:
+    groucho:
+        libhugetlbfs:
+            "FAIL:     0      1":
+                failed 1
+            "Killed by signal:     0      1":
+                killed by signal 1
+            "Bad configuration:     0      3":
+                bad config 3
 ubuntu_blktrace_smoke_test:
     chico:
         blktrace-smoke-test:
@@ -39,6 +48,7 @@ ubuntu_lttng_smoke_test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
     zeppo:
+        lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
 ubuntu_lxc:
@@ -50,6 +60,11 @@ ubuntu_lxc:
         exercise:
              "FAIL: python3: API":
                  python3 API failed (bug 1764618)
+ubuntu_blktrace_smoke_test:
+    harpo:
+        blktrace-smoke-test:
+            "FAILED (/sys/kernel/debug/tracing does not exist)":
+                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
 ubuntu_qrt_kernel_security:
     chico:
         test-kernel-security.py:
@@ -83,7 +98,13 @@ ubuntu_stress_smoke_test:
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     zeppo:
+        stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+ubuntu_zram_smoke_test:
+    groucho:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)
