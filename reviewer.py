@@ -192,7 +192,8 @@ for kernel in report[target_distro]:
             for item in detail:
                 print(url_root + item)
         print()
-    if unused_all != '':
-        print("== Some expected errors were not found in the report, please check:")
-        for items in unused_all:
-            print(items)
+
+if unused_all != []:
+    print("== Some expected errors were not found in the report, please check:")
+    for items in unused_all:
+        print(items)
