@@ -89,8 +89,8 @@ def analyze_that(link, testname, distro):
                                 # don't append duplicated error message
                                 if issues[testname][sut][sub_test][errmsg] not in reason:
                                     reason.append(issues[testname][sut][sub_test][errmsg])
-                            else:
-                                unused[testname] = [sut, sub_test, errmsg]
+                    if reason == []:
+                        unused[testname] = [sut, sub_test, errmsg]
 #                    The following check is not valid, sometime a same bug report will be used for different err msg
 #                    if len(set(reason)) != len(issues[testname][sut][sub_test]):
 #                        reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
