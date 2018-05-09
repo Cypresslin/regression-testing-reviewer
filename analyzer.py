@@ -41,6 +41,7 @@ def analyze_that(link, testname, distro):
     page = request.urlopen(link).read()
     soup_summary = BeautifulSoup(page, "lxml")
     reason = []
+    unused = {}
     # Parse the failed nodes first
     for sut in _node_parser(soup_summary):
         # get the failed page for the sut
@@ -88,7 +89,9 @@ def analyze_that(link, testname, distro):
                                 # don't append duplicated error message
                                 if issues[testname][sut][sub_test][errmsg] not in reason:
                                     reason.append(issues[testname][sut][sub_test][errmsg])
-#                    This check is not valid, sometime a same bug report will be used for different err msg
+                            else:
+                                unused[testname] = [sut, sub_test, errmsg])
+#                    The following check is not valid, sometime a same bug report will be used for different err msg
 #                    if len(set(reason)) != len(issues[testname][sut][sub_test]):
 #                        reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
-    return ' '.join(reason)
+    return ' '.join(reason), unused
