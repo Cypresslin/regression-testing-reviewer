@@ -28,6 +28,7 @@ def _node_parser(soup):
 def analyze_that(link, testname, distro):
     '''Load known issue database for error analysis'''
     fn = "db-" + distro + ".yaml"
+    unused = {}
     try:
         with open(fn, 'r') as stream:
             issues = yaml.load(stream)
@@ -36,7 +37,7 @@ def analyze_that(link, testname, distro):
         raise SystemExit
 
     if testname not in issues:
-        return ''
+        return '', unused
 
     page = request.urlopen(link).read()
     soup_summary = BeautifulSoup(page, "lxml")
@@ -88,7 +89,9 @@ def analyze_that(link, testname, distro):
                                 # don't append duplicated error message
                                 if issues[testname][sut][sub_test][errmsg] not in reason:
                                     reason.append(issues[testname][sut][sub_test][errmsg])
-#                    This check is not valid, sometime a same bug report will be used for different err msg
+                            else:
+                                unused[testname] = [sut, sub_test, errmsg]
+#                    The following check is not valid, sometime a same bug report will be used for different err msg
 #                    if len(set(reason)) != len(issues[testname][sut][sub_test]):
 #                        reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
-    return ' '.join(reason)
+    return ' '.join(reason), unused

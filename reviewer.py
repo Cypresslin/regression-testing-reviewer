@@ -160,8 +160,9 @@ for kernel in report[target_distro]:
 
 
     print(kernel)
-    print('Regression test CMPL.')
+    print('Regression test CMPL, RTB.')
     print()
+    unused_all = []
     for arch in sorted(report[target_distro][kernel]):
         print('Issue to note in {}:'.format(arch))
         detail = []
@@ -179,7 +180,9 @@ for kernel in report[target_distro]:
                         fn += '-edge'
                     elif args.kvm:
                         fn += '-kvm'
-                    reason = analyzer.analyze_that(url_root + report[target_distro][kernel][arch][testcase]['link'], testcase, fn)
+                    reason, unused = analyzer.analyze_that(url_root + report[target_distro][kernel][arch][testcase]['link'], testcase, fn)
+                    if unused != {}:
+                        unused_all.append(unused)
                 print('  {} - {}'.format(testcase, reason))
                 # advanced test result analyzer
                 detail.append(report[target_distro][kernel][arch][testcase]['link'])
@@ -189,3 +192,7 @@ for kernel in report[target_distro]:
             for item in detail:
                 print(url_root + item)
         print()
+    if unused_all != '':
+        print("== Some expected errors were not found in the report, please check:")
+        for items in unused_all:
+            print(items)
