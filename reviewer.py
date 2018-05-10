@@ -67,6 +67,8 @@ hwe_filter = '~'
 kvm_filter = ' - kvm'
 edge_filter = '4.15.0'
 highlighted = False
+target_found = False
+unused_all = []
 
 if args.all:
     url = url_root
@@ -157,12 +159,11 @@ for kernel in report[target_distro]:
              continue
     elif hwe_filter in kernel or kvm_filter in kernel:
         continue
-
+    target_found = True
 
     print(kernel)
     print('Regression test CMPL, RTB.')
     print()
-    unused_all = []
     for arch in sorted(report[target_distro][kernel]):
         print('Issue to note in {}:'.format(arch))
         detail = []
@@ -192,6 +193,10 @@ for kernel in report[target_distro]:
             for item in detail:
                 print(url_root + item)
         print()
+
+if not target_found:
+    print("Desired kernel was not found")
+    print("Maybe the report hasn't refreshed yet or you have asked for an invalid kernel.")
 
 if unused_all != []:
     print("== Some expected errors were not found in the report, please check:")
