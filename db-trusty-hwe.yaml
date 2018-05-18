@@ -41,6 +41,10 @@ ubuntu_ecryptfs:
             "size should be > 0":
                 trunc-file.sh.btrfs (bug 1684789)
 ubuntu_kvm_smoke_test:
+    gonzo:
+        kvm_smoke_test:
+            "Warning: Permanently added '192.168.":
+                uvt-kvm wait issue on Trusty(bug 1732883)
     modoc:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
@@ -49,6 +53,11 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "libvirt: internal error: process exited while connecting to monitor: Error: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
+ubuntu_kvm_unit_tests:
+    pepe:
+        all:
+            "make: *** [lib/x86/usermode.o] Error":
+                failed to build (bug 1765366)
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:
         test-kernel-security.py:

@@ -48,6 +48,31 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+ubuntu_lttng_smoke_test:
+    chico:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    daedalus:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
+    rumford:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
+    modoc:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
+    ms10-35-mcdivittB0-kernel:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
+    wright-kernel:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
 ubuntu_unionmount_overlayfs_suite:
     daedalus:
         overlayfs:
@@ -62,6 +87,18 @@ ubuntu_unionmount_overlayfs_suite:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
     rizzo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    modoc:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    starmie-kernel:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    ms10-34-mcdivittB0-kernel:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)

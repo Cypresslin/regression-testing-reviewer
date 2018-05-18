@@ -33,10 +33,23 @@ ubuntu_cts_kernel:
             "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
 ubuntu_kvm_smoke_test:
+    gonzo:
+        kvm_smoke_test:
+            "Warning: Permanently added '192.168.":
+                uvt-kvm wait issue on Trusty(bug 1732883)
     modoc:
         kvm_smoke_test:
            "internal error: no supported architecture for os type 'hvm'":
                 no supported architecture for 'hvm' (bug 1752550)
+    ms10-35-mcdivittB0-kernel:
+        kvm_smoke_test:
+            "OSError: [Errno 25] Inappropriate ioctl for device":
+                getlogin will fail to open /proc/self/loginuid (bug 1770245)
+ubuntu_kvm_unit_tests:
+    pepe:
+        all:
+            "make: *** [lib/x86/usermode.o] Error":
+                failed to build (bug 1765366)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:

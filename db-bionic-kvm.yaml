@@ -11,34 +11,106 @@
 #       "errmsg2":
 #         reason
 #
+libhugetlbfs:
+    zeppo:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 KVM (bug 1765279)
+ubuntu_blktrace_smoke_test:
+    zeppo:
+        blktrace-smoke-test:
+            "FAILED (/sys/kernel/debug/tracing does not exist)":
+                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+ubuntu_fan_smoke_test:
+    chico:
+        fan-smoke-test:
+            "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
+               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+ubuntu_kvm_smoke_test:
+    groucho:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
+                Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+    gummo:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
+                Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+ubuntu_ltp:
+    chico:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 in ubuntu_ltp test failed on 4.15 kvm (bug 1770334)
+ubuntu_lttng_smoke_test:
+    groucho:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    harpo:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+ubuntu_lxc:
+    zeppo:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+ubuntu_qrt_apparmor:
+    harpo:
+        test-apparmor.py:
+            "Error: mount failed. Test 'MOUNT ":
+                mount test in test_regression_testsuite failed (bug 1765025)
 ubuntu_qrt_kernel_security:
     harpo:
         test-kernel-security.py:
-            "FAIL: test_074_config_security_default_mmap_min_addr":
-                test_074_config_security_default_mmap_min_addr (bug 1760650)
-            "FAIL: test_076_config_security_acl_ext4":
-                test_076_config_security_acl_ext4 (bug 1760652)
-            "FAIL: test_077_config_security_ipsec":
-                test_077_config_security_ipsec (bug 1760653)
-            "FAIL: test_078_SLAB_freelist_randomization":
-                test_078_SLAB_freelist_randomization (bug 1764975)
-            "FAIL: test_095_kernel_symbols_missing_proc_modules":
-                test_095_kernel_symbols_missing_proc_modules (bug 1764980)
-            "FAIL: test_151_sysctl_disables_bpf_unpriv_userns":
-                test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
-            "FAIL: test_160_setattr_CVE_2015_1350":
-                test_160_setattr_CVE_2015_1350 (bug 1760657)
-            "FAIL: test_181_config_vmap_stack":
-                test_181_config_vmap_stack (bug 1764985)
+            "FAIL: test_182_config_hardened_usercopy":
+                test_182_config_hardened_usercopy (bug 1766777)
+            "FAIL: test_190_config_kernel_fortify":
+                test_190_config_kernel_fortify (bug 1766774)
+            "FAIL: test_250_config_security_perf_events_restrict":
+                test_250_config_security_perf_events_restrict (bug 1766780)
+    gummo:
+        test-kernel-security.py:
+            "FAIL: test_182_config_hardened_usercopy":
+                test_182_config_hardened_usercopy (bug 1766777)
+            "FAIL: test_190_config_kernel_fortify":
+                test_190_config_kernel_fortify (bug 1766774)
+            "FAIL: test_250_config_security_perf_events_restrict":
+                test_250_config_security_perf_events_restrict (bug 1766780)
 ubuntu_stress_smoke_test:
+    groucho:
+        stress-smoke-test:
+            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     gummo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+ubuntu_sysdig_smoke_test:
+    chico:
+        sysdig-smoke-test:
+            "Could not find start of capture message, maybe sysdig didn't start?":
+                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
 ubuntu_unionmount_overlayfs_suite:
     gummo:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
+    zeppo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+ubuntu_zram_smoke_test:
+    harpo:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)
+    groucho:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)

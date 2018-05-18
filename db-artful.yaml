@@ -148,6 +148,10 @@ ubuntu_kernel_selftests:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
 ubuntu_kvm_smoke_test:
+    modoc:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
+                unable to start kvm, uvtool template issue (bug 1755118)
     kernel04:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":

@@ -207,6 +207,10 @@ ubuntu_qrt_kernel_security:
                 test_072_config_security_apparmor (bug 1751207)
             "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
                 lttng_probe_writeback is tainted (bug 1751213)
+    s2lp6g002:
+        test-kernel-security.py:
+            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                lttng_probe_writeback is tainted (bug 1751213)
 ubuntu_unionmount_overlayfs_suite:
     daedalus:
         overlayfs:

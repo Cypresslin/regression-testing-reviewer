@@ -22,6 +22,10 @@ monotonic_time:
             "FAIL: gtod-worst-warp=":
                 gtod tend to fail on onibi
 ubuntu_kvm_smoke_test:
+    modoc:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
+                unable to start kvm, uvtool template issue (bug 1755118)
     ms10-35-mcdivittB0-kernel:
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":

@@ -90,7 +90,24 @@ scrashme:
         scrashme:
             "make: *** [scrashme.o] Error 1":
                 Test failed to build (bug 1689240)
+ubuntu_bpf_jit:
+    s2lp3:
+        ubuntu-bjf-jit:
+            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
+               unable to insert test_bpf on Xenial s390x (bug 1768452)
+    s2lp6g001:
+        ubuntu-bjf-jit:
+            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
+               unable to insert test_bpf on Xenial s390x (bug 1768452)
+    kernel01:
+        ubuntu-bjf-jit:
+            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
+               unable to insert test_bpf on Xenial s390x (bug 1768452)
 ubuntu_kvm_smoke_test:
+    modoc:
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt domain 'bjf-test' is not running."
+                unable to create KVM with uvtool, bug 1755118
     ms10-35-mcdivittB0-kernel:
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
@@ -126,6 +143,11 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+ubuntu_lxc:
+    s2lp3:
+        exercise:
+            "Failed to start networking in ubuntu-cloud container":
+                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
 ubuntu_zfs_xfs_generic:
     starmie-kernel:
         079:
