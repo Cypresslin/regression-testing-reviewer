@@ -93,7 +93,10 @@ for td in head.findChildren('td', {'style': 'background: #ffff99;'}):
         distro = td.findChild('strong').text
         report[distro] = {}
 
-if target_distro not in report:
+for distro in report:
+    if target_distro in distro:
+        target_distro = distro
+if target_distro == args.release.lower():
     print('Requested distro "{}" was not in the report: {}'.format(target_distro, report.keys()))
     sys.exit(1)
 '''
@@ -174,7 +177,7 @@ for kernel in report[target_distro]:
                 reason = ''
                 # Call the advanced test result analyzer here
                 if not args.template_only:
-                    fn = target_distro
+                    fn = args.release.lower()
                     if args.hwe:
                         fn += '-hwe'
                     elif args.edge:
