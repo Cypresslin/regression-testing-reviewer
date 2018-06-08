@@ -50,6 +50,35 @@ ubuntu_kvm_unit_tests:
         all:
             "make: *** [lib/x86/usermode.o] Error":
                 failed to build (bug 1765366)
+ubuntu_ltp_syscalls:
+    onibi:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+            "request_key03.c:158: FAIL: kernel oops while updating key of type":
+                request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
+            "fanotify06.c:197: FAIL: group 3 got event":
+                fanotify06 failed with T kernel (bug 1775378)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    modoc:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:

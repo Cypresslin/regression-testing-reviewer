@@ -43,6 +43,10 @@ aio_dio_bugs:
             "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
                 extend-stat failed (bug 1768435)
 hwclock:
+    baltar:
+        hwclock:
+            "hwclock: Timed out waiting for time change.":
+                hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
     lodygin:
         hwclock:
             "2080-02-02 03:04":
@@ -52,6 +56,10 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
 libhugetlbfs:
+    baltar:
+        libhugetlbfs:
+            "unrecognized option '--hugetlbfs-":
+                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
     daedalus:
         libhugetlbfs:
             "unrecognized option '--hugetlbfs-":
@@ -95,14 +103,30 @@ scrashme:
             "make: *** [Makefile:13: scrashme.o] Error":
                 Test failed to build (bug 1689240)
 ubuntu_bpf:
+    amaura:
+        ubuntu-bjf:
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+    baltar:
+        ubuntu-bjf:
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+    michael:
+        ubuntu-bjf:
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+    pepe:
+        ubuntu-bjf:
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
     starmie-kernel:
         ubuntu-bjf:
-            "error: field ‘regs’ has incomplete type":
-                failed to build on ARM64 (bug 1675395)
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
     ms10-34-mcdivittB0-kernel:
         ubuntu-bjf:
-            "error: field ‘regs’ has incomplete type":
-                failed to build on ARM64 (bug 1675395)
+            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
     modoc:
         ubuntu-bjf:
             "'bits/libc-header-start.h' file not found":
@@ -144,6 +168,15 @@ ubuntu_bpf_jit:
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
             "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+ubuntu_fan_smoke_test:
+    kernel02:
+        fan-smoke-test:
+            "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
+                fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+    s2lp4:
+        fan-smoke-test:
+            "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
+                fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
 ubuntu_kernel_selftests:
     ms10-34-mcdivittB0-kernel:
         breakpoints:
@@ -153,6 +186,15 @@ ubuntu_kernel_selftests:
         breakpoints:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
+ubuntu_kvm_smoke_test:
+    ms10-35-mcdivittB0-kernel:
+        kvm_smoke_test:
+            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
+                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+    wright-kernel:
+        kvm_smoke_test:
+            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
+                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
 ubuntu_kvm_unit_tests:
     modoc:
         all:
@@ -166,6 +208,61 @@ ubuntu_kvm_unit_tests:
                 selftest-setup failed (bug 1750809)
             "FAIL intercept (20 tests, 3 unexpected failures)":
                 intercept test failed (bug 1750808)
+ubuntu_ltp:
+    harpo:
+        ltp:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+ubuntu_ltp_syscalls:
+    onibi:
+        syscalls:
+            "fcntl36.c:205: FAIL: Unexpected data offset":
+                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
+ubuntu_lxc:
+    amaura:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    baltar:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    kernel02:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    michael:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    ms10-34-mcdivittB0-kernel:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    pepe:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    s2lp4:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    starmie-kernel:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
+    zeppo:
+        exercise:
+            "Unable to locate package lxc-tests":
+                lxc-tests package removed on bionic (bug 1758255)
 ubuntu_qrt_kernel_security:
     daedalus:
         test-kernel-security.py:
@@ -213,6 +310,10 @@ ubuntu_qrt_kernel_security:
                 lttng_probe_writeback is tainted (bug 1751213)
 ubuntu_unionmount_overlayfs_suite:
     daedalus:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    fozzie:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)

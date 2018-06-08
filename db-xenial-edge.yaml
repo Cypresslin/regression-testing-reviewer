@@ -48,12 +48,31 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+ubuntu_ltp_syscalls:
+    rumford:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    onibi:
+        syscalls:
+            "fcntl36.c:205: FAIL: Unexpected data offset":
+                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE i386 kernel (bug 1774396)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
 ubuntu_lttng_smoke_test:
     chico:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
     daedalus:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
+    gonzo:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on X-Edge kernel (bug 1765673)

@@ -38,6 +38,10 @@ ubuntu_fan_smoke_test:
         fan-smoke-test:
             "enable disable fan test: FAILED":
                 ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+    groucho:
+        fan-smoke-test:
+            "enable disable fan test: FAILED":
+                ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
     gummo:
         fan-smoke-test:
             "enable disable fan test: FAILED":
@@ -51,12 +55,20 @@ ubuntu_lttng_smoke_test:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    gummo:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
     zeppo:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
 ubuntu_lxc:
     groucho:
+        exercise:
+             "FAIL: python3: API":
+                 python3 API failed (bug 1764618)
+    gummo:
         exercise:
              "FAIL: python3: API":
                  python3 API failed (bug 1764618)
@@ -69,11 +81,6 @@ ubuntu_blktrace_smoke_test:
         blktrace-smoke-test:
             "FAILED (/sys/kernel/debug/tracing does not exist)":
                 ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-ubuntu_kvm_smoke_test:
-    zeppo:
-        kvm_smoke_test:
-            "OSError: [Errno 25] Inappropriate ioctl for device":
-                CONFIG_AUDITSYSCALL needs to be enabled (bug 1770245)
 ubuntu_qrt_kernel_security:
     chico:
         test-kernel-security.py:
@@ -114,6 +121,12 @@ ubuntu_stress_smoke_test:
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+    gummo:
+        stress-smoke-test:
+            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     zeppo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
@@ -126,6 +139,10 @@ ubuntu_zram_smoke_test:
             "modprobe: FATAL: Module zram not found in directory":
                 zram module not found (bug 1766823)
     gummo:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)
+    zeppo:
         zram-smoke-test:
             "modprobe: FATAL: Module zram not found in directory":
                 zram module not found (bug 1766823)

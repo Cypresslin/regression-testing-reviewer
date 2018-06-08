@@ -11,27 +11,6 @@
 #       "errmsg2":
 #         reason
 #
-aio_dio_bugs:
-    kernel04:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
-    s2lp6g004:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
 hwclock:
     lodygin:
         hwclock:
@@ -74,10 +53,16 @@ libhugetlbfs:
                 bad config 1
     onibi:
         libhugetlbfs:
+            "FAIL:     0      7":
+                failed 7
             "FAIL:     4      0":
                 failed 4
+            "Killed by signal:     0      7":
+                killed by signal 7
             "Killed by signal:     4      0":
                 killed by signal 4
+            "Bad configuration:     0      1":
+                bad config 1
             "Bad configuration:     1      0":
                 bad config 1
     lodygin:
@@ -93,19 +78,10 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp=-":
                 lodygin constantly failed with tsc test (bug 1732620)
-scrashme:
-    kernel04:
-        scrashme:
-            "make: *** [scrashme.o] Error 1":
-                Test failed to build (bug 1689240)
-    s2lp6g004:
-        scrashme:
-            "make: *** [scrashme.o] Error 1":
-                Test failed to build (bug 1689240)
 ubuntu_bpf:
     pepe:
         ubuntu-bjf:
-            "(core dumped) bpf/test_maps":
+            "test_maps: test_maps.c:506: run_parallel: Assertion `status == 0' failed.":
                 test_maps failed (bug 1750724)
             "Summary: 501 PASSED, 5 FAILED":
                 test_verifier failed on Artful i386 (bug 1755101)
@@ -169,6 +145,55 @@ ubuntu_kvm_unit_tests:
         all:
             "Test skipped, this systems does not have KVM extension support":
                 Nested virtualization with KVM is not supported on s390x
+ubuntu_ltp_syscalls:
+    kernel04:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    modoc:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    onibi:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    rumford:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    s2lp6g004:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
+    wright-kernel:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with A/T kernel (bug 1775153)
 ubuntu_lxc:
     daedalus:
         exercise:

@@ -106,7 +106,7 @@ ubuntu_bpf_jit:
 ubuntu_kvm_smoke_test:
     modoc:
         kvm_smoke_test:
-            "uvt-kvm: error: libvirt domain 'bjf-test' is not running."
+            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool, bug 1755118
     ms10-35-mcdivittB0-kernel:
         kvm_smoke_test:
@@ -143,6 +143,39 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+ubuntu_ltp_syscalls:
+    onibi:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
+                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+            "fcntl36.c:205: FAIL: Unexpected data offset":
+                fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+    rumford:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
+                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+    s2lp3:
+        syscalls:
+            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
+                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
 ubuntu_lxc:
     s2lp3:
         exercise:
