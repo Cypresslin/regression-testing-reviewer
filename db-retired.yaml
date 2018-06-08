@@ -1,0 +1,109 @@
+trusty-hwe:
+    ubuntu_kvm_unit_tests:
+        pepe:
+            all:
+                "make: *** [lib/x86/usermode.o] Error":
+                    failed to build (bug 1765366)
+xenial-kvm:
+    ubuntu_kvm_smoke_test:
+        zeppo:
+            kvm_smoke_test:
+                "OSError: [Errno 25] Inappropriate ioctl for device":
+                    CONFIG_AUDITSYSCALL needs to be enabled (bug 1770245)
+    ubuntu_qrt_kernel_security:
+        chico:
+            test-kernel-security.py:
+                "ERROR: test_096_proc_entries_unreadable":
+                    test_096_proc_entries_unreadable (bug 1760642)
+                "FAIL: test_072_config_strict_devmem":
+                    test_072_config_strict_devmem (bug 1760648)
+                "FAIL: test_072_strict_devmem":
+                    test_072_strict_devmem (bug 1760649)
+                "FAIL: test_140_kernel_modules_not_tainted":
+                    test_140_kernel_modules_not_tainted (bug 1760654)
+artful:
+    aio_dio_bugs:
+        kernel04:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+        s2lp6g004:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+    scrashme:
+        kernel04:
+            scrashme:
+                "make: *** [scrashme.o] Error 1":
+                    Test failed to build (bug 1689240)
+        s2lp6g004:
+            scrashme:
+                "make: *** [scrashme.o] Error 1":
+                    Test failed to build (bug 1689240)
+bionic:
+    ubuntu_bpf:
+        ms10-34-mcdivittB0-kernel:
+            ubuntu-bjf:
+                "error: field ‘regs’ has incomplete type":
+                    failed to build on ARM64 (bug 1675395)
+        starmie-kernel:
+            ubuntu-bjf:
+                "error: field ‘regs’ has incomplete type":
+                    failed to build on ARM64 (bug 1675395)
+bionic-kvm:
+    libhugetlbfs:
+        zeppo:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 KVM (bug 1765279)
+    ubuntu_kvm_smoke_test:
+        chico:
+            kvm_smoke_test:
+                "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
+                    Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+        groucho:
+            kvm_smoke_test:
+                "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
+                    Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+        gummo:
+            kvm_smoke_test:
+                "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
+                    Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+    ubuntu_lxc:
+        zeppo:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+    ubuntu_qrt_kernel_security:
+        harpo:
+            test-kernel-security.py:
+                "FAIL: test_074_config_security_default_mmap_min_addr":
+                    test_074_config_security_default_mmap_min_addr (bug 1760650)
+                "FAIL: test_076_config_security_acl_ext4":
+                    test_076_config_security_acl_ext4 (bug 1760652)
+                "FAIL: test_077_config_security_ipsec":
+                    test_077_config_security_ipsec (bug 1760653)
+                "FAIL: test_078_SLAB_freelist_randomization":
+                    test_078_SLAB_freelist_randomization (bug 1764975)
+                "FAIL: test_095_kernel_symbols_missing_proc_modules":
+                    test_095_kernel_symbols_missing_proc_modules (bug 1764980)
+                "FAIL: test_151_sysctl_disables_bpf_unpriv_userns":
+                    test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
+                "FAIL: test_160_setattr_CVE_2015_1350":
+                    test_160_setattr_CVE_2015_1350 (bug 1760657)
+                "FAIL: test_181_config_vmap_stack":
+                    test_181_config_vmap_stack (bug 1764985)
+
+
