@@ -16,6 +16,18 @@ ubuntu_blktrace_smoke_test:
         blktrace-smoke-test:
             "FAILED (/sys/kernel/debug/tracing does not exist)":
                 ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+    harpo:
+        blktrace-smoke-test:
+            "FAILED (/sys/kernel/debug/tracing does not exist)":
+                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+    groucho:
+        blktrace-smoke-test:
+            "FAILED (/sys/kernel/debug/tracing does not exist)":
+                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+    gummo:
+        blktrace-smoke-test:
+            "FAILED (/sys/kernel/debug/tracing does not exist)":
+                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
     zeppo:
         blktrace-smoke-test:
             "FAILED (/sys/kernel/debug/tracing does not exist)":
@@ -25,7 +37,19 @@ ubuntu_fan_smoke_test:
         fan-smoke-test:
            "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
                ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+    harpo:
+        fan-smoke-test:
+           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
+               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
     groucho:
+        fan-smoke-test:
+           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
+               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+    gummo:
+        fan-smoke-test:
+           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
+               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+    zeppo:
         fan-smoke-test:
            "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
                ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
@@ -38,6 +62,14 @@ ubuntu_ltp:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with T/A/B kernel (bug 1775153)
+    harpo:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
     groucho:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
@@ -46,13 +78,24 @@ ubuntu_ltp:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with T/A/B kernel (bug 1775153)
-
+    gummo:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
+    zeppo:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
 ubuntu_lttng_smoke_test:
     chico:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
-    groucho:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
@@ -60,8 +103,36 @@ ubuntu_lttng_smoke_test:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    groucho:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    gummo:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    zeppo:
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
 ubuntu_lxc:
     chico:
+        exercise:
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
+    harpo:
+        exercise:
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
+    groucho:
+        exercise:
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
+    gummo:
+        exercise:
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
+    zeppo:
         exercise:
             "FAIL: unable to create first nic":
                 lxc-test-usernic.in failed on Bionic (bug 1775809)
@@ -71,6 +142,18 @@ ubuntu_qrt_apparmor:
             "Error: mount failed. Test 'MOUNT ":
                 mount test in test_regression_testsuite failed (bug 1765025)
     harpo:
+        test-apparmor.py:
+            "Error: mount failed. Test 'MOUNT ":
+                mount test in test_regression_testsuite failed (bug 1765025)
+    groucho:
+        test-apparmor.py:
+            "Error: mount failed. Test 'MOUNT ":
+                mount test in test_regression_testsuite failed (bug 1765025)
+    gummo:
+        test-apparmor.py:
+            "Error: mount failed. Test 'MOUNT ":
+                mount test in test_regression_testsuite failed (bug 1765025)
+    zeppo:
         test-apparmor.py:
             "Error: mount failed. Test 'MOUNT ":
                 mount test in test_regression_testsuite failed (bug 1765025)
@@ -91,7 +174,23 @@ ubuntu_qrt_kernel_security:
                 test_190_config_kernel_fortify (bug 1766774)
             "FAIL: test_250_config_security_perf_events_restrict":
                 test_250_config_security_perf_events_restrict (bug 1766780)
+    groucho:
+        test-kernel-security.py:
+            "FAIL: test_182_config_hardened_usercopy":
+                test_182_config_hardened_usercopy (bug 1766777)
+            "FAIL: test_190_config_kernel_fortify":
+                test_190_config_kernel_fortify (bug 1766774)
+            "FAIL: test_250_config_security_perf_events_restrict":
+                test_250_config_security_perf_events_restrict (bug 1766780)
     gummo:
+        test-kernel-security.py:
+            "FAIL: test_182_config_hardened_usercopy":
+                test_182_config_hardened_usercopy (bug 1766777)
+            "FAIL: test_190_config_kernel_fortify":
+                test_190_config_kernel_fortify (bug 1766774)
+            "FAIL: test_250_config_security_perf_events_restrict":
+                test_250_config_security_perf_events_restrict (bug 1766780)
+    zeppo:
         test-kernel-security.py:
             "FAIL: test_182_config_hardened_usercopy":
                 test_182_config_hardened_usercopy (bug 1766777)
@@ -106,6 +205,12 @@ ubuntu_stress_smoke_test:
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+    harpo:
+        stress-smoke-test:
+            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     groucho:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
@@ -118,7 +223,7 @@ ubuntu_stress_smoke_test:
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
-    harpo:
+    zeppo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
@@ -129,12 +234,32 @@ ubuntu_sysdig_smoke_test:
         sysdig-smoke-test:
             "Could not find start of capture message, maybe sysdig didn't start?":
                 Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+    harpo:
+        sysdig-smoke-test:
+            "Could not find start of capture message, maybe sysdig didn't start?":
+                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
     groucho:
+        sysdig-smoke-test:
+            "Could not find start of capture message, maybe sysdig didn't start?":
+                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+    gummo:
+        sysdig-smoke-test:
+            "Could not find start of capture message, maybe sysdig didn't start?":
+                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+    zeppo:
         sysdig-smoke-test:
             "Could not find start of capture message, maybe sysdig didn't start?":
                 Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
 ubuntu_unionmount_overlayfs_suite:
     chico:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    harpo:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
+    groucho:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
@@ -156,6 +281,14 @@ ubuntu_zram_smoke_test:
             "modprobe: FATAL: Module zram not found in directory":
                 zram module not found (bug 1766823)
     groucho:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)
+    gummo:
+        zram-smoke-test:
+            "modprobe: FATAL: Module zram not found in directory":
+                zram module not found (bug 1766823)
+    zeppo:
         zram-smoke-test:
             "modprobe: FATAL: Module zram not found in directory":
                 zram module not found (bug 1766823)
