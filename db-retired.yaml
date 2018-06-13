@@ -15,12 +15,26 @@ xenial-kvm:
             test-kernel-security.py:
                 "ERROR: test_096_proc_entries_unreadable":
                     test_096_proc_entries_unreadable (bug 1760642)
+                "FAIL: test_072_config_debug_rodata":
+                    test_072_config_debug_rodata (bug 1760643)
+                "FAIL: test_072_config_debug_set_module_ronx":
+                    test_072_config_debug_set_module_ronx (bug 1760646)
                 "FAIL: test_072_config_strict_devmem":
                     test_072_config_strict_devmem (bug 1760648)
                 "FAIL: test_072_strict_devmem":
                     test_072_strict_devmem (bug 1760649)
+                "FAIL: test_074_config_security_default_mmap_min_addr":
+                    test_074_config_security_default_mmap_min_addr (bug 1760650)
+                "FAIL: test_076_config_security_acl_ext4":
+                    test_076_config_security_acl_ext4 (bug 1760652)
+                "FAIL: test_077_config_security_ipsec":
+                    test_077_config_security_ipsec (bug 1760653)
                 "FAIL: test_140_kernel_modules_not_tainted":
                     test_140_kernel_modules_not_tainted (bug 1760654)
+                "FAIL: test_151_sysctl_disables_bpf_unpriv_userns":
+                    test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
+                "FAIL: test_160_setattr_CVE_2015_1350":
+                    test_160_setattr_CVE_2015_1350 (bug 1760657)
 artful:
     aio_dio_bugs:
         kernel04:
