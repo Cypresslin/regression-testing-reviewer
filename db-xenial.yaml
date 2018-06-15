@@ -104,7 +104,7 @@ ubuntu_bpf_jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
                unable to insert test_bpf on Xenial s390x (bug 1768452)
 ubuntu_kvm_smoke_test:
-    modoc:
+    entei:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool, bug 1755118
@@ -125,7 +125,7 @@ ubuntu_kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
                 uvtool issue (bug 1729854)
 ubuntu_kvm_unit_tests:
-    modoc:
+    entei:
         all:
             "FAIL emulator":
                 emulator failed (bug 1723914)

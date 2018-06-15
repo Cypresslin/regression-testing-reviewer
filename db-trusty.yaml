@@ -24,7 +24,7 @@ libhugetlbfs:
             "chunk-overcommit (2M: 64):	FAIL	Killed by signal \"Bus error\" due to overcommit":
                 chunk-overcommit failed (bug 1747828)
 ubuntu_cts_kernel:
-    modoc:
+    entei:
         lp1262692:
             "Error: either \"dev\" is duplicate, or \"enP3p5s0f0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
@@ -37,7 +37,7 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "Warning: Permanently added '192.168.":
                 uvt-kvm wait issue on Trusty(bug 1732883)
-    modoc:
+    entei:
         kvm_smoke_test:
            "internal error: no supported architecture for os type 'hvm'":
                 no supported architecture for 'hvm' (bug 1752550)
@@ -65,7 +65,7 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with A/T kernel (bug 1775153)
-    modoc:
+    entei:
         syscalls:
             "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
@@ -108,7 +108,7 @@ ubuntu_qrt_kernel_security:
             "AssertionError: Module 'signpost' is tainted: (OX)":
                 test 140 (bug 1747855)
 ubuntu_zram_smoke_test:
-    modoc:
+    entei:
         zram-smoke-test:
             "modprobe: FATAL: Module zram not found.":
                 zram module not found on ppc64le (bug 1752551)

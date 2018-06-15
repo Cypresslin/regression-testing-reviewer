@@ -17,7 +17,7 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
 ubuntu_cts_kernel:
-    modoc:
+    entei:
         lp1262692:
             "Error: either \"dev\" is duplicate, or \"enP3p5s0f0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
@@ -45,7 +45,7 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "Warning: Permanently added '192.168.":
                 uvt-kvm wait issue on Trusty (bug 1732883)
-    modoc:
+    entei:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
                 uvtool issue (bug 1729854)

@@ -22,7 +22,7 @@ monotonic_time:
             "FAIL: gtod-worst-warp=":
                 gtod tend to fail on onibi
 ubuntu_kvm_smoke_test:
-    modoc:
+    entei:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to start kvm, uvtool template issue (bug 1755118)
@@ -31,7 +31,7 @@ ubuntu_kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
 ubuntu_kvm_unit_tests:
-    modoc:
+    entei:
         all:
             "FAIL emulator":
                 emulator failed (bug 1723914)
@@ -58,7 +58,7 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with A/T kernel (bug 1775153)
-    modoc:
+    entei:
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)

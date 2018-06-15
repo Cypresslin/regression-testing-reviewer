@@ -17,7 +17,7 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
 ubuntu_kvm_smoke_test:
-    modoc:
+    entei:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool (bug 1755118)
@@ -30,7 +30,7 @@ ubuntu_kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
 ubuntu_kvm_unit_tests:
-    modoc:
+    entei:
         all:
             "FAIL emulator":
                 emulator failed (bug 1723914)
@@ -80,7 +80,7 @@ ubuntu_lttng_smoke_test:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on X-Edge kernel (bug 1765673)
-    modoc:
+    entei:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on X-Edge kernel (bug 1765673)
@@ -109,7 +109,7 @@ ubuntu_unionmount_overlayfs_suite:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
-    modoc:
+    entei:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)

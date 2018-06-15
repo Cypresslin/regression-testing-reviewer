@@ -127,7 +127,7 @@ ubuntu_bpf:
         ubuntu-bjf:
             "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                 test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
-    modoc:
+    entei:
         ubuntu-bjf:
             "'bits/libc-header-start.h' file not found":
                 failed to build on ppc64le (bug 1750793)
@@ -196,7 +196,7 @@ ubuntu_kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
 ubuntu_kvm_unit_tests:
-    modoc:
+    entei:
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
@@ -282,7 +282,7 @@ ubuntu_qrt_kernel_security:
                 test_095_kernel_symbols_missing (bug 1751202)
             "FAIL: test_072_config_security_apparmor":
                 test_072_config_security_apparmor (bug 1751207)
-    modoc:
+    entei:
         test-kernel-security.py:
             "ERROR: test_095_kernel_symbols_missing":
                 test_095_kernel_symbols_missing (bug 1751202)
