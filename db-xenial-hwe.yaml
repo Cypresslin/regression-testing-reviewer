@@ -16,11 +16,6 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
-monotonic_time:
-    onibi:
-        gtod:
-            "FAIL: gtod-worst-warp=":
-                gtod tend to fail on onibi
 ubuntu_kvm_smoke_test:
     entei:
         kvm_smoke_test:
@@ -50,14 +45,6 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
 ubuntu_ltp_syscalls:
-    entei:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
     entei:
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
@@ -105,12 +92,3 @@ ubuntu_lxc:
         exercise:
             "Failed to start networking in ubuntu-cloud container":
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
-ubuntu_zfs_xfs_generic:
-    starmie-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)
-    ms10-34-mcdivittB0-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)

@@ -4,6 +4,101 @@ trusty-hwe:
             all:
                 "make: *** [lib/x86/usermode.o] Error":
                     failed to build (bug 1765366)
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+                "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                    fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
+xenial:
+    aio_dio_bugs:
+        kernel01:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+        s2lp3:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+        s2lp6g001:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+    monotonic_time:
+        onibi:
+            gtod:
+                "FAIL: gtod-worst-warp=":
+                    gtod tend to fail on onibi
+    scrashme:
+        kernel01:
+            scrashme:
+                "make: *** [scrashme.o] Error 1":
+                    Test failed to build (bug 1689240)
+        s2lp3:
+            scrashme:
+                "make: *** [scrashme.o] Error 1":
+                    Test failed to build (bug 1689240)
+        s2lp6g001:
+            scrashme:
+                "make: *** [scrashme.o] Error 1":
+                    Test failed to build (bug 1689240)
+    ubuntu_ltp_syscalls:
+        rumford:
+            syscalls:
+                "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                    fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+                "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
+                    getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+        s2lp3:
+            syscalls:
+                "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                    fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+    ubuntu_zfs_xfs_generic:
+        starmie-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+        ms10-34-mcdivittB0-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+xenial-hwe:
+    monotonic_time:
+        onibi:
+            gtod:
+                "FAIL: gtod-worst-warp=":
+                    gtod tend to fail on onibi
+    ubuntu_zfs_xfs_generic:
+        starmie-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+        ms10-34-mcdivittB0-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+xenial-hwe-edge:
+    ubuntu_kvm_unit_tests:
+        all:
+            "FAIL emulator":
+                emulator failed (bug 1723914)
 xenial-kvm:
     ubuntu_kvm_smoke_test:
         zeppo:
@@ -57,6 +152,11 @@ artful:
             aio-dio-extend-stat:
                 "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
                     extend-stat failed (bug 1768435)
+    hwclock:
+        lodygin:
+            hwclock:
+                "2080-02-02 03:04":
+                    unable to change time back to 19th centry on lodygin (bug 1714229)
     scrashme:
         kernel04:
             scrashme:
@@ -66,16 +166,203 @@ artful:
             scrashme:
                 "make: *** [scrashme.o] Error 1":
                     Test failed to build (bug 1689240)
-bionic:
-    ubuntu_bpf:
+    ubuntu_kernel_selftests:
         ms10-34-mcdivittB0-kernel:
+            breakpoints:
+                "error: ‘TRAP_HWBKPT’ undeclared":
+                    breakpoint test failed to build (bug 1680507)
+        starmie-kernel:
+            breakpoints:
+               "error: ‘TRAP_HWBKPT’ undeclared":
+                   breakpoint test failed to build (bug 1680507)
+    ubuntu_zfs_xfs_generic:
+        starmie-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+        ms10-34-mcdivittB0-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
+bionic:
+    aio_dio_bugs:
+        s2lp4:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+        s2lp6g002:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+        kernel02:
+            aio-dio-invalidate-failure:
+                "event res -22":
+                    invalidate-failure failed (bug 1730895)
+            aio-dio-subblock-eof-read:
+                "buffered read returned -1, should be 300":
+                    subblock-eof-read failed (bug 1768430)
+            aio-dio-extend-stat:
+                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
+                    extend-stat failed (bug 1768435)
+    hwclock:
+        lodygin:
+            hwclock:
+                "2080-02-02 03:04":
+                    unable to change time back to 19th century on lodygin (bug 1714229)
+    scrashme:
+        s2lp4:
+            scrashme:
+                "make: *** [Makefile:13: scrashme.o] Error":
+                    Test failed to build (bug 1689240)
+        s2lp6g002:
+            scrashme:
+                "make: *** [Makefile:13: scrashme.o] Error":
+                    Test failed to build (bug 1689240)
+        kernel02:
+            scrashme:
+                "make: *** [Makefile:13: scrashme.o] Error":
+                    Test failed to build (bug 1689240)
+    ubuntu_bpf:
+        amaura:
             ubuntu-bjf:
-                "error: field ‘regs’ has incomplete type":
-                    failed to build on ARM64 (bug 1675395)
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+        baltar:
+            ubuntu-bjf:
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+        michael:
+            ubuntu-bjf:
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+        pepe:
+            ubuntu-bjf:
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
         starmie-kernel:
             ubuntu-bjf:
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
                 "error: field ‘regs’ has incomplete type":
                     failed to build on ARM64 (bug 1675395)
+        ms10-34-mcdivittB0-kernel:
+            ubuntu-bjf:
+                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
+                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+                "error: field ‘regs’ has incomplete type":
+                    failed to build on ARM64 (bug 1675395)
+    ubuntu_fan_smoke_test:
+        kernel02:
+            fan-smoke-test:
+                "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
+                    fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+        s2lp4:
+            fan-smoke-test:
+                "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
+                    fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+    ubuntu_kernel_selftests:
+        ms10-34-mcdivittB0-kernel:
+            breakpoints:
+                "error: ‘TRAP_HWBKPT’ undeclared":
+                    breakpoint test failed to build (bug 1680507)
+        starmie-kernel:
+            breakpoints:
+                "error: ‘TRAP_HWBKPT’ undeclared":
+                    breakpoint test failed to build (bug 1680507)
+    ubuntu_qrt_kernel_security:
+        daedalus:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                    test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+        lodygin:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                    test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+        rumford:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                   test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+        entei:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                    test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+        kernel02:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                    test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+                "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                    lttng_probe_writeback is tainted (bug 1751213)
+        s2lp4:
+            test-kernel-security.py:
+                "ERROR: test_095_kernel_symbols_missing":
+                    test_095_kernel_symbols_missing (bug 1751202)
+                "FAIL: test_072_config_security_apparmor":
+                    test_072_config_security_apparmor (bug 1751207)
+                "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                    lttng_probe_writeback is tainted (bug 1751213)
+        s2lp6g002:
+            test-kernel-security.py:
+                "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
+                    lttng_probe_writeback is tainted (bug 1751213)
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+            "fcntl36.c:205: FAIL: Unexpected data offset":
+                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
+    ubuntu_lxc:
+        amaura:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+        baltar:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+        kernel02:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+        michael:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+        ms10-34-mcdivittB0-kernel:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+    ubuntu_zfs_xfs_generic:
+        starmie-kernel:
+            079:
+                "acl: Function not implemented":
+                    failen with test 079 (bug 1732370)
+        ms10-34-mcdivittB0-kernel:
+            079:
+                "acl: Function not implemented":
+                    failed with test 079 (bug 1732370)
 bionic-kvm:
     libhugetlbfs:
         zeppo:
@@ -119,5 +406,3 @@ bionic-kvm:
                     test_160_setattr_CVE_2015_1350 (bug 1760657)
                 "FAIL: test_181_config_vmap_stack":
                     test_181_config_vmap_stack (bug 1764985)
-
-

@@ -49,20 +49,28 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
 ubuntu_ltp_syscalls:
+    entei:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     rumford:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     onibi:
         syscalls:
             "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE i386 kernel (bug 1774396)
+                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    wright-kernel:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
 ubuntu_lttng_smoke_test:
     chico:
         lttng-smoke-test:

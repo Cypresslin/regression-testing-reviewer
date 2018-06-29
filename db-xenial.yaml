@@ -11,37 +11,6 @@
 #       "errmsg2":
 #         reason
 #
-aio_dio_bugs:
-    kernel01:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
-    s2lp3:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
-    s2lp6g001:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
 hwclock:
     ms10-35-mcdivittB0-kernel:
         hwclock:
@@ -72,24 +41,6 @@ libhugetlbfs:
                 killed by signal 7
             "Bad configuration:     0      1":
                 bad config 1
-monotonic_time:
-    onibi:
-        gtod:
-            "FAIL: gtod-worst-warp=":
-                gtod tend to fail on onibi
-scrashme:
-    kernel01:
-        scrashme:
-            "make: *** [scrashme.o] Error 1":
-                Test failed to build (bug 1689240)
-    s2lp3:
-        scrashme:
-            "make: *** [scrashme.o] Error 1":
-                Test failed to build (bug 1689240)
-    s2lp6g001:
-        scrashme:
-            "make: *** [scrashme.o] Error 1":
-                Test failed to build (bug 1689240)
 ubuntu_bpf_jit:
     s2lp3:
         ubuntu-bjf-jit:
@@ -143,11 +94,49 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+    kernel01:
+        all:
+            "FAIL skey (2 tests)":
+                skey failed on zVM (bug 1778705)
 ubuntu_ltp_syscalls:
+    entei:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+    kernel01:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
     onibi:
         syscalls:
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
             "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
                 getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
             "fcntl36.c:205: FAIL: Unexpected data offset":
@@ -156,37 +145,62 @@ ubuntu_ltp_syscalls:
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
     rumford:
         syscalls:
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
-                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
     s2lp3:
         syscalls:
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
-                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+    s2lp6g001:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+    wright-kernel:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
 ubuntu_lxc:
     s2lp3:
         exercise:
             "Failed to start networking in ubuntu-cloud container":
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
-ubuntu_zfs_xfs_generic:
-    starmie-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)
-    ms10-34-mcdivittB0-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)

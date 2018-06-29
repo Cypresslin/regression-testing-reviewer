@@ -11,46 +11,11 @@
 #       "errmsg2":
 #         reason
 #
-aio_dio_bugs:
-    s2lp4:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
-    s2lp6g002:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
-    kernel02:
-        aio-dio-invalidate-failure:
-            "event res -22":
-                invalidate-failure failed (bug 1730895)
-        aio-dio-subblock-eof-read:
-            "buffered read returned -1, should be 300":
-                subblock-eof-read failed (bug 1768430)
-        aio-dio-extend-stat:
-            "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                extend-stat failed (bug 1768435)
 hwclock:
     baltar:
         hwclock:
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
-    lodygin:
-        hwclock:
-            "2080-02-02 03:04":
-                unable to change time back to 19th century on lodygin (bug 1714229)
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -89,60 +54,35 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
-scrashme:
-    s2lp4:
-        scrashme:
-            "make: *** [Makefile:13: scrashme.o] Error":
-                Test failed to build (bug 1689240)
-    s2lp6g002:
-        scrashme:
-            "make: *** [Makefile:13: scrashme.o] Error":
-                Test failed to build (bug 1689240)
-    kernel02:
-        scrashme:
-            "make: *** [Makefile:13: scrashme.o] Error":
-                Test failed to build (bug 1689240)
 ubuntu_bpf:
-    amaura:
-        ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
     baltar:
         ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
-    michael:
-        ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
-    pepe:
-        ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
-    starmie-kernel:
-        ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
-    ms10-34-mcdivittB0-kernel:
-        ubuntu-bjf:
-            "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            "'bits/libc-header-start.h' file not found":
+                test_maps failed to build on ppc64le (bug 1750793)
     entei:
         ubuntu-bjf:
             "'bits/libc-header-start.h' file not found":
-                failed to build on ppc64le (bug 1750793)
+                test_maps failed to build on ppc64le (bug 1750793)
+    starmie-kernel:
+        ubuntu-bjf:
+            "'bits/libc-header-start.h' file not found":
+                test_maps failed to build on arm64 (bug 1779119)
+    ms10-34-mcdivittB0-kernel:
+        ubuntu-bjf:
+            "'bits/libc-header-start.h' file not found":
+                test_maps failed to build on arm64 (bug 1779119)
     s2lp4:
         ubuntu-bjf:
             "bits/libc-header-start.h' file not found":
-                failed to build on s390x (bug 1711299)
+                test_maps failed to build on s390x (bug 1711299)
     s2lp6g002:
         ubuntu-bjf:
             "bits/libc-header-start.h' file not found":
-                failed to build on s390x (bug 1711299)
+                test_maps failed to build on s390x (bug 1711299)
     kernel02:
         ubuntu-bjf:
             "bits/libc-header-start.h' file not found":
-                failed to build on s390x (bug 1711299)
+                test_maps failed to build on s390x (bug 1711299)
 ubuntu_bpf_jit:
     kernel02:
         ubuntu-bjf-jit:
@@ -168,15 +108,18 @@ ubuntu_bpf_jit:
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
             "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-ubuntu_fan_smoke_test:
-    kernel02:
-        fan-smoke-test:
-            "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
-                fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
-    s2lp4:
-        fan-smoke-test:
-            "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
-                fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+    s2lp6g002:
+        ubuntu-bjf-jit:
+            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
+                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
 ubuntu_kernel_selftests:
     ms10-34-mcdivittB0-kernel:
         breakpoints:
@@ -218,97 +161,87 @@ ubuntu_ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
 ubuntu_ltp_syscalls:
+    baltar:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    kernel02:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    lodygin:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     onibi:
         syscalls:
             "fcntl36.c:205: FAIL: Unexpected data offset":
                 fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
+    rumford:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    s2lp4:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    s2lp6g002:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    wright-kernel:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
 ubuntu_lxc:
     amaura:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     baltar:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     kernel02:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     michael:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     ms10-34-mcdivittB0-kernel:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     pepe:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     s2lp4:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
+
     starmie-kernel:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
     zeppo:
         exercise:
-            "Unable to locate package lxc-tests":
-                lxc-tests package removed on bionic (bug 1758255)
-ubuntu_qrt_kernel_security:
-    daedalus:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-    lodygin:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-    rumford:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-    entei:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-    kernel02:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
-                lttng_probe_writeback is tainted (bug 1751213)
-    s2lp4:
-        test-kernel-security.py:
-            "ERROR: test_095_kernel_symbols_missing":
-                test_095_kernel_symbols_missing (bug 1751202)
-            "FAIL: test_072_config_security_apparmor":
-                test_072_config_security_apparmor (bug 1751207)
-            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
-                lttng_probe_writeback is tainted (bug 1751213)
-    s2lp6g002:
-        test-kernel-security.py:
-            "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
-                lttng_probe_writeback is tainted (bug 1751213)
+            "FAIL: unable to create first nic":
+                lxc-test-usernic.in failed on Bionic (bug 1775809)
 ubuntu_unionmount_overlayfs_suite:
+    baltar:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
     daedalus:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
@@ -341,16 +274,11 @@ ubuntu_unionmount_overlayfs_suite:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
+    s2lp6g002:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on union layer":
+                File unexpectedly on union layer (bug 1751243)
     starmie-kernel:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on union layer":
                 File unexpectedly on union layer (bug 1751243)
-ubuntu_zfs_xfs_generic:
-    starmie-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)
-    ms10-34-mcdivittB0-kernel:
-        079:
-            "acl: Function not implemented":
-                failed with test 079 (bug 1732370)
