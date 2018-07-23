@@ -145,19 +145,33 @@ ubuntu_kvm_unit_tests:
                 sprs timed out (bug 1740017)
             " sprs (":
                 YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    kernel02:
+        all:
+            "FAIL skey (2 tests)":
+                skey failed (bug 1778705)
     s2lp6g002:
         all:
-            "FAIL selftest-setup (14 tests, 1 unexpected failures)":
-                selftest-setup failed (bug 1750809)
-            "FAIL intercept (20 tests, 3 unexpected failures)":
-                intercept test failed (bug 1750808)
+            "This systems does not have KVM extension support":
+                No KVM support on zKVM
 ubuntu_ltp:
+    chico:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
     harpo:
         ltp:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+    groucho:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+    gummo:
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+    zeppo:
+        ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
 ubuntu_ltp_syscalls:
@@ -179,8 +193,6 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     onibi:
         syscalls:
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     rumford:
@@ -200,43 +212,26 @@ ubuntu_ltp_syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
 ubuntu_lxc:
-    amaura:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
-    baltar:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
     kernel02:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
-    michael:
         exercise:
             "FAIL: unable to create first nic":
                 lxc-test-usernic.in failed on Bionic (bug 1775809)
     ms10-34-mcdivittB0-kernel:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
-    pepe:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+            "ERROR: Failed to download http://images.linuxcontainers.org":
+                Firewall issue, RT#113132
     s2lp4:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
-
-    starmie-kernel:
+            "FAIL: lxc-tests: lxc-test-api-reboot":
+                lxc-test-api-reboot failed (bug 1776381)
+    s2lp6g002:
         exercise:
             "FAIL: unable to create first nic":
                 lxc-test-usernic.in failed on Bionic (bug 1775809)
-    zeppo:
+    starmie:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+            "ERROR: Failed to download http://images.linuxcontainers.org":
+                Firewall issue, RT#113132
 ubuntu_unionmount_overlayfs_suite:
     baltar:
         overlayfs:

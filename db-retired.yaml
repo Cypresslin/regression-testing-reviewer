@@ -5,10 +5,28 @@ trusty-hwe:
                 "make: *** [lib/x86/usermode.o] Error":
                     failed to build (bug 1765366)
     ubuntu_ltp_syscalls:
+        entei:
+            syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
+        ms10-35-mcdivittB0-kernel:
+            syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
         onibi:
             syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
+                "fcntl36.c:205: FAIL: Unexpected data offset":
+                    fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
 xenial:
     aio_dio_bugs:
         kernel01:
@@ -60,14 +78,38 @@ xenial:
                 "make: *** [scrashme.o] Error 1":
                     Test failed to build (bug 1689240)
     ubuntu_ltp_syscalls:
+        ms10-35-mcdivittB0-kernel:
+            syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
+        onibi:
+            syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
+                "fcntl36.c:205: FAIL: Unexpected data offset":
+                    fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+                "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
+                    getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
         rumford:
             syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
                 "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
         s2lp3:
             syscalls:
+                "BROK: msgctl02.c:68: msgget":
+                    msgctl02 failed (bug 1782091)
+                "BROK: msgctl04.c:93: msgget":
+                    msgctl04 failed (bug 1782093)
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
     ubuntu_zfs_xfs_generic:
@@ -85,6 +127,11 @@ xenial-hwe:
             gtod:
                 "FAIL: gtod-worst-warp=":
                     gtod tend to fail on onibi
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+                "fcntl36.c:205: FAIL: Unexpected data offset":
+                    fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
     ubuntu_zfs_xfs_generic:
         starmie-kernel:
             079:
@@ -99,6 +146,11 @@ xenial-hwe-edge:
         all:
             "FAIL emulator":
                 emulator failed (bug 1723914)
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+                "fcntl36.c:205: FAIL: Unexpected data offset":
+                    fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
 xenial-kvm:
     ubuntu_kvm_smoke_test:
         zeppo:
@@ -281,6 +333,13 @@ bionic:
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
+    ubuntu_kvm_unit_tests:
+        s2lp6g002:
+            all:
+                "FAIL selftest-setup (14 tests, 1 unexpected failures)":
+                    selftest-setup failed (bug 1750809)
+                "FAIL intercept (20 tests, 3 unexpected failures)":
+                    intercept test failed (bug 1750808)
     ubuntu_qrt_kernel_security:
         daedalus:
             test-kernel-security.py:
@@ -338,22 +397,32 @@ bionic:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
         baltar:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
         kernel02:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
         michael:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
         ms10-34-mcdivittB0-kernel:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
     ubuntu_zfs_xfs_generic:
         starmie-kernel:
             079:
@@ -406,3 +475,13 @@ bionic-kvm:
                     test_160_setattr_CVE_2015_1350 (bug 1760657)
                 "FAIL: test_181_config_vmap_stack":
                     test_181_config_vmap_stack (bug 1764985)
+                "FAIL: test_190_config_kernel_fortify":
+                    test_190_config_kernel_fortify (bug 1766774)
+                "FAIL: test_250_config_security_perf_events_restrict":
+                    test_250_config_security_perf_events_restrict (bug 1766780)
+    ubuntu_ltp_syscalls:
+        chico:
+            syscalls:
+                "fanotify09.c:182: FAIL: group 1 got event":
+                    fanotify09 failed with T/A/B kernel (bug 1775153)
+

@@ -69,8 +69,6 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with A/T kernel (bug 1775153)
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
     rumford:
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":

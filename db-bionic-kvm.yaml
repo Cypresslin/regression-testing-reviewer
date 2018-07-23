@@ -58,42 +58,43 @@ ubuntu_ltp:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
     harpo:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
     groucho:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
     gummo:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
     zeppo:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
+ubuntu_ltp_syscalls:
+    chico:
+        syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
+    harpo:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    groucho:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    gummo:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    zeppo:
+        syscalls:
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
 ubuntu_lttng_smoke_test:
     chico:
         lttng-smoke-test:
@@ -160,44 +161,55 @@ ubuntu_qrt_apparmor:
 ubuntu_qrt_kernel_security:
     chico:
         test-kernel-security.py:
-            "FAIL: test_182_config_hardened_usercopy":
-                test_182_config_hardened_usercopy (bug 1766777)
-            "FAIL: test_190_config_kernel_fortify":
-                test_190_config_kernel_fortify (bug 1766774)
-            "FAIL: test_250_config_security_perf_events_restrict":
-                test_250_config_security_perf_events_restrict (bug 1766780)
+            "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                config_hardened_usercopy (bug 1766777)
+            "DEBUG_WX option was expected to be set in the kernel config":
+                config_debug_wx (bug 1782721)
     harpo:
         test-kernel-security.py:
-            "FAIL: test_182_config_hardened_usercopy":
-                test_182_config_hardened_usercopy (bug 1766777)
-            "FAIL: test_190_config_kernel_fortify":
-                test_190_config_kernel_fortify (bug 1766774)
-            "FAIL: test_250_config_security_perf_events_restrict":
-                test_250_config_security_perf_events_restrict (bug 1766780)
+            "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                config_hardened_usercopy (bug 1766777)
+            "DEBUG_WX option was expected to be set in the kernel config":
+                config_debug_wx (bug 1782721)
     groucho:
         test-kernel-security.py:
-            "FAIL: test_182_config_hardened_usercopy":
-                test_182_config_hardened_usercopy (bug 1766777)
-            "FAIL: test_190_config_kernel_fortify":
-                test_190_config_kernel_fortify (bug 1766774)
-            "FAIL: test_250_config_security_perf_events_restrict":
-                test_250_config_security_perf_events_restrict (bug 1766780)
+            "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                config_hardened_usercopy (bug 1766777)
+            "DEBUG_WX option was expected to be set in the kernel config":
+                config_debug_wx (bug 1782721)
     gummo:
         test-kernel-security.py:
-            "FAIL: test_182_config_hardened_usercopy":
-                test_182_config_hardened_usercopy (bug 1766777)
-            "FAIL: test_190_config_kernel_fortify":
-                test_190_config_kernel_fortify (bug 1766774)
-            "FAIL: test_250_config_security_perf_events_restrict":
-                test_250_config_security_perf_events_restrict (bug 1766780)
+            "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                config_hardened_usercopy (bug 1766777)
+            "DEBUG_WX option was expected to be set in the kernel config":
+                config_debug_wx (bug 1782721)
     zeppo:
         test-kernel-security.py:
-            "FAIL: test_182_config_hardened_usercopy":
-                test_182_config_hardened_usercopy (bug 1766777)
-            "FAIL: test_190_config_kernel_fortify":
-                test_190_config_kernel_fortify (bug 1766774)
-            "FAIL: test_250_config_security_perf_events_restrict":
-                test_250_config_security_perf_events_restrict (bug 1766780)
+            "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                config_hardened_usercopy (bug 1766777)
+            "DEBUG_WX option was expected to be set in the kernel config":
+                config_debug_wx (bug 1782721)
+ubuntu_quota_smoke_test:
+    chico:
+        quota-smoke-test:
+             "quotaon: Quota format not supported in kernel.":
+                 need the extra package bug 1777114
+    harpo:
+        quota-smoke-test:
+             "quotaon: Quota format not supported in kernel.":
+                 need the extra package bug 1777114
+    groucho:
+        quota-smoke-test:
+             "quotaon: Quota format not supported in kernel.":
+                 need the extra package bug 1777114
+    gummo:
+        quota-smoke-test:
+             "quotaon: Quota format not supported in kernel.":
+                 need the extra package bug 1777114
+    zeppo:
+        quota-smoke-test:
+             "quotaon: Quota format not supported in kernel.":
+                 need the extra package bug 1777114
 ubuntu_stress_smoke_test:
     chico:
         stress-smoke-test:
@@ -205,30 +217,40 @@ ubuntu_stress_smoke_test:
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+            "dnotify FAILED":
+                dnotify failed (bug 1782723)
     harpo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+            "dnotify FAILED":
+                dnotify failed (bug 1782723)
     groucho:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+            "dnotify FAILED":
+                dnotify failed (bug 1782723)
     gummo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+            "dnotify FAILED":
+                dnotify failed (bug 1782723)
     zeppo:
         stress-smoke-test:
             "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
                 af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
             "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                 dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+            "dnotify FAILED":
+                dnotify failed (bug 1782723)
 ubuntu_sysdig_smoke_test:
     chico:
         sysdig-smoke-test:

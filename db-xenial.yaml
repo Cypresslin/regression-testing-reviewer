@@ -137,10 +137,6 @@ ubuntu_ltp_syscalls:
                 fanotify09 timeouted (bug 1775153)
     onibi:
         syscalls:
-            "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
-                getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
@@ -201,6 +197,10 @@ ubuntu_ltp_syscalls:
                 fanotify09 timeouted (bug 1775153)
 ubuntu_lxc:
     s2lp3:
+        exercise:
+            "Failed to start networking in ubuntu-cloud container":
+                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+    s2lp6g001:
         exercise:
             "Failed to start networking in ubuntu-cloud container":
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)

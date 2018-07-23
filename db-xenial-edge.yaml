@@ -63,8 +63,6 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     onibi:
         syscalls:
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     wright-kernel:

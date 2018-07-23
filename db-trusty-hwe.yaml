@@ -84,8 +84,6 @@ ubuntu_ltp_syscalls:
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify08 stime=":
