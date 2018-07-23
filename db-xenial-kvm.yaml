@@ -167,37 +167,6 @@ ubuntu_blktrace_smoke_test:
         blktrace-smoke-test:
             "FAILED (/sys/kernel/debug/tracing does not exist)":
                 ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-ubuntu_stress_smoke_test:
-    chico:
-        stress-smoke-test:
-            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
-                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
-            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
-                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
-    harpo:
-        stress-smoke-test:
-            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
-                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
-            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
-                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
-    groucho:
-        stress-smoke-test:
-            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
-                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
-            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
-                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
-    gummo:
-        stress-smoke-test:
-            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
-                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
-            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
-                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
-    zeppo:
-        stress-smoke-test:
-            "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
-                af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
-            "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
-                dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
 ubuntu_zram_smoke_test:
     chico:
         zram-smoke-test:

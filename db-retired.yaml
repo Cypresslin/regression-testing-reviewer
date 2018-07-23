@@ -182,6 +182,13 @@ xenial-kvm:
                     test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
                 "FAIL: test_160_setattr_CVE_2015_1350":
                     test_160_setattr_CVE_2015_1350 (bug 1760657)
+    ubuntu_stress_smoke_test:
+        chico:
+            stress-smoke-test:
+                "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                    af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+                "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                    dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
 artful:
     aio_dio_bugs:
         kernel04:
@@ -340,6 +347,44 @@ bionic:
                     selftest-setup failed (bug 1750809)
                 "FAIL intercept (20 tests, 3 unexpected failures)":
                     intercept test failed (bug 1750808)
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+            "fcntl36.c:205: FAIL: Unexpected data offset":
+                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
+            "fanotify09.c:182: FAIL: group 1 got event":
+                fanotify09 failed with T/A/B kernel (bug 1775153)
+    ubuntu_lxc:
+        amaura:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+        baltar:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+        kernel02:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+        michael:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+        ms10-34-mcdivittB0-kernel:
+            exercise:
+                "Unable to locate package lxc-tests":
+                    lxc-tests package removed on bionic (bug 1758255)
+                "FAIL: unable to create first nic":
+                    lxc-test-usernic.in failed on Bionic (bug 1775809)
     ubuntu_qrt_kernel_security:
         daedalus:
             test-kernel-security.py:
@@ -385,44 +430,13 @@ bionic:
             test-kernel-security.py:
                 "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
                     lttng_probe_writeback is tainted (bug 1751213)
-    ubuntu_ltp_syscalls:
-        onibi:
-            syscalls:
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
-    ubuntu_lxc:
-        amaura:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
-        baltar:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
-        kernel02:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
-        michael:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
-        ms10-34-mcdivittB0-kernel:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+    ubuntu_stress_smoke_test:
+        chico:
+            stress-smoke-test:
+                "stress-ng-af-alg: socket failed, errno=97 (Address family not supported by protocol)":
+                    af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
+                "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
+                    dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     ubuntu_zfs_xfs_generic:
         starmie-kernel:
             079:
