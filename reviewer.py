@@ -146,18 +146,22 @@ for data in head.find(string=target_distro).find_parent('tr').find_next('tbody')
 
 # Print result here
 for kernel in report[target_distro]:
+    fn = args.release.lower()
     # No filter was set, print only everything except from the exclusion list
     # If we're asking a specific kernel to check
     if args.kernel and args.kernel != kernel.split()[0]:
         continue
     # flavour filter
     if args.hwe:
+        fn  += '-hwe'
         if hwe_filter not in kernel or edge_filter in kernel:
             continue
     elif args.edge:
+        fn += '-edge'
         if edge_filter not in kernel:
             continue
     elif args.kvm:
+        fn += '-kvm'
         if kvm_filter not in kernel:
              continue
     elif hwe_filter in kernel or kvm_filter in kernel:
@@ -177,13 +181,6 @@ for kernel in report[target_distro]:
                 reason = ''
                 # Call the advanced test result analyzer here
                 if not args.template_only:
-                    fn = args.release.lower()
-                    if args.hwe:
-                        fn += '-hwe'
-                    elif args.edge:
-                        fn += '-edge'
-                    elif args.kvm:
-                        fn += '-kvm'
                     reason, unused = analyzer.analyze_that(url_root + report[target_distro][kernel][arch][testcase]['link'], testcase, fn)
                     if unused != {}:
                         unused_all.append(unused)
