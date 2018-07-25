@@ -6,6 +6,29 @@ from bs4 import BeautifulSoup
 # format:
 # test-suite: {sut: {sub-test-case1: {errmsg:'', reason:''},
 #                    sub-test-case2: {errmsg:'', reason:''},
+def testsuite_validator(release, arch, testcases):
+    try:
+        with open('db-testcases.yaml', 'r') as stream:
+            db = yaml.load(stream)
+            expected = db['full-list']
+    except FileNotFoundError:
+        print("db-testcases.yaml does not exist")
+        raise SystemExit
+    # Compose the database for each arch from the full test list
+    if release in db:
+        if arch in db[release]:
+            exclude = db[release][arch]
+            expected = list(set(expected) - set(exclude))
+    total = len(expected)
+    tested = len(testcases)
+    extra = list(set(testcases) - set(expected))
+    missing = list(set(expected) - set(testcases))
+    if extra:
+        extra.sort()
+        print('Test case {} does not exist in the database, please check'.format(', '.join(extra)))
+    if missing:
+        missing.sort()
+        print('{} / {} tests were run, missing: {}'.format(tested, total, ', '.join(missing)))
 
 
 def _node_parser(soup):
