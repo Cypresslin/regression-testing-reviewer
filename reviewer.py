@@ -145,23 +145,27 @@ for data in head.find(string=target_distro).find_parent('tr').find_next('tbody')
         # All trash, do nothing
 
 # Print result here
+flag = ''
+if args.hwe:
+    flag = '-hwe'
+elif args.edge:
+    flag = '-edge'
+elif args.kvm:
+    flag = '-kvm'
+fn = args.release.lower() + flag
 for kernel in report[target_distro]:
-    fn = args.release.lower()
     # No filter was set, print only everything except from the exclusion list
     # If we're asking a specific kernel to check
     if args.kernel and args.kernel != kernel.split()[0]:
         continue
     # flavour filter
     if args.hwe:
-        fn  += '-hwe'
         if hwe_filter not in kernel or edge_filter in kernel:
             continue
     elif args.edge:
-        fn += '-edge'
         if edge_filter not in kernel:
             continue
     elif args.kvm:
-        fn += '-kvm'
         if kvm_filter not in kernel:
              continue
     elif hwe_filter in kernel or kvm_filter in kernel:
