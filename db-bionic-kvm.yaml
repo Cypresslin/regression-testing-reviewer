@@ -158,37 +158,6 @@ ubuntu_qrt_apparmor:
         test-apparmor.py:
             "Error: mount failed. Test 'MOUNT ":
                 mount test in test_regression_testsuite failed (bug 1765025)
-ubuntu_qrt_kernel_security:
-    chico:
-        test-kernel-security.py:
-            "HARDENED_USERCOPY option was expected to be set in the kernel config":
-                config_hardened_usercopy (bug 1766777)
-            "DEBUG_WX option was expected to be set in the kernel config":
-                config_debug_wx (bug 1782721)
-    harpo:
-        test-kernel-security.py:
-            "HARDENED_USERCOPY option was expected to be set in the kernel config":
-                config_hardened_usercopy (bug 1766777)
-            "DEBUG_WX option was expected to be set in the kernel config":
-                config_debug_wx (bug 1782721)
-    groucho:
-        test-kernel-security.py:
-            "HARDENED_USERCOPY option was expected to be set in the kernel config":
-                config_hardened_usercopy (bug 1766777)
-            "DEBUG_WX option was expected to be set in the kernel config":
-                config_debug_wx (bug 1782721)
-    gummo:
-        test-kernel-security.py:
-            "HARDENED_USERCOPY option was expected to be set in the kernel config":
-                config_hardened_usercopy (bug 1766777)
-            "DEBUG_WX option was expected to be set in the kernel config":
-                config_debug_wx (bug 1782721)
-    zeppo:
-        test-kernel-security.py:
-            "HARDENED_USERCOPY option was expected to be set in the kernel config":
-                config_hardened_usercopy (bug 1766777)
-            "DEBUG_WX option was expected to be set in the kernel config":
-                config_debug_wx (bug 1782721)
 ubuntu_quota_smoke_test:
     chico:
         quota-smoke-test:
@@ -252,27 +221,6 @@ ubuntu_sysdig_smoke_test:
         sysdig-smoke-test:
             "Could not find start of capture message, maybe sysdig didn't start?":
                 Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
-ubuntu_unionmount_overlayfs_suite:
-    chico:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    harpo:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    groucho:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    gummo:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    zeppo:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
 ubuntu_zram_smoke_test:
     chico:
         zram-smoke-test:

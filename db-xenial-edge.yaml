@@ -98,32 +98,3 @@ ubuntu_lttng_smoke_test:
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on X-Edge kernel (bug 1765673)
-ubuntu_unionmount_overlayfs_suite:
-    daedalus:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    fozzie:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    michael:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    rizzo:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    entei:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    starmie-kernel:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)
-    ms10-34-mcdivittB0-kernel:
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on union layer":
-                File unexpectedly on union layer (bug 1751243)

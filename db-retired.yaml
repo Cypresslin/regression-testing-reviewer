@@ -1,3 +1,15 @@
+trusty:
+    ubuntu_qrt_kernel_security:
+        ms10-35-mcdivittB0-kernel:
+            test-kernel-security.py:
+                "skipped: ARM64 older than 4.4 has READ_IMPLIES_EXEC personality set) FAIL":
+                    test 060 should be skipped (bug 1712038)
+                "FAIL: scanned memory without EPERMs, and can read actual values":
+                    test 072 (bug 1747852)
+                "__stack_chk_fail missing from kernel (tested befs.ko)":
+                    test 82 (bug 1747853)
+                "AssertionError: Module 'signpost' is tainted: (OX)":
+                    test 140 (bug 1747855)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -151,6 +163,35 @@ xenial-hwe-edge:
             syscalls:
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+    ubuntu_unionmount_overlayfs_suite:
+        daedalus:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        fozzie:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        michael:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        rizzo:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        entei:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        starmie-kernel:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        ms10-34-mcdivittB0-kernel:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
 xenial-kvm:
     ubuntu_kvm_smoke_test:
         zeppo:
@@ -437,6 +478,51 @@ bionic:
                     af-alg failed with 4.4/4.15 KVM kernel (bug 1760637)
                 "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                     dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+    ubuntu_unionmount_overlayfs_suite:
+        baltar:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        daedalus:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        fozzie:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        gummo:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        lodygin:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        michael:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        rizzo:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        s2lp4:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        kernel02:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        s2lp6g002:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
+        starmie-kernel:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
     ubuntu_zfs_xfs_generic:
         starmie-kernel:
             079:
@@ -493,9 +579,22 @@ bionic-kvm:
                     test_190_config_kernel_fortify (bug 1766774)
                 "FAIL: test_250_config_security_perf_events_restrict":
                     test_250_config_security_perf_events_restrict (bug 1766780)
+                "DEBUG_WX option was expected to be set in the kernel config":
+                    config_debug_wx (bug 1782721)
+                "HARDENED_USERCOPY option was expected to be set in the kernel config":
+                    config_hardened_usercopy (bug 1766777)
     ubuntu_ltp_syscalls:
         chico:
             syscalls:
                 "fanotify09.c:182: FAIL: group 1 got event":
                     fanotify09 failed with T/A/B kernel (bug 1775153)
-
+    ubuntu_lttng_smoke_test:
+        chico:
+            lttng-smoke-test:
+                "Error! Bad return status for module build on kernel":
+                    Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+    ubuntu_unionmount_overlayfs_suite:
+        chico:
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on union layer":
+                    File unexpectedly on union layer (bug 1751243)
