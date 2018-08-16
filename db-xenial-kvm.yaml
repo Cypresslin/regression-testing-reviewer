@@ -167,6 +167,79 @@ ubuntu_blktrace_smoke_test:
         blktrace-smoke-test:
             "FAILED (/sys/kernel/debug/tracing does not exist)":
                 ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+ubuntu_ltp_syscalls:
+    chico:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+    harpo:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+    groucho:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+    gummo:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+    zeppo:
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+ubuntu_quota_smoke_test:
+    chico:
+        quota-smoke-test:
+            "quotaon: Quota format not supported in kernel.":
+                failed with KVM kernel (bug 1784535)
+    harpo:
+        quota-smoke-test:
+            "quotaon: Quota format not supported in kernel.":
+                failed with KVM kernel (bug 1784535)
+    groucho:
+        quota-smoke-test:
+            "quotaon: Quota format not supported in kernel.":
+                failed with KVM kernel (bug 1784535)
+    gummo:
+        quota-smoke-test:
+            "quotaon: Quota format not supported in kernel.":
+                failed with KVM kernel (bug 1784535)
+    zeppo:
+        quota-smoke-test:
+            "quotaon: Quota format not supported in kernel.":
+                failed with KVM kernel (bug 1784535)
+ubuntu_stress_smoke_test:
+    chico:
+        stress-smoke-test:
+            "dnotify FAILED":
+                dnotify failed on KVM kernels (bug 1782723)
+    harpo:
+        stress-smoke-test:
+            "dnotify FAILED":
+                dnotify failed on KVM kernels (bug 1782723)
+    groucho:
+        stress-smoke-test:
+            "dnotify FAILED":
+                dnotify failed on KVM kernels (bug 1782723)
+    gummo:
+        stress-smoke-test:
+            "dnotify FAILED":
+                dnotify failed on KVM kernels (bug 1782723)
+    zeppo:
+        stress-smoke-test:
+            "dnotify FAILED":
+                dnotify failed on KVM kernels (bug 1782723)
 ubuntu_zram_smoke_test:
     chico:
         zram-smoke-test:
