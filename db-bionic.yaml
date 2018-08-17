@@ -20,35 +20,6 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-libhugetlbfs:
-    baltar:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    daedalus:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    gummo:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    lodygin:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    onibi:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    rumford:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
-    wright-kernel:
-        libhugetlbfs:
-            "unrecognized option '--hugetlbfs-":
-                Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
 monotonic_time:
     lodygin:
         tsc:

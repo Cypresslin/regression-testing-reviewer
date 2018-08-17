@@ -321,6 +321,35 @@ bionic:
             hwclock:
                 "2080-02-02 03:04":
                     unable to change time back to 19th century on lodygin (bug 1714229)
+    libhugetlbfs:
+        baltar:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        daedalus:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        gummo:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        lodygin:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        onibi:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        rumford:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+        wright-kernel:
+            libhugetlbfs:
+                "unrecognized option '--hugetlbfs-":
+                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
     scrashme:
         s2lp4:
             scrashme:
