@@ -637,6 +637,27 @@ bionic-kvm:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
+    ubuntu_qrt_apparmor:
+        chico:
+            test-apparmor.py:
+                "Error: mount failed. Test 'MOUNT ":
+                    mount test in test_regression_testsuite failed (bug 1765025)
+        harpo:
+            test-apparmor.py:
+                "Error: mount failed. Test 'MOUNT ":
+                    mount test in test_regression_testsuite failed (bug 1765025)
+        groucho:
+            test-apparmor.py:
+                "Error: mount failed. Test 'MOUNT ":
+                    mount test in test_regression_testsuite failed (bug 1765025)
+        gummo:
+            test-apparmor.py:
+                "Error: mount failed. Test 'MOUNT ":
+                    mount test in test_regression_testsuite failed (bug 1765025)
+        zeppo:
+            test-apparmor.py:
+                "Error: mount failed. Test 'MOUNT ":
+                    mount test in test_regression_testsuite failed (bug 1765025)
     ubuntu_qrt_kernel_security:
         harpo:
             test-kernel-security.py:

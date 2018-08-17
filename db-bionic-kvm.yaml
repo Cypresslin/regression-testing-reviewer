@@ -116,27 +116,6 @@ ubuntu_lxc:
         exercise:
             "FAIL: unable to create first nic":
                 lxc-test-usernic.in failed on Bionic (bug 1775809)
-ubuntu_qrt_apparmor:
-    chico:
-        test-apparmor.py:
-            "Error: mount failed. Test 'MOUNT ":
-                mount test in test_regression_testsuite failed (bug 1765025)
-    harpo:
-        test-apparmor.py:
-            "Error: mount failed. Test 'MOUNT ":
-                mount test in test_regression_testsuite failed (bug 1765025)
-    groucho:
-        test-apparmor.py:
-            "Error: mount failed. Test 'MOUNT ":
-                mount test in test_regression_testsuite failed (bug 1765025)
-    gummo:
-        test-apparmor.py:
-            "Error: mount failed. Test 'MOUNT ":
-                mount test in test_regression_testsuite failed (bug 1765025)
-    zeppo:
-        test-apparmor.py:
-            "Error: mount failed. Test 'MOUNT ":
-                mount test in test_regression_testsuite failed (bug 1765025)
 ubuntu_quota_smoke_test:
     chico:
         quota-smoke-test:
