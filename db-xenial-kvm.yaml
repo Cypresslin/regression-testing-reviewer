@@ -52,37 +52,6 @@ libhugetlbfs:
                 killed by signal 1
             "Bad configuration:     0      3":
                 bad config 3
-ubuntu_blktrace_smoke_test:
-    chico:
-        blktrace-smoke-test:
-            "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-    harpo:
-        blktrace-smoke-test:
-            "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-    groucho:
-        blktrace-smoke-test:
-            "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-    gummo:
-        blktrace-smoke-test:
-            "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-    zeppo:
-        blktrace-smoke-test:
-            "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                 ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
 ubuntu_fan_smoke_test:
     chico:
         fan-smoke-test:
@@ -146,27 +115,6 @@ ubuntu_lxc:
         exercise:
              "FAIL: python3: API":
                  python3 API failed (bug 1764618)
-ubuntu_blktrace_smoke_test:
-    chico:
-        blktrace-smoke-test:
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-    harpo:
-        blktrace-smoke-test:
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-    groucho:
-        blktrace-smoke-test:
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-    gummo:
-        blktrace-smoke-test:
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
-    zeppo:
-        blktrace-smoke-test:
-            "FAILED (/sys/kernel/debug/tracing does not exist)":
-                ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
 ubuntu_ltp_syscalls:
     chico:
         syscalls:

@@ -193,6 +193,37 @@ xenial-hwe-edge:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
 xenial-kvm:
+    ubuntu_blktrace_smoke_test:
+        chico:
+            blktrace-smoke-test:
+                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+        harpo:
+            blktrace-smoke-test:
+                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+        groucho:
+            blktrace-smoke-test:
+                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+        gummo:
+            blktrace-smoke-test:
+                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+        zeppo:
+            blktrace-smoke-test:
+                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
     ubuntu_kvm_smoke_test:
         zeppo:
             kvm_smoke_test:
@@ -567,6 +598,27 @@ bionic-kvm:
             libhugetlbfs:
                 "unrecognized option '--hugetlbfs-":
                     Unable to build libghugetlbfs test on 4.15 KVM (bug 1765279)
+    ubuntu_blktrace_smoke_test:
+        chico:
+            blktrace-smoke-test:
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+        harpo:
+            blktrace-smoke-test:
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+        groucho:
+            blktrace-smoke-test:
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+        gummo:
+            blktrace-smoke-test:
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+        zeppo:
+            blktrace-smoke-test:
+                "FAILED (/sys/kernel/debug/tracing does not exist)":
+                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
     ubuntu_kvm_smoke_test:
         chico:
             kvm_smoke_test:
