@@ -21,14 +21,12 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool (bug 1755118)
-    ms10-35-mcdivittB0-kernel:
+    ms10-35-mcdivittB0-kernel: &1749427
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
     wright-kernel:
-        kvm_smoke_test:
-            "qemu-system-aarch64: Cirrus VGA not available":
-                unable to create KVM with uvtool (bug 1749427)
+        <<: *1749427
 ubuntu_kvm_unit_tests:
     entei:
         all:
@@ -49,52 +47,32 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
 ubuntu_ltp_syscalls:
-    entei:
+    entei: &1775784
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     rumford:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     onibi:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     wright-kernel:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
 ubuntu_lttng_smoke_test:
-    chico:
+    chico: &1765673
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+                Unable to build lttng module on X-Edge kernel (bug 1765673)
     daedalus:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673
     gonzo:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673
     rumford:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673
     entei:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673
     ms10-35-mcdivittB0-kernel:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673
     wright-kernel:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
+        <<: *1765673

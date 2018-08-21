@@ -12,191 +12,119 @@
 #         reason
 #
 ubuntu_fan_smoke_test:
-    chico:
+    chico: &1763323
         fan-smoke-test:
            "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
                ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
     harpo:
-        fan-smoke-test:
-           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
-               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+        <<: *1763323
     groucho:
-        fan-smoke-test:
-           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
-               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+        <<: *1763323
     gummo:
-        fan-smoke-test:
-           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
-               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+        <<: *1763323
     zeppo:
-        fan-smoke-test:
-           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
-               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+        <<: *1763323
 ubuntu_ltp:
-    chico:
+    chico: &1765331
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
     harpo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     groucho:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     gummo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     zeppo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
 ubuntu_ltp_syscalls:
-    chico:
+    chico: &1775784
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     harpo:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     groucho:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     gummo:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     zeppo:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
 ubuntu_lttng_smoke_test:
-    chico:
+    chico: &1760647
         lttng-smoke-test:
             "Error! Bad return status for module build on kernel":
                 Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
     harpo:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        <<: *1760647
     groucho:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        <<: *1760647
     gummo:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        <<: *1760647
     zeppo:
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        <<: *1760647
 ubuntu_lxc:
-    chico:
+    chico: &1775809
         exercise:
             "FAIL: unable to create first nic":
                 lxc-test-usernic.in failed on Bionic (bug 1775809)
     harpo:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+        <<: *1775809
     groucho:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+        <<: *1775809
     gummo:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+        <<: *1775809
     zeppo:
-        exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+        <<: *1775809
 ubuntu_quota_smoke_test:
-    chico:
+    chico: &1777114
         quota-smoke-test:
              "quotaon: Quota format not supported in kernel.":
                  need the extra package bug 1777114
     harpo:
-        quota-smoke-test:
-             "quotaon: Quota format not supported in kernel.":
-                 need the extra package bug 1777114
+        <<: *1777114
     groucho:
-        quota-smoke-test:
-             "quotaon: Quota format not supported in kernel.":
-                 need the extra package bug 1777114
+        <<: *1777114
     gummo:
-        quota-smoke-test:
-             "quotaon: Quota format not supported in kernel.":
-                 need the extra package bug 1777114
+        <<: *1777114
     zeppo:
-        quota-smoke-test:
-             "quotaon: Quota format not supported in kernel.":
-                 need the extra package bug 1777114
+        <<: *1777114
 ubuntu_stress_smoke_test:
-    chico:
+    chico: &1782723
         stress-smoke-test:
             "dnotify FAILED":
                 dnotify failed (bug 1782723)
     harpo:
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed (bug 1782723)
+        <<: *1782723
     groucho:
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed (bug 1782723)
+        <<: *1782723
     gummo:
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed (bug 1782723)
+        <<: *1782723
     zeppo:
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed (bug 1782723)
+        <<: *1782723
 ubuntu_sysdig_smoke_test:
-    chico:
+    chico: &1766565
         sysdig-smoke-test:
             "Could not find start of capture message, maybe sysdig didn't start?":
                 Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
     harpo:
-        sysdig-smoke-test:
-            "Could not find start of capture message, maybe sysdig didn't start?":
-                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+        <<: *1766565
     groucho:
-        sysdig-smoke-test:
-            "Could not find start of capture message, maybe sysdig didn't start?":
-                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+        <<: *1766565
     gummo:
-        sysdig-smoke-test:
-            "Could not find start of capture message, maybe sysdig didn't start?":
-                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+        <<: *1766565
     zeppo:
-        sysdig-smoke-test:
-            "Could not find start of capture message, maybe sysdig didn't start?":
-                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+        <<: *1766565
 ubuntu_zram_smoke_test:
-    chico:
+    chico: &1766823
         zram-smoke-test:
             "modprobe: FATAL: Module zram not found in directory":
                 zram module not found (bug 1766823)
     harpo:
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
+        <<: *1766823
     groucho:
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
+        <<: *1766823
     gummo:
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
+        <<: *1766823
     zeppo:
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
+        <<: *1766823

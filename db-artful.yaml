@@ -17,7 +17,7 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
 libhugetlbfs:
-    ms10-35-mcdivittB0-kernel:
+    ms10-35-mcdivittB0-kernel: &libhugetlbfs-arm
         libhugetlbfs:
             "FAIL:     0      1":
                 failed 1
@@ -26,20 +26,14 @@ libhugetlbfs:
             "Bad configuration:     0      1":
                 bad config 1
     wright-kernel:
-        libhugetlbfs:
-            "FAIL:     0      1":
-                failed 1
-            "Killed by signal:     0      1":
-                killed by signal 1
-            "Bad configuration:     0      1":
-                bad config 1
+        <<: *libhugetlbfs-arm
     entei:
         libhugetlbfs:
             "FAIL:     0      7":
                 failed 7
             "Killed by signal:     0      6":
                 killed by signal 6
-    kernel04:
+    kernel04: &libhugetlbfs-s390x
         libhugetlbfs:
             "FAIL:     0     11":
                 failed 11
@@ -48,13 +42,7 @@ libhugetlbfs:
             "Bad configuration:     0      1":
                 bad config 1
     s2lp6g004:
-        libhugetlbfs:
-            "FAIL:     0     11":
-                failed 11
-            "Killed by signal:     0      7":
-                killed by signal 7
-            "Bad configuration:     0      1":
-                bad config 1
+        <<: *libhugetlbfs-s390x
     onibi:
         libhugetlbfs:
             "FAIL:     0      7":
@@ -93,22 +81,18 @@ ubuntu_bpf:
         ubuntu-bjf:
             "Aborted (core dumped) bpf/test_maps":
                 test_maps failed (bug 1750724)
-    starmie-kernel:
+    starmie-kernel: &1675395
         ubuntu-bjf:
             "error: field ‘regs’ has incomplete type":
                 failed to build on ARM64 (bug 1675395)
     ms10-34-mcdivittB0-kernel:
-        ubuntu-bjf:
-            "error: field ‘regs’ has incomplete type":
-                failed to build on ARM64 (bug 1675395)
-    kernel04:
+        <<: *1675395
+    kernel04: &1711299
         ubuntu-bjf:
             "error: field 'regs' has incomplete type":
                 failed to build on s390x (bug 1711299)
     s2lp6g004:
-        ubuntu-bjf:
-            "error: field 'regs' has incomplete type":
-                failed to build on s390x (bug 1711299)
+         <<: *1711299
     entei:
         ubuntu-bjf:
             "fatal error: 'bits/libc-header-start.h' file not found":
@@ -127,14 +111,12 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
                 uvtool-libvirt needs arch specific template (bug 1729854)
-    ms10-35-mcdivittB0-kernel:
+    ms10-35-mcdivittB0-kernel: &1749427
         kvm_smoke_test:
             "ACPI requires UEFI on this architecture":
                 Unable to create KVM with uvtool on arm64 system (bug 1749427)
     wright-kernel:
-        kvm_smoke_test:
-            "ACPI requires UEFI on this architecture":
-                Unable to create KVM with uvtool on arm64 system (bug 1749427)
+        <<: *1749427
 ubuntu_kvm_unit_tests:
     kernel04:
         all:
@@ -145,7 +127,7 @@ ubuntu_kvm_unit_tests:
             "Test skipped, this systems does not have KVM extension support":
                 Nested virtualization with KVM is not supported on s390x
 ubuntu_ltp_syscalls:
-    kernel04:
+    kernel04: &syscalls
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
@@ -154,63 +136,23 @@ ubuntu_ltp_syscalls:
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with A/T kernel (bug 1775153)
     entei:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     onibi:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     rumford:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     s2lp6g004:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     wright-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
 ubuntu_lxc:
-    daedalus:
+    daedalus: &exercise
         exercise:
             "Failed to start networking in ubuntu-cloud container":
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     michael:
-        exercise:
-            "Failed to start networking in ubuntu-cloud container":
-                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+        <<: *exercise
     pepe:
-        exercise:
-            "Failed to start networking in ubuntu-cloud container":
-                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+        <<: *exercise

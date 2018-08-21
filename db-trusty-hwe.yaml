@@ -27,19 +27,17 @@ ubuntu_cts_kernel:
                 lp1262692 failed, bug for iproute2 (bug 1715376)
 ubuntu_ecryptfs:
     onza:
-        extend-file-random.sh.btrfs:
+        extend-file-random.sh.btrfs: &1684788
             "size should be > 0":
                 extend-file-random.sh.btrfs (bug 1684788)
-        trunc-file.sh.btrfs:
+        trunc-file.sh.btrfs: &1684789
             "size should be > 0":
                 trunc-file.sh.btrfs (bug 1684789)
     ms10-35-mcdivittB0-kernel:
         extend-file-random.sh.btrfs:
-            "size should be > 0":
-                extend-file-random.sh.btrfs (bug 1684788)
+            <<: *1684788
         trunc-file.sh.btrfs:
-            "size should be > 0":
-                trunc-file.sh.btrfs (bug 1684789)
+            <<: *1684789
 ubuntu_kvm_smoke_test:
     gonzo:
         kvm_smoke_test:
@@ -54,7 +52,7 @@ ubuntu_kvm_smoke_test:
             "libvirt: internal error: process exited while connecting to monitor: Error: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
 ubuntu_ltp_syscalls:
-    entei:
+    entei: &syscalls
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
@@ -67,29 +65,9 @@ ubuntu_ltp_syscalls:
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     onibi:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:
         test-kernel-security.py:

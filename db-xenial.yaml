@@ -17,7 +17,7 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
 libhugetlbfs:
-    kernel01:
+    kernel01: &libhugetlbfs
         libhugetlbfs:
             "FAIL:     0     11":
                 failed 11
@@ -26,34 +26,18 @@ libhugetlbfs:
             "Bad configuration:     0      1":
                 bad config 1
     s2lp3:
-        libhugetlbfs:
-            "FAIL:     0     11":
-                failed 11
-            "Killed by signal:     0      7":
-                killed by signal 7
-            "Bad configuration:     0      1":
-                bad config 1
+        <<: *libhugetlbfs
     s2lp6g001:
-        libhugetlbfs:
-            "FAIL:     0     11":
-                failed 11
-            "Killed by signal:     0      7":
-                killed by signal 7
-            "Bad configuration:     0      1":
-                bad config 1
+        <<: *libhugetlbfs
 ubuntu_bpf_jit:
-    s2lp3:
+    s2lp3: &1768452
         ubuntu-bjf-jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
                unable to insert test_bpf on Xenial s390x (bug 1768452)
     s2lp6g001:
-        ubuntu-bjf-jit:
-            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
-               unable to insert test_bpf on Xenial s390x (bug 1768452)
+        <<: *1768452
     kernel01:
-        ubuntu-bjf-jit:
-            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
-               unable to insert test_bpf on Xenial s390x (bug 1768452)
+        <<: *1768452
 ubuntu_kvm_smoke_test:
     entei:
         kvm_smoke_test:
@@ -63,18 +47,14 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
-    s2lp3:
+    s2lp3: &1729854
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
                 uvtool issue (bug 1729854)
     s2lp6g001:
-        kvm_smoke_test:
-            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
-                uvtool issue (bug 1729854)
+        <<: *1729854
     kernel01:
-        kvm_smoke_test:
-            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
-                uvtool issue (bug 1729854)
+        <<: *1729854
 ubuntu_kvm_unit_tests:
     entei:
         all:
@@ -99,7 +79,7 @@ ubuntu_kvm_unit_tests:
             "FAIL skey (2 tests)":
                 skey failed on zVM (bug 1778705)
 ubuntu_ltp_syscalls:
-    entei:
+    entei: &syscalls
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
@@ -112,95 +92,23 @@ ubuntu_ltp_syscalls:
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
     kernel01:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     onibi:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     rumford:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     s2lp3:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     s2lp6g001:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
     wright-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
-            "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+        <<: *syscalls
 ubuntu_lxc:
-    s2lp3:
+    s2lp3: &exercise
         exercise:
             "Failed to start networking in ubuntu-cloud container":
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     s2lp6g001:
-        exercise:
-            "Failed to start networking in ubuntu-cloud container":
-                lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+        <<: *exercise

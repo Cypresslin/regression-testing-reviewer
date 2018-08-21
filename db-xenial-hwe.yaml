@@ -45,7 +45,7 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
 ubuntu_ltp_syscalls:
-    entei:
+    entei: &syscalls
         syscalls:
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
@@ -54,37 +54,13 @@ ubuntu_ltp_syscalls:
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with A/T kernel (bug 1775153)
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     onibi:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     rumford:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
     wright-kernel:
-        syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+        <<: *syscalls
 ubuntu_lxc:
     daedalus:
         exercise:
