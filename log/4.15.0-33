@@ -1,0 +1,59 @@
+4.15.0-33.36 - generic
+Regression test CMPL, RTB.
+
+51 / 52 tests were run, missing: ubuntu_ramfs_stress
+Issue to note in amd64:
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - failed on pepe only
+  ubuntu_kvm_unit_tests - 27 failed on amaura, 4 failed on lodygin, 11 failed on michael, 23 failed on pepe, 16 failed on zeppo
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - failed on groucho only
+  ubuntu_qrt_apparmor - mmap timed out on harpo (bug 1783922)
+  ubuntu_zram_smoke_test - timed out on lodygin only (bug 1787076)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+43 / 44 tests were run, missing: ubuntu_quota_smoke_test
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ecryptfs - directory-concurrent.sh.ext4 failed on wright, passed on the rest
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_zram_smoke_test - test timed out (bug 1755999)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+41 / 44 tests were run, missing: ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_unionmount_overlayfs_suite
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578) test_map failed on i386 Bionic (bug 1788580)
+  ubuntu_kvm_unit_tests - 29 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - network issue, failed to fetch GPG key
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+44 / 45 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - adjusted time has a small difference
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - sprs hang, bug 1740017
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_zfs_xfs_generic - passed after retest
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+
+Issue to note in s390x (zKVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - No KVM support on zKVM
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - old lxc container should be deleted (bug 1788574)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - old lxc container should be deleted (bug 1788574)
+
+Note: missing p8 test results, testing node broken.

@@ -1,0 +1,19 @@
+4.4.0-1030.36 - kvm
+Regression test CMPL, RTB.
+
+Test case ubuntu_ramfs_stress does not exist in the database, please check
+42 / 49 tests were run, missing: ubuntu_blktrace_smoke_test, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  ubuntu_blktrace_smoke_test - ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 18 failed on groucho
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_qrt_kernel_security - test_330_config_debug_wx failed, passed with 4.4.0-1031
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_ramfs_stress - package installation issue
+  ubuntu_stress_smoke_test - dnotify failed on KVM kernels (bug 1782723)
+  ubuntu_vfat_stress - package installation issue
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)
+

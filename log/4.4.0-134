@@ -1,0 +1,58 @@
+4.4.0-134.160 - lowlatency
+Regression test CMPL, RTB.
+
+Test case ubuntu_ramfs_stress does not exist in the database, please check
+42 / 49 tests were run, missing: ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_ltp_syscalls, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 18 failed on groucho
+
+4.4.0-134.160 - generic
+Regression test CMPL, RTB.
+
+48 / 49 tests were run, missing: ubuntu_vfat_stress
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 21 failed on michael, 28 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_zram_smoke_test - zram test timed out (bug 1787076)
+  xfstests - xfs generic/476 timed out
+
+42 / 44 tests were run, missing: ubuntu_quota_smoke_test, xfstests
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_qrt_kernel_hardening - test setup failed, network issue
+  ubuntu_qrt_kernel_panic - test setup failed, network issue
+  ubuntu_zram_smoke_test - zram test timed out (bug 1787076)
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 12 failed
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+
+Note: missing ppc64le test results, testing node broken.
+Note: missing lowlatency i386 test result for some reason, tests have been executed properly
+Note: mark this task as Incomplete due to execveat03 failure in ubuntu_ltp_syscalls (bug 1786729)

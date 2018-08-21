@@ -1,0 +1,21 @@
+4.4.0-1032.38 - kvm
+Regression test CMPL, RTB.
+
+Test case ubuntu_ramfs_stress does not exist in the database, please check
+42 / 49 tests were run, missing: ubuntu_blktrace_smoke_test, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  libhugetlbfs - failed 1 killed by signal 1 bad config 3
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 18 failed on chico
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - test should be disabled
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_qrt_kernel_security - DEBUG_WX is expected to be unset for X-KVM kernel (bug 1788338)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_ramfs_stress - nfs-kernel-server package installation issue (bug 1788336)
+  ubuntu_stress_smoke_test - dnotify failed on KVM kernels (bug 1782723)
+  ubuntu_vfat_stress - nfs-kernel-server package installation issue (bug 1788336)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)
+
+Note: expected test case list needs to be adjusted
+Note: mark this task as Incomplete due to execveat03 failure in ubuntu_ltp_syscalls (bug 1786729)

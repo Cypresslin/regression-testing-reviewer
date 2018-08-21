@@ -1,0 +1,16 @@
+4.15.0-1020.20 - kvm
+Regression test CMPL, RTB.
+
+42 / 52 tests were run, missing: ubuntu_blktrace_smoke_test, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_lttng_smoke_test, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 16 failed on chico
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - network connection issue, unable to fetch key
+  ubuntu_quota_smoke_test - need the extra package bug 1777114
+  ubuntu_stress_smoke_test - vfork test failed (bug 1788385)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)
+
+Note: mark this task as Incomplete due to execveat03 failure in ubuntu_ltp_syscalls (bug 1786729)
