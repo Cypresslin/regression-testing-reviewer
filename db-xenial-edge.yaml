@@ -59,20 +59,3 @@ ubuntu_ltp_syscalls:
         <<: *1775784
     wright-kernel:
         <<: *1775784
-ubuntu_lttng_smoke_test:
-    chico: &1765673
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                Unable to build lttng module on X-Edge kernel (bug 1765673)
-    daedalus:
-        <<: *1765673
-    gonzo:
-        <<: *1765673
-    rumford:
-        <<: *1765673
-    entei:
-        <<: *1765673
-    ms10-35-mcdivittB0-kernel:
-        <<: *1765673
-    wright-kernel:
-        <<: *1765673

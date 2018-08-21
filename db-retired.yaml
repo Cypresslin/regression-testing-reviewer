@@ -134,6 +134,23 @@ xenial-hwe-edge:
             syscalls:
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+    ubuntu_lttng_smoke_test:
+        chico: &1765673-x-edge
+            lttng-smoke-test:
+                "Error! Bad return status for module build on kernel":
+                    Unable to build lttng module on X-Edge kernel (bug 1765673)
+        daedalus:
+            <<: *1765673-x-edge
+        gonzo:
+            <<: *1765673-x-edge
+        rumford:
+            <<: *1765673-x-edge
+        entei:
+            <<: *1765673-x-edge
+        ms10-35-mcdivittB0-kernel:
+            <<: *1765673-x-edge
+        wright-kernel:
+            <<: *1765673-x-edge
     ubuntu_unionmount_overlayfs_suite:
         daedalus: &1751243-x-edge
             overlayfs:
@@ -172,6 +189,19 @@ xenial-kvm:
             kvm_smoke_test:
                 "OSError: [Errno 25] Inappropriate ioctl for device":
                     CONFIG_AUDITSYSCALL needs to be enabled (bug 1770245)
+    ubuntu_lttng_smoke_test:
+        chico: &1760647-x-kvm
+            lttng-smoke-test:
+                "Error! Bad return status for module build on kernel":
+                    Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        harpo:
+            <<: *1760647-x-kvm
+        groucho:
+            <<: *1760647-x-kvm
+        gummo:
+            <<: *1760647-x-kvm
+        zeppo:
+            <<: *1760647-x-kvm
     ubuntu_qrt_kernel_security:
         chico:
             test-kernel-security.py:
@@ -472,6 +502,19 @@ bionic-kvm:
             <<: *1765005-b-kvm
         gummo:
             <<: *1765005-b-kvm
+    ubuntu_lttng_smoke_test:
+        chico: &1760647-b-kvm
+            lttng-smoke-test:
+                "Error! Bad return status for module build on kernel":
+                    Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+        harpo:
+            <<: *1760647-b-kvm
+        groucho:
+            <<: *1760647-b-kvm
+        gummo:
+            <<: *1760647-b-kvm
+        zeppo:
+            <<: *1760647-b-kvm
     ubuntu_lxc:
         zeppo:
             exercise:
