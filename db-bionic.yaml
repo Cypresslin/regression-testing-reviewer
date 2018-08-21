@@ -26,36 +26,28 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    baltar:
+    baltar: &1750793
         ubuntu-bjf:
             "'bits/libc-header-start.h' file not found":
                 test_maps failed to build on ppc64le (bug 1750793)
     entei:
-        ubuntu-bjf:
-            "'bits/libc-header-start.h' file not found":
-                test_maps failed to build on ppc64le (bug 1750793)
-    starmie-kernel:
+        <<: *1750793
+    starmie-kernel: &1779119
         ubuntu-bjf:
             "'bits/libc-header-start.h' file not found":
                 test_maps failed to build on arm64 (bug 1779119)
     ms10-34-mcdivittB0-kernel:
-        ubuntu-bjf:
-            "'bits/libc-header-start.h' file not found":
-                test_maps failed to build on arm64 (bug 1779119)
-    s2lp4:
+        <<: *1779119
+    s2lp4: &1711299
         ubuntu-bjf:
             "bits/libc-header-start.h' file not found":
                 test_maps failed to build on s390x (bug 1711299)
     s2lp6g002:
-        ubuntu-bjf:
-            "bits/libc-header-start.h' file not found":
-                test_maps failed to build on s390x (bug 1711299)
+        <<: *1711299
     kernel02:
-        ubuntu-bjf:
-            "bits/libc-header-start.h' file not found":
-                test_maps failed to build on s390x (bug 1711299)
+        <<: *1711299
 ubuntu_bpf_jit:
-    kernel02:
+    kernel02: &1753941
         ubuntu-bjf-jit:
             "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
@@ -68,47 +60,23 @@ ubuntu_bpf_jit:
             "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
     s2lp4:
-        ubuntu-bjf-jit:
-            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+        <<: *1753941
     s2lp6g002:
-        ubuntu-bjf-jit:
-            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+        <<: *1753941
 ubuntu_kernel_selftests:
-    ms10-34-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel: &1680507
         breakpoints:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
     starmie-kernel:
-        breakpoints:
-            "error: ‘TRAP_HWBKPT’ undeclared":
-                breakpoint test failed to build (bug 1680507)
+        <<: *1680507
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel:
+    ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
     wright-kernel:
-        kvm_smoke_test:
-            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
-                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+        <<: *1765668
 ubuntu_kvm_unit_tests:
     entei:
         all:
@@ -125,63 +93,39 @@ ubuntu_kvm_unit_tests:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
 ubuntu_ltp:
-    chico:
+    chico: &1765331
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
     harpo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     groucho:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     gummo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
     zeppo:
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
+        <<: *1765331
 ubuntu_ltp_syscalls:
-    baltar:
+    baltar: &1775784
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     kernel02:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     lodygin:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     ms10-35-mcdivittB0-kernel:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     onibi:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     rumford:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     s2lp4:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     s2lp6g002:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
     wright-kernel:
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+        <<: *1775784
 ubuntu_lxc:
     kernel02:
         exercise:

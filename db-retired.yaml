@@ -18,23 +18,17 @@ trusty-hwe:
                     failed to build (bug 1765366)
     ubuntu_ltp_syscalls:
         entei:
-            syscalls:
+            syscalls: &syscalls-t-hwe
                 "BROK: msgctl02.c:68: msgget":
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
                     msgctl04 failed (bug 1782093)
         ms10-35-mcdivittB0-kernel:
             syscalls:
-                "BROK: msgctl02.c:68: msgget":
-                    msgctl02 failed (bug 1782091)
-                "BROK: msgctl04.c:93: msgget":
-                    msgctl04 failed (bug 1782093)
+                <<: *syscalls-t-hwe
         onibi:
             syscalls:
-                "BROK: msgctl02.c:68: msgget":
-                    msgctl02 failed (bug 1782091)
-                "BROK: msgctl04.c:93: msgget":
-                    msgctl04 failed (bug 1782093)
+                <<: *syscalls-t-hwe
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
@@ -42,97 +36,76 @@ trusty-hwe:
 xenial:
     aio_dio_bugs:
         kernel01:
-            aio-dio-invalidate-failure:
+            aio-dio-invalidate-failure: &1730895-x
                 "event res -22":
                     invalidate-failure failed (bug 1730895)
-            aio-dio-subblock-eof-read:
+            aio-dio-subblock-eof-read: &1768430-x
                 "buffered read returned -1, should be 300":
                     subblock-eof-read failed (bug 1768430)
-            aio-dio-extend-stat:
+            aio-dio-extend-stat: &1768435-x
                 "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
                     extend-stat failed (bug 1768435)
         s2lp3:
             aio-dio-invalidate-failure:
-                "event res -22":
-                    invalidate-failure failed (bug 1730895)
+                <<: *1730895-x
             aio-dio-subblock-eof-read:
-                "buffered read returned -1, should be 300":
-                    subblock-eof-read failed (bug 1768430)
+                <<: *1768430-x
             aio-dio-extend-stat:
-                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                    extend-stat failed (bug 1768435)
+                <<: *1768435-x
         s2lp6g001:
             aio-dio-invalidate-failure:
-                "event res -22":
-                    invalidate-failure failed (bug 1730895)
+                <<: *1730895-x
             aio-dio-subblock-eof-read:
-                "buffered read returned -1, should be 300":
-                    subblock-eof-read failed (bug 1768430)
+                <<: *1768430-x
             aio-dio-extend-stat:
-                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                    extend-stat failed (bug 1768435)
+                <<: *1768435-x
     monotonic_time:
         onibi:
             gtod:
                 "FAIL: gtod-worst-warp=":
                     gtod tend to fail on onibi
     scrashme:
-        kernel01:
+        kernel01: &1689240-x
             scrashme:
                 "make: *** [scrashme.o] Error 1":
                     Test failed to build (bug 1689240)
         s2lp3:
-            scrashme:
-                "make: *** [scrashme.o] Error 1":
-                    Test failed to build (bug 1689240)
+            <<: *1689240-x
         s2lp6g001:
-            scrashme:
-                "make: *** [scrashme.o] Error 1":
-                    Test failed to build (bug 1689240)
+            <<: *1689240-x
     ubuntu_ltp_syscalls:
         ms10-35-mcdivittB0-kernel:
-            syscalls:
+            syscalls: &syscalls-x
                 "BROK: msgctl02.c:68: msgget":
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
                     msgctl04 failed (bug 1782093)
         onibi:
             syscalls:
-                "BROK: msgctl02.c:68: msgget":
-                    msgctl02 failed (bug 1782091)
-                "BROK: msgctl04.c:93: msgget":
-                    msgctl04 failed (bug 1782093)
+                <<: *syscalls-x
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
                 "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
         rumford:
             syscalls:
-                "BROK: msgctl02.c:68: msgget":
-                    msgctl02 failed (bug 1782091)
-                "BROK: msgctl04.c:93: msgget":
-                    msgctl04 failed (bug 1782093)
+                <<: *syscalls-x
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
                 "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
         s2lp3:
             syscalls:
-                "BROK: msgctl02.c:68: msgget":
-                    msgctl02 failed (bug 1782091)
-                "BROK: msgctl04.c:93: msgget":
-                    msgctl04 failed (bug 1782093)
+                <<: *syscalls-x
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
     ubuntu_zfs_xfs_generic:
-        starmie-kernel:
+        starmie-kernel: &1732370-x
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
-            079:
-                "acl: Function not implemented":
-                    failed with test 079 (bug 1732370)
+            <<: *1732370-x
 xenial-hwe:
     monotonic_time:
         onibi:
@@ -145,14 +118,12 @@ xenial-hwe:
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
     ubuntu_zfs_xfs_generic:
-        starmie-kernel:
+        starmie-kernel: &1732370-x-hwe
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
-            079:
-                "acl: Function not implemented":
-                    failed with test 079 (bug 1732370)
+            <<: *1732370-x-hwe
 xenial-hwe-edge:
     ubuntu_kvm_unit_tests:
         all:
@@ -164,66 +135,38 @@ xenial-hwe-edge:
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
     ubuntu_unionmount_overlayfs_suite:
-        daedalus:
+        daedalus: &1751243-x-edge
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
         fozzie:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
         michael:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
         rizzo:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
         entei:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
         starmie-kernel:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
         ms10-34-mcdivittB0-kernel:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-x-edge
 xenial-kvm:
     ubuntu_blktrace_smoke_test:
-        chico:
+        chico: &blktrace-smoke-test-x-kvm
             blktrace-smoke-test:
                 "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
                      ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
                 "FAILED (/sys/kernel/debug/tracing does not exist)":
                      ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
         harpo:
-            blktrace-smoke-test:
-                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+            <<: *blktrace-smoke-test-x-kvm
         groucho:
-            blktrace-smoke-test:
-                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+            <<: *blktrace-smoke-test-x-kvm
         gummo:
-            blktrace-smoke-test:
-                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+            <<: *blktrace-smoke-test-x-kvm
         zeppo:
-            blktrace-smoke-test:
-                "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+            <<: *blktrace-smoke-test-x-kvm
     ubuntu_kvm_smoke_test:
         zeppo:
             kvm_smoke_test:
@@ -264,153 +207,116 @@ xenial-kvm:
 artful:
     aio_dio_bugs:
         kernel04:
-            aio-dio-invalidate-failure:
+            aio-dio-invalidate-failure: &1730895-a
                 "event res -22":
                     invalidate-failure failed (bug 1730895)
-            aio-dio-subblock-eof-read:
+            aio-dio-subblock-eof-read: &1768430-a
                 "buffered read returned -1, should be 300":
                     subblock-eof-read failed (bug 1768430)
-            aio-dio-extend-stat:
+            aio-dio-extend-stat: &1768435-a
                 "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
                     extend-stat failed (bug 1768435)
         s2lp6g004:
             aio-dio-invalidate-failure:
-                "event res -22":
-                    invalidate-failure failed (bug 1730895)
+                <<: *1730895-a
             aio-dio-subblock-eof-read:
-                "buffered read returned -1, should be 300":
-                    subblock-eof-read failed (bug 1768430)
+                <<: *1768430-a
             aio-dio-extend-stat:
-                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                    extend-stat failed (bug 1768435)
+                <<: *1768435-a
     hwclock:
         lodygin:
             hwclock:
                 "2080-02-02 03:04":
                     unable to change time back to 19th centry on lodygin (bug 1714229)
     scrashme:
-        kernel04:
+        kernel04: &1689240-a
             scrashme:
                 "make: *** [scrashme.o] Error 1":
                     Test failed to build (bug 1689240)
         s2lp6g004:
-            scrashme:
-                "make: *** [scrashme.o] Error 1":
-                    Test failed to build (bug 1689240)
+            <<: *1689240-a
     ubuntu_kernel_selftests:
-        ms10-34-mcdivittB0-kernel:
+        ms10-34-mcdivittB0-kernel: &1680507-a
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
         starmie-kernel:
-            breakpoints:
-               "error: ‘TRAP_HWBKPT’ undeclared":
-                   breakpoint test failed to build (bug 1680507)
+            <<: *1680507-a
     ubuntu_zfs_xfs_generic:
-        starmie-kernel:
+        starmie-kernel: &1732370-a
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
-            079:
-                "acl: Function not implemented":
-                    failed with test 079 (bug 1732370)
+            <<: *1732370-a
 bionic:
     aio_dio_bugs:
         s2lp4:
-            aio-dio-invalidate-failure:
+            aio-dio-invalidate-failure: &1730895-b
                 "event res -22":
                     invalidate-failure failed (bug 1730895)
-            aio-dio-subblock-eof-read:
+            aio-dio-subblock-eof-read: &1768430-b
                 "buffered read returned -1, should be 300":
                     subblock-eof-read failed (bug 1768430)
-            aio-dio-extend-stat:
+            aio-dio-extend-stat: &1768435-b
                 "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
                     extend-stat failed (bug 1768435)
         s2lp6g002:
             aio-dio-invalidate-failure:
-                "event res -22":
-                    invalidate-failure failed (bug 1730895)
+                <<: *1730895-b
             aio-dio-subblock-eof-read:
-                "buffered read returned -1, should be 300":
-                    subblock-eof-read failed (bug 1768430)
+                <<: *1768430-b
             aio-dio-extend-stat:
-                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                    extend-stat failed (bug 1768435)
+                <<: *1768435-b
         kernel02:
             aio-dio-invalidate-failure:
-                "event res -22":
-                    invalidate-failure failed (bug 1730895)
+                <<: *1730895-b
             aio-dio-subblock-eof-read:
-                "buffered read returned -1, should be 300":
-                    subblock-eof-read failed (bug 1768430)
+                <<: *1768430-b
             aio-dio-extend-stat:
-                "write of 1024 bytes @0 finished, expected filesize at least 1024, but got 0":
-                    extend-stat failed (bug 1768435)
+                <<: *1768435-b
     hwclock:
         lodygin:
             hwclock:
                 "2080-02-02 03:04":
                     unable to change time back to 19th century on lodygin (bug 1714229)
     libhugetlbfs:
-        baltar:
+        baltar: &1765279-b
             libhugetlbfs:
                 "unrecognized option '--hugetlbfs-":
                     Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
         daedalus:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
         gummo:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
         lodygin:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
         onibi:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
         rumford:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
         wright-kernel:
-            libhugetlbfs:
-                "unrecognized option '--hugetlbfs-":
-                    Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+            <<: *1765279-b
     scrashme:
-        s2lp4:
+        s2lp4: &1689240-b
             scrashme:
                 "make: *** [Makefile:13: scrashme.o] Error":
                     Test failed to build (bug 1689240)
         s2lp6g002:
-            scrashme:
-                "make: *** [Makefile:13: scrashme.o] Error":
-                    Test failed to build (bug 1689240)
+            <<: *1689240-b
         kernel02:
-            scrashme:
-                "make: *** [Makefile:13: scrashme.o] Error":
-                    Test failed to build (bug 1689240)
+            <<: *1689240-b
     ubuntu_bpf:
-        amaura:
+        amaura: &1775837-b
             ubuntu-bjf:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
         baltar:
-            ubuntu-bjf:
-                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            <<: *1775837-b
         michael:
-            ubuntu-bjf:
-                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            <<: *1775837-b
         pepe:
-            ubuntu-bjf:
-                "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
-                    test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            <<: *1775837-b
         starmie-kernel:
             ubuntu-bjf:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
@@ -424,23 +330,19 @@ bionic:
                 "error: field ‘regs’ has incomplete type":
                     failed to build on ARM64 (bug 1675395)
     ubuntu_fan_smoke_test:
-        kernel02:
+        kernel02: &1775847-b
             fan-smoke-test:
                 "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
                     fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
         s2lp4:
-            fan-smoke-test:
-                "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
-                    fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+            <<: *1775847-b
     ubuntu_kernel_selftests:
-        ms10-34-mcdivittB0-kernel:
+        ms10-34-mcdivittB0-kernel: &1680507-b
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
         starmie-kernel:
-            breakpoints:
-                "error: ‘TRAP_HWBKPT’ undeclared":
-                    breakpoint test failed to build (bug 1680507)
+            <<: *1680507-b
     ubuntu_kvm_unit_tests:
         s2lp6g002:
             all:
@@ -456,61 +358,33 @@ bionic:
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 failed with T/A/B kernel (bug 1775153)
     ubuntu_lxc:
-        amaura:
+        amaura: &exercise-b
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
                 "FAIL: unable to create first nic":
                     lxc-test-usernic.in failed on Bionic (bug 1775809)
         baltar:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+            <<: *exercise-b
         kernel02:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+            <<: *exercise-b
         michael:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+            <<: *exercise-b
         ms10-34-mcdivittB0-kernel:
-            exercise:
-                "Unable to locate package lxc-tests":
-                    lxc-tests package removed on bionic (bug 1758255)
-                "FAIL: unable to create first nic":
-                    lxc-test-usernic.in failed on Bionic (bug 1775809)
+            <<: *exercise-b
     ubuntu_qrt_kernel_security:
-        daedalus:
+        daedalus: &kernel-security-b
             test-kernel-security.py:
                 "ERROR: test_095_kernel_symbols_missing":
                     test_095_kernel_symbols_missing (bug 1751202)
                 "FAIL: test_072_config_security_apparmor":
                     test_072_config_security_apparmor (bug 1751207)
         lodygin:
-            test-kernel-security.py:
-                "ERROR: test_095_kernel_symbols_missing":
-                    test_095_kernel_symbols_missing (bug 1751202)
-                "FAIL: test_072_config_security_apparmor":
-                    test_072_config_security_apparmor (bug 1751207)
+            <<: *kernel-security-b
         rumford:
-            test-kernel-security.py:
-                "ERROR: test_095_kernel_symbols_missing":
-                   test_095_kernel_symbols_missing (bug 1751202)
-                "FAIL: test_072_config_security_apparmor":
-                    test_072_config_security_apparmor (bug 1751207)
+            <<: *kernel-security-b
         entei:
-            test-kernel-security.py:
-                "ERROR: test_095_kernel_symbols_missing":
-                    test_095_kernel_symbols_missing (bug 1751202)
-                "FAIL: test_072_config_security_apparmor":
-                    test_072_config_security_apparmor (bug 1751207)
+            <<: *kernel-security-b
         kernel02:
             test-kernel-security.py:
                 "ERROR: test_095_kernel_symbols_missing":
@@ -539,59 +413,37 @@ bionic:
                 "(stress-ng-dccp) terminated with an error, exit status=1 (stress-ng core failure)":
                     dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
     ubuntu_unionmount_overlayfs_suite:
-        baltar:
+        baltar: &1751243-b
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
         daedalus:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         fozzie:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         gummo:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         lodygin:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         michael:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         rizzo:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         s2lp4:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         kernel02:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         s2lp6g002:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
         starmie-kernel:
-            overlayfs:
-                "/mnt/a/foo100: File unexpectedly on union layer":
-                    File unexpectedly on union layer (bug 1751243)
+            <<: *1751243-b
     ubuntu_zfs_xfs_generic:
-        starmie-kernel:
+        starmie-kernel: &1732370-b
             079:
                 "acl: Function not implemented":
                     failen with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
-            079:
-                "acl: Function not implemented":
-                    failed with test 079 (bug 1732370)
+            <<: *1732370-b
 bionic-kvm:
     libhugetlbfs:
         zeppo:
@@ -599,65 +451,45 @@ bionic-kvm:
                 "unrecognized option '--hugetlbfs-":
                     Unable to build libghugetlbfs test on 4.15 KVM (bug 1765279)
     ubuntu_blktrace_smoke_test:
-        chico:
+        chico: &1760636-b-kvm
             blktrace-smoke-test:
                 "FAILED (/sys/kernel/debug/tracing does not exist)":
                     ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
         harpo:
-            blktrace-smoke-test:
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+            <<: *1760636-b-kvm
         groucho:
-            blktrace-smoke-test:
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+            <<: *1760636-b-kvm
         gummo:
-            blktrace-smoke-test:
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+            <<: *1760636-b-kvm
         zeppo:
-            blktrace-smoke-test:
-                "FAILED (/sys/kernel/debug/tracing does not exist)":
-                    ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+            <<: *1760636-b-kvm
     ubuntu_kvm_smoke_test:
-        chico:
+        chico: &1765005-b-kvm
             kvm_smoke_test:
                 "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
                     Unable to start KVM with 4.15 KVM kernel (bug 1765005)
         groucho:
-            kvm_smoke_test:
-                "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
-                    Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+            <<: *1765005-b-kvm
         gummo:
-            kvm_smoke_test:
-                "uvt-kvm: error: libvirt: Requested operation is not valid: network 'default' is not active":
-                    Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+            <<: *1765005-b-kvm
     ubuntu_lxc:
         zeppo:
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
     ubuntu_qrt_apparmor:
-        chico:
+        chico: &1765025-b-kvm
             test-apparmor.py:
                 "Error: mount failed. Test 'MOUNT ":
                     mount test in test_regression_testsuite failed (bug 1765025)
         harpo:
-            test-apparmor.py:
-                "Error: mount failed. Test 'MOUNT ":
-                    mount test in test_regression_testsuite failed (bug 1765025)
+            <<: *1765025-b-kvm
         groucho:
-            test-apparmor.py:
-                "Error: mount failed. Test 'MOUNT ":
-                    mount test in test_regression_testsuite failed (bug 1765025)
+            <<: *1765025-b-kvm
         gummo:
-            test-apparmor.py:
-                "Error: mount failed. Test 'MOUNT ":
-                    mount test in test_regression_testsuite failed (bug 1765025)
+            <<: *1765025-b-kvm
         zeppo:
-            test-apparmor.py:
-                "Error: mount failed. Test 'MOUNT ":
-                    mount test in test_regression_testsuite failed (bug 1765025)
+            <<: *1765025-b-kvm
     ubuntu_qrt_kernel_security:
         harpo:
             test-kernel-security.py:
