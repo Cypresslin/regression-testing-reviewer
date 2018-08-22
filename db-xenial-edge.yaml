@@ -49,6 +49,10 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     entei: &1775784
         syscalls:
+            "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
+                bind03 failed (bug 1788351)
+            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     ms10-35-mcdivittB0-kernel:

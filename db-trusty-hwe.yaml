@@ -54,6 +54,10 @@ ubuntu_kvm_smoke_test:
 ubuntu_ltp_syscalls:
     entei: &syscalls
         syscalls:
+            "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
+                bind03 failed (bug 1788351)
+            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
