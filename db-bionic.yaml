@@ -26,26 +26,51 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    baltar: &1750793
+    pepe:
         ubuntu-bjf:
+            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+            "check bpf_perf_event_data->sample_period":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+            "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
+                test_map failed on i386 Bionic (bug 1788580)
+    baltar:
+        setup: &1788551
             "'bits/libc-header-start.h' file not found":
-                test_maps failed to build on ppc64le (bug 1750793)
+                Header not found when building ubuntu_bpf on Bionic s390x/ppc64el/arm64 (bug 1788551)
+        ubuntu-bjf: &1788562
+            "libbpf: ./sockmap_parse_prog.o doesn't provide kernel version":
+                test_map failed (bug 1788562)
     entei:
-        <<: *1750793
-    starmie-kernel: &1779119
+        setup:
+           <<: *1788551
         ubuntu-bjf:
-            "'bits/libc-header-start.h' file not found":
-                test_maps failed to build on arm64 (bug 1779119)
+           <<: *1788562
+    starmie-kernel:
+        setup:
+           <<: *1788551
+        ubuntu-bjf:
+           <<: *1788562
     ms10-34-mcdivittB0-kernel:
-        <<: *1779119
-    s2lp4: &1711299
+        setup:
+           <<: *1788551
         ubuntu-bjf:
-            "bits/libc-header-start.h' file not found":
-                test_maps failed to build on s390x (bug 1711299)
+           <<: *1788562
+    s2lp4:
+        setup:
+           <<: *1788551
+        ubuntu-bjf:
+           <<: *1788562
     s2lp6g002:
-        <<: *1711299
+        setup:
+           <<: *1788551
+        ubuntu-bjf:
+           <<: *1788562
     kernel02:
-        <<: *1711299
+        setup:
+           <<: *1788551
+        ubuntu-bjf:
+           <<: *1788562
 ubuntu_bpf_jit:
     kernel02: &1753941
         ubuntu-bjf-jit:
@@ -89,7 +114,7 @@ ubuntu_kvm_unit_tests:
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
     s2lp6g002:
-        all:
+        setup:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
 ubuntu_ltp:
