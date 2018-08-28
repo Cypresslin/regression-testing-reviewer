@@ -1,7 +1,6 @@
 import os
-from urllib import request
 import yaml
-from bs4 import BeautifulSoup
+import utils
 
 # format:
 # test-suite: {sut: {sub-test-case1: {errmsg:'', reason:''},
@@ -62,8 +61,7 @@ def analyze_that(link, testname, distro):
     if testname not in issues:
         return '', unused
 
-    page = request.urlopen(link).read()
-    soup_summary = BeautifulSoup(page, "lxml")
+    soup_summary = utils.soup_generator(link)
     reason = []
     # Parse the failed nodes first
     for sut in _node_parser(soup_summary):
@@ -81,8 +79,7 @@ def analyze_that(link, testname, distro):
             baseurl = os.path.dirname(link)
             target = baseurl + '/' + report
             # parse the target page
-            page = request.urlopen(target).read()
-            soup = BeautifulSoup(page, "lxml")
+            soup = utils.soup_generator(target)
             # jump to the test, and update the report link
             head = soup.find('div', {'class': 'dash-section'}).find_next('div')
             # update the baseurl for those sub-pages here, as the target will be updated later
@@ -97,8 +94,7 @@ def analyze_that(link, testname, distro):
                     report = sub_head.get('href')
                     target = baseurl + '/' + report
                     # finally we can parse the real test report
-                    page = request.urlopen(target).read()
-                    soup = BeautifulSoup(page, "lxml")
+                    soup = utils.soup_generator(target)
                     for item in soup.find_all('td', {'valign': 'top'}):
                         # filter out the column number section
                         if item.has_attr('width'):

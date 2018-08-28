@@ -24,9 +24,8 @@ Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
 
 import argparse
 import sys
-from urllib import request
-from bs4 import BeautifulSoup
 import analyzer
+import utils
 
 max_colspan = 7
 style_arch = {'align': 'center', 'colspan': '7', 'style': 'background: #e9e7e5;'}
@@ -73,8 +72,7 @@ unused_all = []
 if args.all:
     url = url_root
 
-page = request.urlopen(url).read()
-soup = BeautifulSoup(page, "lxml")
+soup = utils.soup_generator(url)
 # Jump to the correct strong tag, for release
 try:
     head = soup.find("td", {"style": "background: #ffff99;"}).next_element
