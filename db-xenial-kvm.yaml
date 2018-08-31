@@ -59,12 +59,14 @@ ubuntu_ltp_syscalls:
         syscalls:
             "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
-            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+            "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "FAIL: quotactl failed to set":
+                quotactl01 failed (bug 1790028)
     harpo:
         <<: *syscalls
     groucho:

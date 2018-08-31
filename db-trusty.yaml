@@ -45,11 +45,6 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "OSError: [Errno 25] Inappropriate ioctl for device":
                 getlogin will fail to open /proc/self/loginuid (bug 1770245)
-ubuntu_kvm_unit_tests:
-    pepe:
-        all:
-            "make: *** [lib/x86/usermode.o] Error":
-                failed to build (bug 1765366)
 ubuntu_ltp_syscalls:
     onibi:
         syscalls:

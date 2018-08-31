@@ -29,6 +29,8 @@ ubuntu_ltp:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
+            "IOError: [Errno 28] No space left on device":
+                growfiles test failed (bug 1790445)
     harpo:
         <<: *1765331
     groucho:
@@ -42,10 +44,12 @@ ubuntu_ltp_syscalls:
         syscalls:
             "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
-            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+            "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "FAIL: quotactl failed to set":
+                quotactl01 failed (bug 1790028)
     harpo:
         <<: *1775784
     groucho:
@@ -68,18 +72,18 @@ ubuntu_lxc:
     zeppo:
         <<: *1775809
 ubuntu_quota_smoke_test:
-    chico: &1777114
+    chico: &1784535
         quota-smoke-test:
              "quotaon: Quota format not supported in kernel.":
-                 need the extra package bug 1777114
+                 failed with KVM kernel (bug 1784535)
     harpo:
-        <<: *1777114
+        <<: *1784535
     groucho:
-        <<: *1777114
+        <<: *1784535
     gummo:
-        <<: *1777114
+        <<: *1784535
     zeppo:
-        <<: *1777114
+        <<: *1784535
 ubuntu_stress_smoke_test:
     chico: &1782723
         stress-smoke-test:

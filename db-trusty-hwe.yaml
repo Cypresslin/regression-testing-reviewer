@@ -56,7 +56,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
-            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+            "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
@@ -77,6 +77,10 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "init missing READ_IMPLIES_EXEC ... (/proc/1/personality) FAIL":
                 050 failed (bug 1684776)
+            "AssertionError: CC_STACKPROTECTOR option was expected to be unset in the kernel config":
+                STACKPROTECTOR should be unset (bug 1789353)
+            "AssertionError: HAVE_CC_STACKPROTECTOR option was expected to be unset in the kernel config":
+                STACKPROTECTOR should be unset (bug 1789353)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:

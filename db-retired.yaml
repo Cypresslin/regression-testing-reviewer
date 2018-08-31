@@ -10,6 +10,11 @@ trusty:
                     test 82 (bug 1747853)
                 "AssertionError: Module 'signpost' is tainted: (OX)":
                     test 140 (bug 1747855)
+    ubuntu_kvm_unit_tests:
+        pepe:
+            all:
+                "make: *** [lib/x86/usermode.o] Error":
+                    failed to build (bug 1765366)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -402,6 +407,10 @@ bionic:
             <<: *exercise-b
         ms10-34-mcdivittB0-kernel:
             <<: *exercise-b
+        kernel02:
+            <<: *exercise-b
+        s2lp6g002:
+            <<: *exercise-b
     ubuntu_qrt_kernel_security:
         daedalus: &kernel-security-b
             test-kernel-security.py:
@@ -560,6 +569,11 @@ bionic-kvm:
                     config_debug_wx (bug 1782721)
                 "HARDENED_USERCOPY option was expected to be set in the kernel config":
                     config_hardened_usercopy (bug 1766777)
+    ubuntu_quota_smoke_test:
+        chico:
+            quota-smoke-test:
+                 "quotaon: Quota format not supported in kernel.":
+                     need the extra package bug 1777114
     ubuntu_ltp_syscalls:
         chico:
             syscalls:

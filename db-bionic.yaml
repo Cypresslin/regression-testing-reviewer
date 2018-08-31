@@ -88,6 +88,11 @@ ubuntu_bpf_jit:
         <<: *1753941
     s2lp6g002:
         <<: *1753941
+ubuntu_ecryptfs:
+    wright-kernel:
+        directory-concurrent.sh.ext4:
+            "Timed out after 30 seconds doing rmdir() - possible eCryptfs hang":
+                directory-concurrent.sh.ext4 failed on ThunderX (bug 1765653)
 ubuntu_kernel_selftests:
     ms10-34-mcdivittB0-kernel: &1680507
         breakpoints:
@@ -103,6 +108,12 @@ ubuntu_kvm_smoke_test:
     wright-kernel:
         <<: *1765668
 ubuntu_kvm_unit_tests:
+    ms10-34-mcdivittB0-kernel:
+        all:
+            "FAIL gicv3-ipi":
+                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+            "FAIL gicv3-active":
+                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
     entei:
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
@@ -135,7 +146,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
-            "execveat03.c:70: FAIL: execveat() returned unexpected errno: EINVAL":
+            "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
@@ -158,8 +169,8 @@ ubuntu_ltp_syscalls:
 ubuntu_lxc:
     kernel02:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
     ms10-34-mcdivittB0-kernel:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
@@ -168,10 +179,12 @@ ubuntu_lxc:
         exercise:
             "FAIL: lxc-tests: lxc-test-api-reboot":
                 lxc-test-api-reboot failed (bug 1776381)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
     s2lp6g002:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
     starmie:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
