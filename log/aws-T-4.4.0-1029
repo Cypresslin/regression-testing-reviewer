@@ -1,0 +1,24 @@
+4.4.0-1028.31 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped, KVM not supported
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) quotactl01 failed (bug 1790028)
+
+Skipped / blacklisted:
+ * ubuntu_aufs_smoke_test
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_loop_smoke_test
+ * ubuntu_ltp
+ * ubuntu_lttng_smoke_test
+ * ubuntu_nbd_smoke_test
+ * ubuntu_quota_smoke_test
+ * ubuntu_stress_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_unionmount_overlayfs_suite
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: ubuntu_ltp_syscalls will timeout on these nodes, report must be reviewed manually on the jenkins UI

@@ -1,0 +1,11 @@
+4.15.0-1021.21 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 15 failed on harpo 
+  ubuntu_ltp - gropfiles test failed (bug 1790445)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) quotactl01 failed (bug 1790028)
+  ubuntu_qrt_apparmor -  mmap timed out on groucho (bug 1783922)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)

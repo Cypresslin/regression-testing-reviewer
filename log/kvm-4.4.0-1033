@@ -1,0 +1,9 @@
+4.4.0-1033.39 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 18 failed on groucho
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) quotactl01 failed (bug 1790028)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)

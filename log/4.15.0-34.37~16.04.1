@@ -1,0 +1,41 @@
+4.15.0-34.37~16.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 26 failed on amaura, 10 failed on michael, 21 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - failed on amaura only, GPG key fetch issue
+  ubuntu_zfs_xfs_generic - failed on daedalus only
+  xfstests - btrfs generic/176 timed out, xfs generic/438 timed out
+
+31 / 43 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_zram_smoke_test
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  xfstests - xfs generic/104 timed out
+
+4.15.0-34.37~16.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 26 failed on amaura, 9 failed on michael, 22 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  xfstests - btrfs generic/176 timed out, xfs generic/476 timed out
+
+Issue to note in arm64:
+  ubuntu_cts_kernel - tool issue (bug 1789566)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi on ms10-34-mcdivittB0-kernel pmu on starmie (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - Unable to fetch GPG key from keyserver, failed on moonshot only
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  xfstests - xfs generic/113 timed out
+
+Note: missing ppc64le test results, testing node broken.
+Note: the i386 HWE lowlatency kernel deploy issue seem to be specific to a certain HW (bug 1791275)
+Note: missing smoke tests were manually tested for the i386 lowlatency kernel on another node (pepe), and there is a stress_smoke test issue (bug 1791246)

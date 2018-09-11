@@ -1,0 +1,21 @@
+4.15.0-1023.24~16.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, passed on the rest
+  monotonic_time - all two tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) quotactl01 failed (bug 1790028)
+  ubuntu_lttng_smoke_test - package installation issue (bug 1791032), passed on the rest
+  ubuntu_lxc - lxc-test-ubuntu (Failed creating ubuntu-cloud container), lxc-test-autostart (container didn't stop on Standard_DS14_v2, Standard_E64-16s_v3), Failed creating ubuntu container (unable to download package on Standard_F4s)
+  ubunut_qrt_apparmor - mmap test timed out on some nodes (bug 1783922)
+  ubuntu_stress_smoke_test - sysfs caused kernel oopsed on some instances (bug 1757057)
+  ubuntu_vfat_stress - failed on StandardB1s only
+  ubuntu_zram_smoke_test - zram test timed out (bug 1787076)
+
+Skipped / blacklisted:
+  * ubuntu_ltp
+  * ubuntu_nbd_smoke_test
+  * ubuntu_seccomp
+  * ubuntu_sysdig_smoke_test

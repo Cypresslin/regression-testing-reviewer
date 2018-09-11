@@ -1,0 +1,18 @@
+4.15.0-1023.24 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, passed on the rest
+  monotonic_time - all two tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) quotactl01 failed (bug 1790028)
+  ubuntu_lttng_smoke_test - package installation issue (bug 1791032), passed on the rest
+  ubuntu_lxc - network issue on some node, passed on the rest
+  ubunut_qrt_apparmor - mmap test timed out on some nodes (bug 1783922)
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_nbd_smoke_test
+  * ubuntu_seccomp
