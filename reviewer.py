@@ -175,7 +175,7 @@ for kernel in report[target_distro]:
     print()
     for arch in sorted(report[target_distro][kernel]):
         # Validate the test case number here
-        analyzer.testsuite_validator(args.release, arch.split()[0], report[target_distro][kernel][arch])
+        analyzer.testsuite_validator(fn, arch.split()[0], report[target_distro][kernel][arch])
 
         # Analyze each failure here
         print('Issue to note in {}:'.format(arch))

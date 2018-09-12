@@ -5,7 +5,7 @@ import utils
 # format:
 # test-suite: {sut: {sub-test-case1: {errmsg:'', reason:''},
 #                    sub-test-case2: {errmsg:'', reason:''},
-def testsuite_validator(release, arch, testcases):
+def testsuite_validator(fullname, arch, testcases):
     try:
         with open('db-testcases.yaml', 'r') as stream:
             db = yaml.load(stream)
@@ -14,9 +14,9 @@ def testsuite_validator(release, arch, testcases):
         print("db-testcases.yaml does not exist")
         raise SystemExit
     # Compose the database for each arch from the full test list
-    if release in db:
-        if arch in db[release]:
-            exclude = db[release][arch]
+    if fullname in db:
+        if arch in db[fullname]:
+            exclude = db[fullname][arch].keys()
             expected = list(set(expected) - set(exclude))
     total = len(expected)
     tested = len(testcases)

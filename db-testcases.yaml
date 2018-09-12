@@ -1,271 +1,307 @@
 # Tests here are the one that need to be excluded from the full-list below
 bionic:
-    amd64: [
-        libhugetlbfs,
-        ubuntu_nbd_smoke_test,
-        ubuntu_seccomp
-    ]
-    arm64: [
-        iosched_bugs,
-        libhugetlbfs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_vfat_stress
-    ]
-    i386: [
-        libhugetlbfs,
-        ubuntu_32_on_64,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic
-    ]
-    ppc64le: [
-        iosched_bugs,
-        libhugetlbfs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_vfat_stress
-    ]
-    s390x: [
-        iosched_bugs,
-        libhugetlbfs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_boot,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_vfat_stress,
-        xfstests
-    ]
+    amd64:
+        ? libhugetlbfs
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_seccomp
+    arm64:
+        ? iosched_bugs
+        ? libhugetlbfs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_vfat_stress
+    i386:
+        ? libhugetlbfs
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+
+    ppc64le:
+        ? iosched_bugs
+        ? libhugetlbfs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_vfat_stress
+    s390x:
+        ? iosched_bugs
+        ? libhugetlbfs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_boot
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_vfat_stress
+        ? xfstests
+bionic-kvm:
+    amd64:
+        ? libhugetlbfs
+        ? ubuntu_blktrace_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cts_kernel
+        ? ubuntu_cve_kernel
+        ? ubuntu_ecryptfs
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_seccomp
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
 xenial:
-    amd64: [
-        ubuntu_bpf,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_sysdig_smoke_test
-    ]
-    i386: [
-        ubuntu_32_on_64,
-        ubuntu_bpf,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_xfs_generic,
-        ubuntu_zfs_smoke_test
-    ]
-    arm64: [
-        iosched_bugs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_bpf,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_vfat_stress
-    ]
-    s390x: [
-        iosched_bugs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_boot,
-        ubuntu_bpf,
-        ubuntu_cve_kernel,
-        ubuntu_ltp,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_vfat_stress,
-        xfstests
-    ]
+    amd64: &x-amd64
+        ? ubuntu_bpf
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+    i386: &x-i386
+        ? ubuntu_32_on_64
+        ? ubuntu_bpf
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_xfs_generic
+        ? ubuntu_zfs_smoke_test
+    arm64: &x-arm64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_bpf
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_vfat_stress
+    s390x:
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_boot
+        ? ubuntu_bpf
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_vfat_stress
+        ? xfstests
+xenial-edge:
+    amd64:
+        <<: *x-amd64
+        ? ubuntu_vfat_stress
+    i386:
+        <<: *x-i386
+    arm64:
+        <<: *x-arm64
+xenial-kvm:
+    amd64:
+        ? ubuntu_blktrace_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cts_kernel
+        ? ubuntu_cve_kernel
+        ? ubuntu_ecryptfs
+        ? ubuntu_ltp
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
 trusty:
-    amd64: [
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cve_kernel,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_lttng_smoke_test,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
-    arm64: [
-        iosched_bugs,
-        iosched_bugs,
-        monotonic_time,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cve_kernel,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_lttng_smoke_test,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_seccomp,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
-    i386: [
-        ubuntu_32_on_64,
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cve_kernel,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_lttng_smoke_test,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
-    ppc64le: [
-        iosched_bugs,
-        monotonic_time,
-        ubuntu_32_on_64,
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cve_kernel,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_lttng_smoke_test,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
+    amd64: &t-amd64
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cve_kernel
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+    arm64: &t-arm64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cve_kernel
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+    i386: &t-i386
+        ? ubuntu_32_on_64
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cve_kernel
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+    ppc64le: &t-ppc64le
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cve_kernel
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+trusty-hwe:
+    amd64:
+        <<: *t-amd64
+        ? ubuntu_ramfs_stress
+        ? ubuntu_vfat_stress
+    i386:
+        <<: *t-i386
+    arm64:
+        <<: *t-arm64
+    ppc64le:
+        <<: *t-ppc64le
 precise:
-    amd64: [
-        libhugetlbfs,
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cts_kernel,
-        ubuntu_cve_kernel,
-        ubuntu_docker_smoke_test,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_kvm_smoke_test,
-        ubuntu_kvm_unit_tests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_ltp_syscalls,
-        ubuntu_lttng_smoke_test,
-        ubuntu_lxc,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
-    i386: [
-        libhugetlbfs,
-        ubuntu_32_on_64,
-        ubuntu_aufs_smoke_test,
-        ubuntu_bpf,
-        ubuntu_bpf_jit,
-        ubuntu_cts_kernel,
-        ubuntu_cve_kernel,
-        ubuntu_docker_smoke_test,
-        ubuntu_fan_smoke_test,
-        ubuntu_kernel_selftests,
-        ubuntu_kvm_smoke_test,
-        ubuntu_kvm_unit_tests,
-        ubuntu_loop_smoke_test,
-        ubuntu_ltp,
-        ubuntu_ltp_syscalls,
-        ubuntu_lttng_smoke_test,
-        ubuntu_lxc,
-        ubuntu_nbd_smoke_test,
-        ubuntu_ramfs_stress,
-        ubuntu_seccomp,
-        ubuntu_stress_smoke_test,
-        ubuntu_sysdig_smoke_test,
-        ubuntu_unionmount_overlayfs_suite,
-        ubuntu_vfat_stress,
-        ubuntu_zfs_fstest,
-        ubuntu_zfs_smoke_test,
-        ubuntu_zfs_xfs_generic,
-        xfstests
-    ]
+    amd64: &p-amd64
+        ? libhugetlbfs
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cts_kernel
+        ? ubuntu_cve_kernel
+        ? ubuntu_docker_smoke_test
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_kvm_smoke_test
+        ? ubuntu_kvm_unit_tests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_ltp_syscalls
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_lxc
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+    i386: &p-i386
+        ? libhugetlbfs
+        ? ubuntu_32_on_64
+        ? ubuntu_aufs_smoke_test
+        ? ubuntu_bpf
+        ? ubuntu_bpf_jit
+        ? ubuntu_cts_kernel
+        ? ubuntu_cve_kernel
+        ? ubuntu_docker_smoke_test
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_kernel_selftests
+        ? ubuntu_kvm_smoke_test
+        ? ubuntu_kvm_unit_tests
+        ? ubuntu_loop_smoke_test
+        ? ubuntu_ltp
+        ? ubuntu_ltp_syscalls
+        ? ubuntu_lttng_smoke_test
+        ? ubuntu_lxc
+        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_stress_smoke_test
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_vfat_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+        ? xfstests
+precise-hwe:
+    amd64:
+        <<: *p-amd64
+    i386:
+        <<: *p-i386
 full-list: [
     aio_dio_bugs,
     aiostress,
