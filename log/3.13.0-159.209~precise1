@@ -1,0 +1,8 @@
+3.13.0-159.209~precise1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)
+
+Issue to note in i386:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)

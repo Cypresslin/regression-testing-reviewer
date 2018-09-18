@@ -1,0 +1,13 @@
+4.15.0-1021.22~16.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  libhugetlbfs - 1 failed brk_near_huge (bug 1653597), 1 killed by signal, 3 bad config
+  ubuntu_kvm_unit_tests - failed due to no KVM support
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) quotactl01 failed (bug 1790028) getrandom02/inotify09 timeouted on slow machine (bug 1782758)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_nbd_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
