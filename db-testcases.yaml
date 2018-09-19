@@ -2,7 +2,6 @@
 bionic:
     amd64:
         ? libhugetlbfs
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_seccomp
     arm64:
         ? iosched_bugs
@@ -11,7 +10,6 @@ bionic:
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
@@ -21,14 +19,12 @@ bionic:
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_vfat_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
-
     ppc64le:
         ? iosched_bugs
         ? libhugetlbfs
@@ -36,7 +32,6 @@ bionic:
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_vfat_stress
@@ -48,7 +43,6 @@ bionic:
         ? ubuntu_boot
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_vfat_stress
@@ -63,7 +57,6 @@ bionic-kvm:
         ? ubuntu_cve_kernel
         ? ubuntu_ecryptfs
         ? ubuntu_lttng_smoke_test
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_seccomp
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
