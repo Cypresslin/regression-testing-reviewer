@@ -1,0 +1,18 @@
+# 3.13 Precise ESM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_qrt_kernel_security:
+    onibi:
+        test-kernel-security.py:
+            "FAIL: ASLR not functional (vdso always at 0x40022000)":
+                test_022_aslr_hardy_vdso failed on P-i386 (bug 1747630)
