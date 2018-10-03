@@ -47,7 +47,7 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     entei: &syscalls
         syscalls:
-            "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
+            "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
             "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)

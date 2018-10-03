@@ -42,7 +42,7 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     chico: &1775784
         syscalls:
-            "bind03.c:48: FAIL: expected EINVAL: EADDRINUSE":
+            "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
             "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
@@ -71,6 +71,19 @@ ubuntu_lxc:
         <<: *1775809
     zeppo:
         <<: *1775809
+ubuntu_nbd_smoke_test:
+    chico: &1793491
+        nbd-smoke-test:
+            "Cannot load Network Block Device module nbd.o":
+                failed with KVM kernels (bug 1793491)
+    harpo:
+        <<: *1793491
+    groucho:
+        <<: *1793491
+    gummo:
+        <<: *1793491
+    zeppo:
+        <<: *1793491
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:
