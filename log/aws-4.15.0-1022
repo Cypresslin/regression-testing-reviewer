@@ -1,0 +1,14 @@
+4.15.0-1022.22 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) quotactl01 failed (bug 1790028) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_nbd_smoke_test
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test
