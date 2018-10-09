@@ -232,13 +232,11 @@ trusty-hwe:
         <<: *t-arm64
     ppc64le:
         <<: *t-ppc64le
-precise:
-    amd64: &p-amd64
+precise-hwe:
+    amd64: &p-hwe-amd64
         ? libhugetlbfs
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
-        ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
@@ -252,7 +250,6 @@ precise:
         ? ubuntu_lxc
         ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
-        ? ubuntu_seccomp
         ? ubuntu_stress_smoke_test
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_unionmount_overlayfs_suite
@@ -261,13 +258,11 @@ precise:
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
         ? xfstests
-    i386: &p-i386
+    i386: &p-hwe-i386
         ? libhugetlbfs
         ? ubuntu_32_on_64
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
-        ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
@@ -290,11 +285,12 @@ precise:
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
         ? xfstests
-precise-hwe:
+precise:
     amd64:
-        <<: *p-amd64
+        <<: *p-hwe-amd64
+        ? ubuntu_seccomp
     i386:
-        <<: *p-i386
+        <<: *p-hwe-i386
 full-list: [
     aio_dio_bugs,
     aiostress,
