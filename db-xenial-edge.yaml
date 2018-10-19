@@ -36,30 +36,56 @@ ubuntu_kvm_unit_tests:
                 sprs failed (bug 1723904)
     ms10-34-mcdivittB0-kernel:
         all:
-            "FAIL gicv2-ipi":
-                gicv2-ipi on ms10-34-mcdivittB0-kernel
+            "FAIL gicv2-ipi (timeout; duration=90s)":
+                gicv2-ipi on moonshots
+            "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
+                gicv2-mmio-up on moonshots
+            "FAIL gicv2-mmio-3p (17 tests, 3 unexpected failures)":
+                gicv2-mmio-3p on moonshots
     starmie-kernel:
         all:
             "FAIL pmu (3 tests, 3 unexpected failures)":
                 pmu on starmie (bug 1751000)
             "FAIL gicv2-ipi (terminated on SIGABRT)":
-                gicv2-ipi and gicv2-active on starmie
+                gicv2-ipi on thunderX
             "FAIL gicv2-active (terminated on SIGABRT)":
-                gicv2-ipi and gicv2-active on starmie
+                gicv2-active on thunderX
+            "FAIL gicv2-mmio (terminated on SIGABRT)":
+                gicv2-mmio on thunderX
+            "FAIL gicv2-mmio-up (terminated on SIGABRT)":
+                gicv2-mmio-up on thunderX
+            "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
+                gicv2-mmio-3p on thunderX
+            "FAIL gicv2-active (terminated on SIGABRT)":
+                gicv2-active on thunderX
+            "FAIL timer (12 tests, 1 unexpected failures)":
+                timer on thunderX
 ubuntu_ltp_syscalls:
-    entei: &1775784
+    entei: &syscalls-ppc
         syscalls:
-            "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
-                bind03 failed (bug 1788351)
             "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                statx05 (bug 1798524)
+            "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                fallocate05 (bug 1783880)
+    modoc:
+        <<: *syscalls-ppc
+    rumford: &syscalls-amd64
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                statx05 (bug 1798524)
     ms10-35-mcdivittB0-kernel:
-        <<: *1775784
+        <<: *syscalls-amd64
     rumford:
-        <<: *1775784
+        <<: *syscalls-amd64
     onibi:
-        <<: *1775784
+        <<: *syscalls-amd64
     wright-kernel:
-        <<: *1775784
+        <<: *syscalls-amd64

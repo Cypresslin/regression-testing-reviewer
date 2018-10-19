@@ -69,6 +69,18 @@ ubuntu_ltp_syscalls:
                 quotactl01 failed (bug 1790028)
             "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
                 mlock203 failed (bug 1793451)
+            "BROK: tst_test.c:759: mount(/dev/loop0, mnt_point, xfs":
+                quotactl02 / 03 failed (bug 1797325)
+            "tst_test.c:1113: BROK: Test killed! (timeout?)":
+                getrandom02 timed out (bug 1797327)
+            "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
+                process_vm_readv01, process_vm_writev01 failed (bug 1797330)
+            "process_vm_readv: errno=ENOSYS(38): Function not implemented":
+                process_vm_writev02, process_vm_readv02, process_vm_readv03 failed (bug 1797331)
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "msgstress04.c:220: Child exit status = 1":
+                msgstress04 (bug 1797348)
     harpo:
         <<: *syscalls
     groucho:

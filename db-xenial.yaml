@@ -79,9 +79,11 @@ ubuntu_kvm_unit_tests:
             "FAIL skey (2 tests)":
                 skey failed on zVM (bug 1778705)
 ubuntu_ltp_syscalls:
-    entei: &syscalls
+    entei: &syscalls-p8
         syscalls:
-            "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
+            "BROK: tst_test.c:759: mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
+                fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
             "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
@@ -95,8 +97,28 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
-    kernel01:
-        <<: *syscalls
+            "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
+                mlock203 failed (bug 1793451)
+    modoc:
+        <<: *syscalls-p8
+    kernel01: &syscalls
+        syscalls:
+            "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
+                bind03 failed (bug 1788351)
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 test timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+            "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
+                mlock203 failed (bug 1793451)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     onibi:

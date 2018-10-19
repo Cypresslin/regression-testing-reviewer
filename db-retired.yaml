@@ -15,6 +15,11 @@ trusty:
             all:
                 "make: *** [lib/x86/usermode.o] Error":
                     failed to build (bug 1765366)
+    ubuntu_ltp_syscalls:
+        onibi:
+            syscalls:
+                "request_key03.c:158: FAIL: kernel oops while updating key of type":
+                    request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -129,7 +134,7 @@ xenial-hwe:
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-x-hwe
-xenial-hwe-edge:
+xenial-edge:
     ubuntu_kvm_unit_tests:
         all:
             "FAIL emulator":
@@ -137,6 +142,8 @@ xenial-hwe-edge:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 failed (bug 1788351)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
     ubuntu_lttng_smoke_test:
@@ -388,10 +395,12 @@ bionic:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
-            "fcntl36.c:205: FAIL: Unexpected data offset":
-                fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
-            "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with T/A/B kernel (bug 1775153)
+                "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 failed (bug 1788351)
+                "fcntl36.c:205: FAIL: Unexpected data offset":
+                    fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
+                "fanotify09.c:182: FAIL: group 1 got event":
+                    fanotify09 failed with T/A/B kernel (bug 1775153)
     ubuntu_lxc:
         amaura: &exercise-b
             exercise:
@@ -579,6 +588,8 @@ bionic-kvm:
             syscalls:
                 "fanotify09.c:182: FAIL: group 1 got event":
                     fanotify09 failed with T/A/B kernel (bug 1775153)
+                "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 failed (bug 1788351)
     ubuntu_lttng_smoke_test:
         chico:
             lttng-smoke-test:

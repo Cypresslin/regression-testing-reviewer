@@ -56,7 +56,7 @@ ubuntu_bpf:
            <<: *1788551
         ubuntu-bjf:
            <<: *1788562
-    s2lp4:
+    s2lp3:
         setup:
            <<: *1788551
         ubuntu-bjf:
@@ -84,7 +84,7 @@ ubuntu_bpf_jit:
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
             "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-    s2lp4:
+    s2lp3:
         <<: *1753941
     s2lp6g002:
         <<: *1753941
@@ -142,30 +142,75 @@ ubuntu_ltp:
     zeppo:
         <<: *1765331
 ubuntu_ltp_syscalls:
-    baltar: &1775784
+    baltar: &syscalls-ppc
         syscalls:
-            "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
-                bind03 failed (bug 1788351)
             "FAIL: execveat() returned unexpected errno: EINVAL":
                 execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-    kernel02:
-        <<: *1775784
-    lodygin:
-        <<: *1775784
-    ms10-35-mcdivittB0-kernel:
-        <<: *1775784
+            "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                fallocate05 (bug 1783880)
+    entei:
+        <<: *syscalls-ppc
+    modoc:
+        <<: *syscalls-ppc
+    daedalus: &syscalls-amd64
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
     onibi:
-        <<: *1775784
+        <<: *syscalls-amd64
     rumford:
-        <<: *1775784
-    s2lp4:
-        <<: *1775784
-    s2lp6g002:
-        <<: *1775784
+        <<: *syscalls-amd64
+    lodygin:
+        <<: *syscalls-amd64
+    ms10-35-mcdivittB0-kernel:
+        <<: *syscalls-amd64
     wright-kernel:
-        <<: *1775784
+        <<: *syscalls-amd64
+    kernel02:
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+    s2lp3:
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "msgstress03.c:157:     Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+    s2lp6g002:
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "msgstress03.c:157:     Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+    chico: &syscalls-kvm
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 failed (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "tst_test.c:1113: BROK: Test killed! (timeout?)":
+                getrandom02 timed out (bug 1797327)
+            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+    harpo:
+        <<: *syscalls-kvm
+    groucho:
+        <<: *syscalls-kvm
+    gummo:
+        <<: *syscalls-kvm
+    zeppo:
+        <<: *syscalls-kvm
+
 ubuntu_lxc:
     kernel02:
         exercise:
@@ -175,7 +220,7 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
-    s2lp4:
+    s2lp3:
         exercise:
             "FAIL: lxc-tests: lxc-test-api-reboot":
                 lxc-test-api-reboot failed (bug 1776381)
