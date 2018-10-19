@@ -65,8 +65,6 @@ xenial:
     amd64: &x-amd64
         ? ubuntu_bpf
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
     i386: &x-i386
@@ -74,7 +72,6 @@ xenial:
         ? ubuntu_bpf
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
@@ -89,7 +86,17 @@ xenial:
         ? ubuntu_bpf
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+        ? ubuntu_vfat_stress
+    ppc64le: &x-ppc64le
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_bpf
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
@@ -102,7 +109,6 @@ xenial:
         ? ubuntu_bpf
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
@@ -116,6 +122,8 @@ xenial-edge:
         <<: *x-i386
     arm64:
         <<: *x-arm64
+    ppc64le:
+        <<: *x-ppc64le
 xenial-kvm:
     amd64:
         ? ubuntu_blktrace_smoke_test
@@ -126,7 +134,6 @@ xenial-kvm:
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
         ? ubuntu_lttng_smoke_test
-        ? ubuntu_nbd_smoke_test
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_zfs_fstest
@@ -134,7 +141,6 @@ xenial-kvm:
         ? xfstests
 trusty:
     amd64: &t-amd64
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
         ? ubuntu_cve_kernel
@@ -155,7 +161,6 @@ trusty:
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
         ? ubuntu_cve_kernel
@@ -177,7 +182,6 @@ trusty:
         ? xfstests
     i386: &t-i386
         ? ubuntu_32_on_64
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
         ? ubuntu_cve_kernel
@@ -201,7 +205,6 @@ trusty:
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
-        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
         ? ubuntu_cve_kernel
