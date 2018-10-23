@@ -1,0 +1,13 @@
+4.15.0-1025.25 - kvm
+Regression test CMPL, RTB.
+
+42 / 43 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 17 failed
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) getrandom02 timed out (bug 1797327) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) msgstress04 (bug 1797348) process_vm_readv01, process_vm_writev01 failed (bug 1797330) process_vm_writev02, process_vm_readv02, process_vm_readv03 failed (bug 1797331) quotactl01 failed (bug 1790028) quotactl02 / 03 failed (bug 1797325)
+  ubuntu_qrt_apparmor - timed out on harpo, passed on zeppo
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+

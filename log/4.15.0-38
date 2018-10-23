@@ -1,0 +1,67 @@
+4.15.0-38.41 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 17 failed on gummo, 14 failed on michael, 25 failed on pepe
+  ubuntu_ltp - growfiles test eat up all the disk space (bug 1790445)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_apparmor - mmap timed out on gummo (bug 1783922)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_docker_smoke_test - failed on ms10-35-mcdivittB0 for network issue, passed on wright
+  ubuntu_ecryptfs - directory-concurrent.sh.ext4 failed on ThunderX (bug 1765653)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - passed after re-run
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_kvm_unit_tests - 29 failed on pepe
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - passed after re-run
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on Power8 / Power9 system with Bionic kernel (bug 1775858)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_smoke_test - test case issue, KVM works fine
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) fallocate05 (bug 1783880) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc -  passed after re-run
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power8 / Power9 system with Bionic kernel (bug 1775858)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ecryptfs - test should be dropped
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) fallocate05 (bug 1783880) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - passed after re-run
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+  ubuntu_qrt_kernel_security - sysdig module should be removed after test (bug 1798295)
+
+Issue to note in s390x (zKVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ecryptfs - test should be dropped
+  ubuntu_kvm_unit_tests - No KVM support on zKVM
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+  ubuntu_qrt_kernel_security - sysdig module should be removed after test (bug 1798295)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive

@@ -1,0 +1,67 @@
+4.4.0-138.164 - lowlatency
+Regression test CMPL, RTB.
+
+1 / 51 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, fs_mark, fsx, hwclock, iosched_bugs, iperf, ipv6connect, libhugetlbfs, monotonic_time, rmaptest, rtc, signaltest, synctest, ubuntu_32_on_64, ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_docker_smoke_test, ubuntu_ecryptfs, ubuntu_fan_smoke_test, ubuntu_kernel_selftests, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_lxc, ubuntu_nbd_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_ramfs_stress, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_unionmount_overlayfs_suite, ubuntu_vfat_stress, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zfs_xfs_generic, ubuntu_zram_smoke_test, wb_kupdate, xfstests
+Issue to note in amd64:
+  None
+
+4.4.0-138.164 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - failed on groucho only, passed on the rest
+  ubuntu_fan_smoke_test - failed on chico only, passed on the rest (network issue)
+  ubuntu_kvm_unit_tests - 32 failed on amaura, 24 failed on michael, 28 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lxc - passed after re-run
+  ubuntu_nbd_smoke_test - not working on daedalus (bug 1798722)
+  xfstests - xfs generic/476 timed out
+
+44 / 45 tests were run, missing: ubuntu_nbd_smoke_test
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_stress_smoke_test - revio (bug 1798566)
+  xfstests - xfs/438 timed out
+
+32 / 44 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_zram_smoke_test
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - failed to build (bug 1798007)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lxc - passed after re-run
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+44 / 45 tests were run, missing: ubuntu_nbd_smoke_test
+Issue to note in ppc64le (P8):
+  ubuntu_ecryptfs - passed after re-test
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  xfstests - btrfs generic/176 timed out 
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451) msgstress04 (bug 1797348)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 12 failed
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_ecryptfs - passed after re-run
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_nbd_smoke_test - passed after re-run
+
+Note: the ubuntu_nbd_smoke_test is causing kernel panic (bug 1793464), and it's the cause for missing smoke tests
+Note: missing test cases in lowlatency kernel need to be investigated (bug 1791016)

@@ -1,0 +1,16 @@
+4.4.0-1070.80 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) quotactl01 failed (bug 1790028) mlock203 failed (bug 1793451)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: ubuntu_ltp_syscalls test must be reviewed on the Jenkins server, the hang issue (bug 1777779) will prevent it from copy the test report
