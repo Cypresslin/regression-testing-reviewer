@@ -88,11 +88,6 @@ ubuntu_bpf_jit:
         <<: *1753941
     s2lp6g002:
         <<: *1753941
-ubuntu_ecryptfs:
-    wright-kernel:
-        directory-concurrent.sh.ext4:
-            "Timed out after 30 seconds doing rmdir() - possible eCryptfs hang":
-                directory-concurrent.sh.ext4 failed on ThunderX (bug 1765653)
 ubuntu_kernel_selftests:
     ms10-34-mcdivittB0-kernel: &1680507
         breakpoints:
