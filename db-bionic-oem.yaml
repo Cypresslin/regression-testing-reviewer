@@ -1,0 +1,42 @@
+# 4.15 Bionic OEM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+monotonic_time:
+    lodygin:
+        tsc:
+            "TestFail: FAIL: tsc-worst-warp":
+                lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_ltpsyscalls:
+    daedalus: &syscalls-amd64
+        syscalls:
+            "FAIL: execveat() returned unexpected errno: EINVAL":
+                execveat03 (bug 1786729)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 (bug 1775784)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
+    onibi:
+        <<: *syscalls-amd64
+    rumford:
+        <<: *syscalls-amd64
+    lodygin:
+        <<: *syscalls-amd64
+xfstests:
+    rizzo: &xfstests
+        ext4:
+            "generic/429	 [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    michael:
+        <<: *xfstests

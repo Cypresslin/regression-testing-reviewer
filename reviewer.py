@@ -51,6 +51,8 @@ parser.add_argument('--edge', action='store_true',
                     help='Get only Edge kernel result')
 parser.add_argument('--kvm', action='store_true',
                     help='Get only KVM kernel result')
+parser.add_argument('--oem', action='store_true',
+                    help='Get only OEM kernel result')
 #parser.add_argument('--aws', dest='kernel_filter', action='store_const', const='aws',
 #                    help='Get only AWS kernel result')
 #parser.add_argument('--gcp', dest='kernel_filter', action='store_const', const='gcp',
@@ -64,6 +66,7 @@ args = parser.parse_args()
 
 hwe_filter = '~'
 kvm_filter = ' - kvm'
+oem_filter = ' - oem'
 edge_filter = '4.15.0'
 highlighted = False
 target_found = False
@@ -150,6 +153,8 @@ elif args.edge:
     flag = '-edge'
 elif args.kvm:
     flag = '-kvm'
+elif args.oem:
+    flag = '-oem'
 fn = args.release.lower() + flag
 for kernel in report[target_distro]:
     # No filter was set, print only everything except from the exclusion list
@@ -165,7 +170,10 @@ for kernel in report[target_distro]:
             continue
     elif args.kvm:
         if kvm_filter not in kernel:
-             continue
+            continue
+    elif args.oem:
+        if oem_filter not in kernel:
+            continue
     elif hwe_filter in kernel or kvm_filter in kernel:
         continue
     target_found = True

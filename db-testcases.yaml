@@ -81,6 +81,11 @@ bionic-kvm:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? xfstests
+bionic-oem:
+    amd64:
+        <<: *b-amd64
+        ? ubuntu_ltp
+        ? ubuntu_ramfs_stress
 bionic-hwe:
     amd64: &b-hwe-amd64
         ? libhugetlbfs
