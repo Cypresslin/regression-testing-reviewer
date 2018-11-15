@@ -1,3 +1,16 @@
+precise:
+    ubuntu_qrt_kernel_panic:
+        onibi:
+           test-kernel-panic.py:
+               "FAIL: test_cve_2015_8539_2":
+                   test_cve_2015_8539_2 failed on Precise (bug 1801708)
+    ubuntu_stress_smoke_test:
+        gonzo:
+            stress-smoke-test:
+                "[stdout] loop FAILED":
+                    loop / pty test in ubuntu_stress_smoke_test failed with P-3.2 (bug 1797544)
+                "[stdout] pty FAILED":
+                    loop / pty test in ubuntu_stress_smoke_test failed with P-3.2 (bug 1797544)
 trusty:
     ubuntu_qrt_kernel_security:
         ms10-35-mcdivittB0-kernel:
@@ -20,6 +33,8 @@ trusty:
             syscalls:
                 "request_key03.c:158: FAIL: kernel oops while updating key of type":
                     request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
+                "getxattr05.c:80: FAIL: Got different data(00 != ffffffff) at 16":
+                    getxattr05 (bug 1798013)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -83,6 +98,11 @@ xenial:
             <<: *1689240-x
         s2lp6g001:
             <<: *1689240-x
+    ubuntu_qrt_kernel_security:
+        onibi:
+            test-kernel-security.py:
+              "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
+                    test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
     ubuntu_ltp_syscalls:
         ms10-35-mcdivittB0-kernel:
             syscalls: &syscalls-x

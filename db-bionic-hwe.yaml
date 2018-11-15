@@ -1,0 +1,162 @@
+# 4.18 Bionic
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+hwclock:
+    baltar: &hwclock-ppc
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59":
+                hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+    modoc:
+        <<: *hwclock-ppc
+    ms10-35-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
+monotonic_time:
+    lodygin:
+        tsc:
+            "TestFail: FAIL: tsc-worst-warp":
+                lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_bpf:
+    baltar:
+        ubuntu-bjf: &bpf-ppc
+            "Failed to load SK_SKB parse prog":
+                test_map failed on PowerPC (bug 1802474)
+    entei:
+        ubuntu-bjf:
+           <<: *bpf-ppc
+    modoc:
+        ubuntu-bjf:
+           <<: *bpf-ppc
+ubuntu_kernel_selftests:
+    ms10-34-mcdivittB0-kernel: &1680507
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
+    starmie-kernel:
+        <<: *1680507
+ubuntu_kvm_smoke_test:
+    ms10-35-mcdivittB0-kernel: &1765668
+        kvm_smoke_test:
+            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
+                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+    wright-kernel:
+        <<: *1765668
+    modoc: &kvm-smoke-ppc
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
+               failed to start KVM with uvtool on P8 Bionic (bug 1798358)
+    entei:
+        <<: *kvm-smoke-ppc
+ubuntu_kvm_unit_tests:
+    ms10-34-mcdivittB0-kernel:
+        all:
+            "FAIL gicv3-ipi":
+                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+            "FAIL gicv3-active":
+                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+    entei: &kvm-unit-ppc
+        all:
+            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                sprs timed out (bug 1740017)
+            " sprs (":
+                YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    baltar:
+        <<: *kvm-unit-ppc
+    modoc:
+        <<: *kvm-unit-ppc
+ubuntu_ltp:
+    chico: &1765331
+        ltp:
+            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
+                ar test failed with 4.15 KVM (bug 1765331)
+    harpo:
+        <<: *1765331
+    groucho:
+        <<: *1765331
+    gummo:
+        <<: *1765331
+    zeppo:
+        <<: *1765331
+ubuntu_ltp_syscalls:
+    daedalus: &syscalls
+        syscalls:
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
+    onibi:
+        <<: *syscalls
+    rumford:
+        <<: *syscalls
+    lodygin:
+        <<: *syscalls
+    ms10-35-mcdivittB0-kernel:
+        <<: *syscalls
+    wright-kernel:
+        <<: *syscalls
+    baltar:
+        <<: *syscalls
+    entei:
+        <<: *syscalls
+    modoc:
+        <<: *syscalls
+ubuntu_lttng_smoke_test:
+    daedalus: &lttng
+        lttng-smoke-test:
+            "Error! Bad return status for module build on kernel: 4.18.0":
+                Unable to build lttng module on Bionic 4.18 (bug 1802443)
+    gonzo:
+        <<: *lttng
+    rumford:
+        <<: *lttng
+    baltar:
+        <<: *lttng
+    entei:
+        <<: *lttng
+    modoc:
+        <<: *lttng
+    ms10-34-mcdivittB0-kernel:
+        <<: *lttng
+    wright-kernel:
+        <<: *lttng
+ubuntu_sysdig_smoke_test:
+    daedalus: &sysdig
+        sysdig-smoke-test:
+            "Error! Bad return status for module build on kernel: 4.18.0":
+                Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
+    gonzo:
+        <<: *sysdig
+    rumford:
+        <<: *sysdig
+    baltar:
+        <<: *sysdig
+    entei:
+        <<: *sysdig
+    modoc:
+        <<: *sysdig
+xfstests:
+    fozzie: &xfstests
+        ext4:
+            "generic/429	 [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    michael:
+        <<: *xfstests
+    rizzo:
+        <<: *xfstests
+    entei:
+        <<: *xfstests
+    modoc:
+        <<: *xfstests
+    starmie-kernel:
+        <<: *xfstests

@@ -60,6 +60,10 @@ ubuntu_kvm_unit_tests:
                 gicv2-active on thunderX
             "FAIL timer (12 tests, 1 unexpected failures)":
                 timer on thunderX
+    pepe:
+        setup:
+            "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
+                unable to build on X/T i386 (bug 1798007)
 ubuntu_ltp_syscalls:
     entei: &syscalls-ppc
         syscalls:
@@ -89,3 +93,10 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
+ubuntu_sysdig_smoke_test:
+    entei: &sysdig
+        sysdig-smoke-test:
+            "Bad return status for module build on kernel: 4.15.0":
+                DKMS failed to build on B-4.18 and X-4.15 (bug 1802240)
+    modoc:
+        <<: *sysdig
