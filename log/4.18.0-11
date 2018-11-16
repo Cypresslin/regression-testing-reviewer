@@ -1,0 +1,87 @@
+4.18.0-11.12 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - passed after re-run
+  ubuntu_ecryptfs - should be skipped
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 23 failed on chico, 6 failed on michael, 21 failed on pepe
+  ubuntu_ltp - test timeouted with 8h, need to split them
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327)
+  ubuntu_lxc - failed on chico only, passed on the rest
+  ubuntu_performance_fio_aws - test for nvidia project, should be skipped
+  ubuntu_performance_pts_aws - test for nvidia project, should be skipped
+  ubuntu_qrt_apparmor - mmap timed out on harpo, passed on the rest
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_zfs_xfs_generic - passed after re-run
+  xfstests - failed to build on C (bug 1802486)
+
+45 / 46 tests were run, missing: ubuntu_blkdev_directio
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on starmie
+  ubuntu_ecryptfs - should be skipped
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - failed to build on C (bug 1802486)
+
+Issue to note in i386:
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_ecryptfs - should be skipped
+  ubuntu_kvm_unit_tests - 29 failed on pepe
+  ubuntu_lttng_smoke_test - lttng-smoke test failed on i386 Cosmic (bug 1802495)
+  ubuntu_qrt_apparmor - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - failed to build on C (bug 1802486)
+
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_ecryptfs - should be skipped
+  ubuntu_kvm_smoke_test - failed to start KVM with uvtool on P8 Bionic (bug 1798358)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_apparmor - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - failed to build on C (bug 1802486)
+
+43 / 47 tests were run, missing: ubuntu_blkdev_directio, ubuntu_kernel_selftests, ubuntu_unionmount_overlayfs_suite, xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+
+45 / 45 tests were run, missing: ubuntu_ltp_syscalls
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - ubuntu_bpf test failed on Cosmic s390x (bug 1801033)
+  ubuntu_lxc - build hang
+  ubuntu_quota_smoke_test - passed after re-run
+  ubuntu_zram_smoke_test - passed after re-run
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - package installation issue
+  ubuntu_kvm_unit_tests - No KVM support on zKVM
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_qrt_kernel_security - missing keyctl package, passed after re-test
+
+46 / 45 tests were run, missing: ubuntu_blkdev_directio
+Issue to note in s390x (zVM):
+  libhugetlbfs - should be skipped
+  ubuntu_bpf - ubuntu_bpf test failed on Cosmic s390x (bug 1801033)
+  ubuntu_ecryptfs - should be skipped
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_lxc - network issue
+  ubuntu_qrt_kernel_security - missing keyctl package, passed after re-test
+
+Note: No xfstests for P9 as it does not have a scratch drive

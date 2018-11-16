@@ -1,0 +1,19 @@
+4.18.0-1004.4~18.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Basic_A0, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify10 (bug 1802454) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl01 (bug 1790028)
+  ubuntu_lttng_smoke_test - DKMS failed to build on 4.18 Bionic (bug 1803330)
+  ubuntu_qrt_kernel_security - test_072_strict_devmem / test_120_smep_works failed (bug 1803333)
+  ubuntu_quota_smoke_test - linux-modules-extra-azure-edge should point to 4.18 package (bug 1803334)
+  ubuntu_sysdig_smoke_test - sysdig module failed to build on B-4.18 Azure (bug 1803328)
+  ubuntu_zram_smoke_test - zram module not found (bug 1803326)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_qrt_kernel_aslr_collisions - skipped as the jenkins jobs failed to build
+  * ubuntu_seccomp
+  * ubuntu_unionmount_overlayfs_suite - skipped as the jenkins jobs failed to build

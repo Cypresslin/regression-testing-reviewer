@@ -1,0 +1,52 @@
+4.15.0-39.42~16.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 13 failed on michael, 25 failed on pepe
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - btrfs generic/176 timed out, xfs generic/438 timed out
+
+33 / 46 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_zram_smoke_test
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - xfs generic/112 timed out
+
+4.15.0-39.42~16.04.1 - generic
+Regression test CMPL, RTB.
+ to note in amd64:
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 13 failed on michael, 25 failed on pepe
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  xfstests - btrfs generic/176 timed out, xfs generic/463 timed out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi on moonshots gicv2-mmio-up on moonshots gicv2-mmio-3p on moonshots pmu on starmie (bug 1751000) gicv2-ipi on thunderX gicv2-mmio on thunderX gicv2-mmio-up on thunderX gicv2-mmio-3p on thunderX gicv2-active on thunderX timer on thunderX
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_zfs_xfs_generic - passed after re-run
+  xfstests - btrfs generic/176 timed out
+
+45 / 46 tests were run, missing: xfstests
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+
+Test case ubuntu_sysdig_smoke_test, ubuntu_vfat_stress does not exist in the database, please check
+Issue to note in ppc64le (P8):
+  hwclock - failed with small difference on one node
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1755118)
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) fallocate05 (bug 1783880) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_sysdig_smoke_test - DKMS failed to build on B-4.18 and X-4.15 (bug 1802240)
+  xfstests - btrfs generic/176 timed out
+
+Note: the missing smoke test in i386 lowlatency is caused by bug 1793464

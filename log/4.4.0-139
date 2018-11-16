@@ -1,0 +1,97 @@
+4.4.0-139.165 - lowlatency
+Regression test CMPL, RTB.
+
+Test case ubuntu_performance_fio_aws does not exist in the database, please check
+45 / 52 tests were run, missing: ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_ltp_syscalls, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 18 failed on gummo
+  ubuntu_performance_fio_aws - test for nvidia project, should be skipped
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+
+4.4.0-139.165 - generic
+Regression test CMPL, RTB.
+
+51 / 52 tests were run, missing: ubuntu_ramfs_stress
+Issue to note in amd64:
+  ubuntu_kernel_selftests - passed after re-run
+  ubuntu_kvm_unit_tests - 32 faile on amaura, 25 failed on michael, 31 failed on pepe
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lxc - passed after re-run
+  ubuntu_nbd_smoke_test - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+  xfstests - xfs generic/468 timed out
+
+46 / 47 tests were run, missing: xfstests
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi and gicv2-active on starmie pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in ppc64le (P8):
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_aufs_smoke_test - passed after re-run
+  ubuntu_blktrace_smoke_test - passed after re-run
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_docker_smoke_test - passed after re-run
+  ubuntu_ecryptfs - passed after re-run
+  ubuntu_fan_smoke_test - passed after re-run
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_loop_smoke_test - passed after re-run
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lttng_smoke_test - passed after re-run
+  ubuntu_nbd_smoke_test - passed after re-run
+  ubuntu_qrt_apparmor - passed after re-run
+  ubuntu_qrt_kernel_aslr_collisions - passed after re-run
+  ubuntu_qrt_kernel_hardening - passed after re-run
+  ubuntu_qrt_kernel_panic - passed after re-run
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+  ubuntu_quota_smoke_test - passed after re-run
+  ubuntu_squashfs_smoke_test - passed after re-run
+  ubuntu_stress_smoke_test - passed after re-run
+  ubuntu_zfs_smoke_test - passed after re-run
+  ubuntu_zram_smoke_test - passed after re-run
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_ecryptfs - passed after re-run
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 12 failed
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_lxc - passed after re-run
+  ubuntu_qrt_apparmor - passed after re-run
+  ubuntu_qrt_kernel_aslr_collisions - passed after re-run
+  ubuntu_qrt_kernel_hardening - passed after re-run
+  ubuntu_qrt_kernel_panic - passed after re-run
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_ecryptfs - passed after re-run
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - bind03 failed (bug 1788351) execveat03 failed (bug 1786729) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) mlock203 failed (bug 1793451)
+  ubuntu_nbd_smoke_test - passed after re-run
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+
+Note: missing test cases in lowlatency kernel need to be investigated (bug 1791016)

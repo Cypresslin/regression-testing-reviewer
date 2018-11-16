@@ -1,0 +1,14 @@
+4.18.0-1004.4 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - should be skipped
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 40 failed
+  ubuntu_ltp - maximum recursion depth exceeded
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) process_vm_readv01, process_vm_writev01 failed (bug 1797330) process_vm_writev02, process_vm_readv02, process_vm_readv03 failed (bug 1797331) quotactl01 failed (bug 1790028)
+  ubuntu_performance_fio_aws - test for nvidia project, should not be run
+  ubuntu_performance_pts_aws - test for nvidia project, should not be run
+  ubuntu_qrt_kernel_panic - missing keyctl package, passed after re-test
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
