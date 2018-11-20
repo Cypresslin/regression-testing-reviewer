@@ -67,8 +67,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     entei: &syscalls-ppc
         syscalls:
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
@@ -79,8 +77,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     rumford: &syscalls-amd64
         syscalls:
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":

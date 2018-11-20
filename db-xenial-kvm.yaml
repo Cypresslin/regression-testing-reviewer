@@ -59,16 +59,12 @@ ubuntu_ltp_syscalls:
         syscalls:
             "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 failed (bug 1786729)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 failed with X/X-LTS/A kernel (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
             "FAIL: quotactl failed to set":
                 quotactl01 failed (bug 1790028)
-            "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
-                mlock203 failed (bug 1793451)
             "BROK: tst_test.c:759: mount(/dev/loop0, mnt_point, xfs":
                 quotactl02 / 03 failed (bug 1797325)
             "tst_test.c:1113: BROK: Test killed! (timeout?)":

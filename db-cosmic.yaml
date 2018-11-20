@@ -147,8 +147,6 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
@@ -181,8 +179,6 @@ ubuntu_ltp_syscalls:
         <<: *syscall-s390x
     chico: &syscalls-kvm
         syscalls:
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 failed (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "tst_test.c:1113: BROK: Test killed! (timeout?)":

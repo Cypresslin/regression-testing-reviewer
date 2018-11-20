@@ -19,8 +19,6 @@ monotonic_time:
 ubuntu_ltpsyscalls:
     daedalus: &syscalls-amd64
         syscalls:
-            "FAIL: execveat() returned unexpected errno: EINVAL":
-                execveat03 (bug 1786729)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
             "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":

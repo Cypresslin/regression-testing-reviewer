@@ -48,6 +48,10 @@ trusty-hwe:
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
                     msgctl04 failed (bug 1782093)
+                "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
+                    mlock203 failed (bug 1793451)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
         ms10-35-mcdivittB0-kernel:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -110,6 +114,10 @@ xenial:
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
                     msgctl04 failed (bug 1782093)
+                "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
+                    mlock203 failed (bug 1793451)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
         onibi:
             syscalls:
                 <<: *syscalls-x
@@ -147,6 +155,8 @@ xenial-hwe:
             syscalls:
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x-hwe
             079:
@@ -166,6 +176,8 @@ xenial-edge:
                     bind03 failed (bug 1788351)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
     ubuntu_lttng_smoke_test:
         chico: &1765673-x-edge
             lttng-smoke-test:
@@ -221,6 +233,13 @@ xenial-kvm:
             kvm_smoke_test:
                 "OSError: [Errno 25] Inappropriate ioctl for device":
                     CONFIG_AUDITSYSCALL needs to be enabled (bug 1770245)
+    ubuntu_ltp_syscalls:
+        chico:
+            syscalls:
+                "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
+                    mlock203 failed (bug 1793451)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
     ubuntu_lttng_smoke_test:
         chico: &1760647-x-kvm
             lttng-smoke-test:
@@ -421,6 +440,8 @@ bionic:
                     fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
                 "fanotify09.c:182: FAIL: group 1 got event":
                     fanotify09 failed with T/A/B kernel (bug 1775153)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
     ubuntu_lxc:
         amaura: &exercise-b
             exercise:
@@ -610,6 +631,8 @@ bionic-kvm:
                     fanotify09 failed with T/A/B kernel (bug 1775153)
                 "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
                     bind03 failed (bug 1788351)
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
     ubuntu_lttng_smoke_test:
         chico:
             lttng-smoke-test:
@@ -620,3 +643,21 @@ bionic-kvm:
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
+bionic-oem:
+    ubuntu_ltp_syscalls:
+        daedalus:
+            syscalls:
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
+cosmic:
+    ubuntu_ltp_syscalls:
+        baltar:
+            syscalls:
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
+cosmic-kvm:
+    ubuntu_ltp_syscalls:
+        chico:
+            syscalls:
+                "FAIL: execveat() returned unexpected errno: EINVAL":
+                    execveat03 failed (bug 1786729)
