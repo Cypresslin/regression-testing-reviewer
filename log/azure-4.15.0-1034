@@ -1,0 +1,14 @@
+4.15.0-1034.35 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  monotonic_time - tsc failed on Standard_D11_v2, Standard_D2_v3, Standard_D2s_v3, Standard_E2s_v3
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) inotify08 (bug 1775784) quotactl01 (bug 1790028)
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard-B1ms, Standard-F1s, Standard-F2s-v2
+  ubunut_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s only
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_seccomp

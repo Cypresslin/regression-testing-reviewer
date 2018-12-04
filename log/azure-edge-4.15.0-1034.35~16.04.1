@@ -1,0 +1,15 @@
+4.15.0-1034.35~16.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, failed on Standard_B1ms and Standard_F1s only
+  monotonic_time - all two tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) inotify08 (bug 1775784) quotactl01 failed (bug 1790028) statx05 (bug 1798524)
+  ubuntu_lxc - lxc-test-ubuntu (Too many open files) failed on Standard_D2s_v3 only
+  ubunut_qrt_apparmor - mmap test timed out on some nodes (bug 1783922)
+  ubuntu_vfat_stress - failed on Standard_A2_v2 only
+
+Skipped / blacklisted:
+  * ubuntu_ltp
+  * ubuntu_seccomp

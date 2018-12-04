@@ -1,0 +1,20 @@
+4.15.0-1035.36~16.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3 on Standard_B1ms and Standard_F1s
+  monotonic_time - tsc failed on Standard_E2s_v3, Standard_E2s_v3 only
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, apic, port80, umip, hyperv_clock failed on Standard_F2s_v2, Standard_E2s_v3, Standard_D2s_v3, Standard_D2_v3
+  ubuntu_ltp - test disabled on azure
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) quotactl01 (bug 1790028) statx05 (bug 1798524) inotify08 (bug 1775784)
+  ubuntu_lxc - lxc-test-unpriv failed with Trusty Azure 4.15 (bug 1803686)
+  ubunut_qrt_apparmor - mmap test timed out on some nodes (bug 1783922)
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * ubuntu_fan_smoke_test
+  * ubuntu_kernel_selftests
+  * ubuntu_lttng_smoke_test
+  * ubuntu_nbd_smoke_test
+  * ubuntu_sysdig_smoke_test
+  * ubuntu_zfs_smoke_test

@@ -1,0 +1,14 @@
+4.4.0-1038.44 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - failed 1 killed by signal 1 bad config 3
+  ubuntu_docker_smoke_test - failed on harpo only, passed on the rest
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 45 failed on KVM nodes
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) msgstress03 (bug 1797341) process_vm_readv01, process_vm_writev01 failed (bug 1797330) process_vm_writev02, process_vm_readv02, process_vm_readv03 failed (bug 1797331) quotactl01 failed (bug 1790028) quotactl02 / 03 failed (bug 1797325)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_nbd_smoke_test - failed on groucho only, passed on the rest
+  ubuntu_qrt_kernel_security - /proc/self/stack does not exist in kvm kernel (bug 1805105)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+

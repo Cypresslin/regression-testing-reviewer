@@ -1,0 +1,57 @@
+4.18.0-12.13~18.04.2 - generic
+Regression test CMPL, RTB.
+
+50 / 51 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 20 failed on pepe
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on Bionic 4.18 (bug 1802443)
+  ubuntu_lxc - pkg issue (bug 1805978)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+  ubuntu_sysdig_smoke_test - Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+45 / 46 tests were run, missing: ubuntu_boot
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on Bionic 4.18 (bug 1802443)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+45 / 46 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_bpf - Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
+  ubuntu_kvm_unit_tests - 29 failed on pepe
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on Bionic 4.18 (bug 1802443)
+  ubuntu_qrt_apparmor - manually tested and passed
+  ubuntu_sysdig_smoke_test - Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+46 / 47 tests were run, missing: ubuntu_boot
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kvm_smoke_test - failed to start KVM with uvtool on P8 Bionic (bug 1798358)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on Bionic 4.18 (bug 1802443)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+  ubuntu_sysdig_smoke_test - Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+45 / 47 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on Bionic 4.18 (bug 1802443)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+  ubuntu_sysdig_smoke_test - Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
+
+Note: No xfstests for P9 as it does not have a scratch drive

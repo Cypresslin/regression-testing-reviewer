@@ -1,0 +1,61 @@
+4.15.0-42.45 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 25 failed on pepe, 32 failed on KVM nodes
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_lxc - failed on gummo only, passed on the rest
+  ubuntu_qrt_apparmor - timeouted on mmap test
+  ubuntu_qrt_kernel_security - failed with pkg issue on zeppo
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_kvm_unit_tests - 29 failed on pepe
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_smoke_test - test case issue, KVM works fine
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_vfat_stress - failed on entei only (bug 1805778), passed on modoc
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+46 / 47 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_vfat_stress - ubuntu_vfat_stress failed again with P8/P9 Bionic (bug 1805778)
+
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - No KVM support on KVM
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify10 (bug 1802454)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
