@@ -61,8 +61,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
                 fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
-                bind03 failed (bug 1788351)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
@@ -81,8 +79,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
                 fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
-                bind03 failed (bug 1788351)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":

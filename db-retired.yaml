@@ -50,6 +50,8 @@ trusty-hwe:
     ubuntu_ltp_syscalls:
         entei:
             syscalls: &syscalls-t-hwe
+                "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 (bug 1788351)
                 "BROK: msgctl02.c:68: msgget":
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
@@ -116,6 +118,8 @@ xenial:
     ubuntu_ltp_syscalls:
         ms10-35-mcdivittB0-kernel:
             syscalls: &syscalls-x
+                "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 (bug 1788351)
                 "BROK: msgctl02.c:68: msgget":
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
@@ -159,6 +163,8 @@ xenial-hwe:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 (bug 1788351)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
@@ -242,6 +248,8 @@ xenial-kvm:
     ubuntu_ltp_syscalls:
         chico:
             syscalls:
+                "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
+                    bind03 (bug 1788351)
                 "mlock203.c:63: FAIL: Locking one memory again increased VmLck":
                     mlock203 failed (bug 1793451)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
