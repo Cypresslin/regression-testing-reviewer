@@ -35,6 +35,12 @@ trusty:
                     request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
                 "getxattr05.c:80: FAIL: Got different data(00 != ffffffff) at 16":
                     getxattr05 (bug 1798013)
+                "keyctl03.c:43: BROK: Failed to add key":
+                    keyctl03, keyctl05, keyctl07 (bug 1798045)
+                "keyctl05.c:90: BROK: failed to join new session keyring: EDQUOT":
+                    keyctl03, keyctl05, keyctl07 (bug 1798045)
+                "keyctl07.c:57: BROK: request_key() failed with unexpected error: EDQUOT":
+                    keyctl03, keyctl05, keyctl07 (bug 1798045)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -655,6 +661,8 @@ cosmic:
             syscalls:
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                    fanotify10 (bug 1802454)
 cosmic-kvm:
     ubuntu_ltp_syscalls:
         chico:

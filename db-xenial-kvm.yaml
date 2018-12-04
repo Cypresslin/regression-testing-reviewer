@@ -65,9 +65,9 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
             "FAIL: quotactl failed to set":
                 quotactl01 failed (bug 1790028)
-            "BROK: tst_test.c:759: mount(/dev/loop0, mnt_point, xfs":
+            "BROK: tst_test.c:760: mount(/dev/loop0, mnt_point, xfs":
                 quotactl02 / 03 failed (bug 1797325)
-            "tst_test.c:1113: BROK: Test killed! (timeout?)":
+            "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
                 process_vm_readv01, process_vm_writev01 failed (bug 1797330)
@@ -77,6 +77,10 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "msgstress04.c:220: Child exit status = 1":
                 msgstress04 (bug 1797348)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     harpo:
         <<: *syscalls
     groucho:
@@ -98,6 +102,19 @@ ubuntu_nbd_smoke_test:
         <<: *1793491
     zeppo:
         <<: *1793491
+ubuntu_qrt_kernel_security:
+    chico: &kernel_security
+        test-kernel-security.py:
+            "AssertionError: /proc/self/stack does not exist":
+                /proc/self/stack does not exist in kvm kernel (bug 1805105)
+    harpo:
+        <<: *kernel_security
+    groucho:
+        <<: *kernel_security
+    gummo:
+        <<: *kernel_security
+    zeppo:
+        <<: *kernel_security
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:

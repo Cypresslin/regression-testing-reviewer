@@ -218,6 +218,7 @@ trusty-hwe:
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_ramfs_stress
+        ? xfstests
     i386:
         <<: *t-hwe-amd64
         ? ubuntu_32_on_64

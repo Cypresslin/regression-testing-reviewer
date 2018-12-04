@@ -14,8 +14,8 @@
 hwclock:
     balter: &hwclock-ppc
         hwclock:
-            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59":
-                hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
     modoc:
@@ -49,30 +49,17 @@ ubuntu_bpf:
         ubuntu-bjf:
            <<: *bpf-ppc
     starmie-kernel:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
-           <<: *1788562
-    ms10-34-mcdivittB0-kernel:
-        setup:
-           <<: *1788551
-        ubuntu-bjf:
-           <<: *1788562
-    s2lp4:
-        setup:
-           <<: *1788551
-        ubuntu-bjf:
-           <<: *1788562
+            "Failed sockmap unexpected timeout":
+                Failed sockmap unexpected timeout on ARM64 (bug 1805806)
     s2lp6g003:
-        setup:
-           <<: *1788551
-        ubuntu-bjf:
-           <<: *1788562
+        ubuntu-bjf: &bpf-s390x
+            "Failed to load prog 'Unknown error 524'!":
+                test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on Cosmic s390x (bug 1801033)
+    s2lp4:
+        <<: *bpf-s390x
     kernel03:
-        setup:
-           <<: *1788551
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *bpf-s390x
 ubuntu_bpf_jit:
     kernel03: &1753941
         ubuntu-bjf-jit:
@@ -117,19 +104,21 @@ ubuntu_kvm_unit_tests:
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
             "FAIL gicv2-mmio-3p":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
-    entei:
+    baltar: &kvm-ppc
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
             " sprs (":
                 YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    entei:
+        <<: *kvm-ppc
     kernel03:
         all:
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
     s2lp6g003:
         setup:
-            "This systems does not have KVM extension support":
+            "this systems does not have KVM extension support":
                 No KVM support on zKVM
 ubuntu_ltp:
     chico: &1765331
@@ -151,14 +140,16 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
     daedalus: &syscalls-amd64
         syscalls:
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
     onibi:
         <<: *syscalls-amd64
     rumford:
@@ -171,8 +162,10 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     kernel03: &syscall-s390x
         syscalls:
-            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
     s2lp4:
         <<: *syscall-s390x
     s2lp6g003:
@@ -181,10 +174,12 @@ ubuntu_ltp_syscalls:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "tst_test.c:1113: BROK: Test killed! (timeout?)":
+            "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
-            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
     harpo:
         <<: *syscalls-kvm
     groucho:
@@ -193,7 +188,11 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-kvm
     zeppo:
         <<: *syscalls-kvm
-
+ubuntu_lttng_smoke_test:
+    gonzo:
+        lttng-smoke-test:
+            "FAILED (did not trace any open system calls)":
+                lttng-smoke test failed on i386 Cosmic (bug 1802495)
 ubuntu_lxc:
     kernel03:
         exercise:
@@ -217,3 +216,41 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
+ubuntu_qrt_kernel_security:
+    chico: &kernel_security
+        test-kernel-security.py:
+            "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
+                test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+    harpo:
+        <<: *kernel_security
+    groucho:
+        <<: *kernel_security
+    gummo:
+        <<: *kernel_security
+    zeppo:
+        <<: *kernel_security
+    daedalus:
+        <<: *kernel_security
+    rumford:
+        <<: *kernel_security
+    ms10-35-mcdivittB0-kernel:
+        <<: *kernel_security
+    wright-kernel:
+        <<: *kernel_security
+    baltar:
+        <<: *kernel_security
+    entei:
+        <<: *kernel_security
+    modoc:
+        <<: *kernel_security
+xfstests:
+    rizzo: &xfstests
+        setup:
+             "make: *** [Makefile:30: all] Error 1":
+                 failed to build on C (bug 1802486)
+    fozzie:
+        <<: *xfstests
+    starmie-kernel:
+        <<: *xfstests
+    entei:
+        <<: *xfstests

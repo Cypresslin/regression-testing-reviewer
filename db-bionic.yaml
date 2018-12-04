@@ -16,6 +16,12 @@ hwclock:
         hwclock:
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
+            "TestFail: Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+    modoc:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -109,12 +115,16 @@ ubuntu_kvm_unit_tests:
                 gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
             "FAIL gicv3-active":
                 gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
-    entei:
+    entei: &kvm-unit-test-ppc
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
             " sprs (":
                 YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    baltar:
+        <<: *kvm-unit-test-ppc
+    modoc:
+        <<: *kvm-unit-test-ppc
     kernel02:
         all:
             "FAIL skey (2 tests)":
@@ -143,6 +153,8 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     entei:
         <<: *syscalls-ppc
     modoc:
@@ -151,6 +163,8 @@ ubuntu_ltp_syscalls:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     onibi:
         <<: *syscalls-amd64
     rumford:
@@ -165,26 +179,34 @@ ubuntu_ltp_syscalls:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     s2lp3:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
     s2lp6g002:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
     chico: &syscalls-kvm
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "tst_test.c:1113: BROK: Test killed! (timeout?)":
+            "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157:        Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
+                msgstress03 (bug 1797341
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454))
     harpo:
         <<: *syscalls-kvm
     groucho:
@@ -217,3 +239,20 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
+xfstests:
+    fozzie: &xfstests
+        ext4:
+            "generic/429	 [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    michael:
+        <<: *xfstests
+    rizzo:
+        <<: *xfstests
+    entei:
+        <<: *xfstests
+    modoc:
+        <<: *xfstests
+    starmie-kernel:
+        <<: *xfstests

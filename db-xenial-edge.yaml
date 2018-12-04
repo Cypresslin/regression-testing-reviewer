@@ -73,6 +73,10 @@ ubuntu_ltp_syscalls:
                 statx05 (bug 1798524)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     modoc:
         <<: *syscalls-ppc
     rumford: &syscalls-amd64
@@ -81,6 +85,10 @@ ubuntu_ltp_syscalls:
                 inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                 statx05 (bug 1798524)
+            "FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls-amd64
     rumford:
@@ -96,3 +104,20 @@ ubuntu_sysdig_smoke_test:
                 DKMS failed to build on B-4.18 and X-4.15 (bug 1802240)
     modoc:
         <<: *sysdig
+xfstests:
+    rizzo: &btrfs
+        btrfs:
+            "[stdout] generic/175":
+                btrfs generic/176 timed out
+            "[stdout] generic/176":
+                YOU SHOULD NOT SEE THIS, btrfs generic/176 DIDN'T HANG, PLEASE CHECK
+    entei:
+        <<: *btrfs
+    starmie-kernel:
+        <<: *btrfs
+    fozzie:
+        xfs:
+            "[stdout] generic/111":
+                xfs generic/112 timed out
+            "[stdout] generic/112":
+                YOU SHOULD NOT SEE THIS, xfs generic/112 DIDN'T HANG, PLEASE CHECK

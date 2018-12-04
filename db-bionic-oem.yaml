@@ -16,11 +16,13 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
-ubuntu_ltpsyscalls:
+ubuntu_ltp_syscalls:
     daedalus: &syscalls-amd64
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09 (bug 1804594)
             "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
     onibi:

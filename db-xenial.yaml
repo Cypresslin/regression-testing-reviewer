@@ -100,6 +100,8 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     modoc:
         <<: *syscalls-p8
     kernel01: &syscalls
@@ -116,6 +118,8 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
+            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     onibi:
@@ -135,3 +139,16 @@ ubuntu_lxc:
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     s2lp6g001:
         <<: *exercise
+xfstests:
+    fozzie:
+        xfs:
+            "[stdout] generic/307":
+                xfs generic/308 timed out (bug 1738152)
+            "[stdout] generic/308":
+                YOU SHOULD NOT SEE THIS, xfs generic/308 DIDN'T HANG, PLEASE CHECK
+    entei:
+        btrfs:
+            "[stdout] generic/175":
+                btrfs generic/176 timed out
+            "[stdout] generic/176":
+                YOU SHOULD NOT SEE THIS, btrfs generic/176 DIDN'T HANG, PLEASE CHECK

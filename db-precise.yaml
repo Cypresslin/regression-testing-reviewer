@@ -1,4 +1,4 @@
-# 3.13 Precise ESM
+# 3.2 Precise ESM
 # Format:
 # test-suite:
 #   sut:
@@ -11,6 +11,13 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_cts_kernel:
+    rizzo: &cts_kernel
+        lp1153769:
+            "Failed opening logfd: Invalid argument":
+                perf with redirection issue (bug 1801877)
+    fozzie:
+        <<: *cts_kernel
 ubuntu_qrt_kernel_security:
     onibi:
         test-kernel-security.py:

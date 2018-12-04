@@ -37,6 +37,8 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease":
                 Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+            "Warning: Permanently added":
+                uvt-kvm wait issue on Trusty(bug 1732883)
     entei:
         kvm_smoke_test:
            "internal error: no supported architecture for os type 'hvm'":
@@ -52,92 +54,82 @@ ubuntu_kvm_unit_tests:
                 unable to build on X/T i386 (bug 1798007)
 ubuntu_ltp_syscalls:
     onibi:
-        syscalls:
+        syscalls: &syscalls
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fgetxattr01, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "keyctl02.c:80: BROK: Failed to add key: EDQUOT":
+                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
-            "keyctl03.c:43: BROK: Failed to add key":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl05.c:90: BROK: failed to join new session keyring: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl06.c:41: BROK: Failed to add test key: EDQUOT":
+            "FAIL: KEYCTL_READ overran the buffer":
                 keyctl06 (bug 1798025)
-            "keyctl07.c:57: BROK: request_key() failed with unexpected error: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
             "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
             "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
                 request_key03 (bug 1798052)
-            "fanotify06.c:197: FAIL: group 3 got event":
+            "FAIL: group 4 got event":
                 fanotify06 failed with T kernel (bug 1775378)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify08 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
-            "fanotify09.c:182: FAIL: group 1 got event":
+            "FAIL: group 1 got event":
                 fanotify09 failed with T/X/A/B kernel (bug 1775153)
+            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 (bug 1802454)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
     entei:
-        syscalls:
+        syscalls: &syscalls-ppc
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fgetxattr01, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "keyctl02.c:80: BROK: Failed to add key: EDQUOT":
+                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
-            "keyctl03.c:43: BROK: Failed to add key":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl05.c:90: BROK: failed to join new session keyring: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl06.c:41: BROK: Failed to add test key: EDQUOT":
+            "FAIL: KEYCTL_READ overran the buffer":
                 keyctl06 (bug 1798025)
-            "keyctl07.c:57: BROK: request_key() failed with unexpected error: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
             "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 1048576 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
             "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
                 request_key03 (bug 1798052)
-            "fanotify06.c:197: FAIL: group 3 got event":
+            "FAIL: group 3 got event":
                 fanotify06 failed with T kernel (bug 1775378)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify08 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
-            "fanotify09.c:182: FAIL: group 1 got event":
+            "FAIL: group 1 got event":
                 fanotify09 failed with T/X/A/B kernel (bug 1775153)
+            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 (bug 1802454)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
+    modoc:
+        <<: *syscalls-ppc
     ms10-35-mcdivittB0-kernel:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fgetxattr01, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "fanotify06.c:197: FAIL: group 3 got event":
+                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "FAIL: group 3 got event":
                 fanotify06 failed with T kernel (bug 1775378)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
             "tag=fanotify08 stime=":
                 fanotify07/fanotify08 test timeouted (bug 1775165)
-            "fanotify09.c:182: FAIL: group 1 got event":
+            "FAIL: group 1 got event":
                 fanotify09 failed with T/X/A/B kernel (bug 1775153)
+            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 (bug 1802454)
             "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
-            "keyctl02.c:80: BROK: Failed to add key: EDQUOT":
+            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
-            "keyctl03.c:43: BROK: Failed to add key":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl05.c:90: BROK: failed to join new session keyring: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
-            "keyctl06.c:41: BROK: Failed to add test key: EDQUOT":
+            "FAIL: KEYCTL_READ overran the buffer":
                 keyctl06 (bug 1798025)
-            "keyctl07.c:57: BROK: request_key() failed with unexpected error: EDQUOT":
-                keyctl03, keyctl05, keyctl07 (bug 1798045)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
-            "request_key03.c:70: BROK: failed to join new session keyring: EDQUOT":
+            "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
                 request_key03 (bug 1798052)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
