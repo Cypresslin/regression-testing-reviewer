@@ -43,9 +43,9 @@ ubuntu_ltp_syscalls:
     chico: &1775784
         syscalls:
             "FAIL: quotactl failed to set":
-                quotactl01 failed (bug 1790028)
+                quotactl01, quotactl02, quotactl03 (bug 1797325)
             "BROK: tst_test.c:760: mount(/dev/loop2, mnt_point, xfs":
-                quotactl02 / 03 failed (bug 1797325)
+                quotactl01, quotactl02, quotactl03 (bug 1797325)
             "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
