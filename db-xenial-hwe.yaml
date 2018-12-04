@@ -48,13 +48,13 @@ ubuntu_ltp_syscalls:
     entei: &syscalls
         syscalls:
             "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
-                bind03 failed (bug 1788351)
+                bind03 (bug 1788351)
             "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+                inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
-                fanotify09 failed with A/T kernel (bug 1775153)
+                fanotify09 (bug 1775153)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     onibi:

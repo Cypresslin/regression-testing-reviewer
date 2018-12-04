@@ -68,7 +68,7 @@ ubuntu_ltp_syscalls:
     entei: &syscalls-ppc
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                 statx05 (bug 1798524)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
@@ -82,7 +82,7 @@ ubuntu_ltp_syscalls:
     rumford: &syscalls-amd64
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                 statx05 (bug 1798524)
             "FAIL: first group got more than 2 events":

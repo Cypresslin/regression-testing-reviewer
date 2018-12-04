@@ -64,13 +64,13 @@ ubuntu_ltp_syscalls:
             "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
             "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+                inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
+                fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
+                fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
             "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
@@ -84,13 +84,13 @@ ubuntu_ltp_syscalls:
             "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                 bind03 failed (bug 1788351)
             "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 failed with X/X-LTS/A kernel (bug 1774387)
+                inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
+                fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify08 stime=":
-                fanotify07/fanotify08 test timeouted (bug 1775165)
+                fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
             "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":

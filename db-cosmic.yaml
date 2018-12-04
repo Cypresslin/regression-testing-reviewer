@@ -137,7 +137,7 @@ ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
             "FAIL: first group got more than 2 events":
@@ -173,7 +173,7 @@ ubuntu_ltp_syscalls:
     chico: &syscalls-kvm
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
