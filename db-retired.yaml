@@ -19,6 +19,8 @@ trusty:
                     test 060 should be skipped (bug 1712038)
                 "FAIL: scanned memory without EPERMs, and can read actual values":
                     test 072 (bug 1747852)
+                "FAIL: test_075_config_stack_protector":
+                    test 075 (bug 1712007)
                 "__stack_chk_fail missing from kernel (tested befs.ko)":
                     test 82 (bug 1747853)
                 "AssertionError: Module 'signpost' is tainted: (OX)":

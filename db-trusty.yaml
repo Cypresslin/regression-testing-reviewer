@@ -147,18 +147,8 @@ ubuntu_qrt_kernel_security:
                 test 021, 022 (bug 1747847)
             "AssertionError: /proc/1/personality contains 00400000 (expected 00000000)":
                 test 050 (bug 1684776)
-            "skipped: ARM64 older than 4.4 has READ_IMPLIES_EXEC personality set) FAIL":
-                test 060 should be skipped (bug 1712038)
-            "FAIL: test_072_config_debug_rodata":
-                test 072 (bug 1747850)
-            "FAIL: scanned memory without EPERMs, and can read actual values":
-                test 072 (bug 1747852)
-            "FAIL: test_075_config_stack_protector":
-                test 075 (bug 1712007)
-            "__stack_chk_fail missing from kernel (tested befs.ko)":
-                test 82 (bug 1747853)
-            "AssertionError: Module 'signpost' is tainted: (OX)":
-                test 140 (bug 1747855)
+            "DEBUG_RODATA option was expected to be set in the kernel config":
+                test_130_config_debug_rodata (bug 1747850)
 ubuntu_zram_smoke_test:
     entei:
         zram-smoke-test:
