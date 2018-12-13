@@ -577,6 +577,11 @@ bionic-kvm:
             <<: *1765005-b-kvm
         gummo:
             <<: *1765005-b-kvm
+    ubuntu_ltp:
+        chico:
+            ltp:
+                "IOError: [Errno 28] No space left on device":
+                    growfiles test failed (bug 1790445)
     ubuntu_lttng_smoke_test:
         chico: &1760647-b-kvm
             lttng-smoke-test:
@@ -674,8 +679,14 @@ cosmic:
                 "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
 cosmic-kvm:
+    ubuntu_ltp:
+        chico:
+            ltp:
+                "IOError: [Errno 28] No space left on device":
+                    growfiles test failed (bug 1790445)
     ubuntu_ltp_syscalls:
         chico:
             syscalls:
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+

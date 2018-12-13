@@ -29,8 +29,6 @@ ubuntu_ltp:
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                 ar test failed with 4.15 KVM (bug 1765331)
-            "IOError: [Errno 28] No space left on device":
-                growfiles test failed (bug 1790445)
     harpo:
         <<: *1765331
     groucho:
