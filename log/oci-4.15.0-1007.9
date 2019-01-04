@@ -1,0 +1,12 @@
+4.15.0-1007.9 - oci
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_kvm_unit_tests - 24 failures
+  ubunut_ltp - test should be disabled on clouds
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_ltp
+ * ubuntu_seccomp

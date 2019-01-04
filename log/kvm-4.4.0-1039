@@ -1,0 +1,11 @@
+4.4.0-1039.45 - kvm
+Regression test CMPL, RTB.
+
+42 / 43 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 45 failed on KVM nodes
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) msgstress03 (bug 1797341) quotactl01, quotactl02, quotactl03 (bug 1797325)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+

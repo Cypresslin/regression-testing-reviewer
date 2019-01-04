@@ -1,0 +1,12 @@
+4.15.0-1007.9~16.04.1 - oci
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_kvm_unit_tests - 21 failures
+  ubuntu_leap_seconds - failed on VM.Standard2.16 only
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) statx05 (bug 1798524) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454)
+  ubuntu_nbd_smoke_test - failed on VM.Standard1.4 and VM.Standard2.16
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp

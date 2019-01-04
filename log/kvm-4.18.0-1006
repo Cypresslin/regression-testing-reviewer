@@ -1,0 +1,9 @@
+4.18.0-1006.6 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 28 failed on KVM nodes
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) fanotify09 case 2 (bug 1804594) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl01, quotactl02, quotactl03 (bug 1797325)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)

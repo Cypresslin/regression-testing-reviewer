@@ -1,0 +1,12 @@
+3.2.0-139.185 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_cts_kernel - perf with redirection issue (bug 1801877)
+
+31 / 32 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_cts_kernel - perf with redirection issue (bug 1801877)
+  ubuntu_qrt_kernel_security - test_022_aslr_hardy_vdso failed on P-i386 (bug 1747630)
+  ubuntu_stress_smoke_test - revio failed, it's an ext4 issue that can be reproduced with older kernel. dev failure found on a Lenovo T440s laptop, issue can be reproduced with older kernel as well
+

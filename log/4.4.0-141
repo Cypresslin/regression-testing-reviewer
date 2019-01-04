@@ -1,0 +1,57 @@
+4.4.0-141.167 - lowlatency
+Regression test CMPL, RTB.
+
+44 / 52 tests were run, missing: ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_cve_kernel, ubuntu_ecryptfs, ubuntu_ltp_syscalls, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic, xfstests
+Issue to note in amd64:
+  libhugetlbfs - failed 1 killed by signal 1 bad config 3
+  ubuntu_kvm_unit_tests - 30 failed on KVM nodes
+
+4.4.0-141.167 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  monotonic_time - tsc failed on gonzo
+  ubuntu_kvm_unit_tests - 32 failed on amaura, 31 failed on pepe, 30 failed on KVM nodes
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+  xfstests - xfs xfs/438 timed out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+  xfstests - xfs xfs/438 timed out
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+  xfstests - xfs generic/308 timed out (bug 1738152)
+
+Issue to note in ppc64le (P8):
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in s390x (KVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 12 failed
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107)
+
+Note: missing test cases in lowlatency kernel need to be investigated (bug 1791016)
