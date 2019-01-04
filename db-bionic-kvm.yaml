@@ -52,10 +52,14 @@ ubuntu_ltp_syscalls:
                 process_vm_readv01, process_vm_writev01 (bug 1797330)
             "process_vm_readv: errno=ENOSYS(38): Function not implemented":
                 process_vm_writev02, process_vm_readv02, process_vm_readv03 (bug 1797331)
-            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04.c:220: Child exit status = 1":
                 msgstress04 (bug 1797348)
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09 case 2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     harpo:
         <<: *1775784
     groucho:

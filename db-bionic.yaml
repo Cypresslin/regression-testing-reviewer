@@ -153,7 +153,9 @@ ubuntu_ltp_syscalls:
                 inotify08 (bug 1775784)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
     entei:
         <<: *syscalls-ppc
@@ -163,7 +165,9 @@ ubuntu_ltp_syscalls:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
     onibi:
         <<: *syscalls-amd64
@@ -178,35 +182,43 @@ ubuntu_ltp_syscalls:
     kernel02:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                inotify08 (bug 1775784)
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
     s2lp3:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                inotify08 (bug 1775784)
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
     s2lp6g002:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                inotify08 (bug 1775784)
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
     chico: &syscalls-kvm
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+                inotify08 (bug 1775784)
             "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157:        Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454))
+            "fanotify09.c:202: FAIL: first group got more than 2 events":
+                fanotify09-2 (bug 1804594)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
     harpo:
         <<: *syscalls-kvm
     groucho:
@@ -215,13 +227,21 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-kvm
     zeppo:
         <<: *syscalls-kvm
-
 ubuntu_lxc:
+    amaura: &lxc-setup
+        setup:
+            "E: Unable to correct problems, you have held broken packages.":
+                package from -proposed and from -update casuing apt issue (bug 1805978)
+    daedalus:
+        <<: *lxc-setup
+    pepe:
+        <<: *lxc-setup
     kernel02:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
     ms10-34-mcdivittB0-kernel:
+        <<: *lxc-setup
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
@@ -239,6 +259,10 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
+    baltar:
+        <<: *lxc-setup
+    entei:
+        <<: *lxc-setup
 xfstests:
     fozzie: &xfstests
         ext4:

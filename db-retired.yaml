@@ -112,6 +112,11 @@ xenial:
             <<: *1689240-x
         s2lp6g001:
             <<: *1689240-x
+    ubuntu_kvm_unit_tests:
+        entei:
+            all:
+                "FAIL emulator":
+                    emulator failed (bug 1723914)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:

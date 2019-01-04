@@ -39,10 +39,12 @@ ubuntu_kvm_smoke_test:
                 Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
             "Warning: Permanently added":
                 uvt-kvm wait issue on Trusty(bug 1732883)
-    entei:
+    entei: &kvm-smoke-ppc
         kvm_smoke_test:
            "internal error: no supported architecture for os type 'hvm'":
                 no supported architecture for 'hvm' (bug 1752550)
+    modoc:
+       <<: *kvm-smoke-ppc
     ms10-35-mcdivittB0-kernel:
         kvm_smoke_test:
             "OSError: [Errno 25] Inappropriate ioctl for device":
@@ -75,10 +77,12 @@ ubuntu_ltp_syscalls:
                 fanotify09 (bug 1775153)
             "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                 fanotify10 (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
-    entei:
-        syscalls: &syscalls-ppc
+    entei: &syscalls-ppc
+        syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
                 fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
             "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
@@ -99,6 +103,8 @@ ubuntu_ltp_syscalls:
                 fanotify09 failed with T/X/A/B kernel (bug 1775153)
             "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                 fanotify10 (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
@@ -119,6 +125,8 @@ ubuntu_ltp_syscalls:
                 fanotify09 (bug 1775153)
             "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                 fanotify10 (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
             "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 (bug 1774394)
             "keyctl02.c:81: BROK: Failed to add key: EDQUOT":

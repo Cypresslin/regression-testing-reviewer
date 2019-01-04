@@ -29,6 +29,22 @@ libhugetlbfs:
         <<: *libhugetlbfs
     s2lp6g001:
         <<: *libhugetlbfs
+    chico: &libhugetlbfs-kvm
+        libhugetlbfs:
+            "FAIL:     0      1":
+                failed 1
+            "Killed by signal:     0      1":
+                killed by signal 1
+            "Bad configuration:     0      3":
+                bad config 3
+    harpo:
+        <<: *libhugetlbfs-kvm
+    groucho:
+        <<: *libhugetlbfs-kvm
+    gummo:
+        <<: *libhugetlbfs-kvm
+    zeppo:
+        <<: *libhugetlbfs-kvm
 ubuntu_bpf_jit:
     s2lp3: &1768452
         ubuntu-bjf-jit:
@@ -58,10 +74,8 @@ ubuntu_kvm_smoke_test:
 ubuntu_kvm_unit_tests:
     entei:
         all:
-            "FAIL emulator":
-                emulator failed (bug 1723914)
-            "FAIL sprs":
-                sprs failed (bug 1723904)
+            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                sprs timed out (bug 1740017)
     ms10-34-mcdivittB0-kernel:
         all:
             "FAIL pmu":
@@ -98,8 +112,10 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
     modoc:
         <<: *syscalls-p8
     kernel01: &syscalls
@@ -114,8 +130,10 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
-            "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     onibi:
