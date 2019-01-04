@@ -34,6 +34,7 @@ cosmic-kvm:
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_lttng_smoke_test
@@ -75,6 +76,7 @@ bionic-kvm:
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_lttng_smoke_test
@@ -166,6 +168,7 @@ xenial-kvm:
         <<: *x-amd64
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_ecryptfs
@@ -236,6 +239,7 @@ precise-hwe:
         ? libhugetlbfs
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
@@ -259,6 +263,7 @@ precise-hwe:
         ? ubuntu_32_on_64
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
@@ -309,6 +314,7 @@ full-list: [
     ubuntu_boot,
     ubuntu_bpf,
     ubuntu_bpf_jit,
+    ubuntu_btrfs_kernel_fixes,
     ubuntu_cts_kernel,
     ubuntu_cve_kernel,
     ubuntu_docker_smoke_test,
