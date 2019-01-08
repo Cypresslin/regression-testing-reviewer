@@ -216,33 +216,6 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
-ubuntu_qrt_kernel_security:
-    chico: &kernel_security
-        test-kernel-security.py:
-            "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
-                test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
-    harpo:
-        <<: *kernel_security
-    groucho:
-        <<: *kernel_security
-    gummo:
-        <<: *kernel_security
-    zeppo:
-        <<: *kernel_security
-    daedalus:
-        <<: *kernel_security
-    rumford:
-        <<: *kernel_security
-    ms10-35-mcdivittB0-kernel:
-        <<: *kernel_security
-    wright-kernel:
-        <<: *kernel_security
-    baltar:
-        <<: *kernel_security
-    entei:
-        <<: *kernel_security
-    modoc:
-        <<: *kernel_security
 xfstests:
     rizzo: &xfstests
         setup:

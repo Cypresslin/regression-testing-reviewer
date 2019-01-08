@@ -554,6 +554,12 @@ bionic:
                     failen with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-b
+bionic-hwe:
+    ubuntu_qrt_kernel_security:
+        daedalus: &kernel_security
+            test-kernel-security.py:
+                "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
+                    test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
 bionic-kvm:
     libhugetlbfs:
         zeppo:
@@ -683,6 +689,11 @@ cosmic:
                     execveat03 failed (bug 1786729)
                 "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
+    ubuntu_qrt_kernel_security:
+        daedalus: &kernel_security
+            test-kernel-security.py:
+                "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
+                    test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
 cosmic-kvm:
     ubuntu_ltp:
         chico:

@@ -67,25 +67,6 @@ ubuntu_lxc:
         <<: *lxc-setup
     entei:
         <<: *lxc-setup
-ubuntu_qrt_kernel_security:
-    daedalus: &kernel_security
-        test-kernel-security.py:
-            "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
-                test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
-    onibi:
-        <<: *kernel_security
-    rumford:
-        <<: *kernel_security
-    ms10-35-mcdivittB0-kernel:
-        <<: *kernel_security
-    wright-kernel:
-        <<: *kernel_security
-    baltar:
-        <<: *kernel_security
-    entei:
-        <<: *kernel_security
-    modoc:
-        <<: *kernel_security
 ubuntu_kernel_selftests:
     ms10-34-mcdivittB0-kernel: &1680507
         breakpoints:
