@@ -138,25 +138,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls
     modoc:
         <<: *syscalls
-ubuntu_lttng_smoke_test:
-    daedalus: &lttng
-        lttng-smoke-test:
-            "Error! Bad return status for module build on kernel: 4.18.0":
-                Unable to build lttng module on Bionic 4.18 (bug 1802443)
-    gonzo:
-        <<: *lttng
-    rumford:
-        <<: *lttng
-    baltar:
-        <<: *lttng
-    entei:
-        <<: *lttng
-    modoc:
-        <<: *lttng
-    ms10-34-mcdivittB0-kernel:
-        <<: *lttng
-    wright-kernel:
-        <<: *lttng
 ubuntu_sysdig_smoke_test:
     daedalus: &sysdig
         sysdig-smoke-test:

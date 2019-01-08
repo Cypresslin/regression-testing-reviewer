@@ -560,6 +560,11 @@ bionic-hwe:
             test-kernel-security.py:
                 "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
                     test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+    ubuntu_lttng_smoke_test:
+        daedalus: &lttng
+            lttng-smoke-test:
+                "Error! Bad return status for module build on kernel: 4.18.0":
+                    Unable to build lttng module on Bionic 4.18 (bug 1802443)
 bionic-kvm:
     libhugetlbfs:
         zeppo:
