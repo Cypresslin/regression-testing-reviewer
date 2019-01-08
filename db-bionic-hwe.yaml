@@ -138,21 +138,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls
     modoc:
         <<: *syscalls
-ubuntu_sysdig_smoke_test:
-    daedalus: &sysdig
-        sysdig-smoke-test:
-            "Error! Bad return status for module build on kernel: 4.18.0":
-                Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
-    gonzo:
-        <<: *sysdig
-    rumford:
-        <<: *sysdig
-    baltar:
-        <<: *sysdig
-    entei:
-        <<: *sysdig
-    modoc:
-        <<: *sysdig
 xfstests:
     fozzie: &xfstests
         ext4:

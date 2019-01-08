@@ -100,8 +100,8 @@ ubuntu_ltp_syscalls:
 ubuntu_sysdig_smoke_test:
     entei: &sysdig
         sysdig-smoke-test:
-            "Bad return status for module build on kernel: 4.15.0":
-                DKMS failed to build on B-4.18 and X-4.15 (bug 1802240)
+            "‘SYSCALL_TABLE_ID0’ undeclared":
+                Unable to build sysdig module on PowerPC with X-4.15 (bug 1810916)
     modoc:
         <<: *sysdig
 xfstests:

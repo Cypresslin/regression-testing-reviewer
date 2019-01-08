@@ -214,6 +214,11 @@ xenial-edge:
             <<: *1765673-x-edge
         wright-kernel:
             <<: *1765673-x-edge
+    ubuntu_sysdig_smoke_test:
+        entei: &sysdig
+            sysdig-smoke-test:
+                "Bad return status for module build on kernel: 4.15.0":
+                    DKMS failed to build on B-4.18 and X-4.15 (bug 1802240)
     ubuntu_unionmount_overlayfs_suite:
         daedalus: &1751243-x-edge
             overlayfs:
@@ -555,16 +560,21 @@ bionic:
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-b
 bionic-hwe:
-    ubuntu_qrt_kernel_security:
-        daedalus: &kernel_security
-            test-kernel-security.py:
-                "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
-                    test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
                 "Error! Bad return status for module build on kernel: 4.18.0":
                     Unable to build lttng module on Bionic 4.18 (bug 1802443)
+    ubuntu_qrt_kernel_security:
+        daedalus: &kernel_security
+            test-kernel-security.py:
+                "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
+                    test_095_kernel_symbols_missing_proc_self_stack (bug 1803921)
+    ubuntu_sysdig_smoke_test:
+        daedalus: &sysdig
+            sysdig-smoke-test:
+                "Error! Bad return status for module build on kernel: 4.18.0":
+                    Unable to build sysdig DKMS module on Bionic-4.18 and Xenial-4.15 kernel (bug 1802240)
 bionic-kvm:
     libhugetlbfs:
         zeppo:
