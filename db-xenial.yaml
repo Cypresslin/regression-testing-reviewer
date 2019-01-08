@@ -92,11 +92,10 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL skey (2 tests)":
                 skey failed on zVM (bug 1778705)
-    pepe:
+    onza:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
-
 ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
@@ -136,9 +135,11 @@ ubuntu_ltp_syscalls:
                 fanotify11 timeouted (bug 1808107)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
-    onibi:
+    amaura:
         <<: *syscalls
-    rumford:
+    pepe:
+        <<: *syscalls
+    secchi:
         <<: *syscalls
     s2lp3:
         <<: *syscalls

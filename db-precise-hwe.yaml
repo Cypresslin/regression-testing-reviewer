@@ -12,7 +12,7 @@
 #         reason
 #
 ubuntu_qrt_kernel_security:
-    onibi:
+    precisetesting:
         test-kernel-security.py:
             "AssertionError: RETPOLINE option was expected to be unset in the kernel config":
                 CONFIG_RETPOLINE=y in kernel (bug 1786894)

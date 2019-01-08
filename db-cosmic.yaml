@@ -30,7 +30,7 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    pepe:
+    onza:
         ubuntu-bjf:
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
@@ -146,15 +146,13 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
-    daedalus: &syscalls-amd64
+    pepe: &syscalls-amd64
         syscalls:
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-    onibi:
+    amaura:
         <<: *syscalls-amd64
-    pepe:
-        <<: *syscalls-amd64
-    rumford:
+    secchi:
         <<: *syscalls-amd64
     lodygin:
         <<: *syscalls-amd64
@@ -191,7 +189,7 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *syscalls-kvm
 ubuntu_lttng_smoke_test:
-    gonzo:
+    onza:
         lttng-smoke-test:
             "FAILED (did not trace any open system calls)":
                 lttng-smoke test failed on i386 4.18 kernel (bug 1802495)

@@ -55,9 +55,11 @@ ubuntu_ltp_syscalls:
                 fanotify09 (bug 1775153)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
-    onibi:
+    amaura:
         <<: *syscalls
-    rumford:
+    pepe:
+        <<: *syscalls
+    secchi:
         <<: *syscalls
     wright-kernel:
         <<: *syscalls

@@ -32,7 +32,7 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    pepe:
+    onza:
         ubuntu-bjf:
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
@@ -161,7 +161,7 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
-    daedalus: &syscalls-amd64
+    pepe: &syscalls-amd64
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
@@ -169,9 +169,9 @@ ubuntu_ltp_syscalls:
                 fanotify09-2 (bug 1804594)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-    onibi:
+    amaura:
         <<: *syscalls-amd64
-    rumford:
+    secchi:
         <<: *syscalls-amd64
     lodygin:
         <<: *syscalls-amd64
@@ -228,13 +228,13 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *syscalls-kvm
 ubuntu_lxc:
-    amaura: &lxc-setup
+    daedalus: &lxc-setup
         setup:
             "E: Unable to correct problems, you have held broken packages.":
                 package from -proposed and from -update casuing apt issue (bug 1805978)
-    daedalus:
+    onibi:
         <<: *lxc-setup
-    pepe:
+    onza:
         <<: *lxc-setup
     kernel02:
         exercise:

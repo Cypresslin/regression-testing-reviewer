@@ -28,7 +28,7 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    pepe:
+    onza:
         ubuntu-bjf:
             "#124/p invalid read past end of SK_MSG FAIL":
                 Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
@@ -53,13 +53,13 @@ ubuntu_bpf:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
 ubuntu_lxc:
-    amaura: &lxc-setup
+    daedalus: &lxc-setup
         setup:
             "E: Unable to correct problems, you have held broken packages.":
                 package from -proposed and from -update casuing apt issue (bug 1805978)
-    daedalus:
+    onibi:
         <<: *lxc-setup
-    pepe:
+    onza:
         <<: *lxc-setup
     starmie-kernel:
         <<: *lxc-setup
@@ -137,13 +137,13 @@ ubuntu_ltp:
     zeppo:
         <<: *1765331
 ubuntu_ltp_syscalls:
-    daedalus: &syscalls
+    pepe: &syscalls
         syscalls:
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-    onibi:
+    amaura:
         <<: *syscalls
-    rumford:
+    secchi:
         <<: *syscalls
     lodygin:
         <<: *syscalls

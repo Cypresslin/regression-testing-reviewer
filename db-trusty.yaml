@@ -55,7 +55,7 @@ ubuntu_kvm_unit_tests:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
 ubuntu_ltp_syscalls:
-    onibi:
+    pepe:
         syscalls: &syscalls
             "tst_mkfs.c:101: BROK: mkfs.vfat":
                 fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
@@ -81,6 +81,8 @@ ubuntu_ltp_syscalls:
                 fanotify11 timeouted (bug 1808107)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
+    amaura:
+        <<: *syscalls
     entei: &syscalls-ppc
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
