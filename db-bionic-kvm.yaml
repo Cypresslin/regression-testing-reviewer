@@ -1,4 +1,4 @@
-# 4.15 Xenial KVM
+# 4.15 Bionic KVM
 # Format:
 # test-suite:
 #   sut:
@@ -94,19 +94,6 @@ ubuntu_nbd_smoke_test:
         <<: *1793491
     zeppo:
         <<: *1793491
-ubuntu_qrt_kernel_security:
-    chico: &kernel_security
-        test-kernel-security.py:
-            "AssertionError: /proc/self/stack does not exist":
-                /proc/self/stack does not exist in kvm kernel (bug 1805105)
-    harpo:
-        <<: *kernel_security
-    groucho:
-        <<: *kernel_security
-    gummo:
-        <<: *kernel_security
-    zeppo:
-        <<: *kernel_security
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:

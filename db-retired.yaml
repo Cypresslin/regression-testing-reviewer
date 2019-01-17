@@ -304,6 +304,8 @@ xenial-kvm:
                     test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656)
                 "FAIL: test_160_setattr_CVE_2015_1350":
                     test_160_setattr_CVE_2015_1350 (bug 1760657)
+                "AssertionError: /proc/self/stack does not exist":
+                    /proc/self/stack does not exist in kvm kernel (bug 1805105)
     ubuntu_stress_smoke_test:
         chico:
             stress-smoke-test:
@@ -666,6 +668,8 @@ bionic-kvm:
                     config_debug_wx (bug 1782721)
                 "HARDENED_USERCOPY option was expected to be set in the kernel config":
                     config_hardened_usercopy (bug 1766777)
+                "AssertionError: /proc/self/stack does not exist":
+                    /proc/self/stack does not exist in kvm kernel (bug 1805105)
     ubuntu_quota_smoke_test:
         chico:
             quota-smoke-test:
@@ -720,4 +724,8 @@ cosmic-kvm:
             syscalls:
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
-
+    ubuntu_qrt_kernel_security:
+        harpo:
+            test-kernel-security.py:
+                "AssertionError: /proc/self/stack does not exist":
+                    /proc/self/stack does not exist in kvm kernel (bug 1805105)
