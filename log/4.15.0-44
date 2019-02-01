@@ -1,0 +1,73 @@
+4.15.0-44.47 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - 27 failed on onibi, 26 failed on KVM nodes
+  ubuntu_ltp - CVE-2018-19854
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) getrandom02 timed out (bug 1797327)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) global.get_metadata in seccomp (bug 1811057) Kprobe event string type argument in ftrace (bug 1812645)
+  ubuntu_kvm_unit_tests - 29 failed on onza
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194) powerpc (bug 1812805) Kprobe event argument syntax in ftrace (bug 1812809)
+  ubuntu_kvm_smoke_test - failed to start KVM on P8 (bug 1798358)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  ubuntu_qrt_kernel_security - LOCK_DOWN_KERNEL (bug 1811981)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+47 / 48 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194) ebb in powerpc (bug 1812805) tm-unavailable in powerpc (bug 1813129)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  ubuntu_qrt_kernel_security - LOCK_DOWN_KERNEL (bug 1811981)
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in ftrace (bug 1812824) global.get_metadata in seccomp (bug 1811057) ftrace (bug 1812836)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in ftrace (bug 1812824) global.get_metadata in seccomp (bug 1811057) ftrace (bug 1812836)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in ftrace (bug 1812824) global.get_metadata in seccomp (bug 1811057) ftrace (bug 1812836)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x because of bug 1809860
+Note: ubuntu_btrfs_kernel_fixes on i386 was blocked by bug 1812845

@@ -1,0 +1,14 @@
+4.15.0-1032.34 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  monotonic_time - failed on m5a.large
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) RTNETLINK in net (bug 1812194) raw_skew in timer (bug 1811194)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) fanotify10 (bug 1802454) inotify08 (bug 1775784) msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

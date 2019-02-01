@@ -1,0 +1,13 @@
+4.15.0-1027.28~16.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  libhugetlbfs - 1 failed brk_near_huge (bug 1653597), 1 killed by signal, 3 bad config
+  ubuntu_kernel_selftests - cpu_hotplug test failed because there is only 1 CPU (1812149) reuseport_bpf in net failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls -fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) getrandom02 (bug 1782758) statx05 (bug 1798524)
+  ubuntu_stress_smoke_test - pthread in stress-smoke test failed on node n1-standard-8 with GCP X-4.15 (bug 1813899)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

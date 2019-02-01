@@ -1,0 +1,60 @@
+4.15.0-45.48~16.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_nbd_smoke_test - ubuntu_nbd_smoke_test failed with I/O error on X-4.15 (bug 1814237)
+  ubuntu_zfs_xfs_generic - ubuntu_zfs_xfs_generic 129 timeouted on node gonzo with X-4.15 (bug 1814240)
+  xfstests - btrfs generic/176 timed out
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in i386:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_security - integrated ubuntu_qrt_kernel failed (bug 1814081)
+  xfstests - xfs generic/112 timed out
+
+4.15.0-45.48~16.04.1 - generic
+Regression test CMPL, RTB.
+
+51 / 52 tests were run, missing: xfstests
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - 3 failed on gonzo
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_nbd_smoke_test - ubuntu_nbd_smoke_test failed with I/O error on X-4.15 (bug 1814237)
+  ubuntu_qrt_kernel_security - integrated ubuntu_qrt_kernel failed (bug 1814081)
+  ubuntu_zfs_xfs_generic - ubuntu_zfs_xfs_generic 129 timeouted on node gonzo with X-4.15 (bug 1814240)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi on moonshots gicv2-mmio-up on moonshots gicv2-mmio-3p on moonshots pmu on starmie (bug 1751000) gicv2-ipi on thunderX gicv2-mmio on thunderX gicv2-mmio-up on thunderX gicv2-mmio-3p on thunderX gicv2-active on thunderX timer on thunderX
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_security - integrated ubuntu_qrt_kernel failed (bug 1814081)
+  xfstests - btrfs generic/176 timed out
+
+46 / 47 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in i386:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_nbd_smoke_test - ubuntu_nbd_smoke_test failed with I/O error on X-4.15 (bug 1814237)
+
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1755118)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524)
+  ubuntu_qrt_kernel_security - integrated ubuntu_qrt_kernel failed (bug 1814081)
+  ubuntu_sysdig_smoke_test - Unable to build sysdig module on PowerPC with X-4.15 (bug 1810916)
+  xfstests - btrfs generic/176 timed out
+
+Note: ubuntu_btrfs_kernel_fixes on i386 was blocked by bug 1812845

@@ -1,0 +1,13 @@
+4.18.0-1007.7 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618) ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - 39 failed on KVM nodes
+  ubuntu_ltp - test timed out
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) fanotify09 case 2 (bug 1804594) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl01, quotactl02, quotactl03 (bug 1797325)
+ubuntu_qrt_kernel_security - CONFIG_SECURITY_SELINUX_DISABLE should be disabled (bug 1812153) SCHED_STACK_END_CHECK should be enabled (bug 1812159) LOCK_DOWN_KERNEL should be enabled (bug 1811981) PAGE_POISONING / PAGE_POISONING_NO_SANITY / PAGE_POISONING_ZERO should be enabled (bug 1812624)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+

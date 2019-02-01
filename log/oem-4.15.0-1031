@@ -1,0 +1,11 @@
+4.15.0-1031.36 - oem
+Regression test CMPL, RTB.
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - 2365dd3 failed (bug 1809870) 6113077 failed (bug 1810384)
+  ubuntu_kernel_selftests - global.get_metadata in seccomp_bpf (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - 25 failed on onibi
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09 (bug 1804594) fanotify10 (bug 1802454)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+

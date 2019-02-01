@@ -1,0 +1,17 @@
+4.18.0-1008.8~18.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  monotonic_time - all two tests (or just tsc test) failed on Standard_D2s_v3, Standard_E2s_v3, Standard_L4s
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) rtnetlink.sh in net (bug 1812978)  fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618) cpu_hotplug permission (bug 1814232) rtcpie in timers (bug 1814234)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594)
+  ubuntu_lttng_smoke_test - OOM while building module on Standard_F1s
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_F1s, Standard-F2s-v2 only, timeouted on Standard_D2s_v3, Standard_L4s passed on the rest
+  ubuntu_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s Standard_L4s only
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_qrt_kernel_aslr_collisions - skipped as the jenkins jobs failed to build
+  * ubuntu_seccomp
+  * ubuntu_unionmount_overlayfs_suite - skipped as the jenkins jobs failed to build

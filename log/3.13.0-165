@@ -1,0 +1,31 @@
+3.13.0-165.215 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - 9f03740a956d7ac6a1b8f8c455da6fa5cae11c22 hang (bug 1809879)
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - 46 failed on onibi, 39 failed on KVM nodes
+  ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) fcntl35 / fcntl35_64 (bug 1774394) fanotify06 (bug 1775378) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107) keyctl02 (bug 1798022) keyctl06 (bug 1798025) openat03 (bug 1798027) request_key03 (bug 1798052)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - noresv-preserve-resv-page failed (bug 1747823) chunk-overcommit failed (bug 1747828)
+  ubuntu_btrfs_kernel_fixes - 9f03740a956d7ac6a1b8f8c455da6fa5cae11c22 hang (bug 1809879)
+  ubuntu_kvm_smoke_test - Inappropriate ioctl for device
+  ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) fcntl35 / fcntl35_64 (bug 1774394) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107) keyctl02 (bug 1798022) keyctl06 (bug 1798025) open14 (bug 1798061) openat03 (bug 1798027) request_key03 (bug 1798052)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build (bug 1699987)
+  ubuntu_qrt_kernel_security - test_130_config_debug_rodata (bug 1747850) test 021, 022 (bug 1747847) test 050 (bug 1684776) test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)
+
+Issue to note in i386:
+  ubuntu_btrfs_kernel_fixes - 9f03740a956d7ac6a1b8f8c455da6fa5cae11c22 hang (bug 1809879)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty(bug 1732883)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) fcntl35 / fcntl35_64 (bug 1774394) fanotify06 (bug 1775378) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107) keyctl02 (bug 1798022) keyctl06 (bug 1798025) openat03 (bug 1798027) request_key03 (bug 1798052)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)
+
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
+  ubuntu_kvm_smoke_test - no supported architecture for 'hvm' (bug 1752550)
+  ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) fanotify06 (bug 1775378) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 failed with T/X/A/B kernel (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107) keyctl02 (bug 1798022) keyctl06 (bug 1798025) open14 (bug 1798061) openat03 (bug 1798027) request_key03 (bug 1798052)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)

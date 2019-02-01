@@ -1,0 +1,24 @@
+4.4.0-1075.85 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3 on t2.small, passed on the rest
+  monotonic_time - failed on m5a.large
+  ubuntu_kernel_selftests - cpu_hotplug (bug 1812149) on t2.small, psock_fanout on r5.large
+
+
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support
+  ubuntu_ltp_syscalls - bind03 (bug 1788351) execveat03 (bug 1786729) fallocate05, fsetxattr01, fgetxattr01, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, lchown03, lchown03_16, linkat02, lchown03, lchown03_16, mknod07, mknodat02, mmap16, mount01, mount02, mount03, mount04, mount06, open12, quotactl02, quotactl03, rename11, renameat01, umount01, umount02, umount03, umount2_01, umount2_02, umount2_03, utime06 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 (bug 1775153) quotactl01 (bug 1790028) mlock203 (bug 1793451) openat03 (bug 1798027) fanotify10 (bug 1802454)
+  ubuntu_lttng_smoke_test - failed on t2.micro, t2.nano (bug 1803118)
+  ubuntu_lxc - failed on 3 instances, passed on the rest
+  ubuntu_nbd_smoke_test	- failed on some instances (bug 1803120)
+  ubuntu_qrt_apparmor - failed on 1 instance with repo clone issue, 1 with test hang, passed on the rest
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: ubuntu_ltp_syscalls test must be reviewed on the Jenkins server, the hang issue (bug 1777779) will prevent it from copy the test report
