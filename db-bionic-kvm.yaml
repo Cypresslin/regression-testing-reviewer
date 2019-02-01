@@ -37,6 +37,35 @@ ubuntu_ltp:
         <<: *1765331
     zeppo:
         <<: *1765331
+ubuntu_kernel_selftests:
+    chico: &kernel_selftests
+        net:
+            "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
+                psock_tpacket in net failed (bug 1812176)
+            "test_bpf: [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: cannot add dummy interface":
+                RTNETLINK in net (bug 1812194)
+        seccomp:
+            "FAIL ] global.get_metadata":
+                global.get_metadata in seccomp (bug 1811057)
+        timers:
+            "raw_skew [FAIL]":
+                raw_skew in timer (bug 1811194)
+        user:
+            "user_copy: [FAIL]":
+                user_copy in user (bug 1812198)
+        ftrace:
+            "Error: No ftrace directory found":
+                ftrace (bug 1812318)
+    harpo:
+        <<: *kernel_selftests
+    groucho:
+        <<: *kernel_selftests
+    gummo:
+        <<: *kernel_selftests
+    zeppo:
+        <<: *kernel_selftests
 ubuntu_ltp_syscalls:
     chico: &1775784
         syscalls:
@@ -94,6 +123,23 @@ ubuntu_nbd_smoke_test:
         <<: *1793491
     zeppo:
         <<: *1793491
+ubuntu_qrt_kernel_security:
+    chico: &kernel_security
+        test-kernel-security.py:
+            "SCHED_STACK_END_CHECK option was expected to be set in the kernel config":
+                SCHED_STACK_END_CHECK should be enabled (bug 1812159)
+            "SECURITY_SELINUX_DISABLE option was expected to be unset in the kernel config":
+                CONFIG_SECURITY_SELINUX_DISABLE should be disabled (bug 1812153)
+            "LOCK_DOWN_KERNEL option was expected to be set in the kernel config":
+                LOCK_DOWN_KERNEL should be enabled (bug 1811981)
+    harpo:
+        <<: *kernel_security
+    groucho:
+        <<: *kernel_security
+    gummo:
+        <<: *kernel_security
+    zeppo:
+        <<: *kernel_security
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:

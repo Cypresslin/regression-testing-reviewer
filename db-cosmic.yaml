@@ -77,13 +77,130 @@ ubuntu_bpf_jit:
         <<: *1753941
     s2lp6g003:
         <<: *1753941
+ubuntu_btrfs_kernel_fixes:
+    amaura: &btrfs_kernel_fixes
+        6113077cd319e747875ec71227d2b5cb54e08c76:
+            "btrfs_free_reserved_data_space_noquota+0x":
+                6113077 failed (bug 1810384)
+    daedalus:
+        <<: *btrfs_kernel_fixes
+        ff76b0565523319d7c1c0b51d5a5a8915d33efab:
+            "btrfs_destroy_inode+0x":
+                ff76b05 failed (bug 1812988)
+    baltar: &btrfs-ppc
+        6113077cd319e747875ec71227d2b5cb54e08c76:
+            "btrfs_free_reserved_data_space_noquota+0x":
+                6113077 failed (bug 1810384)
+        ff76b0565523319d7c1c0b51d5a5a8915d33efab:
+            "btrfs_destroy_inode+0x":
+                ff76b05 failed (bug 1812988)
+    modoc:
+        <<: *btrfs-ppc
 ubuntu_kernel_selftests:
-    ms10-34-mcdivittB0-kernel: &1680507
+    starmie-kernel: &kernel-selftests-arm64
         breakpoints:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
-    starmie-kernel:
-        <<: *1680507
+        net:
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
+            "FAIL: macsec":
+                rtnetlink.sh in net (bug 1812978)
+            "FAIL: ipsec":
+                rtnetlink.sh in net (bug 1812978)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+        ftrace:
+            "Kprobe dynamic event - probing module	[FAIL]":
+                Kprobe probing module in ftrace (bug 1812636)
+    ms10-34-mcdivittB0-kernel:
+        cpu-hotplug:
+            "echo: write error: Operation not supported":
+                cpu-hotplug failed on moonshot (bug 1809701)
+        <<: *kernel-selftests-arm64
+    amaura: &kernel-selftests-amd64
+        net:
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+    naumann:
+        <<: *kernel-selftests-amd64
+    pepe:
+        net:
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+        ftrace:
+            "Kprobe event string type argument	[FAIL]":
+                Kprobe event string type argument in ftrace (bug 1812645)
+    modoc:
+        net:
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+        seccomp:
+            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+        powerpc:
+            " for symbol `' out of range":
+                ebb in powerpc (bug 1812805)
+    baltar:
+        net:
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+        seccomp:
+            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+        powerpc:
+            "selftests: copy_unaligned [FAIL]":
+                alignment in powerpc (bug 1813118)
+            "selftests: paste_unaligned [FAIL]":
+                alignment in powerpc (bug 1813118)
+            "selftests: paste_last_unaligned [FAIL]":
+                alignment in powerpc (bug 1813118)
+            "selftests: dscr_sysfs_test [FAIL]":
+                dscr_sysfs_test in powerpc/dscr (bug 1813136)
+            " for symbol `' out of range":
+                ebb in powerpc (bug 1812805)
+    s2lp6g003: &selftest-s390x
+        net:
+            "reuseport_dualstack [FAIL]":
+                reuseport_dualstack in net (bug 1812843)
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
+            "msg_zerocopy.sh [FAIL]":
+                msg_zerocopy in net (bug 1812620)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+        seccomp:
+            "FAIL ] TRACE_syscall.":
+                TRACE_syscall in ftrace (bug 1812824)
+        ftrace:
+            "function glob filters	[FAIL]":
+                ftrace (bug 1812836)
+            "test histogram trigger     [FAIL]":
+                ftrace (bug 1812836)
+    s2lp4:
+        <<: *selftest-s390x
+    kernel03:
+        <<: *selftest-s390x
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -189,7 +306,7 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *syscalls-kvm
 ubuntu_lttng_smoke_test:
-    onza:
+    gonzo:
         lttng-smoke-test:
             "FAILED (did not trace any open system calls)":
                 lttng-smoke test failed on i386 4.18 kernel (bug 1802495)
@@ -216,6 +333,13 @@ ubuntu_lxc:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132
+ubuntu_qrt_kernel_security:
+    modoc: &kernel-security-ppc
+        test-kernel-security.py:
+            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
+                LOCK_DOWN_KERNEL (bug 1811981)
+    baltar:
+        <<: *kernel-security-ppc
 xfstests:
     rizzo: &xfstests
         setup:

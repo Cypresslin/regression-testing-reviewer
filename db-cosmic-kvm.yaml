@@ -24,6 +24,36 @@ ubuntu_fan_smoke_test:
         <<: *1763323
     zeppo:
         <<: *1763323
+ubuntu_kernel_selftests:
+    chico: &kernel_selftests
+        net:
+            "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
+                psock_tpacket in net failed (bug 1812176)
+            "test_bpf: [FAIL]":
+                test_bpf in net (bug 1812189)
+            "FAIL: cannot add dummy interface":
+                RTNETLINK in net (bug 1812194)
+            "fib_tests.sh [FAIL]":
+                fib_tests in net (bug 1812622)
+            "fib-onlink-tests.sh [FAIL]":
+                fib-onlink-tests in net (bug 1812622)
+            "fib_rule_tests.sh [FAIL]":
+                fib_rule_tests in net (bug 1812622)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+            "msg_zerocopy.sh [FAIL]":
+                msg_zerocopy in net (bug 1812620)
+        ftrace:
+            "Error: No ftrace directory found":
+                ftrace (bug 1812318)
+    harpo:
+        <<: *kernel_selftests
+    groucho:
+        <<: *kernel_selftests
+    gummo:
+        <<: *kernel_selftests
+    zeppo:
+        <<: *kernel_selftests
 ubuntu_ltp:
     chico: &1765331
         ltp:
@@ -90,6 +120,29 @@ ubuntu_nbd_smoke_test:
         <<: *1793491
     zeppo:
         <<: *1793491
+ubuntu_qrt_kernel_security:
+    chico: &kernel_security
+        test-kernel-security.py:
+            "SCHED_STACK_END_CHECK option was expected to be set in the kernel config":
+                SCHED_STACK_END_CHECK should be enabled (bug 1812159)
+            "SECURITY_SELINUX_DISABLE option was expected to be unset in the kernel config":
+                CONFIG_SECURITY_SELINUX_DISABLE should be disabled (bug 1812153)
+            "LOCK_DOWN_KERNEL option was expected to be set in the kernel config":
+                LOCK_DOWN_KERNEL should be enabled (bug 1811981)
+            "PAGE_POISONING option was expected to be set in the kernel config":
+                PAGE_POISONING / PAGE_POISONING_NO_SANITY / PAGE_POISONING_ZERO should be enabled (bug 1812624)
+            "PAGE_POISONING_NO_SANITY option was expected to be set in the kernel config":
+                PAGE_POISONING / PAGE_POISONING_NO_SANITY / PAGE_POISONING_ZERO should be enabled (bug 1812624)
+            "PAGE_POISONING_ZERO option was expected to be set in the kernel config":
+                PAGE_POISONING / PAGE_POISONING_NO_SANITY / PAGE_POISONING_ZERO should be enabled (bug 1812624)
+    harpo:
+        <<: *kernel_security
+    groucho:
+        <<: *kernel_security
+    gummo:
+        <<: *kernel_security
+    zeppo:
+        <<: *kernel_security
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:

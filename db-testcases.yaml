@@ -26,7 +26,6 @@ cosmic:
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *c-non-x86
-        ? ubuntu_boot
         ? xfstests
 cosmic-kvm:
     amd64:
@@ -68,7 +67,6 @@ bionic:
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *b-non-x86
-        ? ubuntu_boot
         ? xfstests
 bionic-kvm:
     amd64:

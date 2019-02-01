@@ -16,3 +16,5 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "AssertionError: RETPOLINE option was expected to be unset in the kernel config":
                 CONFIG_RETPOLINE=y in kernel (bug 1786894)
+            "AssertionError: cat: /proc/self/stack: Permission denied":
+                test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)

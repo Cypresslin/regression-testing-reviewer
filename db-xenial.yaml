@@ -54,15 +54,42 @@ ubuntu_bpf_jit:
         <<: *1768452
     kernel01:
         <<: *1768452
+ubuntu_kernel_selftests:
+    chico: &kernel-selftests-kvm
+        cpu-hotplug:
+            "skip all tests:: since there is only one cpu: 0":
+                cpu-hotplug with 1 cpu (bug 1812149)
+    harpo:
+        <<: *kernel-selftests-kvm
+    groucho:
+        <<: *kernel-selftests-kvm
+    gummo:
+        <<: *kernel-selftests-kvm
+    zeppo:
+        <<: *kernel-selftests-kvm
+    ms10-34-mcdivittB0-kernel:
+        cpu-hotplug:
+            "echo: write error: Operation not supported":
+                cpu-hotplug failed on moonshot (bug 1809701)
+    s2lp6g001: &kernel-selftests-s390x
+        net:
+            "selftests: test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
+    s2lp3:
+        <<: *kernel-selftests-s390x
+    kernel01:
+        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
-    entei:
+    modoc:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool, bug 1755118
-    ms10-35-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel: &kvm-smoke-arm64
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
+    wright-kernel:
+        <<: *kvm-smoke-arm64
     s2lp3: &1729854
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: XML error: No PCI buses available":
@@ -154,16 +181,29 @@ ubuntu_lxc:
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     s2lp6g001:
         <<: *exercise
+ubuntu_qrt_kernel_security:
+    s2lp6g001: &kernel_security
+        test-kernel-security.py:
+            "SECURITY_SELINUX_DISABLE option was expected to be set":
+                SECURITY_SELINUX_DISABLE option hould be enable on X s390x (bug 1813721)
+    kernel01:
+        <<: *kernel_security
+    s2lp3:
+        <<: *kernel_security
 xfstests:
-    fozzie:
-        xfs:
-            "[stdout] generic/307":
-                xfs generic/308 timed out (bug 1738152)
-            "[stdout] generic/308":
-                YOU SHOULD NOT SEE THIS, xfs generic/308 DIDN'T HANG, PLEASE CHECK
+    rizzo:
+        ext4:
+            "[stdout] generic/474":
+                ext4 generic/475 timed out
+            "[stdout] generic/475":
+                YOU SHOULD NOT SEE THIS, ext4 generic/475 DIDN'T HANG, PLEASE CHECK
     entei:
         btrfs:
             "[stdout] generic/175":
                 btrfs generic/176 timed out
             "[stdout] generic/176":
                 YOU SHOULD NOT SEE THIS, btrfs generic/176 DIDN'T HANG, PLEASE CHECK
+    fozzie:
+        xfs:
+            "[stdout] generic/307":
+                xfs generic/308 timed out (bug 1738152)

@@ -16,6 +16,47 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
+ubuntu_btrfs_kernel_fixes:
+    amaura: &btrfs_kernel_fixes
+        6113077cd319e747875ec71227d2b5cb54e08c76:
+            "btrfs_free_reserved_data_space_noquota+0x":
+                6113077 failed (bug 1810384)
+    daedalus:
+        <<: *btrfs_kernel_fixes
+    modoc: &btrfs-ppc
+        6113077cd319e747875ec71227d2b5cb54e08c76:
+            "btrfs_free_reserved_data_space_noquota+0x":
+                6113077 failed (bug 1810384)
+ubuntu_kernel_selftests:
+    amaura: &kernel-selftests
+        net:
+            "make: *** [all] Error 2":
+                net test failed to build (bug 1813883)
+        seccomp:
+            "FAIL ] global.get_metadata":
+                global.get_metadata in seccomp (bug 1811057)
+    naumann:
+        <<: *kernel-selftests
+    pepe:
+        <<: *kernel-selftests
+    fozzie:
+        <<: *kernel-selftests
+    starmie-kernel:
+        <<: *kernel-selftests
+    ms10-34-mcdivittB0-kernel:
+        <<: *kernel-selftests
+        cpu-hotplug:
+            "echo: write error: Operation not supported":
+                cpu-hotplug failed on moonshot (bug 1809701)
+    modoc:
+        net:
+            "make: *** [all] Error 2":
+                net test failed to build (bug )
+        seccomp:
+            "FAIL ] global.get_metadata":
+                global.get_metadata in seccomp (bug 1811057)
+            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
 ubuntu_kvm_smoke_test:
     entei:
         kvm_smoke_test:
@@ -27,6 +68,10 @@ ubuntu_kvm_smoke_test:
                 unable to create KVM with uvtool (bug 1749427)
     wright-kernel:
         <<: *1749427
+    pepe:
+        kvm_smoke_test:
+            "timed out waiting for dnsmasq":
+                Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     entei:
         all:
@@ -97,6 +142,11 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
+ubuntu_qrt_kernel_security:
+    modoc: &kernel-security-ppc
+        test-kernel-security.py:
+            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
+                LOCK_DOWN_KERNEL (bug 1811981)
 ubuntu_sysdig_smoke_test:
     entei: &sysdig
         sysdig-smoke-test:

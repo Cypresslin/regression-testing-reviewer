@@ -23,6 +23,15 @@ libhugetlbfs:
                 noresv-preserve-resv-page failed (bug 1747823)
             "chunk-overcommit (2M: 64):	FAIL	Killed by signal \"Bus error\" due to overcommit":
                 chunk-overcommit failed (bug 1747828)
+ubuntu_btrfs_kernel_fixes:
+    amaura: &btrfs_kernel_fixes
+        9f03740a956d7ac6a1b8f8c455da6fa5cae11c22:
+            "At subvol /tmp/mnt-9f03740a956d7ac6a1b8f8c455da6fa5cae11c22/btrfs/snap2":
+                9f03740a956d7ac6a1b8f8c455da6fa5cae11c22 hang (bug 1809879)
+    ms10-35-mcdivittB0-kernel:
+        <<: *btrfs_kernel_fixes
+    pepe:
+        <<: *btrfs_kernel_fixes
 ubuntu_cts_kernel:
     entei:
         lp1262692:
@@ -50,14 +59,14 @@ ubuntu_kvm_smoke_test:
             "OSError: [Errno 25] Inappropriate ioctl for device":
                 getlogin will fail to open /proc/self/loginuid (bug 1770245)
 ubuntu_kvm_unit_tests:
-    pepe:
+    onza:
         setup:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
 ubuntu_ltp_syscalls:
-    pepe:
-        syscalls: &syscalls
-            "tst_mkfs.c:101: BROK: mkfs.vfat":
+    pepe: &syscalls
+        syscalls:
+            "BROK: mkfs.vfat:1: tst_test.c failed with 749":
                 fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
             "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)

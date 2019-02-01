@@ -16,6 +16,26 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_btrfs_kernel_fixes:
+    amaura: &btrfs_kernel_fixes
+        2365dd3ca02bbb6d3412404482e1d85752549953:
+            "mount -o degraded /dev/loop0 /tmp/mnt-2365dd3ca02bbb6d3412404482e1d85752549953 was expected to fail":
+                2365dd3 failed (bug 1809870)
+        6113077cd319e747875ec71227d2b5cb54e08c76:
+            "btrfs_free_reserved_data_space_noquota+0xcb/0xe0":
+                6113077 failed (bug 1810384)
+    daedalus:
+        <<: *btrfs_kernel_fixes
+ubuntu_kernel_selftests:
+    amaura: &kernel_selftests
+        seccomp:
+            "FAIL ] global.get_metadata":
+                global.get_metadata in seccomp_bpf (bug 1811057)
+        timers:
+            "raw_skew [FAIL]":
+                raw_skew in timer (bug 1811194)
+    naumann:
+        <<: *kernel_selftests
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:

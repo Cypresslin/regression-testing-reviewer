@@ -41,6 +41,21 @@ ubuntu_fan_smoke_test:
         <<: *1763323
     zeppo:
         <<: *1763323
+ubuntu_kernel_selftests:
+    chico: &kernel_selftests
+        net:
+            "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
+                psock_tpacket in net failed (bug 1812176)
+            "test_bpf: [FAIL]":
+                test_bpf in net (bug 1812189)
+    harpo:
+        <<: *kernel_selftests
+    groucho:
+        <<: *kernel_selftests
+    gummo:
+        <<: *kernel_selftests
+    zeppo:
+        <<: *kernel_selftests
 ubuntu_lxc:
     chico: &1764618
         exercise:
@@ -100,6 +115,19 @@ ubuntu_nbd_smoke_test:
         <<: *1793491
     zeppo:
         <<: *1793491
+ubuntu_qrt_kernel_security:
+    chico: &kernel_security
+        test-kernel-security.py:
+            "SCHED_STACK_END_CHECK option was expected to be set in the kernel config":
+                SCHED_STACK_END_CHECK should be enabled (bug 1812159)
+    harpo:
+        <<: *kernel_security
+    groucho:
+        <<: *kernel_security
+    gummo:
+        <<: *kernel_security
+    zeppo:
+        <<: *kernel_security
 ubuntu_quota_smoke_test:
     chico: &1784535
         quota-smoke-test:
