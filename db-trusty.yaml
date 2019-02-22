@@ -42,7 +42,13 @@ ubuntu_cts_kernel:
             "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
 ubuntu_kvm_smoke_test:
-    gonzo:
+    pepe:
+        kvm_smoke_test:
+            "uvt-kvm: error: timed out waiting for dnsmasq lease":
+                Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+            "Warning: Permanently added":
+                uvt-kvm wait issue on Trusty(bug 1732883)
+    onibi:
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease":
                 Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
@@ -54,7 +60,7 @@ ubuntu_kvm_smoke_test:
                 no supported architecture for 'hvm' (bug 1752550)
     modoc:
        <<: *kvm-smoke-ppc
-    ms10-35-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel:
         kvm_smoke_test:
             "OSError: [Errno 25] Inappropriate ioctl for device":
                 getlogin will fail to open /proc/self/loginuid (bug 1770245)
@@ -168,6 +174,10 @@ ubuntu_qrt_kernel_security:
                 test 050 (bug 1684776)
             "DEBUG_RODATA option was expected to be set in the kernel config":
                 test_130_config_debug_rodata (bug 1747850)
+    entei:
+        test-kernel-security.py:
+            "FAIL: test_ulimit_stack_small":
+                test_ulimit_stack_small failed on PPC64 (bug 1816467)
 ubuntu_zram_smoke_test:
     entei:
         zram-smoke-test:
