@@ -36,6 +36,7 @@ cosmic-kvm:
         ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
@@ -77,6 +78,7 @@ bionic-kvm:
         ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
@@ -170,6 +172,7 @@ xenial-kvm:
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_ecryptfs
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_ltp
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
@@ -318,6 +321,7 @@ full-list: [
     ubuntu_docker_smoke_test,
     ubuntu_ecryptfs,
     ubuntu_fan_smoke_test,
+    ubuntu_ftrace_smoke_test,
     ubuntu_kernel_selftests,
     ubuntu_kvm_smoke_test,
     ubuntu_kvm_unit_tests,

@@ -1,0 +1,11 @@
+4.4.0-1043.49 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) test_user_copy return code in user (bug 1812352)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) port80 (bug 1748105) vmx_apic_passthrough_thread (bug 1822309)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) getrandom02 (bug 1797327) inotify07 (bug 1774387) inotify08 (bug 1775784) msgstress03 (bug 1797341) quotactl01, quotactl02, quotactl03 (bug 1797325) sync_file_range02 (bug 1819116) tested manually for nfs-kernel-server issue (bug 1821275)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_qrt_kernel_security - SCHED_STACK_END_CHECK should be enabled (bug 1812159)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)

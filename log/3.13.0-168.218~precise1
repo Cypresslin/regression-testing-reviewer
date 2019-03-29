@@ -1,0 +1,13 @@
+3.13.0-168.218~precise1 - generic
+Regression test CMPL, RTB.
+
+35 / 36 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)
+
+33 / 34 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)
+
+test_062_guard_page_split in ubuntu_qrt_kernel_security on i386 is flaky
+(lp:1820828)

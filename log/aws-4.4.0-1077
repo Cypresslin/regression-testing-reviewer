@@ -1,0 +1,17 @@
+4.4.0-1077.87 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3 on t2.small, passed on the rest
+  ubuntu_kernel_selftests - cpu_hotplug (bug 1812149) on t2.small, psock_fanout on r3.large, c4.large
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - failed on 3 instances (c3.xlarge, c5n.xlarge), passed on the rest
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: ubuntu_ltp_syscalls test must be reviewed on the Jenkins server, the hang issue (bug 1777779) will prevent it from copy the test report

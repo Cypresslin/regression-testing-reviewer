@@ -70,10 +70,10 @@ ubuntu_kvm_unit_tests:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
 ubuntu_ltp_syscalls:
-    pepe: &syscalls
+    pepe: &syscalls-i386
         syscalls:
-            "BROK: mkfs.vfat:1: tst_test.c failed with 749":
-                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "BROK: mkfs.vfat:1: tst_test.c failed with":
+                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
             "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
             "FAIL: KEYCTL_READ overran the buffer":
@@ -90,18 +90,18 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 timeouted (bug 1775165)
             "FAIL: group 1 got event":
                 fanotify09 (bug 1775153)
-            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+            "FAIL: group 1 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                 fanotify10 (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
     amaura:
-        <<: *syscalls
+        <<: *syscalls-i386
     entei: &syscalls-ppc
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
             "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
             "FAIL: KEYCTL_READ overran the buffer":
@@ -131,7 +131,7 @@ ubuntu_ltp_syscalls:
     ms10-35-mcdivittB0-kernel:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
             "FAIL: group 3 got event":
                 fanotify06 (bug 1775378)
             "tag=fanotify07 stime=":

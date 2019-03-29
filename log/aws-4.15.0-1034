@@ -1,0 +1,31 @@
+4.15.0-1034.36 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  iosched_bugs - should be blacklisted
+  monotonic_time - should be blacklisted
+  ubuntu_32_on_64 - should be blacklisted
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1812149) global.get_metadata in seccomp (bug 1811057) RTNETLINK in net (bug 1812194) raw_skew in timer (bug 1811194)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) msgstress03 (bug 1783881) sync_file_range02 (bug 1819116)
+  ubuntu_nbd_smoke_test - failed on some instances (bug 1819627)
+  ubuntu_sysdig_smoke_test - should be blacklisted
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) RTNETLINK in net (bug 1812194) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - test failed to build
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) msgstress03 (bug 1783881) sync_file_range02 (bug 1819116)
+  ubuntu_nbd_smoke_test - failed on some instances (bug 1819627)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

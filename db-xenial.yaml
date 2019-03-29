@@ -123,6 +123,14 @@ ubuntu_kvm_unit_tests:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
+    gonzo:
+        all:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+            "FAIL vmware_backdoors":
+                vmware_backdoors (bug 1821393)
+            "FAIL svm":
+                svm (bug 1821903)
 ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
