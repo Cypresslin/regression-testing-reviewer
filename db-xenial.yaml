@@ -49,11 +49,19 @@ ubuntu_bpf_jit:
     s2lp3: &1768452
         ubuntu-bjf-jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
-               unable to insert test_bpf on Xenial s390x (bug 1768452)
+                unable to insert test_bpf on Xenial s390x (bug 1768452)
     s2lp6g001:
         <<: *1768452
     kernel01:
         <<: *1768452
+ubuntu_btrfs_kernel_fixes:
+    pepe:
+        aa9ddcd4b5557102fa25695c11904f249b4dec49:
+            "BUG btrfs_extent_map":
+                aa9ddcd4 on 4.4 i386 (bug 1821913)
+        e755f780865221252ef3321215c9796b78e7b1c5:
+            "BUG btrfs_extent_map":
+                e755f780 on 4.4 i386 (bug 1822560)
 ubuntu_kernel_selftests:
     chico: &kernel-selftests-kvm
         cpu-hotplug:
@@ -98,6 +106,10 @@ ubuntu_kvm_smoke_test:
         <<: *1729854
     kernel01:
         <<: *1729854
+    pepe:
+        kvm_smoke_test:
+            "timed out waiting for dnsmasq lease":
+                timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     entei:
         all:
@@ -115,6 +127,10 @@ ubuntu_kvm_unit_tests:
                 gicv2-ipi and gicv2-active on starmie
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2-ipi and gicv2-active on starmie
+    s2lp6g001:
+        all:
+            "FAIL selftest-setup (timeout":
+                All tests failed on s390x KVM (bug 1822542)
     kernel01:
         all:
             "FAIL skey (2 tests)":
@@ -123,6 +139,14 @@ ubuntu_kvm_unit_tests:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
+    gonzo:
+        all:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+            "FAIL svm":
+                svm (bug 1821903)
+            "FAIL debug":
+                debug (bug 1821906)
 ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
@@ -138,10 +162,12 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
+            "tag=fanotify10 stime=":
+                fanotify10 timeouted (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     modoc:
         <<: *syscalls-p8
     kernel01: &syscalls
@@ -156,10 +182,12 @@ ubuntu_ltp_syscalls:
                 fanotify07/fanotify08 timeouted (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09 timeouted (bug 1775153)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
+            "tag=fanotify10 stime=":
+                fanotify10 timeouted (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     amaura:
@@ -185,7 +213,7 @@ ubuntu_qrt_kernel_security:
     s2lp6g001: &kernel_security
         test-kernel-security.py:
             "SECURITY_SELINUX_DISABLE option was expected to be set":
-                SECURITY_SELINUX_DISABLE option hould be enable on X s390x (bug 1813721)
+                SECURITY_SELINUX_DISABLE option should be enable on X s390x (bug 1813721)
     kernel01:
         <<: *kernel_security
     s2lp3:

@@ -53,6 +53,8 @@ ubuntu_ltp_syscalls:
                 inotify08 (bug 1775784)
             "fanotify09.c:182: FAIL: group 1 got event":
                 fanotify09 (bug 1775153)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls
     amaura:

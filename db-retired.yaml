@@ -468,6 +468,8 @@ bionic:
                     fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
                 "fanotify09.c:182: FAIL: group 1 got event":
                     fanotify09 failed with T/A/B kernel (bug 1775153)
+                "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                    fanotify10 (bug 1802454)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
     ubuntu_lxc:
@@ -562,6 +564,11 @@ bionic:
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-b
 bionic-hwe:
+    ubuntu_btrfs_kernel_fixes:
+        amaura: &btrfs_kernel_fixes
+            6113077cd319e747875ec71227d2b5cb54e08c76:
+                "btrfs_free_reserved_data_space_noquota+0xcb/0xe0":
+                    6113077 failed (bug 1810384)
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
@@ -700,12 +707,16 @@ bionic-oem:
             syscalls:
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                    fanotify10 (bug 1802454)
 cosmic:
     ubuntu_ltp_syscalls:
         baltar:
             syscalls:
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "inotify08.c:150: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
                 "fanotify10.c:258: FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
     ubuntu_qrt_kernel_security:

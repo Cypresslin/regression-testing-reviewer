@@ -109,6 +109,14 @@ ubuntu_kvm_unit_tests:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
+    gonzo:
+        all:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+            "FAIL vmware_backdoors":
+                vmware_backdoors (bug 1821393)
+            "FAIL svm":
+                svm (bug 1821903)
 ubuntu_ltp_syscalls:
     entei: &syscalls-ppc
         syscalls:
@@ -122,6 +130,8 @@ ubuntu_ltp_syscalls:
                 fanotify09-2 (bug 1804594)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     modoc:
         <<: *syscalls-ppc
     amaura: &syscalls-amd64
@@ -134,6 +144,8 @@ ubuntu_ltp_syscalls:
                 fanotify09-2 (bug 1804594)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls-amd64
     pepe:
