@@ -1,0 +1,55 @@
+4.4.0-145.171 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) svm (bug 1821903) debug (bug 1821906)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+  xfstests - xfs generic/475 timed out
+
+48 / 49 tests were run, missing: xfstests
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+
+Issue to note in i386:
+  ubuntu_btrfs_kernel_fixes - aa9ddcd4 on 4.4 i386 (bug 1821913) e755f780 on 4.4 i386 (bug 1822560)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+  xfstests - xfs generic/308 timed out (bug 1738152)
+
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
+  ubuntu_ltp_syscalls - fallocate04 fallocate05 fdatasync03 fgetxattr01 fremovexattr01 fremovexattr02 fsetxattr01 fsync01 fsync04 inotify07 inotify08 lremovexattr01 msync04 preadv03 preadv03_64 pwritev03 pwritev03_64 setxattr01 sync03 (btrfs failed with ENOSPC) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify10 timeouted (bug 1802454) fanotify11 timeouted (bug 1808107) sync_file_range02 (bug 1819116)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in s390x (KVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - All tests failed on s390x KVM (bug 1822542)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_kernel_security - SECURITY_SELINUX_DISABLE option hould be enable on X s390x (bug 1813721)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_kernel_security - SECURITY_SELINUX_DISABLE option hould be enable on X s390x (bug 1813721)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 timeouted (bug 1775165) fanotify09 timeouted (bug 1775153) fanotify11 timeouted (bug 1808107)
+  ubuntu_qrt_kernel_security - SECURITY_SELINUX_DISABLE option should be enable on X s390x (bug 1813721)

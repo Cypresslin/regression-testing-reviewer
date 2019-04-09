@@ -1,0 +1,18 @@
+4.18.0-1011.13 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - msg_zerocopy in net (bug 1812620) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib related test in net (bug 1812622)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls -  fanotify case 2 (bug 1804594) msgstress03 (bug 1783881) sync_file_range02 (bug 1819116) getrandom02 (bug 1797327)
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - msg_zerocopy in net (bug 1812620) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib related test in net (bug 1812622)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - fanotify case 2 (bug 1804594) sync_file_range02 (bug 1819116)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

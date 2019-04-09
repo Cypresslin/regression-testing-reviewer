@@ -1,0 +1,14 @@
+4.15.0-1033.35~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  monotonic_time - failed on m5a.large
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) reuseport_bpf in net failed to build (bug 1813883)
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) statx05 (bug 1798524)
+  ubuntu_lxc - GPG key fetch issue
+
+Skipped / blacklisted:
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

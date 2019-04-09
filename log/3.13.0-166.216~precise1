@@ -1,0 +1,11 @@
+3.13.0-166.216~precise1 - generic
+Regression test CMPL, RTB.
+
+35 / 36 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)
+  ubuntu_ftrace_smoke - timeouted on amd64 (bug 1819850)
+
+33 / 34 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_qrt_kernel_security - CONFIG_RETPOLINE=y in kernel (bug 1786894)
