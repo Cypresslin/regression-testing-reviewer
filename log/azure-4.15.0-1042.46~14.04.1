@@ -1,0 +1,20 @@
+4.15.0-1042.46~14.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3 on Standard_B1ms and Standard_F1s
+  monotonic_time - tsc failed on Standard_D2_v3
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) port80 (bug 1748105) umip (1821905) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp - test disabled on azure
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fremovexattr01, fremovexattr02, fgetxattr01, fsync01, fsync04, lremovexattr01, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, statx04, sync_file_range02, syncfs01, sync03 (bug 1785198) quotactl01 (bug 1790028) statx05 (bug 1798524) inotify08 (bug 1775784) openat03 (bug 1798027) fanotify09-2 (bug 1804594)
+  ubuntu_lxc - lxc test failed on Azure T-4.15 (bug 1813878)
+  ubunut_qrt_apparmor - timed out on Standard-B1ms, Standard-F1s
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * ubuntu_fan_smoke_test
+  * ubuntu_kernel_selftests
+  * ubuntu_lttng_smoke_test
+  * ubuntu_nbd_smoke_test
+  * ubuntu_sysdig_smoke_test
+  * ubuntu_zfs_smoke_test

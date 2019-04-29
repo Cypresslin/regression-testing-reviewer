@@ -1,0 +1,15 @@
+4.15.0-1030.32 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_k8s_unit_tests	- scheduler and spdy (bug 1824136)
+  ubunut_kernel_selftests - cpu-hotplug fail with 1 cpu (bug 1812149) rtnetlink.sh in net (bug 1812194) global.get_metadata in seccomp_bpf (bug 1811057) raw_skew in timers (bug 1825491)
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - execveat03 failed (bug 1786729) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) getrandom02/inotify09 timeouted on slow machine (bug 1782758) msgstress03 (bug 1797341) quotactl01 failed (bug 1790028)
+  ubuntu_lxc - failed on 1 node only, passed on the rest
+  ubuntu_qrt_kernel_panic - missing keyctl package
+  ubuntu_stress_smoke_test- failed on 1 node only, passed on the rest
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp

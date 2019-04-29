@@ -1,0 +1,14 @@
+4.18.0-1010.10 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618) ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103) port80 (bug 1748105) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) eventinj, pcid, ept, hyperv_stimer, hyperv_synic
+  ubuntu_ltp - binfmt_misc02 (bug 1822246)
+  ubuntu_ltp_syscalls - getrandom02 timed out (bug 1797327) fanotify09 case 2 (bug 1804594) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl01, quotactl02, quotactl03 (bug 1797325) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - lxc-test-no-new-privs failed with DNS issue on KVM (bug 1821152)
+  ubuntu_qrt_apparmor -  mmap timeouted (bug 1783922)
+  ubuntu_qrt_kernel_security - SCHED_STACK_END_CHECK should be enabled (bug 1812159) LOCK_DOWN_KERNEL should be enabled (bug 1811981)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on KVM kernel (bug 1766565)
