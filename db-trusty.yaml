@@ -69,6 +69,22 @@ ubuntu_kvm_unit_tests:
         setup:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
+    gonzo:
+        all:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+            "FAIL ioapic":
+                ioapic (bug 1824289)
+            "FAIL emulator":
+                emulator (bug 1824291)
+            "FAIL eventinj":
+                eventinj (bug 1824293)
+            "FAIL realmode":
+                realmode (bug 1824294)
+            "FAIL svm":
+                svm (bug 1821903)
+            "FAIL umip":
+                umip should be skipped (bug 1821905)
 ubuntu_ltp_syscalls:
     pepe: &syscalls-i386
         syscalls:

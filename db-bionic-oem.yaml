@@ -31,10 +31,9 @@ ubuntu_kernel_selftests:
         seccomp:
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
     naumann:
+        <<: *kernel_selftests
+    gonzo:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
     gonzo:
@@ -43,8 +42,6 @@ ubuntu_kvm_unit_tests:
                 apic-split timeouted (bug 1821390)
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL vmware_backdoors":
-                vmware_backdoors (bug 1821393)
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp_syscalls:

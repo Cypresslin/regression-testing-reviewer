@@ -220,11 +220,11 @@ ubuntu_qrt_kernel_security:
         <<: *kernel_security
 xfstests:
     rizzo:
-        ext4:
+        xfs:
             "[stdout] generic/474":
-                ext4 generic/475 timed out
+                xfs generic/475 timed out
             "[stdout] generic/475":
-                YOU SHOULD NOT SEE THIS, ext4 generic/475 DIDN'T HANG, PLEASE CHECK
+                YOU SHOULD NOT SEE THIS, xfs generic/475 DIDN'T HANG, PLEASE CHECK
     entei:
         btrfs:
             "[stdout] generic/175":

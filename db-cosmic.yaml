@@ -106,8 +106,6 @@ ubuntu_kernel_selftests:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
         net:
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "FAIL: ipv6 addrlabel":
                 rtnetlink.sh in net (bug 1812978)
             "FAIL: macsec":
@@ -126,18 +124,16 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-arm64
     amaura: &kernel-selftests-amd64
         net:
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "FAIL: ipv6 addrlabel":
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
     naumann:
         <<: *kernel-selftests-amd64
+    gonzo:
+        <<: *kernel-selftests-amd64
     fozzie:
         net:
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "FAIL: ipv6 addrlabel":
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
@@ -149,8 +145,6 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         seccomp:
@@ -163,8 +157,6 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         seccomp:
@@ -185,8 +177,6 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_dualstack [FAIL]":
                 reuseport_dualstack in net (bug 1812843)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "FAIL: ipv6 addrlabel":
                 rtnetlink.sh in net (bug 1812978)
             "msg_zerocopy.sh [FAIL]":
@@ -251,8 +241,6 @@ ubuntu_kvm_unit_tests:
                 apic-split timeouted (bug 1821390)
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL vmware_backdoors":
-                vmware_backdoors (bug 1821393)
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp:

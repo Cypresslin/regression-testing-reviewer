@@ -208,6 +208,7 @@ trusty:
         ? ubuntu_seccomp
     arm64:
         <<: *t-non-x86
+        ? ubuntu_ftrace_smoke_test
 trusty-hwe:
     amd64: &t-hwe-amd64
         ? ubuntu_bpf
@@ -235,6 +236,7 @@ trusty-hwe:
         ? ubuntu_seccomp
     arm64:
         <<: *t-hwe-non-x86
+        ? ubuntu_ftrace_smoke_test
 precise-hwe:
     amd64: &p-hwe-amd64
         ? libhugetlbfs

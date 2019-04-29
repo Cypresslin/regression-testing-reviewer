@@ -188,6 +188,8 @@ xenial-edge:
         all:
             "FAIL emulator":
                 emulator failed (bug 1723914)
+            "FAIL vmware_backdoors":
+                vmware_backdoors (bug 1821393)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -459,6 +461,10 @@ bionic:
                     selftest-setup failed (bug 1750809)
                 "FAIL intercept (20 tests, 3 unexpected failures)":
                     intercept test failed (bug 1750808)
+        gonzo:
+            all:
+                "FAIL vmware_backdoors":
+                    vmware_backdoors (bug 1821393)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -569,6 +575,16 @@ bionic-hwe:
             6113077cd319e747875ec71227d2b5cb54e08c76:
                 "btrfs_free_reserved_data_space_noquota+0xcb/0xe0":
                     6113077 failed (bug 1810384)
+    ubuntu_kernel_selftests:
+        fozzie:
+            net:
+                "test_bpf.sh [FAIL]":
+                    test_bpf in net (bug 1812189)
+    ubuntu_kvm_unit_tests:
+        gonzo:
+            all:
+                "FAIL vmware_backdoors":
+                    vmware_backdoors (bug 1821393)
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
@@ -603,6 +619,11 @@ bionic-kvm:
             <<: *1760636-b-kvm
         zeppo:
             <<: *1760636-b-kvm
+    ubuntu_kernel_selftests:
+        amaura:
+            net:
+                "test_bpf.sh [FAIL]":
+                    test_bpf in net (bug 1812189)
     ubuntu_kvm_smoke_test:
         chico: &1765005-b-kvm
             kvm_smoke_test:
@@ -709,7 +730,17 @@ bionic-oem:
                     execveat03 failed (bug 1786729)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
+    ubuntu_kernel_selftests:
+        amaura:
+            timers:
+                "raw_skew [FAIL]":
+                    raw_skew in timer (bug 1811194)
 cosmic:
+    ubuntu_kvm_unit_tests:
+        gonzo:
+            all:
+                "FAIL vmware_backdoors":
+                    vmware_backdoors (bug 1821393)
     ubuntu_ltp_syscalls:
         baltar:
             syscalls:

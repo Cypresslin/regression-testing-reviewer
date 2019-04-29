@@ -253,8 +253,6 @@ ubuntu_kvm_unit_tests:
                 apic-split timeouted (bug 1821390)
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL vmware_backdoors":
-                vmware_backdoors (bug 1821393)
             "FAIL svm":
                 svm (bug 1821903)
     ms10-34-mcdivittB0-kernel:

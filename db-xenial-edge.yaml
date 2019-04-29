@@ -35,6 +35,8 @@ ubuntu_kernel_selftests:
         seccomp:
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
+    gonzo:
+        <<: *kernel-selftests
     naumann:
         <<: *kernel-selftests
     pepe:
@@ -113,8 +115,6 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL vmware_backdoors":
-                vmware_backdoors (bug 1821393)
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp_syscalls:

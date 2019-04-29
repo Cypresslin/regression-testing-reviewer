@@ -16,6 +16,11 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
+ubuntu_btrfs_kernel_fixes:
+    pepe:
+        aa9ddcd4b5557102fa25695c11904f249b4dec49:
+            "BUG btrfs_extent_map":
+                btrfs module removal after failed fallocate attempt (bug 1822579)
 ubuntu_cts_kernel:
     entei:
         lp1262692:
@@ -121,6 +126,16 @@ ubuntu_qrt_kernel_security:
                 STACKPROTECTOR should be unset (bug 1789353)
             "AssertionError: HAVE_CC_STACKPROTECTOR option was expected to be unset in the kernel config":
                 STACKPROTECTOR should be unset (bug 1789353)
+            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
+                BINFMT_AOUT should be set (bug 1824306)
+    onibi:
+        test-kernel-security.py:
+            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
+                BINFMT_AOUT should be set (bug 1824306)
+    modoc:
+        test-kernel-security.py:
+            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
+                BINFMT_AOUT should be set (bug 1824306)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:
