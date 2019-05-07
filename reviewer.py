@@ -172,7 +172,7 @@ for kernel in report[target_distro]:
         if kvm_filter not in kernel:
             continue
     elif args.oem:
-        if oem_filter not in kernel:
+        if not kernel.endswith(oem_filter):
             continue
     elif hwe_filter in kernel or kvm_filter in kernel:
         continue
