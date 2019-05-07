@@ -88,6 +88,11 @@ bionic-oem:
         <<: *b-amd64
         ? ubuntu_ltp
         ? ubuntu_ramfs_stress
+bionic-oem-osp1:
+    amd64:
+        <<: *b-amd64
+        ? ubuntu_ltp
+        ? ubuntu_ramfs_stress
 bionic-hwe:
     amd64: &b-hwe-amd64
         ? libhugetlbfs
@@ -140,6 +145,29 @@ xenial:
         <<: *x-non-x86
         ? ubuntu_boot
         ? xfstests
+xenial-hwe:
+    amd64: &x-hwe-amd64
+        ? ubuntu_bpf
+        ? ubuntu_ecryptfs
+        ? ubuntu_ltp
+        ? ubuntu_ramfs_stress
+        ? ubuntu_seccomp
+    i386:
+        <<: *x-hwe-amd64
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_xfs_generic
+        ? ubuntu_zfs_smoke_test
+    ppc64le: &x-hwe-non-x86
+        <<: *x-hwe-amd64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+    arm64:
+        <<: *x-hwe-non-x86
+        ? ubuntu_sysdig_smoke_test
 xenial-edge:
     amd64: &x-edge-amd64
         ? ubuntu_bpf

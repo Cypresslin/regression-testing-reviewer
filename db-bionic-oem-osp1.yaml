@@ -1,0 +1,57 @@
+# 5.0 Bionic OEM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_kernel_selftests:
+    amaura: &kernel_selftests
+        net:
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag (bug 1826848)
+    naumann:
+        <<: *kernel_selftests
+    gonzo:
+        <<: *kernel_selftests
+ubuntu_kvm_unit_tests:
+    gonzo:
+        all:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+ubuntu_ltp_syscalls:
+    amaura: &syscalls-amd64
+        syscalls:
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
+    secchi:
+        <<: *syscalls-amd64
+    lodygin:
+        <<: *syscalls-amd64
+ubuntu_lttng_smoke_test:
+    onibi:
+         lttng-smoke-test:
+            "TestError: DKMS failed to install":
+                failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+ubuntu_sysdig_smoke_test:
+    onibi:
+        sysdig-smoke-test:
+            "TestError: DKMS failed to install":
+                failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+xfstests:
+    rizzo: &xfstests
+        ext4:
+            "generic/429	 [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    michael:
+        <<: *xfstests
