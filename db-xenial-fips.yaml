@@ -1,0 +1,107 @@
+# 4.4 Xenial FIPS
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_kernel_selftests:
+    modoc:
+        net:
+            "make: *** [all] Error 2":
+                failed to build reuseport_bpf (bug 1828912)
+        powerpc:
+            "dscr_inherit_test [FAIL]":
+                dscr_inherit_test (bug 1828913)
+            "dscr_inherit_exec_test [FAIL]":
+                dscr_inherit_exec_test (bug 1828915)
+            "ptrace-tm-gpr [FAIL]":
+                ptrace-tm-gpr (bug 1828916)
+            "ptrace-tm-spd-gpr [FAIL]":
+                ptrace-tm-spd-gpr (bug 1828917)
+            "ptrace-tar [FAIL]":
+                ptrace-tar (bug 1828918)
+            "ptrace-tm-tar [FAIL]":
+                ptrace-tm-tar (bug 1828919)
+            "ptrace-tm-spd-tar [FAIL]":
+                ptrace_tm_spd_tar (bug 1828920)
+        seccomp:
+            "[ FAIL ] global.get_metadata":
+                global.get_metadata in seccomp (bug 1811057)
+ubuntu_kvm_unit_tests:
+    gonzo:
+        all:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+            "FAIL debug":
+                debug (bug 1821906)
+ubuntu_ltp_syscalls:
+    entei: &syscalls-p8
+        syscalls:
+            "mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
+                fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+            "tag=fanotify10 stime=":
+                fanotify10 timeouted (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
+    modoc:
+        <<: *syscalls-p8
+    amaura: &syscalls
+        syscalls:
+            "inotify07.c:157: FAIL: didn't get event: mask=":
+                inotify07 (bug 1774387)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 (bug 1775784)
+            "tag=fanotify07 stime=":
+                fanotify07/fanotify08 timeouted (bug 1775165)
+            "tag=fanotify08 stime=":
+                fanotify07/fanotify08 timeouted (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09 timeouted (bug 1775153)
+            "tag=fanotify10 stime=":
+                fanotify10 timeouted (bug 1802454)
+            "tag=fanotify11 stime=":
+                fanotify11 timeouted (bug 1808107)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
+    pepe:
+        <<: *syscalls
+    secchi:
+        <<: *syscalls
+xfstests:
+    rizzo:
+        xfs:
+            "[stdout] generic/474":
+                xfs generic/475 timed out
+            "[stdout] generic/475":
+                YOU SHOULD NOT SEE THIS, xfs generic/475 DIDN'T HANG, PLEASE CHECK
+    entei: &xfstests-p8
+        btrfs:
+            "[stdout] generic/175":
+                btrfs generic/176 timed out
+            "[stdout] generic/176":
+                YOU SHOULD NOT SEE THIS, btrfs generic/176 DIDN'T HANG, PLEASE CHECK
+    modoc:
+        <<: *xfstests-p8
+    fozzie:
+        xfs:
+            "[stdout] generic/307":
+                xfs generic/308 timed out (bug 1738152)
