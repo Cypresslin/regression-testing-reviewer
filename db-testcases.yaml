@@ -1,4 +1,32 @@
 # Tests here are the one that need to be excluded from the full-list below
+disco:
+    amd64: &d-amd64
+        ? libhugetlbfs
+        ? ubuntu_ecryptfs
+        ? ubuntu_seccomp
+    i386:
+        <<: *d-amd64
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_ramfs_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+    ppc64le: &d-non-x86
+        <<: *d-amd64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ltp
+        ? ubuntu_ramfs_stress
+    arm64:
+        <<: *d-non-x86
+        ? ubuntu_sysdig_smoke_test
+    s390x:
+        <<: *d-non-x86
+        ? xfstests
 cosmic:
     amd64: &c-amd64
         ? libhugetlbfs
@@ -93,6 +121,12 @@ bionic-oem-osp1:
         <<: *b-amd64
         ? ubuntu_ltp
         ? ubuntu_ramfs_stress
+bionic-fips:
+    amd64:
+        <<: *b-amd64
+    s390x:
+        <<: *b-non-x86
+        ? xfstests
 bionic-hwe:
     amd64: &b-hwe-amd64
         ? libhugetlbfs
@@ -115,6 +149,22 @@ bionic-hwe:
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
         ? ubuntu_ramfs_stress
+    arm64:
+        <<: *b-hwe-non-x86
+        ? ubuntu_sysdig_smoke_test
+bionic-edge:
+    amd64:
+        <<: *b-hwe-amd64
+    i386:
+        <<: *b-hwe-amd64
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+        ? ubuntu_ramfs_stress
+        ? ubuntu_zfs_fstest
+        ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_xfs_generic
+    ppc64le:
+        <<: *b-hwe-non-x86
     arm64:
         <<: *b-hwe-non-x86
         ? ubuntu_sysdig_smoke_test
@@ -206,6 +256,11 @@ xenial-kvm:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? xfstests
+xenial-fips:
+    amd64:
+        <<: *x-amd64
+    ppc64le:
+        <<: *x-non-x86
 trusty:
     amd64: &t-amd64
         ? ubuntu_bpf

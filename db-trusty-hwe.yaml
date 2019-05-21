@@ -126,16 +126,6 @@ ubuntu_qrt_kernel_security:
                 STACKPROTECTOR should be unset (bug 1789353)
             "AssertionError: HAVE_CC_STACKPROTECTOR option was expected to be unset in the kernel config":
                 STACKPROTECTOR should be unset (bug 1789353)
-            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
-                BINFMT_AOUT should be set (bug 1824306)
-    onibi:
-        test-kernel-security.py:
-            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
-                BINFMT_AOUT should be set (bug 1824306)
-    modoc:
-        test-kernel-security.py:
-            "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
-                BINFMT_AOUT should be set (bug 1824306)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:

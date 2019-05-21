@@ -31,6 +31,11 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_blktrace_smoke_test:
+    baltar:
+        blktrace-smoke-test:
+            "FAILED to start thread on CPU 156: 22/Invalid argument":
+                attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
     onza:
         ubuntu-bjf:
@@ -41,40 +46,25 @@ ubuntu_bpf:
             "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 Bionic (bug 1788580)
     baltar:
-        setup: &1788551
-            "'bits/libc-header-start.h' file not found":
-                Header not found when building ubuntu_bpf on Bionic s390x/ppc64el/arm64 (bug 1788551)
         ubuntu-bjf: &1788562
             "libbpf: ./sockmap_parse_prog.o doesn't provide kernel version":
                 test_map failed (bug 1788562)
     entei:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
     starmie-kernel:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
     ms10-34-mcdivittB0-kernel:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
     s2lp3:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
     s2lp6g002:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
     kernel02:
-        setup:
-           <<: *1788551
         ubuntu-bjf:
            <<: *1788562
 ubuntu_bpf_jit:
@@ -174,11 +164,6 @@ ubuntu_kernel_selftests:
         powerpc:
             " for symbol `' out of range":
                 ebb in powerpc (bug 1812805)
-            "selftests: ptrace-tm-spd-gpr [FAIL]":
-                ptrace-tm-spd-gpr in powerpc (bug 1812805)
-        ftrace:
-            "Kprobe event argument syntax	[FAIL]":
-                Kprobe event argument syntax in ftrace (bug 1812809)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
@@ -202,11 +187,11 @@ ubuntu_kernel_selftests:
                 ebb in powerpc (bug 1812805)
             "tm-unavailable [FAIL]":
                 tm-unavailable in powerpc (bug 1813129)
-            "selftests: cp_abort [FAIL]":
+            "selftests:  cp_abort [FAIL]":
                 cp_abort in powerpc/context_switch (bug 1813134)
-            "selftests: dscr_sysfs_test [FAIL]":
+            "selftests:  dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
-            "selftests: subpage_prot [FAIL]":
+            "selftests:  subpage_prot [FAIL]":
                 subpage_prot in powerpc/mm (bug 1813140)
         ftrace:
             "Kprobe event argument syntax       [FAIL]":
@@ -220,17 +205,6 @@ ubuntu_kernel_selftests:
                 TRACE_syscall in seccomp (bug 1812824)
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
-        ftrace:
-            "function glob filters	[FAIL]":
-                ftrace (bug 1812836)
-            "Kprobe event argument syntax	[FAIL]":
-                ftrace (bug 1812836)
-            "test histogram trigger	[FAIL]":
-                ftrace (bug 1812836)
-    s2lp3:
-        <<: *kernel-selftests-s390x
-    kernel02:
-        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -261,16 +235,6 @@ ubuntu_kvm_unit_tests:
                 gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
             "FAIL gicv3-active":
                 gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
-    entei: &kvm-unit-test-ppc
-        all:
-            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
-                sprs timed out (bug 1740017)
-            " sprs (":
-                YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
-    baltar:
-        <<: *kvm-unit-test-ppc
-    modoc:
-        <<: *kvm-unit-test-ppc
     kernel02:
         all:
             "FAIL skey (2 tests)":

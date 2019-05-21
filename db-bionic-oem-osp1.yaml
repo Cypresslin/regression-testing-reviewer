@@ -15,7 +15,7 @@ ubuntu_kernel_selftests:
     amaura: &kernel_selftests
         net:
             "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag (bug 1826848)
+                ip_defrag in net (bug 1826848)
     naumann:
         <<: *kernel_selftests
     gonzo:

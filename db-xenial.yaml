@@ -49,7 +49,7 @@ ubuntu_bpf_jit:
     s2lp3: &1768452
         ubuntu-bjf-jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
-                unable to insert test_bpf on Xenial s390x (bug 1768452)
+                4 failures reported for X s390x (bug 1768452)
     s2lp6g001:
         <<: *1768452
     kernel01:
@@ -82,7 +82,7 @@ ubuntu_kernel_selftests:
     s2lp6g001: &kernel-selftests-s390x
         net:
             "selftests: test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
+                test_bpf in net (bug 1768452)
     s2lp3:
         <<: *kernel-selftests-s390x
     kernel01:
@@ -119,14 +119,26 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL pmu":
                 pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+            "FAIL gicv2-mmio":
+                gicv2-mmio on X-ARM64 (bug 1828165)
+            "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
+                gicv2-mmio-up (bug 1828026)
+            "FAIL gicv2-mmio-3p (17 tests, 3 unexpected failures)":
+                gicv2-mmio-3p (bug 1828027)
     starmie-kernel:
         all:
             "FAIL pmu (3 tests, 3 unexpected failures)":
                 pmu on starmie (bug 1751000)
             "FAIL gicv2-ipi (terminated on SIGABRT)":
-                gicv2-ipi and gicv2-active on starmie
+                gicv2 related test failed on ThunderX (bug 1828153)
+            "FAIL gicv2-mmio (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+            "FAIL gicv2-mmio-up (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+            "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL gicv2-active (terminated on SIGABRT)":
-                gicv2-ipi and gicv2-active on starmie
+                gicv2 related test failed on ThunderX (bug 1828153)
     s2lp6g001:
         all:
             "FAIL selftest-setup (timeout":
@@ -143,14 +155,12 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL svm":
-                svm (bug 1821903)
             "FAIL debug":
                 debug (bug 1821906)
 ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
-            "BROK: tst_test.c:759: mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
+            "mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
                 fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)

@@ -72,6 +72,11 @@ trusty-hwe:
                     fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+    ubuntu_qrt_kernel_security:
+        onibi:
+            test-kernel-security.py:
+                "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
+                    BINFMT_AOUT should be set (bug 1824306)
 xenial:
     aio_dio_bugs:
         kernel01:
@@ -423,10 +428,9 @@ bionic:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
         baltar:
-            <<: *1775837-b
-        michael:
-            <<: *1775837-b
-        pepe:
+            setup: &1788551
+                "'bits/libc-header-start.h' file not found":
+                    Header not found when building ubuntu_bpf on Bionic s390x/ppc64el/arm64 (bug 1788551)
             <<: *1775837-b
         starmie-kernel:
             ubuntu-bjf:
@@ -454,6 +458,21 @@ bionic:
                     breakpoint test failed to build (bug 1680507)
         starmie-kernel:
             <<: *1680507-b
+        modoc:
+            ftrace:
+                "Kprobe event argument syntax       [FAIL]":
+                    Kprobe event argument syntax in ftrace (bug 1812809)
+            powerpc:
+                "selftests: ptrace-tm-spd-gpr [FAIL]":
+                    ptrace-tm-spd-gpr in powerpc (bug 1812805)
+        s2lp6g002:
+            ftrace:
+                "function glob filters      [FAIL]":
+                    ftrace (bug 1812836)
+                "Kprobe event argument syntax       [FAIL]":
+                    ftrace (bug 1812836)
+                "test histogram trigger     [FAIL]":
+                    ftrace (bug 1812836)
     ubuntu_kvm_unit_tests:
         s2lp6g002:
             all:
@@ -465,6 +484,14 @@ bionic:
             all:
                 "FAIL vmware_backdoors":
                     vmware_backdoors (bug 1821393)
+        entei: &kvm-unit-test-ppc
+            all:
+                "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                    sprs timed out (bug 1740017)
+                " sprs (":
+                    YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+        baltar:
+            <<: *kvm-unit-test-ppc
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -580,16 +607,31 @@ bionic-hwe:
             net:
                 "test_bpf.sh [FAIL]":
                     test_bpf in net (bug 1812189)
+        starmie:
+            breakpoints:
+                "error: ‘TRAP_HWBKPT’ undeclared":
+                    breakpoint test failed to build (bug 1680507)
     ubuntu_kvm_unit_tests:
         gonzo:
             all:
                 "FAIL vmware_backdoors":
                     vmware_backdoors (bug 1821393)
+        entei: &kvm-unit-ppc
+            all:
+                "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                    sprs timed out (bug 1740017)
+                " sprs (":
+                    YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
                 "Error! Bad return status for module build on kernel: 4.18.0":
                     Unable to build lttng module on Bionic 4.18 (bug 1802443)
+    ubuntu_lxc:
+        daedalus: &lxc-setup
+            setup:
+                "E: Unable to correct problems, you have held broken packages.":
+                    package from -proposed and from -update casuing apt issue (bug 1805978)
     ubuntu_qrt_kernel_security:
         daedalus: &kernel_security
             test-kernel-security.py:
@@ -741,6 +783,12 @@ cosmic:
             all:
                 "FAIL vmware_backdoors":
                     vmware_backdoors (bug 1821393)
+        baltar:
+            all:
+                "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                    sprs timed out (bug 1740017)
+                " sprs (":
+                    YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
     ubuntu_ltp_syscalls:
         baltar:
             syscalls:

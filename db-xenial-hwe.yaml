@@ -16,17 +16,6 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
-ubuntu_btrfs_kernel_fixes:
-    amaura: &btrfs_kernel_fixes
-        6113077cd319e747875ec71227d2b5cb54e08c76:
-            "btrfs_free_reserved_data_space_noquota+0x":
-                6113077 failed (bug 1810384)
-    daedalus:
-        <<: *btrfs_kernel_fixes
-    modoc: &btrfs-ppc
-        6113077cd319e747875ec71227d2b5cb54e08c76:
-            "btrfs_free_reserved_data_space_noquota+0x":
-                6113077 failed (bug 1810384)
 ubuntu_kernel_selftests:
     amaura: &kernel-selftests
         net:
@@ -60,10 +49,6 @@ ubuntu_kernel_selftests:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
 ubuntu_kvm_smoke_test:
-    entei:
-        kvm_smoke_test:
-            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
-                unable to create KVM with uvtool (bug 1755118)
     ms10-35-mcdivittB0-kernel: &1749427
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
@@ -84,29 +69,27 @@ ubuntu_kvm_unit_tests:
     ms10-34-mcdivittB0-kernel:
         all:
             "FAIL gicv2-ipi (timeout; duration=90s)":
-                gicv2-ipi on moonshots
+                gicv2-ipi (bug 1790825)
             "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
-                gicv2-mmio-up on moonshots
+                gicv2-mmio-up (bug 1828026)
             "FAIL gicv2-mmio-3p (17 tests, 3 unexpected failures)":
-                gicv2-mmio-3p on moonshots
+                gicv2-mmio-3p (bug 1828027)
     starmie-kernel:
         all:
             "FAIL pmu (3 tests, 3 unexpected failures)":
                 pmu on starmie (bug 1751000)
             "FAIL gicv2-ipi (terminated on SIGABRT)":
-                gicv2-ipi on thunderX
-            "FAIL gicv2-active (terminated on SIGABRT)":
-                gicv2-active on thunderX
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL gicv2-mmio (terminated on SIGABRT)":
-                gicv2-mmio on thunderX
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL gicv2-mmio-up (terminated on SIGABRT)":
-                gicv2-mmio-up on thunderX
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
-                gicv2-mmio-3p on thunderX
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL gicv2-active (terminated on SIGABRT)":
-                gicv2-active on thunderX
+                gicv2 related test failed on ThunderX (bug 1828153)
             "FAIL timer (12 tests, 1 unexpected failures)":
-                timer on thunderX
+                timer on ThunderX (bug 1828158)
     onza:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
@@ -115,21 +98,17 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL svm":
-                svm (bug 1821903)
 ubuntu_ltp_syscalls:
     entei: &syscalls-ppc
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
-                statx05 (bug 1798524)
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
+            "inotify08.c:150: FAIL: didn't get event: mask=":
+                inotify08 (bug 1775784)
+            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                statx05 (bug 1798524)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     modoc:
@@ -142,8 +121,6 @@ ubuntu_ltp_syscalls:
                 statx05 (bug 1798524)
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:

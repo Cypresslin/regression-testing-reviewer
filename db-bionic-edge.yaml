@@ -1,4 +1,4 @@
-# 4.18 Bionic
+# 5.0 Bionic
 # Format:
 # test-suite:
 #   sut:
@@ -14,21 +14,14 @@
 hwclock:
     baltar: &hwclock-ppc
         hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
             "hwclock: Timed out waiting for time change.":
-                hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
-            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59":
-                hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
-    modoc:
-        <<: *hwclock-ppc
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-monotonic_time:
-    lodygin:
-        tsc:
-            "TestFail: FAIL: tsc-worst-warp":
-                lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_blktrace_smoke_test:
     baltar:
         blktrace-smoke-test:
@@ -46,9 +39,9 @@ ubuntu_bpf:
             "#128/p overlapping checks for direct packet access SK_MSG FAIL":
                 Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
     baltar:
-        ubuntu-bjf: &bpf-ppc
-            "Failed to load SK_SKB parse prog":
-                test_map failed on PowerPC (bug 1802474)
+        setup: &bpf-ppc
+            "BPF API too old":
+                test failed to build - BPF API too old (bug 1828570)
     entei:
         ubuntu-bjf:
            <<: *bpf-ppc
@@ -60,19 +53,33 @@ ubuntu_bpf:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
 ubuntu_btrfs_kernel_fixes:
-    daedalus: &btrfs
-        ff76b0565523319d7c1c0b51d5a5a8915d33efab:
-            "btrfs_destroy_inode+0x":
-                ff76b05 failed (bug 1812988)
     pepe:
-        <<: *btrfs
+        f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
+            "btrfs balance failed":
+                f88ba6a failed (bug 1828380)
+ubuntu_lxc:
+    daedalus: &lxc-setup
+        setup:
+            "E: Unable to correct problems, you have held broken packages.":
+                package from -proposed and from -update casuing apt issue (bug 1805978)
+    onibi:
+        <<: *lxc-setup
+    onza:
+        <<: *lxc-setup
+    starmie-kernel:
+        <<: *lxc-setup
     baltar:
-        <<: *btrfs
-    modoc:
-        <<: *btrfs
+        <<: *lxc-setup
+    entei:
+        <<: *lxc-setup
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
+        breakpoints:
+            "error: ‘TRAP_HWBKPT’ undeclared":
+                breakpoint test failed to build (bug 1680507)
         net:
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
             "FAIL: ipv6 addrlabel":
                 rtnetlink.sh in net (bug 1812978)
             "FAIL: macsec":
@@ -91,11 +98,10 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-arm64
     amaura: &kernel-selftests-amd64
         net:
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-        ftrace:
-            "Kprobe event string type argument	[FAIL]":
-                Kprobe event string type (bug 1825780)
     naumann:
         <<: *kernel-selftests-amd64
     fozzie:
@@ -107,6 +113,8 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         seccomp:
@@ -119,19 +127,21 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
+            "test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
         powerpc:
-            "alignment: copy_unaligned [FAIL]":
+            "selftests: copy_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
-            "alignment: paste_unaligned [FAIL]":
+            "selftests: paste_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
-            "alignment: paste_last_unaligned [FAIL]":
+            "selftests: paste_last_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
-            "selftests: dscr: dscr_sysfs_test [FAIL]":
+            "selftests: dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
             " for symbol `' out of range":
                 ebb in powerpc (bug 1812805)
@@ -153,14 +163,20 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    ms10-34-mcdivittB0-kernel:
+    starmie-kernel:
         all:
-            "FAIL gicv2-mmio-up":
-                gicv2-mmio-up (bug 1828026)
-            "FAIL gicv2-mmio-3p":
-                gicv2-mmio-3p (bug 1828027)
-            "FAIL gicv3-ipi":
-                gicv3-ipi failed on Moonshot (bug 1790825)
+            "FAIL psci":
+                psci (bug 1828545)
+    entei: &kvm-unit-ppc
+        all:
+            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
+                sprs timed out (bug 1740017)
+            " sprs (":
+                YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    baltar:
+        <<: *kvm-unit-ppc
+    modoc:
+        <<: *kvm-unit-ppc
     gonzo:
         all:
             "FAIL apic-split":
@@ -206,10 +222,18 @@ ubuntu_ltp_syscalls:
     modoc:
         <<: *syscalls
 ubuntu_lttng_smoke_test:
+    onibi: &lttng
+         lttng-smoke-test:
+            "TestError: DKMS failed to install":
+                failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+    wright-kernel:
+        <<: *lttng
+    baltar:
+        <<: *lttng
+    modoc:
+        <<: *lttng
     pepe:
-        lttng-smoke-test:
-            "FAILED (did not trace any open system calls)":
-                lttng-smoke test failed on i386 4.18 kernel (bug 1802495)
+        <<: *lttng
 ubuntu_qrt_kernel_security:
     modoc: &kernel-security-ppc
         test-kernel-security.py:
@@ -217,10 +241,19 @@ ubuntu_qrt_kernel_security:
                 LOCK_DOWN_KERNEL (bug 1811981)
     baltar:
         <<: *kernel-security-ppc
-    onza:
-        test-kernel-security.py:
-            "FAIL: test_ulimit_stack_small":
-                flaky test on i386 (bug 1814295)
+ubuntu_sysdig_smoke_test:
+    onibi: &sysdig
+        sysdig-smoke-test:
+            "TestError: DKMS failed to install":
+                failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+    wright-kernel:
+        <<: *sysdig
+    baltar:
+        <<: *sysdig
+    modoc:
+        <<: *sysdig
+    pepe:
+        <<: *sysdig
 xfstests:
     fozzie: &xfstests
         ext4:
