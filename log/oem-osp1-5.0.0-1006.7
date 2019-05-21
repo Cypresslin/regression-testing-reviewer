@@ -1,0 +1,12 @@
+5.0.0-1006.7 - oem-osp1
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - ip_defrag (bug 1826848)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_qrt_kernel_security - test_520_config_random_trust_cpu (bug 1828173)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+

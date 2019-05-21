@@ -1,0 +1,55 @@
+5.0.0-14.15 - generic
+Regression test CMPL, RTB.
+
+54 / 55 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) sync_file_range02 (bug 1819116)
+  xfstests - failed to build on C/D (bug 1802486)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  xfstests - failed to build on C/D (bug 1802486)
+
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) psock_snd in net (bug 1812618)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - all 29 test failed on i386 (bug 1822235)
+  xfstests - failed to build on C/D (bug 1802486)
+
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) sync_file_range02 (bug 1819116)
+  xfstests - failed to build on C/D (bug 1802486)
+
+48 / 49 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) psock_snd in net (bug 1812618) dscr_sysfs_test in powerpc for P9 (bug 1813136)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) sync_file_range02 (bug 1819116)
+
+47 / 48 tests were run, missing: ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) sync_file_range02 (bug 1819116)
+
+46 / 48 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x (bug 1809860)
