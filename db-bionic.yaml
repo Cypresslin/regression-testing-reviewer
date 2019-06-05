@@ -45,28 +45,24 @@ ubuntu_bpf:
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
             "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 Bionic (bug 1788580)
-    baltar:
-        ubuntu-bjf: &1788562
+    baltar: &1788562
+        ubuntu-bjf:
             "libbpf: ./sockmap_parse_prog.o doesn't provide kernel version":
                 test_map failed (bug 1788562)
     entei:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
+    modoc:
+        <<: *1788562
     starmie-kernel:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
     ms10-34-mcdivittB0-kernel:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
     s2lp3:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
     s2lp6g002:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
     kernel02:
-        ubuntu-bjf:
-           <<: *1788562
+        <<: *1788562
 ubuntu_bpf_jit:
     kernel02: &1753941
         ubuntu-bjf-jit:
@@ -161,9 +157,6 @@ ubuntu_kernel_selftests:
         timers:
             "raw_skew [FAIL]":
                 raw_skew in timer (bug 1811194)
-        powerpc:
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
@@ -183,12 +176,6 @@ ubuntu_kernel_selftests:
                 alignment in powerpc (bug 1813118)
             "selftests: paste_last_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
-            "tm-unavailable [FAIL]":
-                tm-unavailable in powerpc (bug 1813129)
-            "selftests:  cp_abort [FAIL]":
-                cp_abort in powerpc/context_switch (bug 1813134)
             "selftests:  dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
             "selftests:  subpage_prot [FAIL]":
@@ -205,6 +192,10 @@ ubuntu_kernel_selftests:
                 TRACE_syscall in seccomp (bug 1812824)
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
+    kernel02:
+        <<: *kernel-selftests-s390x
+    s2lp3:
+        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -244,12 +235,29 @@ ubuntu_kvm_unit_tests:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
 ubuntu_ltp:
+    riolu:
+        fs:
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01 1 TFAIL":
+                proc01 (bug 1829849)
+        controllers:
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
     chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-            "FAIL: information leak in field 'crypto_user_alg::cru_driver_name'":
-                CVE-2018-19854
+        fs:
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01 1 TFAIL":
+                proc01 (bug 1829849)
     harpo:
         <<: *1765331
     groucho:

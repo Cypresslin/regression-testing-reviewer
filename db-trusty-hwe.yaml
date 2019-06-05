@@ -74,10 +74,10 @@ ubuntu_ltp_syscalls:
     amaura: &syscalls
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync_file_range02 syncfs01 (bug 1785198)
-            "inotify07.c:157: FAIL: didn't get event: mask=":
+                fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02 syncfs01 (bug 1785198)
+            "inotify07.c:154: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:147: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 timeouted (bug 1775165)
@@ -91,6 +91,8 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
+            "tag=fanotify12 stime=":
+                fanotify12 timeouted (bug 1828813)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
     pepe:
@@ -99,9 +101,9 @@ ubuntu_ltp_syscalls:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
                 fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01 (bug 1785198)
-            "inotify07.c:157: FAIL: didn't get event: mask=":
+            "inotify07.c:154: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:147: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
             "tag=fanotify07 stime=":
                 fanotify07/fanotify08 timeouted (bug 1775165)
@@ -115,6 +117,8 @@ ubuntu_ltp_syscalls:
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls-arm-p8
 ubuntu_qrt_kernel_security:
@@ -122,10 +126,6 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "init missing READ_IMPLIES_EXEC ... (/proc/1/personality) FAIL":
                 050 failed (bug 1684776)
-            "AssertionError: CC_STACKPROTECTOR option was expected to be unset in the kernel config":
-                STACKPROTECTOR should be unset (bug 1789353)
-            "AssertionError: HAVE_CC_STACKPROTECTOR option was expected to be unset in the kernel config":
-                STACKPROTECTOR should be unset (bug 1789353)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:

@@ -32,6 +32,8 @@ ubuntu_ltp_syscalls:
         syscalls:
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
+            "preadv203.c:122: BROK: preadv2() failed: EOPNOTSUPP":
+                preadv203, preadv203_64 (bug 1831207)
     secchi:
         <<: *syscalls-amd64
     lodygin:

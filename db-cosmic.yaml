@@ -114,6 +114,8 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         ftrace:
             "Kprobe dynamic event - probing module	[FAIL]":
                 Kprobe probing module in ftrace (bug 1812636)
@@ -128,6 +130,8 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
     naumann:
         <<: *kernel-selftests-amd64
     gonzo:
@@ -138,6 +142,8 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
@@ -147,18 +153,19 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1812638)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
-        powerpc:
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
@@ -171,8 +178,6 @@ ubuntu_kernel_selftests:
                 alignment in powerpc (bug 1813118)
             "selftests: dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
     s2lp6g003: &selftest-s390x
         net:
             "reuseport_dualstack [FAIL]":
@@ -183,6 +188,8 @@ ubuntu_kernel_selftests:
                 msg_zerocopy in net (bug 1812620)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         seccomp:
             "FAIL ] TRACE_syscall.":
                 TRACE_syscall in ftrace (bug 1812824)
@@ -236,18 +243,35 @@ ubuntu_kvm_unit_tests:
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp:
-    chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
+    riolu: &ltp
+        fs:
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+        controllers:
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        timers:
+            "leapsec_timer 2 TBROK : leapsec_timer.c":
+                leapsec_timer (bug 1829971)
+        kernel_misc:
+            "/opt/ltp/testcases/bin/zram01.sh:":
+                zram01 (bug 1829991)
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
+        net.ipv6_lib:
+            "getaddrinfo_01 2 TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "Kernel is already tainted:":
+                cve-2017-17053 (bug 1830011)
+    grumman:
+        <<: *ltp
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
@@ -354,4 +378,6 @@ xfstests:
     starmie-kernel:
         <<: *xfstests
     entei:
+        <<: *xfstests
+    modoc:
         <<: *xfstests

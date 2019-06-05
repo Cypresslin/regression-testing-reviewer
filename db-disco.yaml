@@ -177,25 +177,59 @@ ubuntu_kvm_unit_tests:
             "FAIL apic":
                 apic timeouted (bug 1748103)
 ubuntu_ltp:
-    chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
+    riolu: &ltp
+        fs:
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        mm:
+            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                ksm06* in mm (bug 1830316)
+        controllers:
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
+                cpuset_base_ops in controllers (bug 1830359)
+            "TFAIL: load balance test failed.":
+                cpuset_load_balance in controllers (bug 1830360)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
+            "TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        timers:
+            "leapsec_timer 2 TBROK : leapsec_timer.c":
+                leapsec_timer (bug 1829971)
+        power_management_tests:
+            "Power_Management03 2 TFAIL: Changing governors":
+                runpwtests03 (bug 1830362)
+        commands:
+            "mkswap01 8 TBROK:":
+                mkswap01_sh (bug 1830584)
+        kernel_misc:
+            "/opt/ltp/testcases/bin/zram01.sh:":
+                zram01 (bug 1829991)
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
+        net.ipv6_lib:
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "Kernel is already tainted:":
+                cve-2017-17053 (bug 1830011)
+    grumman:
+        <<: *ltp
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     entei:
@@ -204,8 +238,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     pepe: &syscalls-amd64
         syscalls:
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     amaura:
@@ -222,8 +254,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     s2lp4:
@@ -240,8 +270,6 @@ ubuntu_ltp_syscalls:
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     harpo:
@@ -289,4 +317,6 @@ xfstests:
     starmie-kernel:
         <<: *xfstests
     entei:
+        <<: *xfstests
+    modoc:
         <<: *xfstests

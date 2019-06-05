@@ -176,6 +176,8 @@ ubuntu_ltp_syscalls:
                 fanotify10 timeouted (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
+            "tag=fanotify12 stime=":
+                fanotify12 timeouted (bug 1828813)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     modoc:
@@ -196,6 +198,8 @@ ubuntu_ltp_syscalls:
                 fanotify10 timeouted (bug 1802454)
             "tag=fanotify11 stime=":
                 fanotify11 timeouted (bug 1808107)
+            "tag=fanotify12 stime=":
+                fanotify12 timeouted (bug 1828813)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
@@ -236,6 +240,12 @@ xfstests:
             "[stdout] generic/475":
                 YOU SHOULD NOT SEE THIS, xfs generic/475 DIDN'T HANG, PLEASE CHECK
     entei:
+        btrfs:
+            "[stdout] generic/175":
+                btrfs generic/176 timed out
+            "[stdout] generic/176":
+                YOU SHOULD NOT SEE THIS, btrfs generic/176 DIDN'T HANG, PLEASE CHECK
+    modoc:
         btrfs:
             "[stdout] generic/175":
                 btrfs generic/176 timed out

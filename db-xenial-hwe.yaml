@@ -156,7 +156,7 @@ xfstests:
         <<: *btrfs
     fozzie:
         xfs:
-            "[stdout] generic/111":
-                xfs generic/112 timed out
-            "[stdout] generic/112":
-                YOU SHOULD NOT SEE THIS, xfs generic/112 DIDN'T HANG, PLEASE CHECK
+            "[stdout] generic/307":
+                xfs generic/308 timed out (bug 1738152)
+            "[stdout] generic/309":
+                YOU SHOULD NOT SEE THIS, xfs generic/309 DIDN'T HANG, PLEASE CHECK

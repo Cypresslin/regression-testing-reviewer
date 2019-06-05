@@ -135,16 +135,10 @@ ubuntu_kernel_selftests:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
         powerpc:
-            "selftests: copy_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests: paste_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests: paste_last_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests: dscr_sysfs_test [FAIL]":
+            "dscr: dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
+            "ebb: cycles_test [FAIL]":
+                cycles_test in powerpc/ebb (bug 1830151)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -167,6 +161,14 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL psci":
                 psci (bug 1828545)
+    ms10-34-mcdivittB0-kernel:
+        all:
+            "FAIL gicv2-mmio-up":
+                 gicv2-mmio-up (bug 1828026)
+            "FAIL gicv2-mmio-3p":
+                 gicv2-mmio-3p (bug 1828027)
+            "FAIL gicv3-ipi":
+                 gicv3-ipi failed on Moonshot (bug 1790825)
     entei: &kvm-unit-ppc
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
@@ -201,10 +203,10 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     pepe: &syscalls
         syscalls:
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
+            "preadv203.c:122: BROK: preadv2() failed: EOPNOTSUPP":
+                preadv203, preadv203_64 (bug 1831207)
     amaura:
         <<: *syscalls
     secchi:

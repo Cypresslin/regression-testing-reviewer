@@ -11,6 +11,19 @@
 #       "errmsg2":
 #         reason
 #
+libhugetlbfs:
+    s2lp6g001: &libhugetlbfs
+        libhugetlbfs:
+            "FAIL:     0     11":
+                failed 11
+            "Killed by signal:     0      7":
+                killed by signal 7
+            "Bad configuration:     0      1":
+                bad config 1
+    s2lp6g002:
+        <<: *libhugetlbfs
+    s2lp6g003:
+        <<: *libhugetlbfs
 ubuntu_kernel_selftests:
     modoc:
         net:
@@ -34,6 +47,23 @@ ubuntu_kernel_selftests:
         seccomp:
             "[ FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
+    s2lp6g001: &kernel-selftests-s390x
+        net:
+            "selftests: test_bpf.sh [FAIL]":
+                test_bpf in net (bug 1768452)
+    s2lp6g002:
+        <<: *kernel-selftests-s390x
+    s2lp6g003:
+        <<: *kernel-selftests-s390x
+ubuntu_kvm_smoke_test:
+    s2lp6g001: &1729854
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
+                uvtool issue (bug 1729854)
+    s2lp6g002:
+        <<: *1729854
+    s2lp6g003:
+        <<: *1729854
 ubuntu_kvm_unit_tests:
     gonzo:
         all:
@@ -41,6 +71,14 @@ ubuntu_kvm_unit_tests:
                 apic timeouted (bug 1748103)
             "FAIL debug":
                 debug (bug 1821906)
+    s2lp6g001: &kvm-unit-s390x
+        all:
+            "FAIL selftest-setup (timeout":
+                All tests failed on s390x KVM (bug 1822542)
+    s2lp6g002:
+        <<: *kvm-unit-s390x
+    s2lp6g003:
+        <<: *kvm-unit-s390x
 ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
@@ -86,6 +124,15 @@ ubuntu_ltp_syscalls:
         <<: *syscalls
     secchi:
         <<: *syscalls
+ubuntu_qrt_kernel_security:
+    s2lp6g001: &kernel_security
+        test-kernel-security.py:
+            "SECURITY_SELINUX_DISABLE option was expected to be set":
+                SECURITY_SELINUX_DISABLE option should be enable on X s390x (bug 1813721)
+    s2lp6g002:
+        <<: *kernel_security
+    s2lp6g003:
+        <<: *kernel_security
 xfstests:
     rizzo:
         xfs:

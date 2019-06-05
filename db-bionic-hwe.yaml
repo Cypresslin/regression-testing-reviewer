@@ -64,6 +64,8 @@ ubuntu_btrfs_kernel_fixes:
         ff76b0565523319d7c1c0b51d5a5a8915d33efab:
             "btrfs_destroy_inode+0x":
                 ff76b05 failed (bug 1812988)
+    gonzo:
+        <<: *btrfs
     pepe:
         <<: *btrfs
     baltar:
@@ -81,6 +83,8 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         ftrace:
             "[27] Kprobe dynamic event - probing module [FAIL]":
                 Kprobe probing module in ftrace (bug 1812636)
@@ -93,6 +97,8 @@ ubuntu_kernel_selftests:
         net:
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type (bug 1825780)
@@ -109,18 +115,19 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1812638)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
-        powerpc:
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "run_netsocktests [FAIL]":
+                run_netsocktests (bug 1830016)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                 TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
@@ -133,8 +140,8 @@ ubuntu_kernel_selftests:
                 alignment in powerpc (bug 1813118)
             "selftests: dscr: dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
+            "ebb: cycles_test [FAIL]":
+                cycle_test in power/ebb (bug 1830151)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:

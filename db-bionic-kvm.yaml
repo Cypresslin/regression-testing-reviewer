@@ -66,6 +66,44 @@ ubuntu_kernel_selftests:
         <<: *kernel_selftests
     zeppo:
         <<: *kernel_selftests
+ubuntu_ltp:
+    riolu: &ltp
+        fs:
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+            "quota_remount_test01 1 TFAIL"
+                quota_remount_test01 (bug 1830670)
+        containers:
+            "netns_sysfs 1 TBROK: failed to add a new (host) dummy device":
+                netns_sysfs (bug 1830678)
+        controllers:
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        sched:
+            "fork() (error: Resource temporarily unavailable)":
+                hackbench01 (bug 1830675)
+        timers:
+            "leapsec_timer 2 TBROK : leapsec_timer.c":
+                leapsec_timer (bug 1829971)
+        kernel_misc:
+            "ltp_acpi 9 TFAIL":
+                ltp_acpi (bug 1830676)
+        net.ipv6_lib:
+            "getaddrinfo_01 2 TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "Kernel is already tainted:":
+                cve-2017-17053 (bug 1830011)
+            "BROK: Failed to open FILE '/proc/kallsyms' for reading at meltdown.c":
+                cve-2017-5754 (bug 1830682)
 ubuntu_ltp_syscalls:
     chico: &1775784
         syscalls:
@@ -75,8 +113,6 @@ ubuntu_ltp_syscalls:
                 quotactl01, quotactl02, quotactl03 (bug 1797325)
             "BROK: tst_test.c:760: mount(/dev/loop2, mnt_point, xfs":
                 quotactl01, quotactl02, quotactl03 (bug 1797325)
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
             "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
                 process_vm_readv01, process_vm_writev01 (bug 1797330)
             "process_vm_readv: errno=ENOSYS(38): Function not implemented":
