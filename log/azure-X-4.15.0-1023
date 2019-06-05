@@ -13,6 +13,5 @@ Issue to note in x86_64 (azure):
   ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
 
 Skipped / blacklisted:
-  * libhugetlbfs
   * ubuntu_nbd_smoke_test
   * ubuntu_seccomp

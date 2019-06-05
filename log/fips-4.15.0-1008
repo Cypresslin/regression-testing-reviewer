@@ -1,0 +1,20 @@
+4.15.0-1008.9 - fips
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - proxy issue for Intel Cloud (bug 1828786)
+  ubuntu_ltp - binfmt_misc02 (bug 1822246) proc01 (bug 1829849) cpuset_base_ops (bug 1830359) cpuset_sched_domains (bug 1830361) cpuset_load_balance in controllers (bug 1830360) cpuset_memory_spread (bug 1830585) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) leapsec_timer (bug 1829971) runpwtests03 (bug 1830362) mkswap01_sh (bug 1830584) zram01 (bug 1829991) zram02 (bug 1829992) getaddrinfo_01 (bug 1829995) cve-2017-17053 (bug 1830011)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) move_pages12 (bug 1831043)
+  ubuntu_ramfs_stress - proxy issue for Intel Cloud (bug 1828786)
+  ubuntu_stress_smoke_test - proxy issue for Intel Cloud (bug 1828786)
+  ubuntu_unionmount_overlayfs_suite - proxy issue for Intel Cloud (bug 1828786)
+  ubuntu_vfat_stress - proxy issue for Intel Cloud (bug 1828786)
+
+42 / 49 tests were run, missing: ubuntu_boot, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_btrfs_kernel_fixes, ubuntu_cts_kernel, ubuntu_zfs_fstest, ubuntu_zfs_xfs_generic
+Issue to note in s390x (KVM):
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) settimeofday01
+
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x (bug 1809860)
+Note: Missing tests in s390x is caused by the test list in CKCT

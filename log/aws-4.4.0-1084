@@ -1,0 +1,19 @@
+4.4.0-1084.94 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3 on t2.small, passed on the rest
+  ubuntu_kernel_selftests - cpu_hotplug (bug 1812149) on t2.small
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) vmx_apic_passthrough_thread (bug 1822309) debug (bug 1821906) failed on i3.metal
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) fanotify11 timeouted (bug 1808107) fanotify12 (bug 1828813) sync_file_range02 (bug 1819116)
+  ubuntu_qrt_apparmor - apparmor issue (bug 1830802)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: ubuntu_ltp_syscalls test must be reviewed on the Jenkins server, the hang issue (bug 1777779) will prevent it from copy the test report
+Note: The security team decided that the apparmor issue should not block the kernel release.

@@ -1,0 +1,9 @@
+4.15.0-1039.44 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103) svm (bug 1821903)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+

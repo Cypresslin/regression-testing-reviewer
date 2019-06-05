@@ -1,0 +1,13 @@
+4.15.0-1014.16~16.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) net test failed to build (bug 1813883)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) access (bug 1831451) memory (bug 1831449) port80 (bug 1748105) pcid (bug 1827979) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) vmx_apicv_test (bug 1827866) vmx_apic_passthrough_thread (bug 1822309) debug (bug 1821906)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) statx05 (bug 1798524) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - Failed to fetch GPG key on VM.Standard2.24, passed on the rest
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_ltp
+ * ubuntu_seccomp

@@ -1,0 +1,30 @@
+4.15.0-1040.42~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kernel_selftests - reuseport_bpf in net failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) vmx (bug 1748107) vmx_hlt_with_rvi_test (bug 1822308) on i3.metal
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) statx05 (bug 1798524) sync_file_range02 (bug 1819116)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test
+
+Issue to note in arm64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on a1.medium, passed on the rest
+  ubuntu_kernel_selftests - reuseport_bpf in net failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - fanotify09 case 2 (bug 1804594) inotify08 (bug 1775784) statx05 (bug 1798524) sync_file_range02 (bug 1819116) ioctl_ns05 and ioctl_ns06 (bug 1830869)
+  ubuntu_stress_smoke_test - bad-altstack (bug 1830856)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test

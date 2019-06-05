@@ -1,0 +1,12 @@
+4.15.0-1014.16 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103) access (bug 1831451) memory (bug 1831449) port80 (bug 1748105) pcid (bug 1827979) vmx (bug 1821394) ept (bug 1824228) vmx_hlt_with_rvi_test (bug 1822308) vmx_apicv_test (bug 1827866) vmx_apic_passthrough_thread (bug 1822309) hyperv_synic (bug 1827980) hyperv_stimer (bug 1827982)
+  ubunut_ltp - took 4 hours and gets killed, need to be investigated (bug 1831456)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116) getrandom02 (bug 1831229)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp

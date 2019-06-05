@@ -1,0 +1,58 @@
+5.0.0-16.17 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) ksm06* in mm (bug 1830316) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_sched_domains (bug 1830361) cpuset_load_balance in controllers (bug 1830360) cpuset_memory_spread (bug 1830585) runpwtests03 (bug 1830362) mkswap01_sh (bug 1830584) zram01 (bug 1829991) zram02 (bug 1829992) getaddrinfo_01 (bug 1829995) cve-2017-17053 (bug 1830011)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  ubuntu_ramfs_stress - proxy issue for Intel Cloud (bug 1828786)
+  xfstests - failed to build on C/D (bug 1828391)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  xfstests - failed to build on C/D (bug 1828391)
+
+Issue to note in i386:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - all 29 test failed on i386 (bug 1822235)
+  xfstests - failed to build on C/D (bug 1828391)
+
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) sync_file_range02 (bug 1819116)
+  xfstests - failed to build on C/D (bug 1802486)
+
+48 / 49 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - dscr_sysfs_test in powerpc for P9 (bug 1813136) regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) sync_file_range02 (bug 1819116)
+
+46 / 48 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) sync_file_range02 (bug 1819116)
+
+46 / 48 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x (bug 1809860)

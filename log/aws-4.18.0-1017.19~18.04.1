@@ -1,0 +1,14 @@
+4.18.0-1017.19~18.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - run_netsocktests (bug 1830016) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib related test in net (bug 1812622)  msg_zerocopy in net (bug 1812620)
+  ubuntu_kvm_unit_tests - test failed to build, it will be skipped for no KVM support
+  ubuntu_ltp - test disabled
+  ubuntu_ltp_syscalls - msgstress03 (bug 1783881) fanotify09-2 (bug 1804594) preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

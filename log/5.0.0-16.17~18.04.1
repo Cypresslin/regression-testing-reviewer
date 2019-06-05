@@ -1,0 +1,75 @@
+5.0.0-16.17~18.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+52 / 53 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+47 / 48 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - all 29 test failed on i386 (bug 1822235)
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+5.0.0-16.17~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_unit_tests - psci (bug 1828545) gicv2-mmio-up (bug 1828026) gicv2-mmio-3p (bug 1828027) gicv3-ipi failed on Moonshot (bug 1790825
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_bpf - regression for bpf test from stable update (bug 1829812)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - all 29 test failed on i386 (bug 1822235)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test failed to build - BPF API too old (bug 1828570)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+48 / 49 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_blktrace_smoke_test - attempt to run blktrace on offline CPUs (bug 1827318)
+  ubuntu_bpf - test failed to build - BPF API too old (bug 1828570)
+  ubuntu_kernel_selftests - regression for bpf test from stable update (bug 1829812)
+  ubuntu_ltp_syscalls - preadv203, preadv203_64 (bug 1831207) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+
+Note: No xfstests for P9 as it does not have a scratch drive

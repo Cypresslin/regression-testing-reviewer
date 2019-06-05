@@ -1,0 +1,45 @@
+4.18.0-21.22~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_btrfs_kernel_fixes - ff76b05 failed (bug 1812988)
+  ubuntu_kernel_selftests - run_netsocktests (bug 1830016) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - apic-split timeouted (bug 1821390) apic timeouted (bug 1748103) svm (bug 1821903)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) run_netsocktests (bug 1830016) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up (bug 1828026) gicv2-mmio-3p (bug 1828027) gicv3-ipi failed on Moonshot (bug 1790825)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_bpf - Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
+  ubuntu_btrfs_kernel_fixes - ff76b05 failed (bug 1812988)
+  ubuntu_kernel_selftests - run_netsocktests (bug 1830016) psock_snd in net (bug 1812618)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - all 29 test failed on i386 (bug 1822235)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  ubuntu_qrt_kernel_security - test case issue (bug 1830165)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_btrfs_kernel_fixes - ff76b05 failed (bug 1812988)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) run_netsocktests (bug 1830016) psock_snd in net (bug 1812618) TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+48 / 49 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.02 sec differences (bug 1802233)
+  ubuntu_blktrace_smoke_test - attempt to run blktrace on offline CPUs (bug 1827318)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_btrfs_kernel_fixes - ff76b05 failed (bug 1812988)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) run_netsocktests (bug 1830016) psock_snd in net (bug 1812618) TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796) alignment in powerpc (bug 1813118) dscr_sysfs_test in powerpc/dscr (bug 1813136) cycle_test in power/ebb (bug 1830151)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+
+Note: No xfstests for P9 as it does not have a scratch drive
