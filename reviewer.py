@@ -45,17 +45,17 @@ parser.add_argument('--link', action='store_true',
                     help='Print test case links')
 parser.add_argument('--kernel',
                     help='Review a specific kernel')
-parser.add_argument('--hwe', action='store_true',
+parser.add_argument('--hwe', action='store_const', dest='flag', const='-hwe',
                     help='Get only HWE kernel result')
-parser.add_argument('--edge', action='store_true',
+parser.add_argument('--edge', action='store_const', dest='flag', const='-edge',
                     help='Get only Edge kernel result')
-parser.add_argument('--kvm', action='store_true',
+parser.add_argument('--kvm', action='store_const', dest='flag', const='-kvm',
                     help='Get only KVM kernel result')
-parser.add_argument('--oem', action='store_true',
+parser.add_argument('--oem', action='store_const', dest='flag', const='-oem',
                     help='Get only OEM kernel result')
-parser.add_argument('--oem-osp1', action='store_true',
+parser.add_argument('--oem-osp1', action='store_const', dest='flag', const='-oem-osp1',
                     help='Get only OEM OSP1 kernel result')
-parser.add_argument('--fips', action='store_true',
+parser.add_argument('--fips', action='store_const', dest='flag', const='-fips',
                     help='Get only FIPS kernel result')
 #parser.add_argument('--aws', dest='kernel_filter', action='store_const', const='aws',
 #                    help='Get only AWS kernel result')
@@ -67,12 +67,12 @@ parser.add_argument('--fips', action='store_true',
 #                    help='Get only Azure kernel result')
 
 args = parser.parse_args()
-hwe_filter = '~'
-kvm_filter = ' - kvm'
-oem_filter = ' - oem'
-edge_filter = '5.0.0'
-oem_osp1_filter = ' - oem-osp1'
-fips_filter = ' - fips'
+filters = {'-hwe': '~',
+           '-edge': '5.0.0',
+           '-kvm': ' - kvm',
+           '-oem': ' - oem',
+           '-oem-osp1': ' - oem-osp1',
+           '-fips': ' - fips'}
 highlighted = False
 target_found = False
 unused_all = []
@@ -151,46 +151,23 @@ for data in head.find(string=target_distro).find_parent('tr').find_next('tbody')
         # All trash, do nothing
 
 # Print result here
-flag = ''
-if args.hwe:
-    flag = '-hwe'
-elif args.edge:
-    flag = '-edge'
-elif args.kvm:
-    flag = '-kvm'
-elif args.oem:
-    flag = '-oem'
-elif args.oem_osp1:
-    flag = '-oem-osp1'
-elif args.fips:
-    flag = '-fips'
-fn = args.release.lower() + flag
+fn = args.release.lower() + (args.flag if args.flag else '')
 for kernel in report[target_distro]:
-    # No filter was set, print only everything except from the exclusion list
+    # Filter out what to print here
     # If we're asking a specific kernel to check
     if args.kernel and args.kernel != kernel.split()[0]:
         continue
     # flavour filter
-    if args.hwe:
-        if hwe_filter not in kernel or edge_filter in kernel:
+    if args.flag:
+        if 'oem' in filters[args.flag]:
+            if not kernel.endswith(filters[args.flag]):
+                continue
+        elif filters[args.flag] not in kernel:
             continue
-    elif args.edge:
-        if edge_filter not in kernel or oem_osp1_filter in kernel:
-            continue
-    elif args.kvm:
-        if kvm_filter not in kernel:
-            continue
-    elif args.oem:
-        if not kernel.endswith(oem_filter):
-            continue
-    elif args.oem_osp1:
-        if not kernel.endswith(oem_osp1_filter):
-            continue
-    elif args.fips:
-        if not kernel.endswith(fips_filter):
-            continue
-    elif hwe_filter in kernel or kvm_filter in kernel:
-        continue
+    else:
+        # case for generic kernel
+        if any(_ in kernel for _ in filters.values()):
+                continue
     target_found = True
 
     print(kernel)
