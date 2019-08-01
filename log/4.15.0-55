@@ -1,0 +1,67 @@
+4.15.0-55.60 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) svm (bug 1821903)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_base_ops (bug 1830359) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory_spread (bug 1830585) leapsec_timer (bug 1829971) getaddrinfo_01 (bug 1829995) cve-2017-17053 (bug 1830011) zram01 (bug 1829991) zram02 (bug 1829992)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) move_pages12 (bug 1831043)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) userns06 (bug 1836162) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) leapsec_timer (bug 1829971) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) zram01 (bug 1829991) zram02 (bug 1829992)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - eventinj on i386 (bug 1822235) hypercall on i386 (bug 1822235) hyperv_connections on i386 (bug 1822235) hyperv_stimer on i386 (bug 1822235) kvmclock_test on i386 (bug 1822235) msr on i386 (bug 1822235) port80 on i386 (bug 1822235) realmode on i386 (bug 1822235) s3 on i386 (bug 1822235) sieve on i386 (bug 1822235) smap on i386 (bug 1822235) smptest on i386 (bug 1822235) smptest3 on i386 (bug 1822235) taskswitch on i386 (bug 1822235) taskswitch2 on i386 (bug 1822235) tsc on i386 (bug 1822235) tsc_adjust on i386 (bug 1822235) umip on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) userns06 (bug 1836162) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) leapsec_timer (bug 1829971) getaddrinfo_01 (bug 1829995) zram01 (bug 1829991) zram02 (bug 1829992)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+51 / 53 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  xfstests - ext4 generic/256 timeout
+
+52 / 53 tests were run, missing: xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194) dscr_sysfs_test in powerpc/dscr (bug 1813136) subpage_prot in powerpc/mm (bug 1813140)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) userns06 (bug 1836162) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188) leapsec_timer (bug 1829971) getaddrinfo_01 (bug 1829995) zram01 (bug 1829991) zram02 (bug 1829992)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - network issue
+
+50 / 52 tests were run, missing: ubuntu_btrfs_kernel_fixes, ubuntu_ltp
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+
+49 / 52 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes, ubuntu_ltp
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+49 / 52 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes, ubuntu_ltp
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_map failed (bug 1788562)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x (bug 1809860)

@@ -1,0 +1,22 @@
+4.15.0-1039.39 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test failed on KVM kernels (bug 1833396)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) psock_tpacket in net failed (bug 1812176) RTNETLINK in net (bug 1812194) global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194) user_copy in user skipped, ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp
+

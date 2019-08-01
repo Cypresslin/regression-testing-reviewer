@@ -1,0 +1,25 @@
+4.18.0-1015.15 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - failed on KVM kernels (bug 1833396)
+  ubuntu_btrfs_kernel_fixes - ff76b0565523319d7c1c0b51d5a5a8915d33efab failed (bug 1812988)
+  ubuntu_fan_smoke_test - should be blacklisted
+  ubuntu_kernel_selftests - run_netsocktests in net (bug 1830016) psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618) ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - quota_remount_test01 (bug 1830670) hackbench01 (bug 1830675) netns_sysfs (bug 1830678) cpuacct_100_100 (bug 1829978) memcg_usage_in_bytes (bug 1829984) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) leapsec_timer (bug 1829971) mkswap01_sh (bug 1830584) sysctl02_sh (bug 1833935) getaddrinfo_01 (bug 1829995) cve-2017-5754 (bug 1830682) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - acct01 skipped (bug 1824794) fanotify09 case 2 (bug 1804594) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl01, quotactl02, quotactl03 (bug 1797325) settimeofday01 (bug 1833905) sync_file_range02 (bug 1819116)
+  ubuntu_qrt_kernel_security - SCHED_STACK_END_CHECK should be enabled (bug 1812159)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_ramfs_stress - proxy issue for Intel Cloud (bug 1828786)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on KVM kernel (bug 1766565)
+  ubuntu_unionmount_overlayfs_suite - proxy issue for Intel Cloud (bug 1828786)
+  xfstests - no extra disk, this should be skipped (bug 1833407)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp

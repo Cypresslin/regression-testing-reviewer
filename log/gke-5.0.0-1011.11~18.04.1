@@ -1,0 +1,16 @@
+5.0.0-1011.11~18.04.1 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  tsc - failed to build (bug 1831584)
+  ubuntu_fan_smoke_test - failed on n1-highcpu-16 only, passed on the rest
+  ubuntu_k8s_unit_tests	- scheduler and spdy (bug 1824136)
+  ubunut_kernel_selftests - cpu-hotplug fail with 1 cpu (bug 1812149) test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf.sh in net (bug 1837348) rtnetlink.sh in net (bug 1812194) trace_printk in ftrace (bug 1830084)
+  ubuntu_ltp - test timeout
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+  ubuntu_sysdig_smoke_test - unable to build sysdig module (bug 1826845)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp

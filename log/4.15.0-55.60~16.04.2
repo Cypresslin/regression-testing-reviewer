@@ -1,0 +1,44 @@
+4.15.0-55.60~16.04.2 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in i386:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+
+4.15.0-55.60~16.04.2 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi (bug 1790825) gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) gicv2 related test failed on ThunderX (bug 1828153) pmu on starmie (bug 1751000) timer on ThunderX (bug 1828158)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in i386:
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify08 (bug 1775784) fanotify09-2 (bug 1804594) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+  xfstests - xfs generic/106 timed out
+
+Issue to note in ppc64le (P8):
+  ubuntu_kernel_selftests - net test failed to build (bug 1813883) TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359) TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1783880) inotify08 (bug 1775784) fanotify09-2 (bug 1804594) move_pages12 (bug 1831043) sync_file_range02 (bug 1819116) statx05 (bug 1798524)
+  ubuntu_sysdig_smoke_test - Unable to build sysdig module on PowerPC with X-4.15 (bug 1810916)
+  xfstests - btrfs generic/176 timed out

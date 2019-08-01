@@ -1,0 +1,15 @@
+4.15.0-1051.56 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, failed on Standard_B1ms and Standard_F1s only
+  monotonic_time - tsc failed on Basic_A2 (bug 1774959)
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1831543) reuseport_bpf in net (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) inotify08 (bug 1775784) statx05 (bug 1798524) sync_file_range02 (bug 1819116)
+  ubunut_qrt_apparmor - timed out on Standard-B1ms, Standard_D2_v3, Standard_E2s_v3, Standard-F1s
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * ubuntu_ltp
+  * ubuntu_seccomp
