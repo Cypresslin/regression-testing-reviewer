@@ -82,6 +82,9 @@ ubuntu_kernel_selftests:
                 psock_snd in net (bug 1812618)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
+        ftrace:
+            "ftrace - test for function traceon/off triggers":
+                traceon/off triggers in ftace (bug 1837040)
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
@@ -156,11 +159,97 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
+    onza:
+        eventinj:
+            "FAIL eventinj":
+                eventinj on i386 (bug 1822235)
+        hypercall:
+            "FAIL hypercall":
+                hypercall on i386 (bug 1822235)
+        hyperv_connections:
+            "FAIL hyperv_connections":
+                hyperv_connections on i386 (bug 1822235)
+        hyperv_stimer:
+            "FAIL hyperv_stimer":
+                hyperv_stimer on i386 (bug 1822235)
+        kvmclock_test:
+            "FAIL kvmclock_test":
+                kvmclock_test on i386 (bug 1822235)
+        msr:
+            "FAIL msr":
+                msr on i386 (bug 1822235)
+        port80:
+            "FAIL port80":
+                port80 on i386 (bug 1822235)
+        realmode:
+            "FAIL realmode":
+                realmode on i386 (bug 1822235)
+        s3:
+            "FAIL s3":
+                s3 on i386 (bug 1822235)
+        sieve:
+            "FAIL sieve":
+                sieve on i386 (bug 1822235)
+        smap:
+            "FAIL smap":
+                smap on i386 (bug 1822235)
+        smptest:
+            "FAIL smptest":
+                smptest on i386 (bug 1822235)
+        smptest3:
+            "FAIL smptest3":
+                smptest3 on i386 (bug 1822235)
+        taskswitch:
+            "FAIL taskswitch":
+                taskswitch on i386 (bug 1822235)
+        taskswitch2:
+            "FAIL taskswitch2":
+                taskswitch2 on i386 (bug 1822235)
+        tsc:
+            "FAIL tsc":
+                tsc on i386 (bug 1822235)
+        tsc_adjust:
+            "FAIL tsc_adjust":
+                tsc_adjust on i386 (bug 1822235)
+        umip:
+            "FAIL umip":
+                umip on i386 (bug 1822235)
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit_cpuid on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit_inl_pmtimer on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit_ipi on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit_ipi_halt on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit_mov_from_cr8 on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit_mov_to_cr8 on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit_ple_round_robin on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit_tscdeadline on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit_tscdeadline_immed on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit_vmcall on i386 (bug 1822235)
     ms10-34-mcdivittB0-kernel:
-        all:
-            "FAIL gicv2-mmio-up":
-                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+        gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+        gicv2-mmio-up:
+            "FAIL gicv2-mmio-up":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
     kernel03:
         all:
@@ -177,24 +266,15 @@ ubuntu_kvm_unit_tests:
             "FAIL apic":
                 apic timeouted (bug 1748103)
 ubuntu_ltp:
-    riolu: &ltp
-        fs:
+    amaura:
+        fs: &ltp-fs
             "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                 binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
-            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
-                ksm06* in mm (bug 1830316)
-        controllers:
-            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
-                cpuset_base_ops in controllers (bug 1830359)
-            "TFAIL: load balance test failed.":
-                cpuset_load_balance in controllers (bug 1830360)
-            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
-                cpuset_memory_spread (bug 1830585)
-            "TFAIL: partition sched domains failed.":
-                cpuset_sched_domains (bug 1830361)
+        controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -203,26 +283,142 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        timers:
+        timers: &ltp-timers
             "leapsec_timer 2 TBROK : leapsec_timer.c":
                 leapsec_timer (bug 1829971)
-        power_management_tests:
-            "Power_Management03 2 TFAIL: Changing governors":
-                runpwtests03 (bug 1830362)
-        commands:
-            "mkswap01 8 TBROK:":
-                mkswap01_sh (bug 1830584)
-        kernel_misc:
+        net.ipv6_lib: &ltp-net
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc: &ltp-misc
             "/opt/ltp/testcases/bin/zram01.sh:":
                 zram01 (bug 1829991)
             "zram02 1 TFAIL: unexpected num of devices:":
                 zram02 (bug 1829992)
+    naumann:
+        fs:
+            <<: *ltp-fs
+        mm: &ltp-mm
+            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                ksm06* in mm (bug 1830316)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
+                cpuset_base_ops in controllers (bug 1830359)
+            "TFAIL: load balance test failed.":
+                cpuset_load_balance in controllers (bug 1830360)
+            "TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline":
+                cpuhotplug04 (bug 1836169)
         net.ipv6_lib:
-            "getaddrinfo_01    2  TFAIL":
-                getaddrinfo_01 (bug 1829995)
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    ms10-35-mcdivittB0-kernel:
+        fs:
+            <<: *ltp-fs
+        containers: &ltp-containers
+            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
+                userns06 (bug 1836162)
+        controllers:
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    wright-kenrel:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline":
+                cpuhotplug04 (bug 1836169)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    pepe:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "memcg_stat_rss 4 TFAIL: Process":
+                memcg_stat_rss (bug 1837035)
+            "memcg_move_charge_at_immigrate_test 5 TFAIL":
+                memcg_move_charge_at_immigrate_test (bug 1837037)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
         cve:
-            "Kernel is already tainted:":
-                cve-2017-17053 (bug 1830011)
+            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
+                cve-2015-3290 (bug 1837005)
+        kernel_misc:
+            <<: *ltp-misc
+    baltar:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        timers:
+            <<: *ltp-timers
+        kernel_misc:
+            <<: *ltp-misc
+    riolu: &ltp
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
+                cpuset_base_ops in controllers (bug 1830359)
+            "TFAIL: load balance test failed.":
+                cpuset_load_balance in controllers (bug 1830360)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
+            "TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
     grumman:
         <<: *ltp
 ubuntu_ltp_syscalls:
@@ -230,7 +426,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     entei:
         <<: *syscalls-ppc
@@ -238,7 +434,7 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     pepe: &syscalls-amd64
         syscalls:
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     amaura:
         <<: *syscalls-amd64
@@ -254,7 +450,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     s2lp4:
         <<: *syscall-s390x

@@ -11,29 +11,97 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_bpf:
+    gonzo:
+        setup:
+            "undefined reference to `bpf_probe_prog_type'":
+                function does not exist (1829812)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
         net:
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
+            "undefined reference to `bpf_probe_prog_type'":
+                function does not exist (1829812)
     naumann:
         <<: *kernel_selftests
     gonzo:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
     gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
-            "FAIL apic":
+        apic:
+            "FAIL apic (timeout; duration=30)":
                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split (timeout; duration=90s)":
+                apic-split timeouted (bug 1821390)
+ubuntu_ltp:
+    amaura:
+        fs: &ltp-fs
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        controllers: &ltp-controllers
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        timers: &ltp-timers
+            "leapsec_timer 2 TBROK : leapsec_timer.c":
+                leapsec_timer (bug 1829971)
+        commands: &ltp-commands
+            "mkswap01 8 TBROK:":
+                mkswap01_sh (bug 1830584)
+        net.ipv6_lib: &ltp-net-ipv6-lib
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc: &ltp-kernel-misc
+            "/opt/ltp/testcases/bin/zram01.sh:":
+                zram01 (bug 1829991)
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
+    naumann:
+        fs:
+            <<: *ltp-fs
+        mm:
+            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                ksm06* in mm (bug 1830316)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
+                cpuset_base_ops in controllers (bug 1830359)
+            "TFAIL: load balance test failed.":
+                cpuset_load_balance in controllers (bug 1830360)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
+            "TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline":
+                cpuhotplug04 (bug 1836169)
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            <<: *ltp-net-ipv6-lib
+        kernel_misc:
+            <<: *ltp-kernel-misc
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
-            "sync_file_range02.c:56: FAIL":
+            " FAIL: Sync equals write: Synced 0, expected ":
                 sync_file_range02 (bug 1819116)
-            "preadv203.c:122: BROK: preadv2() failed: EOPNOTSUPP":
-                preadv203, preadv203_64 (bug 1831207)
+    naumann:
+        <<: *syscalls-amd64
+
     secchi:
         <<: *syscalls-amd64
     lodygin:

@@ -70,112 +70,107 @@ ubuntu_kvm_unit_tests:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
     gonzo:
-        all:
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
-            "FAIL ioapic":
-                ioapic (bug 1824289)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        emulator:
             "FAIL emulator":
                 emulator (bug 1824291)
+        eventinj:
             "FAIL eventinj":
                 eventinj (bug 1824293)
+        ioapic:
+            "FAIL ioapic":
+                ioapic (bug 1824289)
+        realmode:
             "FAIL realmode":
                 realmode (bug 1824294)
+        svm:
             "FAIL svm":
                 svm (bug 1821903)
+        umip:
             "FAIL umip":
                 umip should be skipped (bug 1821905)
 ubuntu_ltp_syscalls:
     pepe: &syscalls-i386
         syscalls:
             "BROK: mkfs.vfat:1: tst_test.c failed with":
-                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
-            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
+                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
+            "FAIL: group ":
+                fanotify06 (bug 1775378)
+            "tag=fanotify07 stime=":
+                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
+            "FAIL: group 1 got event":
+                fanotify09 (bug 1775153)
+            "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fcntl35 / fcntl35_64 (bug 1774394)
+            "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
             "FAIL: KEYCTL_READ overran the buffer":
                 keyctl06 (bug 1798025)
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 (bug 1774394)
-            "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
-                request_key03 (bug 1798052)
-            "FAIL: group 4 got event":
-                fanotify06 (bug 1775378)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "FAIL: group 1 got event":
-                fanotify09 (bug 1775153)
-            "FAIL: group 1 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
+            "request_key03.c:103: BROK: unexpected error adding key of type 'trusted': ENOMEM":
+                request_key03 (bug 1798052)
     amaura:
         <<: *syscalls-i386
     entei: &syscalls-ppc
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
-            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
-                keyctl02 (bug 1798022)
-            "FAIL: KEYCTL_READ overran the buffer":
-                keyctl06 (bug 1798025)
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 1048576 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 (bug 1774394)
-            "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
-                request_key03 (bug 1798052)
+                fallocate05, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync_file_range02, sync03, syncfs01 (bug 1785198)
             "FAIL: group 3 got event":
                 fanotify06 (bug 1775378)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
             "FAIL: group 1 got event":
                 fanotify09 failed with T/X/A/B kernel (bug 1775153)
-            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
+            "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 1048576 unexpectedly, expected":
+                fcntl35 / fcntl35_64 (bug 1774394)
+            "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
+                keyctl02 (bug 1798022)
+            "FAIL: KEYCTL_READ overran the buffer":
+                keyctl06 (bug 1798025)
+            "readahead02.c:300: FAIL: readahead failed to save any I/O":
+                readahead02 (bug 1836845)
+            "request_key03.c:58: BROK: failed to join new session keyring: EDQUOT":
+                request_key03 (bug 1798052)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
+            "prctl04.c:205: FAIL: SECCOMP_MODE_FILTER permits exit() unexpectedly":
+                prctl04 (bug 1836839)
     modoc:
         <<: *syscalls-ppc
     ms10-35-mcdivittB0-kernel:
         syscalls:
             "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
+                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
             "FAIL: group 3 got event":
                 fanotify06 (bug 1775378)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
             "FAIL: group 1 got event":
-                fanotify09 (bug 1775153)
-            "FAIL: group 0 (prio 1) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
-            "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
+                fanotify09 failed with T/X/A/B kernel (bug 1775153)
+            "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 (bug 1774394)
-            "keyctl02.c:81: BROK: Failed to add key: EDQUOT":
+            "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
                 keyctl02 (bug 1798022)
             "FAIL: KEYCTL_READ overran the buffer":
                 keyctl06 (bug 1798025)
-            "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
-                openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
-            "request_key03.c:115: BROK: unexpected error adding key of type 'trusted': ENOMEM":
+            "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
+                openat03 (bug 1798027)
+            "request_key03.c:58: BROK: failed to join new session keyring: EDQUOT":
                 request_key03 (bug 1798052)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:
-            "error: ‘PTRACE_GETREGS’ undeclared":
+            "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
                 test_old_trusty_regression_testsuite failed to build (bug 1699987)
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:

@@ -25,10 +25,14 @@ ubuntu_bpf:
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
             "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 Bionic (bug 1788580)
-    s2lp6g002:
+    s2lp6g001: &ubuntu-bpf-s390x
         ubuntu-bjf:
             "libbpf: ./sockmap_parse_prog.o doesn't provide kernel version":
                 test_map failed (bug 1788562)
+    s2lp6g002:
+        <<: *ubuntu-bpf-s390x
+    s2lp6g003:
+        <<: *ubuntu-bpf-s390x
 ubuntu_bpf_jit:
     s2lp6g002:
         ubuntu-bjf-jit:
@@ -83,7 +87,7 @@ ubuntu_kernel_selftests:
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
-    s2lp6g002: &kernel-selftests-s390x
+    s2lp6g001: &kernel-selftests-s390x
         net:
             "reuseport_dualstack [FAIL]":
                 reuseport_dualstack in net (bug 1812843)
@@ -92,6 +96,10 @@ ubuntu_kernel_selftests:
                 TRACE_syscall in seccomp (bug 1812824)
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
+    s2lp6g002:
+        <<: *kernel-selftests-s390x
+    s2lp6g003:
+        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
     pepe:
         kvm_smoke_test:
@@ -99,11 +107,13 @@ ubuntu_kvm_smoke_test:
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        svm:
             "FAIL svm":
                 svm (bug 1821903)
     s2lp6g002:
@@ -128,11 +138,11 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     pepe: &syscalls-amd64
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:127: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
             "fanotify09.c:202: FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     amaura:
         <<: *syscalls-amd64
@@ -142,13 +152,13 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     s2lp6g002:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:127: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
             "fanotify09.c:202: FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
             "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
                 perf_event_open02 (bug 1822032)

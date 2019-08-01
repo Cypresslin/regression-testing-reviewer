@@ -100,6 +100,10 @@ ubuntu_btrfs_kernel_fixes:
         ff76b0565523319d7c1c0b51d5a5a8915d33efab:
             "btrfs_destroy_inode+0x":
                 ff76b05 failed (bug 1812988)
+    gonzo:
+        ff76b0565523319d7c1c0b51d5a5a8915d33efab:
+            "btrfs_destroy_inode+0x":
+                ff76b05 failed (bug 1812988)
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         breakpoints:
@@ -156,8 +160,10 @@ ubuntu_kernel_selftests:
             "run_netsocktests [FAIL]":
                 run_netsocktests (bug 1830016)
         seccomp:
-            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
-                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+            "FAIL ] TRACE_syscall.ptrace_syscall_errno":
+                TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
+            "FAIL ] TRACE_syscall.ptrace_syscall_faked":
+                TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
@@ -167,8 +173,10 @@ ubuntu_kernel_selftests:
             "run_netsocktests [FAIL]":
                 run_netsocktests (bug 1830016)
         seccomp:
-            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
-                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+            "FAIL ] TRACE_syscall.ptrace_syscall_errno":
+                TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
+            "FAIL ] TRACE_syscall.ptrace_syscall_faked":
+                TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
         powerpc:
             "selftests: copy_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
@@ -221,13 +229,14 @@ ubuntu_kvm_smoke_test:
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     ms10-34-mcdivittB0-kernel:
-        all:
-            "FAIL gicv2-mmio-up":
-                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+        gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+        gicv2-mmio-up:
+            "FAIL gicv2-mmio-up":
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
     kernel03:
-        all:
+        skey:
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
     s2lp6g003:
@@ -235,19 +244,108 @@ ubuntu_kvm_unit_tests:
             "this systems does not have KVM extension support":
                 No KVM support on zKVM
     gonzo:
-        all:
+        apic-split:
             "FAIL apic-split":
                 apic-split timeouted (bug 1821390)
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        svm:
             "FAIL svm":
                 svm (bug 1821903)
+    onza:
+        eventinj:
+            "FAIL eventinj":
+                eventinj on i386 (bug 1822235)
+        hypercall:
+            "FAIL hypercall":
+                hypercall on i386 (bug 1822235)
+        hyperv_connections:
+            "FAIL hyperv_connections":
+                hyperv_connections on i386 (bug 1822235)
+        hyperv_stimer:
+            "FAIL hyperv_stimer":
+                hyperv_stimer on i386 (bug 1822235)
+        kvmclock_test:
+            "FAIL kvmclock_test":
+                kvmclock_test on i386 (bug 1822235)
+        msr:
+            "FAIL msr":
+                msr on i386 (bug 1822235)
+        port80:
+            "FAIL port80":
+                port80 on i386 (bug 1822235)
+        realmode:
+            "FAIL realmode":
+                realmode on i386 (bug 1822235)
+        s3:
+            "FAIL s3":
+                s3 on i386 (bug 1822235)
+        sieve:
+            "FAIL sieve":
+                sieve on i386 (bug 1822235)
+        smap:
+            "FAIL smap":
+                smap on i386 (bug 1822235)
+        smptest:
+            "FAIL smptest":
+                smptest on i386 (bug 1822235)
+        smptest3:
+            "FAIL smptest3":
+                smptest3 on i386 (bug 1822235)
+        taskswitch:
+            "FAIL taskswitch":
+                taskswitch on i386 (bug 1822235)
+        taskswitch2:
+            "FAIL taskswitch2":
+                taskswitch2 on i386 (bug 1822235)
+        tsc:
+            "FAIL tsc":
+                tsc on i386 (bug 1822235)
+        tsc_adjust:
+            "FAIL tsc_adjust":
+                tsc_adjust on i386 (bug 1822235)
+        umip:
+            "FAIL umip":
+                umip on i386 (bug 1822235)
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit_cpuid on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit_inl_pmtimer on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit_ipi on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit_ipi_halt on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit_mov_from_cr8 on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit_mov_to_cr8 on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit_ple_round_robin on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit_tscdeadline on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit_tscdeadline_immed on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit_vmcall on i386 (bug 1822235)
 ubuntu_ltp:
-    riolu: &ltp
-        fs:
+    amaura:
+        fs: &ltp-fs
             "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                 binfmt_misc02 (bug 1822246)
-        controllers:
+        controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -256,22 +354,99 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        timers:
-            "leapsec_timer 2 TBROK : leapsec_timer.c":
+        timers: &ltp-timers
+            "leapsec_timer    1  TBROK  :  leapsec_timer.c":
                 leapsec_timer (bug 1829971)
-        kernel_misc:
+        power_management_tests: &ltp-pmt
+            "total_cpus-=1: not found":
+                runpwtests03 (bug 1830362)
+        commands: &ltp-commands
+            "TBROK: \"check_for_file /dev/disk/by-uuid/":
+                mkswap01_sh (bug 1830584)
+        net.ipv6_lib: &ltp-ipv6
+            "getaddrinfo_01 2 TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc: &ltp-km
             "/opt/ltp/testcases/bin/zram01.sh:":
                 zram01 (bug 1829991)
             "zram02 1 TFAIL: unexpected num of devices:":
                 zram02 (bug 1829992)
+    naumann:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        timers:
+            <<: *ltp-timers
         net.ipv6_lib:
-            "getaddrinfo_01 2 TFAIL":
-                getaddrinfo_01 (bug 1829995)
-        cve:
-            "Kernel is already tainted:":
-                cve-2017-17053 (bug 1830011)
-    grumman:
-        <<: *ltp
+            <<: *ltp-ipv6
+        kernel_misc:
+            <<: *ltp-km
+    ms10-35-mcdivittB0-kernel:
+        fs:
+            <<: *ltp-fs
+        containers: &ltp-containers
+            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
+                userns06 (bug 1836162)
+        controllers:
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+            "cpuset_hotplug 1 TFAIL: CPU#1 failed.":
+                cpuset_hotplug (bug 1834006)
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-ipv6
+        kernel_misc:
+            <<: *ltp-km
+    pepe:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-ipv6
+        kernel_misc:
+            <<: *ltp-km
+    modoc:
+        fs:
+            <<: *ltp-fs
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-ipv6
+        kernel_misc:
+            <<: *ltp-km
+    baltar:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-ipv6
+        kernel_misc:
+            <<: *ltp-km
+
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
@@ -279,7 +454,7 @@ ubuntu_ltp_syscalls:
                 fallocate05 (bug 1783880)
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "FAIL: Sync equals write: Synced 0":
                 sync_file_range02 (bug 1819116)
     entei:
         <<: *syscalls-ppc
@@ -289,7 +464,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "FAIL: Sync equals write: Synced 0":
                 sync_file_range02 (bug 1819116)
     amaura:
         <<: *syscalls-amd64
@@ -307,8 +482,9 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "FAIL: Sync equals write: Synced 0":
                 sync_file_range02 (bug 1819116)
+
     s2lp4:
         <<: *syscall-s390x
     s2lp6g003:

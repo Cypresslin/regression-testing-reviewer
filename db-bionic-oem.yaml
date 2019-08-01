@@ -31,27 +31,32 @@ ubuntu_kernel_selftests:
         seccomp:
             "FAIL ] global.get_metadata":
                 global.get_metadata in seccomp (bug 1811057)
+        timers:
+            "raw_skew [FAIL]":
+                raw_skew in timer (bug 1811194)
     naumann:
         <<: *kernel_selftests
     gonzo:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
     gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        svm:
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
+            "FAIL: first group got more than 2 events":
                 fanotify09 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "FAIL: Sync equals write: Synced 0, expected":
                 sync_file_range02 (bug 1819116)
     secchi:
         <<: *syscalls-amd64

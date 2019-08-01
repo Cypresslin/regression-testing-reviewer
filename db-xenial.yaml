@@ -116,35 +116,43 @@ ubuntu_kvm_unit_tests:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
     ms10-34-mcdivittB0-kernel:
-        all:
-            "FAIL pmu":
-                pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+        gicv2-mmio:
             "FAIL gicv2-mmio":
                 gicv2-mmio on X-ARM64 (bug 1828165)
+        gicv2-mmio-up:
             "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
                 gicv2-mmio-up (bug 1828026)
+        gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p (17 tests, 3 unexpected failures)":
                 gicv2-mmio-3p (bug 1828027)
+        pmu:
+            "FAIL pmu":
+                pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
     starmie-kernel:
-        all:
-            "FAIL pmu (3 tests, 3 unexpected failures)":
-                pmu on starmie (bug 1751000)
-            "FAIL gicv2-ipi (terminated on SIGABRT)":
-                gicv2 related test failed on ThunderX (bug 1828153)
-            "FAIL gicv2-mmio (terminated on SIGABRT)":
-                gicv2 related test failed on ThunderX (bug 1828153)
-            "FAIL gicv2-mmio-up (terminated on SIGABRT)":
-                gicv2 related test failed on ThunderX (bug 1828153)
-            "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
-                gicv2 related test failed on ThunderX (bug 1828153)
+        gicv2-active:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2 related test failed on ThunderX (bug 1828153)
+        gicv2-ipi:
+            "FAIL gicv2-ipi (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+        gicv2-mmio:
+            "FAIL gicv2-mmio (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+        gicv2-mmio-3p:
+            "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+        gicv2-mmio-up:
+            "FAIL gicv2-mmio-up (terminated on SIGABRT)":
+                gicv2 related test failed on ThunderX (bug 1828153)
+        pmu:
+            "FAIL pmu (3 tests, 3 unexpected failures)":
+                pmu on starmie (bug 1751000)
     s2lp6g001:
         all:
             "FAIL selftest-setup (timeout":
                 All tests failed on s390x KVM (bug 1822542)
     kernel01:
-        all:
+        skey:
             "FAIL skey (2 tests)":
                 skey failed on zVM (bug 1778705)
     onza:
@@ -152,9 +160,10 @@ ubuntu_kvm_unit_tests:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
     gonzo:
-        all:
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        debug:
             "FAIL debug":
                 debug (bug 1821906)
 ubuntu_ltp_syscalls:
@@ -162,45 +171,37 @@ ubuntu_ltp_syscalls:
         syscalls:
             "mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
                 fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
-            "inotify07.c:157: FAIL: didn't get event: mask=":
+            "inotify07.c:135: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:127: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
             "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+                fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
-                fanotify10 timeouted (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
-            "tag=fanotify12 stime=":
-                fanotify12 timeouted (bug 1828813)
-            "sync_file_range02.c:56: FAIL":
+                fanotify10 (bug 1802454)
+            "Sync equals write: Synced 0, expected 33554432":
                 sync_file_range02 (bug 1819116)
     modoc:
         <<: *syscalls-p8
     kernel01: &syscalls
         syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
+            "inotify07.c:135: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+            "inotify08.c:127: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
             "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+                fanotify07 causing timeout on fanotify08, fanotify09, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
             "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+                fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
-                fanotify10 timeouted (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
-            "tag=fanotify12 stime=":
-                fanotify12 timeouted (bug 1828813)
-            "sync_file_range02.c:56: FAIL":
+                fanotify10 (bug 1802454)
+            "Sync equals write: Synced 0, expected 33554432":
                 sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls

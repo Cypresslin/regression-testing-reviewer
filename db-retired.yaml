@@ -194,6 +194,11 @@ xenial-hwe:
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-x-hwe
+    ubuntu_kernel_selftests:
+        modoc:
+            seccomp:
+                "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                    TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
 xenial-edge:
     ubuntu_kvm_unit_tests:
         all:
@@ -817,12 +822,20 @@ bionic-edge:
             syscalls:
                 "FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
+    ubuntu_lxc:
+        daedalus: &lxc-setup
+            setup:
+                "E: Unable to correct problems, you have held broken packages.":
+                    package from -proposed and from -update casuing apt issue (bug 1805978)
 cosmic:
     ubuntu_kernel_selftests:
         modoc:
             powerpc:
                 " for symbol `' out of range":
                     ebb in powerpc (bug 1812805)
+            seccomp:
+                "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                    TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
     ubuntu_kvm_unit_tests:
         gonzo:
             all:
@@ -872,6 +885,11 @@ cosmic-kvm:
                 "AssertionError: /proc/self/stack does not exist":
                     /proc/self/stack does not exist in kvm kernel (bug 1805105)
 disco:
+    ubuntu_ltp:
+        amaura:
+            power_management_tests:
+                "Power_Management03 2 TFAIL: Changing governors":
+                    runpwtests03 (bug 1830362)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:

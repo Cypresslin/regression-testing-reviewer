@@ -213,82 +213,248 @@ ubuntu_kvm_smoke_test:
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        svm:
             "FAIL svm":
                 svm (bug 1821903)
     ms10-34-mcdivittB0-kernel:
-        all:
-            "FAIL gicv3-ipi":
-                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
-            "FAIL gicv3-active":
-                gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+         gicv3-active:
+            "gicv3-active":
+                    gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+         gicv3-ipi:
+            "gicv3-ipi":
+                    gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
     kernel02:
-        all:
+        "skey":
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
     s2lp6g002:
         setup:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
+    onza:
+        eventinj:
+            "FAIL eventinj":
+                eventinj on i386 (bug 1822235)
+        hypercall:
+            "FAIL hypercall":
+                hypercall on i386 (bug 1822235)
+        hyperv_connections:
+            "FAIL hyperv_connections":
+                hyperv_connections on i386 (bug 1822235)
+        hyperv_stimer:
+            "FAIL hyperv_stimer":
+                hyperv_stimer on i386 (bug 1822235)
+        kvmclock_test:
+            "FAIL kvmclock_test":
+                kvmclock_test on i386 (bug 1822235)
+        msr:
+            "FAIL msr":
+                msr on i386 (bug 1822235)
+        port80:
+            "FAIL port80":
+                port80 on i386 (bug 1822235)
+        realmode:
+            "FAIL realmode":
+                realmode on i386 (bug 1822235)
+        s3:
+            "FAIL s3":
+                s3 on i386 (bug 1822235)
+        sieve:
+            "FAIL sieve":
+                sieve on i386 (bug 1822235)
+        smap:
+            "FAIL smap":
+                smap on i386 (bug 1822235)
+        smptest:
+            "FAIL smptest":
+                smptest on i386 (bug 1822235)
+        smptest3:
+            "FAIL smptest3":
+                smptest3 on i386 (bug 1822235)
+        taskswitch:
+            "FAIL taskswitch":
+                taskswitch on i386 (bug 1822235)
+        taskswitch2:
+            "FAIL taskswitch2":
+                taskswitch2 on i386 (bug 1822235)
+        tsc:
+            "FAIL tsc":
+                tsc on i386 (bug 1822235)
+        tsc_adjust:
+            "FAIL tsc_adjust":
+                tsc_adjust on i386 (bug 1822235)
+        umip:
+            "FAIL umip":
+                umip on i386 (bug 1822235)
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit_cpuid on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit_inl_pmtimer on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit_ipi on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit_ipi_halt on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit_mov_from_cr8 on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit_mov_to_cr8 on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit_ple_round_robin on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit_tscdeadline on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit_tscdeadline_immed on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit_vmcall on i386 (bug 1822235)
 ubuntu_ltp:
-    riolu:
-        fs:
+    pepe:
+        fs: &ltp-fs
             "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                 binfmt_misc02 (bug 1822246)
-            "proc01 1 TFAIL":
+            "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        controllers:
-            "/opt/ltp/testcases/bin/cpuacct.sh":
-                cpuacct_100_100 (bug 1829978)
+        containers: &ltp-containers
+            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
+                userns06 (bug 1836162)
+        controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
-                memcg_usage_in_bytes (bug 1829984)
+                memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-    chico: &1765331
+        timers: &ltp-timers
+            "leapsec_timer    2  TBROK  :  leapsec_timer.c":
+                leapsec_timer (bug 1829971)
+        net.ipv6_lib: &ltp-net
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc: &ltp-misc
+            "/opt/ltp/testcases/bin/zram01.sh:":
+                zram01 (bug 1829991)
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
+    naumann:
         fs:
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
-            "proc01 1 TFAIL":
-                proc01 (bug 1829849)
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "TFAIL: cpuset.cpus: Test result -  Expected string":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_load_balance 1 TFAIL: load balance test failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
+            "cpuset_check_domains    1  TFAIL  :  cpuset_sched_domains_check.c":
+                cpuset_sched_domains (bug 1830361)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "Kernel is already tainted:":
+                cve-2017-17053 (bug 1830011)
+        kernel_misc:
+            <<: *ltp-misc
+    riolu:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+    ms10-35-mcdivittB0-kernel:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+            "cpuset_hotplug 1 TFAIL: CPU#1 failed.":
+                cpuset_hotplug (bug 1834006)
+        timers:
+            <<: *ltp-timers
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    baltar:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
 ubuntu_ltp_syscalls:
-    baltar: &syscalls-ppc
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
+    pepe: &syscalls-amd64
+        syscalls: &syscalls
+            "inotify08.c:127: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
-                fallocate05 (bug 1783880)
             "fanotify09.c:202: FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
+            "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
+    baltar: &syscalls-ppc
+        syscalls:
+            <<: *syscalls
+            "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                fallocate05 (bug 1783880)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
-    pepe: &syscalls-amd64
+        "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
+            move_pages12 (bug 1831043)
+    naumann:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
+            <<: *syscalls
+            "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
+                move_pages12 (bug 1831043)
     amaura:
         <<: *syscalls-amd64
     secchi:
@@ -301,50 +467,30 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     kernel02:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
+            <<: *syscalls
             "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
                 perf_event_open02 (bug 1822032)
     s2lp3:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
+            <<: *syscalls
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
             "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
                 perf_event_open02 (bug 1822032)
     s2lp6g002:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
+            <<: *syscalls
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
             "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
                 perf_event_open02 (bug 1822032)
     chico: &syscalls-kvm
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
+            <<: *syscalls
             "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157:        Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
     harpo:
         <<: *syscalls-kvm
     groucho:

@@ -8,8 +8,6 @@ disco:
         <<: *d-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -19,13 +17,12 @@ disco:
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
     arm64:
         <<: *d-non-x86
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *d-non-x86
+        ? ubuntu_ltp
         ? xfstests
 cosmic:
     amd64: &c-amd64
@@ -36,8 +33,6 @@ cosmic:
         <<: *c-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -47,8 +42,6 @@ cosmic:
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
     arm64:
         <<: *c-non-x86
         ? ubuntu_sysdig_smoke_test
@@ -78,8 +71,6 @@ bionic:
         <<: *b-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -89,8 +80,6 @@ bionic:
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
     arm64:
         <<: *b-non-x86
         ? ubuntu_sysdig_smoke_test
@@ -115,29 +104,23 @@ bionic-oem:
     amd64:
         <<: *b-amd64
         ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
 bionic-oem-osp1:
     amd64:
         <<: *b-amd64
-        ? ubuntu_ltp
 bionic-fips:
     amd64:
         <<: *b-amd64
     s390x:
         <<: *b-non-x86
-        ? xfstests
 bionic-hwe:
     amd64: &b-hwe-amd64
         ? libhugetlbfs
         ? ubuntu_ecryptfs
-        ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
     i386:
         <<: *b-hwe-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -147,7 +130,6 @@ bionic-hwe:
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ramfs_stress
     arm64:
         <<: *b-hwe-non-x86
         ? ubuntu_sysdig_smoke_test
@@ -177,7 +159,6 @@ xenial:
         <<: *x-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_zfs_smoke_test
@@ -187,7 +168,6 @@ xenial:
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ramfs_stress
     ppc64le:
         <<: *x-non-x86
     s390x:
@@ -198,7 +178,6 @@ xenial-hwe:
         ? ubuntu_bpf
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
     i386:
         <<: *x-hwe-amd64
@@ -280,6 +259,7 @@ trusty:
         ? ubuntu_ltp
         ? ubuntu_lttng_smoke_test
         ? ubuntu_nbd_smoke_test
+        ? ubuntu_overlayfs_smoke_test
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_unionmount_overlayfs_suite
         ? ubuntu_zfs_fstest
@@ -289,14 +269,12 @@ trusty:
     i386:
         <<: *t-amd64
         ? ubuntu_32_on_64
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
     ppc64le: &t-non-x86
         <<: *t-amd64
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
     arm64:
         <<: *t-non-x86
@@ -337,6 +315,7 @@ precise-hwe:
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
+        ? ubuntu_futex
         ? ubuntu_kernel_selftests
         ? ubuntu_kvm_smoke_test
         ? ubuntu_kvm_unit_tests
@@ -345,7 +324,7 @@ precise-hwe:
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
         ? ubuntu_nbd_smoke_test
-        ? ubuntu_ramfs_stress
+        ? ubuntu_overlayfs_smoke_test
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_unionmount_overlayfs_suite
         ? ubuntu_zfs_fstest
@@ -361,6 +340,7 @@ precise-hwe:
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
         ? ubuntu_fan_smoke_test
+        ? ubuntu_futex
         ? ubuntu_kernel_selftests
         ? ubuntu_kvm_smoke_test
         ? ubuntu_kvm_unit_tests
@@ -369,7 +349,7 @@ precise-hwe:
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
         ? ubuntu_nbd_smoke_test
-        ? ubuntu_ramfs_stress
+        ? ubuntu_overlayfs_smoke_test
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_unionmount_overlayfs_suite
@@ -380,10 +360,12 @@ precise-hwe:
 precise:
     amd64:
         <<: *p-hwe-amd64
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_loop_smoke_test
         ? ubuntu_seccomp
     i386:
         <<: *p-hwe-i386
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_loop_smoke_test
 full-list: [
     aio_dio_bugs,
@@ -415,6 +397,7 @@ full-list: [
     ubuntu_ecryptfs,
     ubuntu_fan_smoke_test,
     ubuntu_ftrace_smoke_test,
+    ubuntu_futex,
     ubuntu_kernel_selftests,
     ubuntu_kvm_smoke_test,
     ubuntu_kvm_unit_tests,
@@ -425,6 +408,7 @@ full-list: [
     ubuntu_lttng_smoke_test,
     ubuntu_lxc,
     ubuntu_nbd_smoke_test,
+    ubuntu_overlayfs_smoke_test,
     ubuntu_qrt_apparmor,
     ubuntu_qrt_kernel_aslr_collisions,
     ubuntu_qrt_kernel_hardening,

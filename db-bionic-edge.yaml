@@ -57,21 +57,6 @@ ubuntu_btrfs_kernel_fixes:
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
             "btrfs balance failed":
                 f88ba6a failed (bug 1828380)
-ubuntu_lxc:
-    daedalus: &lxc-setup
-        setup:
-            "E: Unable to correct problems, you have held broken packages.":
-                package from -proposed and from -update casuing apt issue (bug 1805978)
-    onibi:
-        <<: *lxc-setup
-    onza:
-        <<: *lxc-setup
-    starmie-kernel:
-        <<: *lxc-setup
-    baltar:
-        <<: *lxc-setup
-    entei:
-        <<: *lxc-setup
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         breakpoints:
@@ -225,7 +210,7 @@ ubuntu_ltp_syscalls:
         <<: *syscalls
 ubuntu_lttng_smoke_test:
     onibi: &lttng
-         lttng-smoke-test:
+        lttng-smoke-test:
             "TestError: DKMS failed to install":
                 failed to build lttng DKMS with 5.0 kernel (bug 1826846)
     wright-kernel:
