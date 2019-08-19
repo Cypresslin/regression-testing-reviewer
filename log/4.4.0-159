@@ -1,0 +1,54 @@
+4.4.0-159.187 - generic
+Regression test CMPL, RTB.
+
+54 / 56 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-mmio on X-ARM64 (bug 1828165) pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2 related test failed on ThunderX (bug 1828153)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+  xfstests - xfs generic/475 timed out
+
+49 / 51 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+
+50 / 52 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
+  ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454)
+
+50 / 51 tests were run, missing: ubuntu_boot
+Issue to note in s390x (KVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - test should be skipped for X s390x KVM
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+
+50 / 51 tests were run, missing: ubuntu_boot
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+
+50 / 51 tests were run, missing: ubuntu_boot
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) sync_file_range02 (bug 1819116)
+
+Note: xfstests is under maintenance

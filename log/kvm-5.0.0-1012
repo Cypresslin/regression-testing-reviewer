@@ -1,0 +1,22 @@
+5.0.0-1012.13 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test failed on KVM kernels (bug 1833396)
+  ubuntu_kernel_selftests - psock_tpacket in net (bug 1812176) test_bpf in net (bug 1812189) rtnetlink in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf in net (bug 1837348) test_vxlan_fdb_changelink in net (bug 1837355) ftrace (bug 1812318)
+  ubuntu_kvm_smoke_test	- timed out waiting for dnsmasq lease (bug 1837365)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) leapsec01 (bug 1839135) msgstress03 (bug 1797341) quotactl01, quotactl02, quotactl03 (bug 1797325)  sync_file_range02 (bug 1819116) timer_create01 (bug 1838961)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on KVM kernel (bug 1766565)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp

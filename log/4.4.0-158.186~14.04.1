@@ -1,0 +1,44 @@
+Marked as Incomplete for potential regression on:
+  ubuntu_btrfs_kernel_fixes - 361c093d7f99c3f6cbb07d5c580ce778ab418c42 (bug 1839146)
+
+4.4.0-158.186~14.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) svm (bug 1821903) umip should be skipped (bug 1821905)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+
+Issue to note in i386:
+  ubuntu_btrfs_kernel_fixes - 361c093d7f99c3f6cbb07d5c580ce778ab418c42 (bug 1839146)
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+
+4.4.0-158.186~14.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) svm (bug 1821903) umip should be skipped (bug 1821905)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) open14 (bug 1798061) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_qrt_kernel_security - 050 failed (bug 1684776)
+
+Issue to note in i386:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+
+43 / 44 tests were run, missing: ubuntu_boot
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on T/X P8 (bug 1813863)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) move_pages12 (bug 1831043) open14 (bug 1798061) openat03 (bug 1798027) prctl07 (bug 1839064)

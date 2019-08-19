@@ -1,0 +1,15 @@
+5.0.0-1013.13 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  tsc - failed to build (bug 1831584)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - psock_tpacket in net (bug 1812176) test_bpf in net (bug 1812189) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf in net (bug 1837348) trace_printk in ftrace (bug 1830084)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) msgstress03 (bug 1797341)  sync_file_range02 (bug 1819116) epoll_wait02 failed on some nodes, but can't be manually reproduced.
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp
+
+Note: blacklisting is not working (bug 1839405)

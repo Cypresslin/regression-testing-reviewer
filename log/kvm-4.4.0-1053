@@ -1,0 +1,21 @@
+4.4.0-1053.60 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) test_user_copy return code in user (bug 1812352)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) inotify07 (bug 1774387) inotify08 (bug 1775784) quotactl01 / quotactl02 / quotactl03 (bug 1797325) msgstress03 (bug 1783881) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961)
+  ubuntu_lxc - ERROR: Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  xfstests - no scratch drive available for the test
+
+Skipped / blacklisted:
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_bpf
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_ltp
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp
+  * ubuntu_sysdig_smoke_test

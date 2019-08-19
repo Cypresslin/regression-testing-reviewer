@@ -1,0 +1,13 @@
+4.15.0-1038.40 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  tsc - failed to build (bug 1831584)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - cpu-hotplug with 1 cpu (bug 1812149) rtnetlink.sh in net (bug 1812194) global.get_metadata in seccomp_bpf (bug 1811057) raw_skew in timers (bug 1825491)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1829982)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-2 (bug 1804594) msgstress03 (bug 1797341)  sync_file_range02 (bug 1819116) epoll_wait02 failed on some nodes, but can't be manually reproduced.
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp

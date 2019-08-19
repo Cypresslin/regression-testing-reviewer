@@ -1,0 +1,22 @@
+4.15.0-1040.40 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test failed on KVM kernels (bug 1833396)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) psock_tpacket in net failed (bug 1812176) RTNETLINK in net (bug 1812194) global.get_metadata in seccomp (bug 1811057) user_copy in user skipped, ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) quota_remount_test01 (bug 1830670) hackbench01 (bug 1830675) netns_sysfs (bug 1830678)  leapsec_timer (bug 1829971) getaddrinfo_01 (bug 1829995) ltp_acpi (bug 1830676) controller test timeout (bug 1839144) cve test failed to fork (bug 1839143)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-1 (bug 1804594) leapsec01 (bug 1839135) msgstress03 (bug 1797341) quotactl01, quotactl02, quotactl03 (bug 1797325) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp
+

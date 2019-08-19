@@ -1,0 +1,62 @@
+5.0.0-25.26 - generic
+Regression test CMPL, RTB.
+
+55 / 57 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in amd64:
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) ksm06* in mm (bug 1830316) cpuset_base_ops in controllers (bug 1830359) cpuset_sched_domains (bug 1830361) cpuset_load_balance in controllers (bug 1830360) cpuhotplug04 (bug 1836169)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) copy_file_range02 (bug 1839130)
+
+50 / 52 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) userns06 (bug 1836162) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) copy_file_range02 (bug 1839130)
+
+50 / 52 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_smoke_test - timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_kvm_unit_tests - eventinj on i386 (bug 1822235) hypercall on i386 (bug 1822235) hyperv_connections on i386 (bug 1822235) hyperv_stimer on i386 (bug 1822235) kvmclock_test on i386 (bug 1822235) msr on i386 (bug 1822235) port80 on i386 (bug 1822235) realmode on i386 (bug 1822235) s3 on i386 (bug 1822235) sieve on i386 (bug 1822235) smap on i386 (bug 1822235) smptest on i386 (bug 1822235) smptest3 on i386 (bug 1822235) taskswitch on i386 (bug 1822235) taskswitch2 on i386 (bug 1822235) tsc on i386 (bug 1822235) tsc_adjust on i386 (bug 1822235) umip on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) userns06 (bug 1836162) memcg_stat_rss (bug 1837035) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) copy_file_range02 (bug 1839130)
+
+50 / 53 tests were run, missing: ubuntu_boot, ubuntu_ltp, xfstests
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) fallocate05 (bug 1783880) move_pages12 (bug 1831043) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961) copy_file_range02 (bug 1839130)
+  ubuntu_lxc - Network issue (bug 1839835)
+
+51 / 53 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) psock_snd in net (bug 1812618) dscr_sysfs_test in powerpc for P9 (bug 1813136)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) ksm06* in mm (bug 1830316) userns06 (bug 1836162) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) fallocate05 (bug 1783880) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961) copy_file_range02 (bug 1839130)
+  ubuntu_lxc - Network issue (bug 1839835)
+
+49 / 51 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961) copy_file_range02 (bug 1839130)
+
+49 / 51 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961) copy_file_range02 (bug 1839130)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+Note: Missing ubuntu_btrfs_kernel_fixes for s390x (bug 1809860)
+Note: xfstests is under maintenance

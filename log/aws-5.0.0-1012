@@ -1,0 +1,15 @@
+5.0.0-1012.13 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  tsc - failed to build (bug 1831584)
+  ubuntu_kernel_selftests - fib related test in net (bug 1812622) test_vxlan_under_vrf.sh in net (bug 1837348) msg_zerocopy in net (bug 1812620)
+  ubuntu_kvm_unit_tests - vmx on i3.metal (1821394)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) quota_remount_test01 (bug 1830670)  memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1829982) mm test failed on some instances
+  ubuntu_ltp_syscalls - msgstress03 (bug 1783881) move_pages12 (bug 1831043) leapsec01 (bug 1839135) copy_file_range02 (bug 1839130 )
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

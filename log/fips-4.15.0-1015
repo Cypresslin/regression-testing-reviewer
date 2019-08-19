@@ -1,0 +1,11 @@
+4.15.0-1015.18 - fips
+Regression test CMPL, RTB.
+
+47 / 57 tests were run, missing: ubuntu_32_on_64, ubuntu_blkdev_directio, ubuntu_boot, ubuntu_bpf, ubuntu_cts_kernel, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_ltp, ubuntu_vfat_stress, ubuntu_zfs_xfs_generic
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.get_metadata in seccomp (bug 1811057) raw_skew in timer (bug 1811194)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-1 (bug 1804594) sync_file_range02 (bug 1819116) leapsec01 (bug 1839135)
+  xfstests - failed because no scratch drive
+
+Note: Missing P8 test result as hw issue (node entei)
+Note: Missing s390x test results

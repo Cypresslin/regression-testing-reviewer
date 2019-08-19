@@ -1,0 +1,16 @@
+5.0.0-1016.17 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  monotonic_time - tsc test failed on Standard_D2s_v3, Standard_E2s_v3
+  ubuntu_kernel_selftests -  cpu-hotplug (bug 1814232) test_bpf in net (bug 1812189) fib related test in net (bug 1812622) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf.sh in net (bug 1837348) trace_printk in ftrace (bug 1830084)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) ept (bug 1824228) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) leapsec01 (bug 1839135) sync_file_range02 (bug 1819116)
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_B1ms, Standard_DC2s, Standard_F1s, Standard_F2s (bug 1821152), passed on the rest
+  ubuntu_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s only
+  ubuntu_unionmount_overlayfs_suite - Rename empty dir and rename back failed (bug 1727290)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_seccomp

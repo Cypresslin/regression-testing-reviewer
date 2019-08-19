@@ -1,0 +1,16 @@
+4.15.0-1029.31 - ibm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_map (bug 1839912)
+  ubuntu_kernel_selftests - RTNETLINK in net (bug 1812194) global.get_metadata in seccomp (bug 1811057) raw_skew skipped return code (bug 1812352)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-1 (bug 1804594) leapsec01 (bug 1839135) msgstress03 (bug 1797341) sync_file_range02 (bug 1819116)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_ecryptfs
+  * ubuntu_seccomp
+

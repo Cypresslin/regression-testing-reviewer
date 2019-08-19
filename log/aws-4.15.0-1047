@@ -1,0 +1,29 @@
+4.15.0-1045.47 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  iosched_bugs - should be blacklisted
+  libhugetlbfs - should be blacklisted
+  monotonic_time - should be blacklisted
+  tsc - failed to build (bug 1831584)
+  ubuntu_32_on_64 - should be blacklisted
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1812149) global.get_metadata in seccomp (bug 1811057) RTNETLINK in net (bug 1812194) raw_skew in timer (bug 1811194)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) quota_remount_test01 (bug 1830670) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_test_3 (bug 1836694) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) sysctl02_sh (bug 1833935) getaddrinfo_01 (bug 1829995) af_alg05 (bug 1839829) af_alg06 (bug 1839830) crypto_user02 (bug 1837543) mm test failed on some instances
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-1 (bug 1804594) inotify08 (bug 1775784) leapsec01 (bug 1839135) msgstress03 (bug 1783881) timer_create01 (bug 1838961)
+  ubuntu_quota_smoke_test - should be blacklisted
+  ubuntu_seccomp - should be blacklisted
+  ubuntu_sysdig_smoke_test - should be blacklisted
+  ubuntu_zram_smoke_test - should be blacklisted
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - should be blacklisted
+  tsc - failed to build (bug 1831584)
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1812149) global.get_metadata in seccomp (bug 1811057) RTNETLINK in net (bug 1812194) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) umip (1821905) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) vmx_apic_passthrough_thread (bug 1822309) debug (bug 1821906) on i3.metal
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) quota_remount_test01 (bug 1830670) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) sysctl02_sh (bug 1833935) getaddrinfo_01 (bug 1829995) af_alg06 (bug 1839830) crypto_user02 (bug 1837543) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1839130) fanotify09-1 (bug 1804594) inotify08 (bug 1775784) leapsec01 (bug 1839135) msgstress03 (bug 1783881)
+  ubuntu_quota_smoke_test - should be blacklisted
+  ubuntu_seccomp - should be blacklisted
+  ubuntu_zram_smoke_test - should be blacklisted
+
+Note: blacklisting is not working (bug 1839405)
