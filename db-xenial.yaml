@@ -19,10 +19,10 @@ hwclock:
 libhugetlbfs:
     kernel01: &libhugetlbfs
         libhugetlbfs:
-            "FAIL:     0     11":
-                failed 11
-            "Killed by signal:     0      7":
-                killed by signal 7
+            "FAIL:     0      5":
+                failed 5 (Address is not hugepage, Heap not on hugepages)
+            "Killed by signal:     0      1":
+                killed by signal 1
             "Bad configuration:     0      1":
                 bad config 1
     s2lp3:
@@ -177,8 +177,8 @@ ubuntu_ltp_syscalls:
                 inotify08 (bug 1775784)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "tag=fanotify07 stime=":
-                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
+            "fanotify07 fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
@@ -195,8 +195,8 @@ ubuntu_ltp_syscalls:
                 inotify08 (bug 1775784)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "tag=fanotify07 stime=":
-                fanotify07 causing timeout on fanotify08, fanotify09, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
+            "fanotify07 fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":

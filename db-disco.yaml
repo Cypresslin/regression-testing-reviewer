@@ -49,7 +49,7 @@ ubuntu_bpf:
         <<: *bpf-arm64
     s2lp6g003: &bpf-s390x
         ubuntu-bjf:
-            "Failed to load prog 'Unknown error 524'!":
+            "Failed to load prog":
                 test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
     s2lp4:
         <<: *bpf-s390x
@@ -424,16 +424,28 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
-            "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+            "FAIL: copy_file_range returned wrong value":
+                copy_file_range02 (bug 1839130)
+            "leapsec01.c:84: BROK: adjtimex status":
+                leapsec01 (bug 1839135)
+            "FAIL: madvise failed: SUCCESS":
+                move_pages12 (bug 1831043)
+            "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
     pepe: &syscalls-amd64
         syscalls:
+            "FAIL: copy_file_range returned wrong value":
+                copy_file_range02 (bug 1839130)
+            "leapsec01.c:84: BROK: adjtimex status":
+                leapsec01 (bug 1839135)
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     amaura:
@@ -448,10 +460,18 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     kernel03: &syscall-s390x
         syscalls:
+            "acct() wrote incorrect file contents!":
+                acct02 (bug 1839836)
+            "leapsec01.c:84: BROK: adjtimex status":
+                leapsec01 (bug 1839135)
+            "FAIL: copy_file_range returned wrong value":
+                copy_file_range02 (bug 1839130)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
     s2lp4:
         <<: *syscall-s390x
     s2lp6g003:
