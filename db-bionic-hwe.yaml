@@ -15,9 +15,11 @@ hwclock:
     baltar: &hwclock-ppc
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+                hwclock test failed on PowerPC due to 0.x sec differences / time out waiting for time change (bug 1802233)
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+    modoc:
+        <<: *hwclock-ppc
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -29,7 +31,7 @@ ubuntu_blktrace_smoke_test:
                 attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
     onza:
-        ubuntu-bjf:
+        test_maps:
             "Cannot allocate memory":
                 failed to allocate memory on i386 (bug 1837386)
     baltar:
@@ -51,6 +53,11 @@ ubuntu_btrfs_kernel_fixes:
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
             "btrfs balance failed":
                 f88ba6a failed (bug 1828380)
+ubuntu_cts_kernel:
+    gonzo:
+        lp1262692:
+            "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
+                test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         net:
@@ -62,8 +69,6 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-            "run_netsocktests [FAIL]":
-                run_netsocktests (bug 1830016)
         ftrace:
             "[27] Kprobe dynamic event - probing module [FAIL]":
                 Kprobe probing module in ftrace (bug 1812636)
@@ -74,20 +79,14 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-arm64
     amaura: &kernel-selftests-amd64
         net:
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-            "run_netsocktests [FAIL]":
-                run_netsocktests (bug 1830016)
-        ftrace:
-            "Kprobe event string type argument	[FAIL]":
-                Kprobe event string type (bug 1825780)
     naumann:
         <<: *kernel-selftests-amd64
     fozzie:
         <<: *kernel-selftests-amd64
-        ftrace:
-            "Kprobe event string type argument   [FAIL]":
-                Kprobe event string type argument in ftrace (bug 1812645)
     modoc:
         net:
             "BPF API too old":
@@ -255,6 +254,9 @@ ubuntu_ltp:
                 zram01 (bug 1829991)
             "zram02 1 TFAIL: unexpected num of devices:":
                 zram02 (bug 1829992)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
     amaura:
         fs:
             <<: *ltp-fs
@@ -264,6 +266,10 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
             "memcg_stat_rss 4 TFAIL: Process":
                 memcg_stat_rss (bug 1837035)
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
     naumann:
         fs:
             <<: *ltp-fs
@@ -315,6 +321,8 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     wright-kernel:
         fs:
             <<: *ltp-fs
@@ -331,6 +339,26 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
+    baltar:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
+                cpufreq_boost (bug 1842032)
+        crypto:
+            <<: *ltp-crypto
 ubuntu_ltp_syscalls:
     pepe: &syscalls
         syscalls:
@@ -365,6 +393,15 @@ ubuntu_lttng_smoke_test:
         <<: *lttng
     pepe:
         <<: *lttng
+ubuntu_lxc:
+    baltar: &lxc-download
+        exercise:
+            "ERROR: Failed to download http://images.linuxcontainers.org":
+                Failed to download image index (bug 1839835)
+    entei:
+        <<: *lxc-download
+    modoc:
+        <<: *lxc-download
 ubuntu_qrt_kernel_security:
     modoc: &kernel-security-ppc
         test-kernel-security.py:

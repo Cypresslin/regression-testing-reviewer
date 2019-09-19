@@ -26,11 +26,7 @@ hwclock:
                 issue for HP m400 (bug 1716603)
 ubuntu_bpf:
     onza:
-        ubuntu-bjf:
-            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-            "check bpf_perf_event_data->sample_period":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+        test-maps:
             "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 Bionic (bug 1788580)
     baltar: &bpf-ppc
@@ -42,7 +38,7 @@ ubuntu_bpf:
     modoc:
         <<: *bpf-ppc
     starmie-kernel: &bpf-arm64
-        ubuntu-bjf:
+        test-maps:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
     ms10-34-mcdivittB0-kernel:
@@ -294,6 +290,9 @@ ubuntu_ltp:
                 zram01 (bug 1829991)
             "zram02 1 TFAIL: unexpected num of devices:":
                 zram02 (bug 1829992)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
     naumann:
         fs:
             <<: *ltp-fs
@@ -319,6 +318,8 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
@@ -347,6 +348,8 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     wright-kenrel:
         fs:
             <<: *ltp-fs
@@ -363,6 +366,8 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     pepe:
         fs:
             <<: *ltp-fs
@@ -383,6 +388,8 @@ ubuntu_ltp:
                 cve-2015-3290 (bug 1837005)
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     baltar:
         fs:
             <<: *ltp-fs
@@ -398,6 +405,8 @@ ubuntu_ltp:
             <<: *ltp-timers
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     riolu: &ltp
         fs:
             <<: *ltp-fs
@@ -419,13 +428,13 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     grumman:
         <<: *ltp
 ubuntu_ltp_syscalls:
     baltar: &syscalls-ppc
         syscalls:
-            "FAIL: copy_file_range returned wrong value":
-                copy_file_range02 (bug 1839130)
             "leapsec01.c:84: BROK: adjtimex status":
                 leapsec01 (bug 1839135)
             "FAIL: madvise failed: SUCCESS":
@@ -442,8 +451,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     pepe: &syscalls-amd64
         syscalls:
-            "FAIL: copy_file_range returned wrong value":
-                copy_file_range02 (bug 1839130)
             "leapsec01.c:84: BROK: adjtimex status":
                 leapsec01 (bug 1839135)
             "sync_file_range02.c:74: FAIL":
@@ -464,8 +471,6 @@ ubuntu_ltp_syscalls:
                 acct02 (bug 1839836)
             "leapsec01.c:84: BROK: adjtimex status":
                 leapsec01 (bug 1839135)
-            "FAIL: copy_file_range returned wrong value":
-                copy_file_range02 (bug 1839130)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "sync_file_range02.c:74: FAIL":
@@ -480,8 +485,6 @@ ubuntu_ltp_syscalls:
         <<: *syscall-s390x
     chico: &syscalls-kvm
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "tst_test.c:1126: BROK: Test killed! (timeout?)":
                 getrandom02 timed out (bug 1797327)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
@@ -501,10 +504,6 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    ms10-34-mcdivittB0-kernel:
-        exercise:
-            "ERROR: Failed to download http://images.linuxcontainers.org":
-                Firewall issue, RT#113132
     s2lp4:
         exercise:
             "FAIL: lxc-tests: lxc-test-api-reboot":
@@ -519,10 +518,14 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    starmie:
+    baltar: &lxc-download
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
-                Firewall issue, RT#113132
+                Failed to download image index (bug 1839835)
+    entei:
+        <<: *lxc-download
+    modoc:
+        <<: *lxc-download
 xfstests:
     rizzo: &xfstests
         setup:

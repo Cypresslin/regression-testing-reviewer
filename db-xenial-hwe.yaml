@@ -18,12 +18,9 @@ hwclock:
                 issue for HP m400 (bug 1716603)
 ubuntu_kernel_selftests:
     amaura: &kernel-selftests
-        net:
-            "make: *** [all] Error 2":
-                net test failed to build (bug 1813883)
-        seccomp:
-            "FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
+        net: &kernel-selftests-net
+            "run_netsocktests [FAIL]":
+                run_netsocktests in net (bug 1842023)
     gonzo:
         <<: *kernel-selftests
     naumann:
@@ -31,7 +28,10 @@ ubuntu_kernel_selftests:
     pepe:
         <<: *kernel-selftests
     fozzie:
-        <<: *kernel-selftests
+        net:
+            <<: *kernel-selftests-net
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
     starmie-kernel:
         <<: *kernel-selftests
     ms10-34-mcdivittB0-kernel:
@@ -41,11 +41,10 @@ ubuntu_kernel_selftests:
                 cpu-hotplug failed on moonshot (bug 1809701)
     modoc:
         net:
-            "make: *** [all] Error 2":
-                net test failed to build (bug 1813883)
+            <<: *kernel-selftests-net
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
         seccomp:
-            "FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
             "FAIL ] TRACE_syscall.ptrace_syscall_errno":
                 TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
             "FAIL ] TRACE_syscall.ptrace_syscall_faked":
@@ -113,10 +112,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                 statx05 (bug 1798524)
             "sync_file_range02.c:74: FAIL":
@@ -127,12 +122,8 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     amaura: &syscalls-amd64
         syscalls:
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                 statx05 (bug 1798524)
-            "FAIL: first group got more than 2 events (72 > 48)":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
@@ -143,11 +134,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
-ubuntu_qrt_kernel_security:
-    modoc: &kernel-security-ppc
-        test-kernel-security.py:
-            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
-                LOCK_DOWN_KERNEL (bug 1811981)
 ubuntu_sysdig_smoke_test:
     entei: &sysdig
         sysdig-smoke-test:

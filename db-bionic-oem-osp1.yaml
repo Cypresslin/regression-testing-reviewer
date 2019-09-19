@@ -11,30 +11,15 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_bpf:
-    gonzo:
-        setup:
-            "undefined reference to `bpf_probe_prog_type'":
-                function does not exist (1829812)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
         net:
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
-            "undefined reference to `bpf_probe_prog_type'":
-                function does not exist (1829812)
     naumann:
         <<: *kernel_selftests
     gonzo:
         <<: *kernel_selftests
-ubuntu_kvm_unit_tests:
-    gonzo:
-        apic:
-            "FAIL apic (timeout; duration=30)":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split (timeout; duration=90s)":
-                apic-split timeouted (bug 1821390)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -106,16 +91,6 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     lodygin:
         <<: *syscalls-amd64
-ubuntu_lttng_smoke_test:
-    onibi:
-         lttng-smoke-test:
-            "TestError: DKMS failed to install":
-                failed to build lttng DKMS with 5.0 kernel (bug 1826846)
-ubuntu_sysdig_smoke_test:
-    onibi:
-        sysdig-smoke-test:
-            "TestError: DKMS failed to install":
-                failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
 xfstests:
     rizzo: &xfstests
         ext4:

@@ -180,6 +180,17 @@ xenial-hwe:
             gtod:
                 "FAIL: gtod-worst-warp=":
                     gtod tend to fail on onibi
+    ubuntu_kernel_selftests:
+        amaura:
+            net:
+                "make: *** [all] Error 2":
+                    net test failed to build (bug 1813883)
+        modoc:
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
+                "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                    TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -189,6 +200,15 @@ xenial-hwe:
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "inotify08.c:127: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
+                "FAIL: first group got more than 2 events (72 > 48)":
+                    fanotify09-2 (bug 1804594)
+    ubuntu_qrt_kernel_security:
+        modoc: &kernel-security-ppc
+            test-kernel-security.py:
+                "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
+                    LOCK_DOWN_KERNEL (bug 1811981)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x-hwe
             079:
@@ -196,12 +216,14 @@ xenial-hwe:
                     failed with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-x-hwe
+xenial-edge:
     ubuntu_kernel_selftests:
         modoc:
             seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
                 "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                     TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
-xenial-edge:
     ubuntu_kvm_unit_tests:
         all:
             "FAIL emulator":
@@ -256,6 +278,12 @@ xenial-edge:
             <<: *1751243-x-edge
         ms10-34-mcdivittB0-kernel:
             <<: *1751243-x-edge
+xenial-fips:
+    ubuntu_kernel_selftests:
+        amaura:
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
 xenial-kvm:
     ubuntu_blktrace_smoke_test:
         chico: &blktrace-smoke-test-x-kvm
@@ -440,6 +468,9 @@ bionic:
             ubuntu-bjf:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            test_maps:
+                "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
+                    test_map failed on i386 Bionic (bug 1788580)
         baltar:
             setup: &1788551
                 "'bits/libc-header-start.h' file not found":
@@ -469,8 +500,6 @@ bionic:
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
-        starmie-kernel:
-            <<: *1680507-b
         modoc:
             ftrace:
                 "Kprobe event argument syntax       [FAIL]":
@@ -480,6 +509,11 @@ bionic:
                     ptrace-tm-spd-gpr in powerpc (bug 1812805)
                 " for symbol `' out of range":
                     ebb in powerpc (bug 1812805)
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
+                "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                    TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
         baltar:
             powerpc:
                 "selftests:  cp_abort [FAIL]":
@@ -527,18 +561,29 @@ bionic:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "inotify08.c:127: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
                 "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
                     bind03 failed (bug 1788351)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396)
                 "fanotify09.c:182: FAIL: group 1 got event":
                     fanotify09 failed with T/A/B kernel (bug 1775153)
+                "fanotify09.c:202: FAIL: first group got more than 2 events":
+                    fanotify09-2 (bug 1804594)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+        s2lp6g001:
+            syscalls:
+                "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
+                    perf_event_open02 (bug 1822032)
     ubuntu_lxc:
         amaura: &exercise-b
+            setup:
+                "E: Unable to correct problems, you have held broken packages.":
+                    package from -proposed and from -update casuing apt issue (bug 1805978)
             exercise:
                 "Unable to locate package lxc-tests":
                     lxc-tests package removed on bionic (bug 1758255)
@@ -639,6 +684,11 @@ bionic-hwe:
             net:
                 "test_bpf.sh [FAIL]":
                     test_bpf in net (bug 1812189)
+                "run_netsocktests [FAIL]":
+                    run_netsocktests (bug 1830016)
+            ftrace:
+                "Kprobe event string type argument  [FAIL]":
+                    Kprobe event string type (bug 1825780)
         starmie:
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
@@ -663,6 +713,8 @@ bionic-hwe:
             lttng-smoke-test:
                 "Error! Bad return status for module build on kernel: 4.18.0":
                     Unable to build lttng module on Bionic 4.18 (bug 1802443)
+                "error: ‘access_ok’ undeclared":
+                    failed to build lttng module on 5.0 Bionic (bug 1826846)
     ubuntu_lxc:
         daedalus: &lxc-setup
             setup:
@@ -809,6 +861,14 @@ bionic-kvm:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
 bionic-oem:
+    ubuntu_kernel_selftests:
+        amaura:
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
+            timers:
+                "raw_skew [FAIL]":
+                    raw_skew in timer (bug 1811194)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -816,12 +876,41 @@ bionic-oem:
                     execveat03 failed (bug 1786729)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
+bionic-oem-osp1:
+    ubuntu_bpf:
+        gonzo:
+            setup:
+                "undefined reference to `bpf_probe_prog_type'":
+                    function does not exist (1829812)
     ubuntu_kernel_selftests:
         amaura:
-            timers:
-                "raw_skew [FAIL]":
-                    raw_skew in timer (bug 1811194)
+            net:
+                "undefined reference to `bpf_probe_prog_type'":
+                    function does not exist (1829812)
+    ubuntu_kvm_unit_tests:
+        gonzo:
+            apic:
+                "FAIL apic (timeout; duration=30)":
+                    apic timeouted (bug 1748103)
+            apic-split:
+                "FAIL apic-split (timeout; duration=90s)":
+                    apic-split timeouted (bug 1821390)
+    ubuntu_lttng_smoke_test:
+        onibi:
+            lttng-smoke-test:
+                "TestError: DKMS failed to install":
+                    failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+    ubuntu_sysdig_smoke_test:
+        onibi:
+            sysdig-smoke-test:
+                "TestError: DKMS failed to install":
+                    failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
 bionic-edge:
+    ubuntu_kernel_selftests:
+        modoc:
+            seccomp:
+                "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
+                    TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -832,6 +921,19 @@ bionic-edge:
             setup:
                 "E: Unable to correct problems, you have held broken packages.":
                     package from -proposed and from -update casuing apt issue (bug 1805978)
+bionic-fips:
+    ubuntu_kernel_selftests:
+        gonzo:
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
+bionic-kvm:
+    ubuntu_kernel_selftests:
+        chico:
+            seccomp:
+                "FAIL ] global.get_metadata":
+                    global.get_metadata in seccomp (bug 1811057)
+
 cosmic:
     ubuntu_kernel_selftests:
         modoc:
@@ -900,3 +1002,8 @@ disco:
             syscalls:
                 "FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
+                "FAIL: copy_file_range returned wrong value":
+                    copy_file_range02 (bug 1839130)
+                "inotify08.c:150: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
+

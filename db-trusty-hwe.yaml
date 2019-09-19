@@ -74,12 +74,16 @@ ubuntu_kvm_unit_tests:
             "FAIL umip":
                 umip should be skipped (bug 1821905)
 ubuntu_ltp_syscalls:
-    amaura: &syscalls
-        syscalls:
-            "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198)
+    amaura: &syscalls-x86
+        syscalls: &syscalls-all
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 3 got event":
                 fanotify06 (bug 1833028)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "FAIL: first group got more than 2 events":
                 fanotify09-1 (bug 1804594)
             "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
@@ -93,31 +97,24 @@ ubuntu_ltp_syscalls:
             "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
                 prctl07 (bug 1839064)
     pepe:
-        <<: *syscalls
-    modoc: &syscalls-arm-p8
+        <<: *syscalls-x86
+    modoc:
         syscalls:
-            "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fdatasync03, fsetxattr01, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, copy_file_range01, copy_file_range02 (bug 1785198)
-            "fanotify06.c:220: FAIL: group 3 got event":
-                fanotify06 (bug 1833028)
-            "FAIL: first group got more than 2 events":
-                fanotify09-1 (bug 1804594)
-            "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
-            "inotify07.c:135: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
+            <<: *syscalls-all
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
-            "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
-                prctl07 (bug 1839064)
             "move_pages12.c:81: FAIL: madvise failed: SUCCESS":
                 move_pages12 (bug 1831043)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
+                timer_create01 (bug 1838961)
     ms10-35-mcdivittB0-kernel:
-        <<: *syscalls-arm-p8
+        syscalls:
+            <<: *syscalls-all
+            "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
+                open14 (bug 1798061)
+
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:
         test-kernel-security.py:

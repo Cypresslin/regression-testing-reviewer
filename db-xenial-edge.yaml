@@ -21,9 +21,6 @@ ubuntu_kernel_selftests:
         net:
             "make: *** [all] Error 2":
                 net test failed to build (bug 1813883)
-        seccomp:
-            "FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
     gonzo:
         <<: *kernel-selftests
     naumann:
@@ -43,11 +40,6 @@ ubuntu_kernel_selftests:
         net:
             "make: *** [all] Error 2":
                 net test failed to build (bug 1813883)
-        seccomp:
-            "FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
-            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
-                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1749427
         kvm_smoke_test:

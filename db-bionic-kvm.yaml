@@ -46,9 +46,6 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1812189)
             "FAIL: cannot add dummy interface":
                 RTNETLINK in net (bug 1812194)
-        seccomp:
-            "FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
         timers:
             "raw_skew [FAIL]":
                 raw_skew in timer (bug 1811194)

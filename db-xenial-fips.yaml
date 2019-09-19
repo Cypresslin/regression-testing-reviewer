@@ -11,6 +11,11 @@
 #       "errmsg2":
 #         reason
 #
+hwclock:
+    modoc:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is 'Wed Oct 20 04:09:59":
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
 libhugetlbfs:
     s2lp6g001: &libhugetlbfs
         libhugetlbfs:
@@ -24,29 +29,12 @@ libhugetlbfs:
         <<: *libhugetlbfs
     s2lp6g003:
         <<: *libhugetlbfs
+ubuntu_bpf_jit:
+    s2lp6g001:
+        ubuntu-bjf-jit:
+            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
+                4 failures reported for X s390x (bug 1768452)
 ubuntu_kernel_selftests:
-    modoc:
-        net:
-            "make: *** [all] Error 2":
-                failed to build reuseport_bpf (bug 1828912)
-        powerpc:
-            "dscr_inherit_test [FAIL]":
-                dscr_inherit_test (bug 1828913)
-            "dscr_inherit_exec_test [FAIL]":
-                dscr_inherit_exec_test (bug 1828915)
-            "ptrace-tm-gpr [FAIL]":
-                ptrace-tm-gpr (bug 1828916)
-            "ptrace-tm-spd-gpr [FAIL]":
-                ptrace-tm-spd-gpr (bug 1828917)
-            "ptrace-tar [FAIL]":
-                ptrace-tar (bug 1828918)
-            "ptrace-tm-tar [FAIL]":
-                ptrace-tm-tar (bug 1828919)
-            "ptrace-tm-spd-tar [FAIL]":
-                ptrace_tm_spd_tar (bug 1828920)
-        seccomp:
-            "[ FAIL ] global.get_metadata":
-                global.get_metadata in seccomp (bug 1811057)
     s2lp6g001: &kernel-selftests-s390x
         net:
             "selftests: test_bpf.sh [FAIL]":
@@ -66,9 +54,10 @@ ubuntu_kvm_smoke_test:
         <<: *1729854
 ubuntu_kvm_unit_tests:
     gonzo:
-        all:
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+        debug:
             "FAIL debug":
                 debug (bug 1821906)
     s2lp6g001: &kvm-unit-s390x
@@ -80,50 +69,67 @@ ubuntu_kvm_unit_tests:
     s2lp6g003:
         <<: *kvm-unit-s390x
 ubuntu_ltp_syscalls:
+    amaura:
+        syscalls:
+            "inotify07.c:135: FAIL: didn't get event: mask=":
+                inotify07 (bug 1774387)
+            "inotify08.c:127: FAIL: didn't get event: mask=":
+                inotify08 (bug 1775784)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
+            "fanotify07 fanotify07":
+                fanotify07 won't fix (bug 1775165)
+            "tag=fanotify09 stime=":
+                fanotify09-2 (bug 1804594)
+            "tag=fanotify10 stime=":
+                fanotify10 (bug 1802454)
+            "BROK: Failed to open FILE 'mntpoint":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+
     entei: &syscalls-p8
         syscalls:
-            "mount(/dev/loop0, mntpoint, btrfs, 0, (nil)) failed: ENOSPC":
-                fallocate05, fsetxattr01, fgetxattr01, fsync01, preadv03, preadv03_64, pwritev03, pwritev03_64, setxattr01 (bug 1785198)
+            ") failed: ENOSPC":
+                fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+                fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
-                fanotify10 timeouted (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
+                fanotify10 (bug 1802454)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
+                timer_create01 (bug 1838961)
     modoc:
         <<: *syscalls-p8
-    amaura: &syscalls
+    s2lp6g001:
         syscalls:
+            ") failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01,sync_file_range02, copy_file_range01 (bug 1842314)
+            "BROK: Failed to open FILE 'mntpoint":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
+            "FAIL: acct() wrote incorrect file contents!":
+                acct02 (bug 1839836)
             "inotify07.c:157: FAIL: didn't get event: mask=":
                 inotify07 (bug 1774387)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "tag=fanotify07 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
-            "tag=fanotify08 stime=":
-                fanotify07/fanotify08 timeouted (bug 1775165)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
-                fanotify09 timeouted (bug 1775153)
+                fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
-                fanotify10 timeouted (bug 1802454)
-            "tag=fanotify11 stime=":
-                fanotify11 timeouted (bug 1808107)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
-    pepe:
-        <<: *syscalls
-    secchi:
-        <<: *syscalls
+                fanotify10 (bug 1802454)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
+                timer_create01 (bug 1838961)
 ubuntu_qrt_kernel_security:
     s2lp6g001: &kernel_security
         test-kernel-security.py:

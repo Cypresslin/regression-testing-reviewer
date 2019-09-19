@@ -102,9 +102,6 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-        seccomp:
-            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
-                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
         powerpc:
             " for symbol `' out of range":
                 ebb in powerpc (bug 1812805)
@@ -116,9 +113,6 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-        seccomp:
-            "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
-                TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
         powerpc:
             "dscr: dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
