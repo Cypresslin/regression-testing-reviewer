@@ -1,0 +1,11 @@
+5.0.0-1020.22 - oem-osp1
+Regression test CMPL, RTB.
+
+56 / 57 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1819116)
+  ubuntu_lttng_smoke_test - lttng module issue (bug 1841766)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Note: Missing ubuntu_ltp as it will hang on amaura (hang with mm, bug 1836149) 

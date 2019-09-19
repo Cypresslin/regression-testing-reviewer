@@ -1,0 +1,14 @@
+4.15.0-1056.61 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1831543) net test compilation regression (bug 1840935) seccomp test compilation regression (bug 1840932)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) port80 (bug 1748105) umip (1821905) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) statx05 (bug 1798524) sync_file_range02 (bug 1819116)
+  ubunut_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s only
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_seccomp
+
+* Note: the net test (1840935) seccomp test (1840932) regression will be fixed in B/linux, this kernel will get the fix later.

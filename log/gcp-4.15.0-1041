@@ -1,0 +1,10 @@
+4.15.0-1041.43 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - cpu-hotplug with 1 cpu (bug 1812149) net test compilation regression (bug 1840935) seccomp test compilation regression (bug 1840932)
+  ubuntu_ltp_syscalls - fanotify09-2 (bug 1804594) msgstress03 (bug 1797341)  sync_file_range02 (bug 1819116) epoll_wait02 failed on some nodes, but can't be manually reproduced.
+
+Skipped / blacklisted:
+ * ubuntu_seccomp

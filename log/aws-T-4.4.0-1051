@@ -1,0 +1,26 @@
+4.4.0-1051.55 aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_fan_smoke_test - should be skipped
+  ubuntu_kernel_selftests - cpu-hotplug with 1 cpu (bug 1812149) on t2.samll
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) umip (1821905) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) vmx_apic_passthrough_thread (bug 1822309) debug (bug 1821906) on i3.metal
+  ubuntu_ltp - should be skipped
+  ubuntu_ltp_syscalls - copy_file_range01, fallocate05, fanotify13, fanotify14, fanotify15, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fsync01, fsync04, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01, (bug 1785198) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-1 (bug 1804594) fanotify10 (bug 1802454) move_pages12 (bug 1831043) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_lttng_smoke_test - should be skipped
+  ubuntu_quota_smoke_test - should be skipped
+  ubuntu_sysdig_smoke_test - should be skipped
+  ubuntu_zram_smoke_test - should be skipped
+
+Skipped / blacklisted:
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_ltp
+ * ubuntu_lttng_smoke_test
+ * ubuntu_nbd_smoke_test
+ * ubuntu_quota_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test
+
+Note: blacklisting is not working (bug 1839405)

@@ -1,0 +1,15 @@
+5.0.0-1014.16~18.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - fib related test in net (bug 1812622) test_vxlan_under_vrf.sh in net (bug 1837348) msg_zerocopy in net on some nodes (bug 1812620)
+  ubuntu_kvm_unit_tests - vmx on i3.metal (1821394)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) leapsec_timer (bug 1829971) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1829982)
+  ubuntu_ltp_syscalls - leapsec01 (bug 1839135) sync_file_range02 (bug 1819116) msgstress03 on some nodes (bug 1783881) move_pages12 on i3.en (bug 1831043)
+  ubuntu_lttng_smoke_test - failed to build lttng DKMS with 5.0 kernel (bug 1826846)   
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

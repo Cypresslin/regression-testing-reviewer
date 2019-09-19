@@ -1,0 +1,24 @@
+4.4.0-1019.24 - fips
+Regression test CMPL, RTB.
+
+54 / 56 tests were run, missing: ubuntu_boot, xfstests
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906)
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) inotify07 (bug 1774387) inotify08 (bug 1775784) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
+  ubuntu_ecryptfs - failed with file-concurrent.sh.btrfs, should be a glitch  
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) timer_create01 (bug 1838961)
+  xfstests - test under rework
+
+Issue to note in s390x (KVM):
+  libhugetlbfs - bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - test should be skipped for X s390x KVM
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01,sync_file_range02, copy_file_range01 (bug 1842314) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314) timer_create01 (bug 1838961)
+
