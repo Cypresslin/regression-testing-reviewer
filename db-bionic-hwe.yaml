@@ -30,10 +30,12 @@ ubuntu_blktrace_smoke_test:
             "FAILED to start thread on CPU 156: 22/Invalid argument":
                 attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
-    onza:
+    onza: &bpf-i386
         test_maps:
             "Cannot allocate memory":
                 failed to allocate memory on i386 (bug 1837386)
+    pepe:
+        <<: *bpf-i386
     baltar:
         setup: &bpf-ppc
             "BPF API too old":
@@ -44,10 +46,12 @@ ubuntu_bpf:
     modoc:
         setup:
            <<: *bpf-ppc
-    starmie-kernel:
-        ubuntu-bjf:
+    starmie-kernel: &bpf-arm64
+        test_maps:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+    ms10-34-mcdivittB0-kernel:
+        <<: *bpf-arm64
 ubuntu_btrfs_kernel_fixes:
     pepe:
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
@@ -59,6 +63,12 @@ ubuntu_cts_kernel:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
+    gonzo:
+        net:
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
     starmie-kernel: &kernel-selftests-arm64
         net:
             "FAIL: ipv6 addrlabel":
@@ -360,38 +370,47 @@ ubuntu_ltp:
         crypto:
             <<: *ltp-crypto
 ubuntu_ltp_syscalls:
-    pepe: &syscalls
-        syscalls:
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
+    pepe: &syscalls-amd64
+        syscalls: &syscalls
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     amaura:
-        <<: *syscalls
+        <<: *syscalls-amd64
     secchi:
-        <<: *syscalls
+        <<: *syscalls-amd64
     lodygin:
-        <<: *syscalls
+        <<: *syscalls-amd64
     ms10-35-mcdivittB0-kernel:
-        <<: *syscalls
+        <<: *syscalls-amd64
     wright-kernel:
-        <<: *syscalls
+        <<: *syscalls-amd64
     baltar:
-        <<: *syscalls
+        syscalls:
+            <<: *syscalls
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
+            "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
+                move_pages12 (bug 1831043)
     entei:
-        <<: *syscalls
+        syscalls:
+            <<: *syscalls
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
     modoc:
-        <<: *syscalls
+        syscalls:
+            <<: *syscalls
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
 ubuntu_lttng_smoke_test:
-    onibi: &lttng
-        lttng-smoke-test:
-            "error: ‘access_ok’ undeclared":
-                failed to build lttng module on 5.0 Bionic (bug 1826846)
     wright-kernel:
-        <<: *lttng
-    baltar:
-        <<: *lttng
-    modoc:
-        <<: *lttng
-    pepe:
         <<: *lttng
 ubuntu_lxc:
     baltar: &lxc-download
@@ -405,14 +424,16 @@ ubuntu_lxc:
 ubuntu_qrt_kernel_security:
     modoc: &kernel-security-ppc
         test-kernel-security.py:
-            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
-                LOCK_DOWN_KERNEL (bug 1811981)
+            "FAIL: test_096_boot_symbols_unreadable":
+                test_096_boot_symbols_unreadable (bug 1845634)
     baltar:
         <<: *kernel-security-ppc
-    onza:
+    onza: &kernel-security-i386
         test-kernel-security.py:
             "FAIL: test_ulimit_stack_small":
                 flaky test on i386 (bug 1814295)
+    pepe:
+        <<: *kernel-security-i386
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:

@@ -25,10 +25,14 @@ ubuntu_bpf:
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
             "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 Bionic (bug 1788580)
+    gonzo:
+        test_maps:
+            "Allowed update sockmap '0:8' not in ESTABLISHED":
+                test_maps failed (bug 1839912)
     s2lp6g001: &ubuntu-bpf-s390x
-        ubuntu-bjf:
-            "libbpf: ./sockmap_parse_prog.o doesn't provide kernel version":
-                test_map failed (bug 1788562)
+        test_maps:
+            "Allowed update sockmap '0:8' not in ESTABLISHED":
+                test_maps failed (bug 1839912)
     s2lp6g002:
         <<: *ubuntu-bpf-s390x
     s2lp6g003:
@@ -57,7 +61,7 @@ ubuntu_btrfs_kernel_fixes:
     daedalus:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
-    naumann:
+    gonzo:
         timers:
             "raw_skew [FAIL]":
                 raw_skew in timer (bug 1811194)
@@ -103,6 +107,29 @@ ubuntu_kvm_unit_tests:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
 ubuntu_ltp:
+    amaura:
+        fs: &ltp-fs
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        controllers: &ltp-controllers
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib: &ltp-net
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        crypto:
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
+                crypto_user02 (bug 1837543)
     chico: &1765331
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
@@ -127,23 +154,27 @@ ubuntu_ltp_syscalls:
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
     amaura:
-        <<: *syscalls-amd64
+        syscalls:
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     secchi:
         <<: *syscalls-amd64
     lodygin:
         <<: *syscalls-amd64
     s2lp6g002:
         syscalls:
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
+            "failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
+            "acct() wrote incorrect file contents!":
+                acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
-            "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
-                perf_event_open02 (bug 1822032)
     chico: &syscalls-kvm
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":

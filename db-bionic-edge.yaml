@@ -28,6 +28,12 @@ ubuntu_blktrace_smoke_test:
             "FAILED to start thread on CPU 156: 22/Invalid argument":
                 attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
+    gonzo: &ubuntu_bpf
+        test_maps:
+            "BTF is required, but is missing or corrupted.":
+                failed to build test_maps (bug 1845860)
+    pepe:
+        <<: *ubuntu_bpf
     onza:
         ubuntu-bjf:
             "#124/p invalid read past end of SK_MSG FAIL":
@@ -39,24 +45,37 @@ ubuntu_bpf:
             "#128/p overlapping checks for direct packet access SK_MSG FAIL":
                 Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
     baltar:
-        setup: &bpf-ppc
-            "BPF API too old":
-                test failed to build - BPF API too old (bug 1828570)
+        <<: *ubuntu_bpf
     entei:
-        ubuntu-bjf:
-           <<: *bpf-ppc
+        <<: *ubuntu_bpf
     modoc:
-        ubuntu-bjf:
-           <<: *bpf-ppc
+        <<: *ubuntu_bpf
     starmie-kernel:
         ubuntu-bjf:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+    ms10-34-mcdivittB0-kernel:
+        test_verifier:
+            "valid read map access into a read-only array 2 FAIL":
+                Test 13 in test_verifier (bug 1845870)
+        test_maps:
+            "BTF is required, but is missing or corrupted.":
+                failed to build test_maps (bug 1845860)
 ubuntu_btrfs_kernel_fixes:
-    pepe:
+    pepe: &btrfs_kernel_fixes
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
             "btrfs balance failed":
                 f88ba6a failed (bug 1828380)
+    amaura:
+        <<: *btrfs_kernel_fixes
+    gonzo:
+        <<: *btrfs_kernel_fixes
+    ms10-35-mcdivittB0-kernel:
+        <<: *btrfs_kernel_fixes
+    modoc:
+        <<: *btrfs_kernel_fixes
+    baltar:
+        <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         breakpoints:
@@ -81,12 +100,17 @@ ubuntu_kernel_selftests:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
         <<: *kernel-selftests-arm64
-    amaura: &kernel-selftests-amd64
+    gonzo: &kernel-selftests-amd64
         net:
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
+            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
+                 ip_defrag in net (bug 1826848)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "TEST: ipv6: list and flush cached exceptions [FAIL]":
+                pmtu.sh in net (bug 1845858)
+        seccomp:
+            "‘PTRACE_EVENTMSG_SYSCALL_ENTRY’ undeclared":
+                seccomp failed to build (bug 1845856)
     naumann:
         <<: *kernel-selftests-amd64
     fozzie:
@@ -141,13 +165,18 @@ ubuntu_kvm_unit_tests:
             "FAIL psci":
                 psci (bug 1828545)
     ms10-34-mcdivittB0-kernel:
-        all:
-            "FAIL gicv2-mmio-up":
-                 gicv2-mmio-up (bug 1828026)
+        gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
-                 gicv2-mmio-3p (bug 1828027)
+                gicv2-mmio-3p (bug 1828027)
+        gicv2-mmio-up:
+            "FAIL gicv2-mmio-up":
+                gicv2-mmio-up (bug 1828026)
+        gicv3-ipi:
             "FAIL gicv3-ipi":
-                 gicv3-ipi failed on Moonshot (bug 1790825)
+                gicv3-ipi failed on Moonshot (bug 1790825)
+        gicv3-active:
+            "FAIL gicv3-active":
+                gicv3-active failed on Moonshot (bug 1790825)
     entei: &kvm-unit-ppc
         all:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
@@ -167,6 +196,84 @@ ubuntu_kvm_unit_tests:
             "FAIL svm":
                 svm (bug 1821903)
 ubuntu_ltp:
+    amaura:
+        fs: &ltp-fs
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        mm:
+            "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                vma05 (bug 1845863)
+        controllers: &ltp-controllers
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        net.ipv6_lib: &ltp-net
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
+    pepe:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
+                cve-2015-3290 (bug 1837005)
+            "Kernel is already tainted:":
+                cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005)
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            "zram02 3 TFAIL: can't set":
+                zram02 (bug 1829992)
+    ms10-35-mcdivittB0-kernel:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+    baltar:
+        fs:
+            <<: *ltp-fs
+        mm:
+            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                ksm06* in mm (bug 1830316)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
+                cpufreq_boost (bug 1842032)
+        crypto:
+            <<: *ltp-crypto
     chico: &1765331
         ltp:
             "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
@@ -182,10 +289,10 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     pepe: &syscalls
         syscalls:
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
-            "preadv203.c:122: BROK: preadv2() failed: EOPNOTSUPP":
-                preadv203, preadv203_64 (bug 1831207)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     amaura:
         <<: *syscalls
     secchi:
@@ -205,8 +312,10 @@ ubuntu_ltp_syscalls:
 ubuntu_lttng_smoke_test:
     onibi: &lttng
         lttng-smoke-test:
-            "TestError: DKMS failed to install":
-                failed to build lttng DKMS with 5.0 kernel (bug 1826846)
+            "‘const struct pipe_buf_operations’ has no member named ‘can_merge’":
+                failed to build lttng module on 5.3 Bionic (bug 1844764)
+    ms10-34-mcdivittB0-kernel:
+        <<: *lttng
     wright-kernel:
         <<: *lttng
     baltar:
@@ -215,18 +324,25 @@ ubuntu_lttng_smoke_test:
         <<: *lttng
     pepe:
         <<: *lttng
+ubuntu_lxc:
+    modoc: &lxc
+        exercise:
+            "ERROR: Failed to download":
+                failed to download template on PPC (bug 1839835)
+    baltar:
+        <<: *lxc
 ubuntu_qrt_kernel_security:
     modoc: &kernel-security-ppc
         test-kernel-security.py:
-            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
-                LOCK_DOWN_KERNEL (bug 1811981)
+            "FAIL: test_096_boot_symbols_unreadable":
+                test_096_boot_symbols_unreadable (bug 1845634)
     baltar:
         <<: *kernel-security-ppc
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:
             "TestError: DKMS failed to install":
-                failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
+                failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
     wright-kernel:
         <<: *sysdig
     baltar:

@@ -25,12 +25,14 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
 ubuntu_bpf:
-    onza:
-        test-maps:
-            "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
-                test_map failed on i386 Bionic (bug 1788580)
+    onza: &bpf-i386
+        test_maps:
+            "run_parallel: Assertion `status == 0' failed.":
+                test_map failed on i386 (bug 1845641)
+    pepe:
+        <<: *bpf-i386
     baltar: &bpf-ppc
-        ubuntu-bjf:
+        test_maps:
             "Failed to load SK_SKB parse prog":
                 test_map failed on PowerPC (bug 1802474)
     entei:
@@ -38,15 +40,18 @@ ubuntu_bpf:
     modoc:
         <<: *bpf-ppc
     starmie-kernel: &bpf-arm64
-        test-maps:
+        test_maps:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
     ms10-34-mcdivittB0-kernel:
         <<: *bpf-arm64
     s2lp6g003: &bpf-s390x
-        ubuntu-bjf:
-            "Failed to load prog":
-                test_verifier in ubuntu_bpf test failed with 'Failed to load prog' on C/D s390x (bug 1801033)
+        test_verifier:
+            "Failed to load prog 'Success'":
+                test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+        test_maps:
+            "Failed to load SK_SKB parse prog":
+                test_maps faile to load SK_SKB (bug 1845643)
     s2lp4:
         <<: *bpf-s390x
     kernel03:
@@ -59,6 +64,8 @@ ubuntu_bpf_jit:
             "Module test_bpf load failure":
                 confusing result in D on s390x KVM (bug 1827845)
     s2lp4:
+        <<: *bpf-jit-s390x
+    s2lp6g003:
         <<: *bpf-jit-s390x
 ubuntu_btrfs_kernel_fixes:
     pepe:
@@ -433,28 +440,12 @@ ubuntu_ltp:
     grumman:
         <<: *ltp
 ubuntu_ltp_syscalls:
-    baltar: &syscalls-ppc
-        syscalls:
-            "leapsec01.c:84: BROK: adjtimex status":
-                leapsec01 (bug 1839135)
-            "FAIL: madvise failed: SUCCESS":
-                move_pages12 (bug 1831043)
-            "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
-                fallocate05 (bug 1783880)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-    entei:
-        <<: *syscalls-ppc
-    modoc:
-        <<: *syscalls-ppc
     pepe: &syscalls-amd64
-        syscalls:
-            "leapsec01.c:84: BROK: adjtimex status":
-                leapsec01 (bug 1839135)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
+        syscalls: &syscalls
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     amaura:
         <<: *syscalls-amd64
     secchi:
@@ -465,19 +456,30 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
-    kernel03: &syscall-s390x
+    modoc:
         syscalls:
-            "acct() wrote incorrect file contents!":
-                acct02 (bug 1839836)
-            "leapsec01.c:84: BROK: adjtimex status":
-                leapsec01 (bug 1839135)
-            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
+            <<: *syscalls
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-    s2lp4:
+    baltar:
+        syscalls:
+            <<: *syscalls
+            "FAIL: system time not set to":
+                stime (bug 1845620)
+            "FAIL: move_pages failed: EINVAL (22)":
+                move_pages12 (bug 1831043)
+            "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                fallocate05 (bug 1783880)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
+    s2lp4: &syscall-s390x
+        syscalls:
+            <<: *syscalls
+            "acct() wrote incorrect file contents!":
+                acct02 (bug 1839836)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
+    kernel04:
         <<: *syscall-s390x
     s2lp6g003:
         <<: *syscall-s390x
@@ -526,6 +528,13 @@ ubuntu_lxc:
         <<: *lxc-download
     modoc:
         <<: *lxc-download
+ubuntu_qrt_kernel_security:
+    baltar: &ubuntu_qrt_kernel_security
+        test-kernel-security.py:
+            "FAIL: test_096_boot_symbols_unreadable":
+                test_096_boot_symbols_unreadable (bug 1845634)
+    modoc:
+        <<: *ubuntu_qrt_kernel_security
 xfstests:
     rizzo: &xfstests
         setup:

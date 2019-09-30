@@ -54,6 +54,8 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
+    ms10-34-mcdivittB0-kernel:
+        <<: *1749427
     wright-kernel:
         <<: *1749427
     pepe:
@@ -108,24 +110,27 @@ ubuntu_kvm_unit_tests:
             "FAIL apic":
                 apic timeouted (bug 1748103)
 ubuntu_ltp_syscalls:
+    amaura: &syscalls-amd64
+        syscalls: &syscalls
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                statx05 (bug 1798524)
     entei: &syscalls-ppc
         syscalls:
+            <<: *syscalls
             "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
-                statx05 (bug 1798524)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
             "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
                 move_pages12 (bug 1831043)
+            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                timer_create01 (bug 1838961)
+            "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
+                bpf_prog01 (bug 1845938)
     modoc:
         <<: *syscalls-ppc
-    amaura: &syscalls-amd64
-        syscalls:
-            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
-                statx05 (bug 1798524)
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls-amd64
     pepe:
@@ -134,6 +139,13 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
+ubuntu_qrt_kernel_security:
+    baltar: &ubuntu_qrt_kernel_security
+        test-kernel-security.py:
+            "FAIL: test_096_boot_symbols_unreadable":
+                test_096_boot_symbols_unreadable (bug 1845634)
+    modoc:
+        <<: *ubuntu_qrt_kernel_security
 ubuntu_sysdig_smoke_test:
     entei: &sysdig
         sysdig-smoke-test:

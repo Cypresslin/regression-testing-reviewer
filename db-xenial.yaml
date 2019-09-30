@@ -169,20 +169,16 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     ms10-35-mcdivittB0-kernel: &syscalls-arm64
         syscalls: &syscalls-all
-            "inotify07.c:135: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+            "BROK: Failed to open FILE 'mntpoint":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "fanotify07 fanotify07":
-                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
                 fanotify10 (bug 1802454)
-            "Sync equals write: Synced 0, expected 33554432":
-                sync_file_range02 (bug 1819116)
     wright-kernel:
         <<: *syscalls-arm64
     entei: &syscalls-p8
@@ -198,27 +194,27 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-p8
     kernel01: &syscalls-s390x
         syscalls:
-            <<: *syscalls-all
+            "failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+            "BROK: Failed to open FILE 'mntpoint":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
+            "tag=fanotify09 stime=":
+                fanotify09-2 (bug 1804594)
+            "tag=fanotify10 stime=":
+                fanotify10 (bug 1802454)
             "FAIL: acct() wrote incorrect file contents!":
                 acct02 (bug 1839836)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                 timer_create01 (bug 1838961)
     s2lp3:
-        syscalls:
-            <<: *syscalls-all
-            "FAIL: acct() wrote incorrect file contents!":
-                acct02 (bug 1839836)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
-                timer_create01 (bug 1838961)
-            "msgstress04 1 TFAIL : msgstress04.c:220: Child exit status = 1":
-                msgstress04 (bug 1797348)
+        <<: *syscalls-s390x
     s2lp6g001:
         <<: *syscalls-s390x
     amaura: &syscalls-x86
         syscalls:
             <<: *syscalls-all
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
     pepe:
         <<: *syscalls-x86
     secchi:

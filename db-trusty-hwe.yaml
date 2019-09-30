@@ -40,6 +40,8 @@ ubuntu_ecryptfs:
                 trunc-file.sh.btrfs (bug 1684789)
     onza:
         <<: *ecryptfs
+    pepe:
+        <<: *ecryptfs
     ms10-34-mcdivittB0-kernel:
         <<: *ecryptfs
 ubuntu_kvm_smoke_test:
@@ -82,16 +84,10 @@ ubuntu_ltp_syscalls:
                 fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 3 got event":
                 fanotify06 (bug 1833028)
-            "Blacklisted test cases: fanotify07":
-                fanotify07 won't fix (bug 1775165)
             "FAIL: first group got more than 2 events":
                 fanotify09-1 (bug 1804594)
             "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "inotify07.c:135: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
             "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":

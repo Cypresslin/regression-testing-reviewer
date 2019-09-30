@@ -23,7 +23,9 @@ disco:
     s390x:
         <<: *d-non-x86
         ? ubuntu_ltp
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 cosmic:
     amd64: &c-amd64
         ? libhugetlbfs
@@ -47,7 +49,9 @@ cosmic:
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *c-non-x86
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 cosmic-kvm:
     amd64:
         <<: *c-amd64
@@ -61,7 +65,9 @@ cosmic-kvm:
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 bionic:
     amd64: &b-amd64
         ? libhugetlbfs
@@ -85,7 +91,9 @@ bionic:
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *b-non-x86
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 bionic-kvm:
     amd64:
         <<: *b-amd64
@@ -99,7 +107,9 @@ bionic-kvm:
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 bionic-oem:
     amd64:
         <<: *b-amd64
@@ -112,6 +122,10 @@ bionic-fips:
         <<: *b-amd64
     s390x:
         <<: *b-non-x86
+        ? ubuntu_ltp
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 bionic-hwe:
     amd64: &b-hwe-amd64
         ? libhugetlbfs
@@ -140,7 +154,6 @@ bionic-edge:
         <<: *b-hwe-amd64
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-        ? ubuntu_ramfs_stress
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -172,7 +185,9 @@ xenial:
         <<: *x-non-x86
     s390x:
         <<: *x-non-x86
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 xenial-hwe:
     amd64: &x-hwe-amd64
         ? ubuntu_bpf
@@ -232,7 +247,9 @@ xenial-kvm:
         ? ubuntu_lttng_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 xenial-fips:
     amd64:
         <<: *x-amd64
@@ -240,15 +257,12 @@ xenial-fips:
         <<: *x-non-x86
     s390x:
         <<: *x-non-x86
-        ? ubuntu_bpf_jit
         ? ubuntu_btrfs_kernel_fixes
-        ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
-        ? ubuntu_ecryptfs
         ? ubuntu_ltp
-        ? ubuntu_zfs_fstest
-        ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 trusty:
     amd64: &t-amd64
         ? ubuntu_bpf
@@ -265,7 +279,9 @@ trusty:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
     i386:
         <<: *t-amd64
         ? ubuntu_32_on_64
@@ -292,7 +308,9 @@ trusty-hwe:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
     i386:
         <<: *t-hwe-amd64
         ? ubuntu_32_on_64
@@ -330,7 +348,9 @@ precise-hwe:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
     i386: &p-hwe-i386
         ? libhugetlbfs
         ? ubuntu_32_on_64
@@ -356,7 +376,9 @@ precise-hwe:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
-        ? xfstests
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 precise:
     amd64:
         <<: *p-hwe-amd64
@@ -427,5 +449,7 @@ full-list: [
     ubuntu_zfs_xfs_generic,
     ubuntu_zram_smoke_test,
     wb_kupdate,
-    xfstests
+    ubuntu_xfstests_btrfs,
+    ubuntu_xfstests_ext4,
+    ubuntu_xfstests_xfs
 ]

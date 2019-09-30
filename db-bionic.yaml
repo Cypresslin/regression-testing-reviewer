@@ -54,13 +54,19 @@ ubuntu_bpf:
         <<: *ubuntu_bpf
     onza:
         test_verifier:
-            <<: *bpf391-491
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
             "check bpf_perf_event_data->sample_period":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
         test_maps:
             <<: *bpf-test-map
+    pepe:
+        test_verifier:
+            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+            "check bpf_perf_event_data->sample_period":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+        <<: *ubuntu_bpf
     baltar:
         <<: *ubuntu_bpf
     entei:
@@ -420,13 +426,31 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+    amaura:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+            "memcg_failcnt 1 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_failcnt (bug 1845919)
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
 ubuntu_ltp_syscalls:
-    pepe: &syscalls-amd64
+    amaura: &syscalls-amd64
         syscalls: &syscalls
-            "sync_file_range02.c:74: FAIL":
-                sync_file_range02 (bug 1819116)
-            "leapsec01.c:84: BROK: adjtimex status":
-                leapsec01 (bug 1839135)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+    ms10-35-mcdivittB0-kernel:
+        <<: *syscalls-amd64
+    pepe:
+        <<: *syscalls-amd64
     baltar: &syscalls-ppc
         syscalls:
             <<: *syscalls
@@ -434,14 +458,14 @@ ubuntu_ltp_syscalls:
                 fallocate05 (bug 1783880)
             "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
                 move_pages12 (bug 1831043)
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
-    amaura:
-        <<: *syscalls-amd64
     secchi:
         <<: *syscalls-amd64
     lodygin:
@@ -452,29 +476,40 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     kernel02: &syscalls-s390x
         syscalls:
-            <<: *syscalls
+            "failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
             "acct() wrote incorrect file contents!":
                 acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "msgstress04 1 TFAIL : msgstress04":
+                msgstress04 (bug 1786737)
     s2lp3:
         syscalls:
-            <<: *syscalls
+            "failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
             "acct() wrote incorrect file contents!":
                 acct02 (bug 1839836)
     s2lp6g002:
         syscalls:
-            <<: *syscalls
+            "failed: EACCES":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
             "acct() wrote incorrect file contents!":
                 acct02 (bug 1839836)
-            "msgstress03.c:157:     Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
+            "settimeofday01 1 TFAIL : settimeofday01":
+                settimeofday01 (bug 1833905)
     chico: &syscalls-kvm
         syscalls:
             <<: *syscalls
@@ -514,12 +549,12 @@ ubuntu_lxc:
     modoc:
         <<: *lxc-download
 ubuntu_qrt_kernel_security:
-    modoc: &kernel-security-ppc
+    baltar: &ubuntu_qrt_kernel_security
         test-kernel-security.py:
-            "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
-                LOCK_DOWN_KERNEL (bug 1811981)
-    baltar:
-        <<: *kernel-security-ppc
+            "FAIL: test_096_boot_symbols_unreadable":
+                test_096_boot_symbols_unreadable (bug 1845634)
+    modoc:
+        <<: *ubuntu_qrt_kernel_security
 xfstests:
     fozzie: &xfstests
         ext4:

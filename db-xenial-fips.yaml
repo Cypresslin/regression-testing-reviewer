@@ -60,6 +60,22 @@ ubuntu_kvm_unit_tests:
         debug:
             "FAIL debug":
                 debug (bug 1821906)
+    bavor:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test":
+                vmx_hlt_with_rvi_test (bug 1822308)
     s2lp6g001: &kvm-unit-s390x
         all:
             "FAIL selftest-setup (timeout":
@@ -71,14 +87,8 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls:
-            "inotify07.c:135: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "fanotify07 fanotify07":
-                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
@@ -87,15 +97,12 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "failed: EROFS":
                 fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
-
+            "msgstress04 1 TFAIL : msgstress04":
+                msgstress04 (bug 1786737)
     entei: &syscalls-p8
         syscalls:
             ") failed: ENOSPC":
                 fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "Blacklisted test cases: fanotify07":
@@ -106,24 +113,20 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                 timer_create01 (bug 1838961)
+            "move_pages12.c:95: FAIL: madvise failed: EIO (5)":
+                move_pages12 (bug 1831043)
     modoc:
         <<: *syscalls-p8
     s2lp6g001:
         syscalls:
             ") failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01,sync_file_range02, copy_file_range01 (bug 1842314)
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842314)
             "BROK: Failed to open FILE 'mntpoint":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
             "FAIL: acct() wrote incorrect file contents!":
                 acct02 (bug 1839836)
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "Blacklisted test cases: fanotify07":
-                fanotify07 won't fix (bug 1775165)
             "tag=fanotify09 stime=":
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
