@@ -54,7 +54,7 @@ ubuntu_bpf:
                 test_maps faile to load SK_SKB (bug 1845643)
     s2lp4:
         <<: *bpf-s390x
-    kernel03:
+    kernel04:
         <<: *bpf-s390x
     s2lp6g001:
         <<: *bpf-s390x
@@ -140,7 +140,7 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1827845)
     s2lp4:
         <<: *selftest-s390x
-    kernel03:
+    kernel04:
         <<: *selftest-s390x
     s2lp6g001:
         <<: *selftest-s390x
@@ -254,7 +254,7 @@ ubuntu_kvm_unit_tests:
         gicv2-mmio-up:
             "FAIL gicv2-mmio-up":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
-    kernel03:
+    kernel04:
         all:
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
@@ -502,7 +502,7 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *syscalls-kvm
 ubuntu_lxc:
-    kernel03:
+    kernel04:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
