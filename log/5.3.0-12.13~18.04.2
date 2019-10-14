@@ -1,0 +1,94 @@
+5.3.0-12.13~18.04.2 - lowlatency
+Regression test CMPL, RTB.
+
+58 / 59 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618) seccomp failed to build (bug 1845856)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+  ubuntu_xfstests_btrfs - btrfs/310 time out
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+50 / 54 tests were run, missing: ubuntu_boot, ubuntu_ltp_syscalls, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - vmexit* failed on pepe (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) zram02 (bug 1829992)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_qrt_kernel_security - flaky test on i386 (bug 1814295)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+  ubuntu_xfstests_btrfs - generic/430 time out
+
+5.3.0-12.13~18.04.2 - generic
+Regression test CMPL, RTB.
+
+58 / 59 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618) seccomp failed to build (bug 1845856)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+  ubuntu_xfstests_btrfs - might need longer timeout (4hr, run though generic/302)
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+50 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Test 13 in test_verifier (bug 1845870) failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) gicv3-active failed on Moonshot (bug 1790825) gicv3-ipi failed on Moonshot (bug 1790825)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+
+52 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - vmexit* failed on pepe (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) zram02 (bug 1829992)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+  ubuntu_xfstests_btrfs - generic/430 time out
+  ubuntu_xfstests_ext4 - generic/430 time out
+
+53 / 55 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_lxc - failed to download template on PPC (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+  ubuntu_xfstests_btrfs - hdd config issue
+  ubuntu_xfstests_ext4 - hdd config issue
+  ubuntu_xfstests_xfs - hdd config issue
+
+51 / 55 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - failed to build test_maps (bug 1845860)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) ksm06* in mm (bug 1830316) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_lxc - failed to download template on PPC (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)

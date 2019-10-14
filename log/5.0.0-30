@@ -1,0 +1,71 @@
+5.0.0-30.32 - generic
+Regression test CMPL, RTB.
+
+57 / 59 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - test hang with generic/475
+  ubuntu_xfstests_xfs - might need a longer timeout 
+
+53 / 54 tests were run, missing: ubuntu_boot
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - test hang with btrfs/187
+  ubuntu_xfstests_xfs - might need a longer timeout 
+
+51 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_map failed on i386 (bug 1845641)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - vmexit_* failed on pepe
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - test hang with generic/475
+
+53 / 55 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+  ubuntu_lttng_smoke_test - FAILED (did not trace any dd context switches) (bug 1845638)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+  ubuntu_xfstests_btrfs - hdd config issue
+  ubuntu_xfstests_ext4 - hdd config issue
+  ubuntu_xfstests_xfs - hdd config issue
+  ubuntu_zfs_xfs_generic - might need a longer timeout 
+
+51 / 55 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_map failed on PowerPC (bug 1802474)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) psock_snd in net (bug 1812618) dscr_sysfs_test in powerpc for P9 (bug 1813136)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) ksm06* in mm (bug 1830316) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fallocate05 (bug 1783880) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) move_pages12 (bug 1831043) stime (bug 1845620) timer_create01 (bug 1838961)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+
+49 / 51 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176) test_maps faile to load SK_SKB (bug 1845643)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) msg_zerocopy in net (bug 1812620) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+
+49 / 51 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176) test_maps faile to load SK_SKB (bug 1845643)
+  ubuntu_bpf_jit - confusing result in D on s390x KVM (bug 1827845)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) test_bpf in net (bug 1827845) rtnetlink.sh in net (bug 1812978) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive
+

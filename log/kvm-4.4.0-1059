@@ -1,0 +1,21 @@
+4.4.0-1059.66 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) test_user_copy return code in user (bug 1812352)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) memory (bug 1845687) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308)
+  ubuntu_ltp_syscalls -  fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) quotactl01 / quotactl02 / quotactl03 (bug 1797325) msgstress03 (bug 1783881) sync_file_range02 (bug 1819116) timer_create01 (bug 1838961)
+  ubuntu_lxc - ERROR: Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+  ubuntu_quota_smoke_test - failed with KVM kernel (bug 1784535)
+  xfstests - no scratch drive available for the test
+
+Skipped / blacklisted:
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_bpf
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_ltp
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp
+  * ubuntu_sysdig_smoke_test
