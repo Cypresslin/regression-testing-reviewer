@@ -11,6 +11,14 @@ precise:
                     loop / pty test in ubuntu_stress_smoke_test failed with P-3.2 (bug 1797544)
                 "[stdout] pty FAILED":
                     loop / pty test in ubuntu_stress_smoke_test failed with P-3.2 (bug 1797544)
+precise-hwe:
+    ubuntu_qrt_kernel_security:
+        precise-amd64:
+            test-kernel-security.py:
+                "AssertionError: RETPOLINE option was expected to be unset in the kernel config":
+                    CONFIG_RETPOLINE=y in kernel (bug 1786894)
+                "AssertionError: cat: /proc/self/stack: Permission denied":
+                    test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)
 trusty:
     ubuntu_qrt_kernel_security:
         ms10-35-mcdivittB0-kernel:
@@ -43,6 +51,13 @@ trusty:
                     keyctl03, keyctl05, keyctl07 (bug 1798045)
                 "keyctl07.c:57: BROK: request_key() failed with unexpected error: EDQUOT":
                     keyctl03, keyctl05, keyctl07 (bug 1798045)
+                "FAIL: group ":
+                    fanotify06 (bug 1775378)
+    ubuntu_zram_smoke_test:
+        entei:
+            zram-smoke-test:
+                "modprobe: FATAL: Module zram not found.":
+                    zram module not found on ppc64le (bug 1752551)
 trusty-hwe:
     ubuntu_kvm_unit_tests:
         pepe:
@@ -64,6 +79,8 @@ trusty-hwe:
                     execveat03 failed (bug 1786729)
                 "tag=fanotify07 stime=":
                     fanotify07 causing timeout on fanotify08, fanotify09, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
+                "FAIL: first group got more than 2 events":
+                    fanotify09-1 (bug 1804594)
         ms10-35-mcdivittB0-kernel:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -204,6 +221,10 @@ xenial-hwe:
                     inotify08 (bug 1775784)
                 "FAIL: first group got more than 2 events (72 > 48)":
                     fanotify09-2 (bug 1804594)
+        modoc:
+            syscalls:
+                "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
+                    bpf_prog01 (bug 1845938)
     ubuntu_qrt_kernel_security:
         modoc: &kernel-security-ppc
             test-kernel-security.py:
@@ -545,6 +566,9 @@ bionic:
             all:
                 "FAIL vmware_backdoors":
                     vmware_backdoors (bug 1821393)
+            svm:
+                "FAIL svm":
+                    svm (bug 1821903)
         entei: &kvm-unit-test-ppc
             all:
                 "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
@@ -878,6 +902,10 @@ bionic-oem:
                     execveat03 failed (bug 1786729)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
+                "FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
+                "FAIL: first group got more than 2 events":
+                    fanotify09 (bug 1804594)
 bionic-oem-osp1:
     ubuntu_bpf:
         gonzo:

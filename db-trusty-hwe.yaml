@@ -92,6 +92,8 @@ ubuntu_ltp_syscalls:
                 openat03 (bug 1798027)
             "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
                 prctl07 (bug 1839064)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
     pepe:
         <<: *syscalls-x86
     modoc:
@@ -110,7 +112,6 @@ ubuntu_ltp_syscalls:
             <<: *syscalls-all
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
-
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:
         test-kernel-security.py:

@@ -28,6 +28,8 @@ ubuntu_ltp:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
         controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -39,17 +41,12 @@ ubuntu_ltp:
         timers: &ltp-timers
             "leapsec_timer 2 TBROK : leapsec_timer.c":
                 leapsec_timer (bug 1829971)
-        commands: &ltp-commands
-            "mkswap01 8 TBROK:":
-                mkswap01_sh (bug 1830584)
         net.ipv6_lib: &ltp-net-ipv6-lib
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        kernel_misc: &ltp-kernel-misc
-            "/opt/ltp/testcases/bin/zram01.sh:":
-                zram01 (bug 1829991)
-            "zram02 1 TFAIL: unexpected num of devices:":
-                zram02 (bug 1829992)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
     naumann:
         fs:
             <<: *ltp-fs
@@ -73,17 +70,17 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
             "cpuhotplug04 1 TFAIL: Could not offline":
                 cpuhotplug04 (bug 1836169)
-        commands:
-            <<: *ltp-commands
         net.ipv6_lib:
             <<: *ltp-net-ipv6-lib
-        kernel_misc:
-            <<: *ltp-kernel-misc
+        crypto:
+            <<: *ltp-crypto
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
-            " FAIL: Sync equals write: Synced 0, expected ":
-                sync_file_range02 (bug 1819116)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     naumann:
         <<: *syscalls-amd64
 

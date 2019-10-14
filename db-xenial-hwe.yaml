@@ -79,7 +79,7 @@ ubuntu_kvm_unit_tests:
         gicv2-mmio-up:
             "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
                 gicv2-mmio-up (bug 1828026)
-    starmie-kernel:
+    starmie-kernel: &kvm-unit-thunderx
         gicv2-active:
             "FAIL gicv2-active (terminated on SIGABRT)":
                 gicv2 related test failed on ThunderX (bug 1828153)
@@ -101,6 +101,8 @@ ubuntu_kvm_unit_tests:
         timer:
             "FAIL timer (12 tests, 1 unexpected failures)":
                 timer on ThunderX (bug 1828158)
+    wright-kernel:
+        <<: *kvm-unit-thunderx
     onza:
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
@@ -127,8 +129,6 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-            "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
-                bpf_prog01 (bug 1845938)
     modoc:
         <<: *syscalls-ppc
     ms10-35-mcdivittB0-kernel:

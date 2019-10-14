@@ -112,7 +112,7 @@ ubuntu_kvm_smoke_test:
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     entei:
-        all:
+        sprs:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
     ms10-34-mcdivittB0-kernel:
@@ -148,9 +148,9 @@ ubuntu_kvm_unit_tests:
             "FAIL pmu (3 tests, 3 unexpected failures)":
                 pmu on starmie (bug 1751000)
     s2lp6g001:
-        all:
-            "FAIL selftest-setup (timeout":
-                All tests failed on s390x KVM (bug 1822542)
+        cmm:
+            "TestError: Test failed for cmm":
+                test should be skipped for X s390x KVM
     kernel01:
         skey:
             "FAIL skey (2 tests)":
@@ -204,7 +204,7 @@ ubuntu_ltp_syscalls:
                 fanotify09-2 (bug 1804594)
             "tag=fanotify10 stime=":
                 fanotify10 (bug 1802454)
-            "FAIL: acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                 timer_create01 (bug 1838961)

@@ -31,6 +31,8 @@ ubuntu_bpf:
                 test_map failed on i386 (bug 1845641)
     pepe:
         <<: *bpf-i386
+    fozzie:
+        <<: *bpf-i386
     baltar: &bpf-ppc
         test_maps:
             "Failed to load SK_SKB parse prog":
@@ -66,6 +68,8 @@ ubuntu_bpf_jit:
     s2lp4:
         <<: *bpf-jit-s390x
     s2lp6g003:
+        <<: *bpf-jit-s390x
+    kernel04:
         <<: *bpf-jit-s390x
 ubuntu_btrfs_kernel_fixes:
     pepe:
@@ -247,6 +251,37 @@ ubuntu_kvm_unit_tests:
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
+    fozzie:
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit* on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit* on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit* on i386 (bug 1822235)
     ms10-34-mcdivittB0-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
@@ -255,7 +290,7 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-mmio-up":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
     kernel04:
-        all:
+        skey:
             "FAIL skey (2 tests)":
                 skey failed (bug 1778705)
     s2lp6g003: &kvm-unit-s390x
@@ -263,9 +298,10 @@ ubuntu_kvm_unit_tests:
             "this systems does not have KVM extension support":
                 No KVM support on zKVM
     gonzo:
-        all:
+        apic-split:
             "FAIL apic-split":
                 apic-split timeouted (bug 1821390)
+        apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
 ubuntu_ltp:
@@ -475,7 +511,7 @@ ubuntu_ltp_syscalls:
     s2lp4: &syscall-s390x
         syscalls:
             <<: *syscalls
-            "acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)

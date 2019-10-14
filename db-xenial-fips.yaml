@@ -77,9 +77,9 @@ ubuntu_kvm_unit_tests:
             "FAIL vmx_hlt_with_rvi_test":
                 vmx_hlt_with_rvi_test (bug 1822308)
     s2lp6g001: &kvm-unit-s390x
-        all:
-            "FAIL selftest-setup (timeout":
-                All tests failed on s390x KVM (bug 1822542)
+        cmm:
+            "TestError: Test failed for cmm":
+                test should be skipped for X s390x KVM
     s2lp6g002:
         <<: *kvm-unit-s390x
     s2lp6g003:
@@ -123,7 +123,7 @@ ubuntu_ltp_syscalls:
                 fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842314)
             "BROK: Failed to open FILE 'mntpoint":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
-            "FAIL: acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)

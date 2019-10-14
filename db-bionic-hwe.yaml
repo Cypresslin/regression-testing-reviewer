@@ -409,9 +409,6 @@ ubuntu_ltp_syscalls:
                 stime01 (bug 1845620)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-ubuntu_lttng_smoke_test:
-    wright-kernel:
-        <<: *lttng
 ubuntu_lxc:
     baltar: &lxc-download
         exercise:

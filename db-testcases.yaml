@@ -113,7 +113,6 @@ bionic-kvm:
 bionic-oem:
     amd64:
         <<: *b-amd64
-        ? ubuntu_ltp
 bionic-oem-osp1:
     amd64:
         <<: *b-amd64
@@ -275,7 +274,7 @@ trusty:
         ? ubuntu_nbd_smoke_test
         ? ubuntu_overlayfs_smoke_test
         ? ubuntu_sysdig_smoke_test
-        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -344,7 +343,7 @@ precise-hwe:
         ? ubuntu_nbd_smoke_test
         ? ubuntu_overlayfs_smoke_test
         ? ubuntu_sysdig_smoke_test
-        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic
@@ -372,7 +371,7 @@ precise-hwe:
         ? ubuntu_overlayfs_smoke_test
         ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
-        ? ubuntu_unionmount_overlayfs_suite
+        ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
         ? ubuntu_zfs_xfs_generic

@@ -16,6 +16,11 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_bpf:
+    gonzo:
+        test_maps: &bpf-test-map
+            "Allowed update sockmap '0:8' not in ESTABLISHED":
+                test_maps failed (bug 1837386)
 ubuntu_btrfs_kernel_fixes:
     amaura: &btrfs_kernel_fixes
         2365dd3ca02bbb6d3412404482e1d85752549953:
@@ -46,15 +51,39 @@ ubuntu_kvm_unit_tests:
         svm:
             "FAIL svm":
                 svm (bug 1821903)
+ubuntu_ltp:
+    amaura:
+        fs:
+            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                binfmt_misc02 (bug 1822246)
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
+        controllers:
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+        net.ipv6_lib:
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        crypto:
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
-        syscalls:
-            "FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "FAIL: first group got more than 2 events":
-                fanotify09 (bug 1804594)
-            "FAIL: Sync equals write: Synced 0, expected":
-                sync_file_range02 (bug 1819116)
+        syscalls: &syscalls
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     secchi:
         <<: *syscalls-amd64
     lodygin:

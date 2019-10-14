@@ -121,6 +121,8 @@ ubuntu_cts_kernel:
         lp1262692:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
+    modoc:
+        <<: *ubuntu-cts-flaky
     s2lp6g002:
         <<: *ubuntu-cts-flaky
 ubuntu_kernel_selftests:
@@ -215,9 +217,6 @@ ubuntu_kvm_unit_tests:
         apic-split:
             "FAIL apic-split":
                 apic-split timeouted (bug 1821390)
-        svm:
-            "FAIL svm":
-                svm (bug 1821903)
     ms10-34-mcdivittB0-kernel:
          gicv3-active:
             "gicv3-active":
@@ -318,6 +317,37 @@ ubuntu_kvm_unit_tests:
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
+    pepe:
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit* on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit* on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit* on i386 (bug 1822235)
 ubuntu_ltp:
     pepe:
         fs: &ltp-fs
@@ -482,7 +512,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-            "acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
@@ -496,7 +526,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-            "acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
     s2lp6g002:
         syscalls:
@@ -506,7 +536,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-            "acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "settimeofday01 1 TFAIL : settimeofday01":
                 settimeofday01 (bug 1833905)

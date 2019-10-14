@@ -96,15 +96,17 @@ ubuntu_kvm_unit_tests:
                 umip should be skipped (bug 1821905)
 ubuntu_ltp_syscalls:
     pepe: &syscalls-i386
-        syscalls:
-            "BROK: mkfs.vfat:1: tst_test.c failed with":
-                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
-            "FAIL: group ":
-                fanotify06 (bug 1775378)
-            "tag=fanotify07 stime=":
-                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
+        syscalls: &syscalls
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842266)
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
             "FAIL: group 1 got event":
                 fanotify09 (bug 1775153)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
             "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                 fcntl35 / fcntl35_64 (bug 1774394)
             "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
@@ -119,24 +121,9 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-i386
     entei: &syscalls-ppc
         syscalls:
-            "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync_file_range02, sync03, syncfs01 (bug 1785198)
-            "FAIL: group 3 got event":
-                fanotify06 (bug 1775378)
-            "tag=fanotify07 stime=":
-                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
-            "FAIL: group 1 got event":
-                fanotify09 failed with T/X/A/B kernel (bug 1775153)
-            "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 1048576 unexpectedly, expected":
-                fcntl35 / fcntl35_64 (bug 1774394)
-            "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
-                keyctl02 (bug 1798022)
-            "FAIL: KEYCTL_READ overran the buffer":
-                keyctl06 (bug 1798025)
+            <<: *syscalls
             "readahead02.c:300: FAIL: readahead failed to save any I/O":
                 readahead02 (bug 1836845)
-            "request_key03.c:58: BROK: failed to join new session keyring: EDQUOT":
-                request_key03 (bug 1798052)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
@@ -147,26 +134,11 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     ms10-35-mcdivittB0-kernel:
         syscalls:
-            "tst_mkfs.c:101: BROK: mkfs.vfat":
-                fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198)
-            "FAIL: group 3 got event":
-                fanotify06 (bug 1775378)
-            "tag=fanotify07 stime=":
-                fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
-            "FAIL: group 1 got event":
-                fanotify09 failed with T/X/A/B kernel (bug 1775153)
-            "fcntl35.c:86: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                fcntl35 / fcntl35_64 (bug 1774394)
-            "keyctl02.c:69: BROK: Failed to add key: EDQUOT":
-                keyctl02 (bug 1798022)
-            "FAIL: KEYCTL_READ overran the buffer":
-                keyctl06 (bug 1798025)
+            <<: *syscalls
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
-            "request_key03.c:58: BROK: failed to join new session keyring: EDQUOT":
-                request_key03 (bug 1798052)
 ubuntu_qrt_apparmor:
     ms10-35-mcdivittB0-kernel:
         test-apparmor.py:
@@ -189,8 +161,3 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "FAIL: test_ulimit_stack_small":
                 test_ulimit_stack_small failed on PPC64 (bug 1816467)
-ubuntu_zram_smoke_test:
-    entei:
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found.":
-                zram module not found on ppc64le (bug 1752551)

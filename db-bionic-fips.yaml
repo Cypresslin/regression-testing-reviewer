@@ -113,6 +113,8 @@ ubuntu_ltp:
                 binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -122,6 +124,8 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
         net.ipv6_lib: &ltp-net
@@ -171,7 +175,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                 timer_create01 (bug 1838961)
-            "acct() wrote incorrect file contents!":
+            "FAIL: end of file reached":
                 acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
