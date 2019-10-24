@@ -1,0 +1,52 @@
+4.4.0-166.195 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+  ubuntu_xfstests_btrfs - btrfs/187 time out
+  ubuntu_xfstests_xfs - generic/459 time out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-mmio on X-ARM64 (bug 1828165) pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2 related test failed on ThunderX (bug 1828153)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+  ubuntu_xfstests_btrfs - btrfs/187 time out
+  ubuntu_xfstests_xfs - generic/459 time out
+
+50 / 53 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) move_pages12 (bug 1831043) timer_create01 (bug 1838961)
+  ubuntu_xfstests_btrfs - hdd config issue
+  ubuntu_xfstests_ext4 - hdd config issue
+  ubuntu_xfstests_xfs - hdd config issue
+
+Issue to note in s390x (KVM):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - test should be skipped for X s390x KVM
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270) timer_create01 (bug 1838961)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270) timer_create01 (bug 1838961)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_bpf_jit - 4 failures reported for X s390x (bug 1768452)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270) fanotify06 (bug 1833028) fanotify09-2 (bug 1804594) fanotify10 (bug 1802454) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270) timer_create01 (bug 1838961)

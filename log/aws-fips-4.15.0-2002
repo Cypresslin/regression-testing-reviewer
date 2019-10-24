@@ -1,0 +1,13 @@
+4.15.0-2002.2 - aws-fips
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - raw_skew in timers should be skipped (bug 1812352)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split (bug 1821390) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_apicv_test (bug 1827866) on i3.metal
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) quota_remount_test01 (bug 1830670) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) sysctl02_sh (bug 1833935) getaddrinfo_01 (bug 1829995) af_alg06 (bug 1839830) crypto_user02 (bug 1837543) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) move_pages12 (bug 1831043) msgstress03 (bug 1797341) pkey01 (bug 1849093)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp
+

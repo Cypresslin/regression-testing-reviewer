@@ -1,0 +1,71 @@
+5.0.0-32.34~18.04.2 - lowlatency
+Regression test CMPL, RTB.
+
+55 / 59 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+
+50 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - failed to allocate memory on i386 (bug 1837386)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+
+5.0.0-32.34~18.04.2 - generic
+Regression test CMPL, RTB.
+
+55 / 59 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+
+53 / 54 tests were run, missing: ubuntu_boot
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) gicv3-ipi failed on Moonshot (bug 1790825)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - generic/358 time out (run through generic/358 with 3hr, might need a longer timeout)
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+50 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - failed to allocate memory on i386 (bug 1837386)
+  ubuntu_btrfs_kernel_fixes - f88ba6a failed (bug 1828380)
+  ubuntu_kernel_selftests - ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+
+53 / 55 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test failed to build - BPF API too old (bug 1828570)
+  ubuntu_cts_kernel - test is a bit flaky (bug 1837536)
+  ubuntu_kernel_selftests - unable to build bpf for the net test (bug 1837384)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) stime01 (bug 1845620) timer_create01 (bug 1838961)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+  ubuntu_xfstests_btrfs - hdd config issue
+  ubuntu_xfstests_ext4 - hdd config issue
+  ubuntu_xfstests_xfs - hdd config issue
+
+51 / 55 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test failed to build - BPF API too old (bug 1828570)
+  ubuntu_kernel_selftests - unable to build bpf for the net test (bug 1837384) dscr_sysfs_test in powerpc/dscr (bug 1813136)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) ksm06* in mm (bug 1830316) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) stime01 (bug 1845620) timer_create01 (bug 1838961)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_qrt_kernel_security - test_096_boot_symbols_unreadable (bug 1845634)
+
+Note: No xfstests for P9 as it does not have a scratch drive

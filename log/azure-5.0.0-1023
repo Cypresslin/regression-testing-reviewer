@@ -1,0 +1,15 @@
+5.0.0-1023.24 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests -  cpu-hotplug (bug 1814232) test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) trace_printk in ftrace (bug 1830084)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) ept (bug 1824228) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982)  memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1829982)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_lttng_smoke_test - module build issue on Standard_B1ms (bug 1847989)
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_B1ms, Standard_DC2s, Standard_F1s, Standard_F2s (bug 1821152), passed on the rest
+  ubuntu_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s only
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_seccomp

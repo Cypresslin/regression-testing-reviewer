@@ -1,0 +1,14 @@
+4.4.0-1096.107 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - cpu_hotplug (bug 1812149) on t2.small
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) vmx (bug 1821394) vmx_hlt_with_rvi_test (bug 1822308) vmx_apic_passthrough_thread (bug 1822309) debug (bug 1821906) failed on i3.metal
+  ubuntu_ltp - should be skipped
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify07 blacklisted (bug 1775165) fanotify09 (bug 1775153) fanotify10 (bug 1802454) inotify07 (bug 1774387) inotify08 (bug 1775784) leapsec01 (bug 1839135) sync_file_range02 (bug 1819116)
+  ubuntu_zram_smoke_test - failed on i3.metal only, passed on the rest
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

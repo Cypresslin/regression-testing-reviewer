@@ -1,0 +1,12 @@
+5.0.0-1021.21~18.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) trace_printk in ftrace (bug 1830084)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) msgstress03 (bug 1797341) stime01 (bug 1845620) clock_settime01
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp

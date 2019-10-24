@@ -1,0 +1,18 @@
+4.15.0-1018.21 - fips
+Regression test CMPL, RTB.
+
+58 / 59 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390)
+  ubuntu_ltp - proc01 (bug 1829849) fs_fill (bug 1842266) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - generic/430 time out
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+49 / 51 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)

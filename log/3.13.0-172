@@ -19,7 +19,7 @@ Issue to note in i386:
   ubuntu_ltp_syscalls - fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02 (bug 1785198) fcntl35 / fcntl35_64 (bug 1774394) fanotify06 (bug 1775378) fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165) keyctl02 (bug 1798022) keyctl06 (bug 1798025) openat03 (bug 1798027) request_key03 (bug 1798052)
 
 Issue to note in ppc64le (P8):
-  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 183863)
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1813863)
   ubuntu_kvm_smoke_test - no supported architecture for 'hvm' (bug 1752550)
   ubuntu_ltp_syscalls - fallocate05, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync_file_range02, sync03, syncfs01 (bug 1785198) fcntl35 / fcntl35_64 (bug 1774394) fanotify07 causing timeout on fanotify08, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165) fanotify09 failed with T/X/A/B kernel (bug 1775153) keyctl02 (bug 1798022) keyctl06 (bug 1798025) open14 (bug 1798061) openat03 (bug 1798027) prctl04 (bug 1836839) readahead02 (bug 1836845) request_key03 (bug 1798052)
 

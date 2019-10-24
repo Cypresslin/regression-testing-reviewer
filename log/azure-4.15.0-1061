@@ -1,0 +1,12 @@
+4.15.0-1061.66 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1831543)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) port80 (bug 1748105) vmx (bug 1821394) vmx_apicv_test (bug 1827866) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) statx05 (bug 1798524)
+  ubunut_qrt_apparmor - timed out on Standard-B1ms and Standard-F1s only
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_seccomp

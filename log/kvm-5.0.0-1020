@@ -1,0 +1,19 @@
+5.0.0-1020.21 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - 3 tests in test_verifier failed (bug 1848005) test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - psock_tpacket in net (bug 1812176) test_bpf in net (bug 1812189) rtnetlink in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf in net (bug 1837348) test_vxlan_fdb_changelink in net (bug 1837355) ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) memory (bug 1845687) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl02, quotactl03 (bug 1797325) timer_create01 (bug 1838961)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp

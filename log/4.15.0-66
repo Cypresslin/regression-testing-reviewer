@@ -1,0 +1,75 @@
+4.15.0-66.75 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) vmx, vmx_apic_passthrough_thread, vmx_apicv_test, vmx_hlt_with_rvi_test on node bavor (bug 1847947)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_failcnt (bug 1845919) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - generic/430 time out
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_ftrace_smoke_test - timeout on node wright, passed on moonshot
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - generic/430 time out
+  ubuntu_xfstests_ext4 - generic/430 time out
+  ubuntu_xfstests_xfs - generic/430 time out
+
+52 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578) test_maps failed (bug 1837386)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+  ubuntu_xfstests_btrfs - generic/430 time out
+  ubuntu_xfstests_ext4 - generic/256 time out
+
+54 / 55 tests were run, missing: ubuntu_ltp
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_cts_kernel - test is a bit flaky (bug 1837536)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fallocate05 (bug 1783880) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) stime01 (bug 1845620) timer_create01 (bug 1838961)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_xfstests_btrfs - hdd config issue
+  ubuntu_xfstests_ext4 - hdd config issue
+  ubuntu_xfstests_xfs - hdd config issue
+
+51 / 55 tests were run, missing: ubuntu_ltp, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_cts_kernel - test is a bit flaky (bug 1837536)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) raw_skew in timer (bug 1811194) dscr_sysfs_test in powerpc/dscr (bug 1813136) subpage_prot in powerpc/mm (bug 1813140)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fallocate05 (bug 1783880) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) stime01 (bug 1845620) timer_create01 (bug 1838961)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - acct02 (bug 1839836) fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) timer_create01 (bug 1838961)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note: No xfstests for P9 as it does not have a scratch drive

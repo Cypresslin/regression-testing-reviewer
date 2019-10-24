@@ -1,0 +1,26 @@
+4.15.0-1052.54~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kernel_selftests - reuseport_bpf in net failed to build (bug 1813883) global.get_metadata in seccomp (bug 1811057)
+  ubuntu_kvm_smoke_test	- unable to fetch image
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) statx05 (bug 1798524)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp_syscalls -  fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) statx05 (bug 1798524) timer_create01 (bug 1838961)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_ltp
+ * ubuntu_quota_smoke_test
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test
