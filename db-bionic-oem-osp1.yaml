@@ -23,8 +23,8 @@ ubuntu_kernel_selftests:
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
         controllers: &ltp-controllers

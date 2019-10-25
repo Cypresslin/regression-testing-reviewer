@@ -120,33 +120,35 @@ ubuntu_kvm_unit_tests:
             "FAIL gicv2-mmio":
                 gicv2-mmio on X-ARM64 (bug 1828165)
         gicv2-mmio-up:
-            "FAIL gicv2-mmio-up (17 tests, 2 unexpected failures":
+            "FAIL gicv2-mmio-up":
                 gicv2-mmio-up (bug 1828026)
         gicv2-mmio-3p:
-            "FAIL gicv2-mmio-3p (17 tests, 3 unexpected failures)":
+            "FAIL gicv2-mmio-3p":
                 gicv2-mmio-3p (bug 1828027)
         pmu:
             "FAIL pmu":
                 pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
-    starmie-kernel:
+    starmie-kernel: &kvm-unit-thunderX
         gicv2-active:
-            "FAIL gicv2-active (terminated on SIGABRT)":
+            "FAIL gicv2-active":
                 gicv2 related test failed on ThunderX (bug 1828153)
         gicv2-ipi:
-            "FAIL gicv2-ipi (terminated on SIGABRT)":
+            "FAIL gicv2-ipi":
                 gicv2 related test failed on ThunderX (bug 1828153)
         gicv2-mmio:
-            "FAIL gicv2-mmio (terminated on SIGABRT)":
+            "FAIL gicv2-mmio":
                 gicv2 related test failed on ThunderX (bug 1828153)
         gicv2-mmio-3p:
-            "FAIL gicv2-mmio-3p (terminated on SIGABRT)":
+            "FAIL gicv2-mmio-3p":
                 gicv2 related test failed on ThunderX (bug 1828153)
         gicv2-mmio-up:
-            "FAIL gicv2-mmio-up (terminated on SIGABRT)":
+           "FAIL gicv2-mmio-up":
                 gicv2 related test failed on ThunderX (bug 1828153)
         pmu:
-            "FAIL pmu (3 tests, 3 unexpected failures)":
+            "FAIL pmu":
                 pmu on starmie (bug 1751000)
+    wright-kernel:
+        <<: *kvm-unit-thunderX
     s2lp6g001:
         cmm:
             "TestError: Test failed for cmm":
@@ -175,9 +177,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "tag=fanotify09 stime=":
-                fanotify09-2 (bug 1804594)
-            "tag=fanotify10 stime=":
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
     wright-kernel:
         <<: *syscalls-arm64
@@ -200,9 +200,7 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "tag=fanotify09 stime=":
-                fanotify09-2 (bug 1804594)
-            "tag=fanotify10 stime=":
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "FAIL: end of file reached":
                 acct02 (bug 1839836)

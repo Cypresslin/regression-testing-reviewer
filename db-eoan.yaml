@@ -1,4 +1,4 @@
-# 5.0 Bionic
+# 5.3 Eoan
 # Format:
 # test-suite:
 #   sut:
@@ -15,7 +15,7 @@ hwclock:
     baltar: &hwclock-ppc
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed on PowerPC due to 0.x sec differences / time out waiting for time change (bug 1802233)
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
@@ -24,51 +24,59 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-ubuntu_blktrace_smoke_test:
-    baltar:
-        blktrace-smoke-test:
-            "FAILED to start thread on CPU 156: 22/Invalid argument":
-                attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
     onza: &bpf-i386
         test_maps:
-            "Cannot allocate memory":
-                failed to allocate memory on i386 (bug 1837386)
+            "run_parallel: Assertion `status == 0' failed.":
+                test_map failed on i386 (bug 1845641)
     pepe:
         <<: *bpf-i386
-    baltar:
-        setup: &bpf-ppc
-            "BPF API too old":
-                test failed to build - BPF API too old (bug 1828570)
+    fozzie:
+        <<: *bpf-i386
+    baltar: &bpf-ppc
+        test_maps:
+            "Failed to load SK_SKB parse prog":
+                test_map failed on PowerPC (bug 1802474)
     entei:
-        setup:
-           <<: *bpf-ppc
+        <<: *bpf-ppc
     modoc:
-        setup:
-           <<: *bpf-ppc
+        <<: *bpf-ppc
     starmie-kernel: &bpf-arm64
         test_maps:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
     ms10-34-mcdivittB0-kernel:
         <<: *bpf-arm64
+    s2lp6g003: &bpf-s390x
+        test_verifier:
+            "Failed to load prog 'Success'":
+                test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+        test_maps:
+            "Failed to load SK_SKB parse prog":
+                test_maps faile to load SK_SKB (bug 1845643)
+    s2lp4:
+        <<: *bpf-s390x
+    kernel03:
+        <<: *bpf-s390x
+    s2lp6g001:
+        <<: *bpf-s390x
+ubuntu_bpf_jit:
+    s2lp6g001: &bpf-jit-s390x
+        ubuntu-bjf-jit:
+            "Module test_bpf load failure":
+                confusing result in D on s390x KVM (bug 1827845)
+    s2lp4:
+        <<: *bpf-jit-s390x
+    s2lp6g003:
+        <<: *bpf-jit-s390x
+    kernel03:
+        <<: *bpf-jit-s390x
 ubuntu_btrfs_kernel_fixes:
     pepe:
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
             "btrfs balance failed":
                 f88ba6a failed (bug 1828380)
-ubuntu_cts_kernel:
-    gonzo:
-        lp1262692:
-            "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
-                test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
-    gonzo:
-        net:
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
     starmie-kernel: &kernel-selftests-arm64
         net:
             "FAIL: ipv6 addrlabel":
@@ -79,35 +87,72 @@ ubuntu_kernel_selftests:
                 rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
         ftrace:
-            "[27] Kprobe dynamic event - probing module [FAIL]":
-                Kprobe probing module in ftrace (bug 1812636)
+            "ftrace - test for function traceon/off triggers":
+                traceon/off triggers in ftace (bug 1837040)
+        seccomp: &seccomp
+            "undefined reference to `BIT'":
+                seccomp build issue (bug 1849844)
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
         <<: *kernel-selftests-arm64
-    amaura: &kernel-selftests-amd64
+    amaura: &kernel-selftests
         net:
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
+        seccomp:
+            <<: *seccomp
     naumann:
-        <<: *kernel-selftests-amd64
+        <<: *kernel-selftests
+    gonzo:
+        <<: *kernel-selftests
     fozzie:
-        <<: *kernel-selftests-amd64
+        <<: *kernel-selftests
     modoc:
         net:
-            "BPF API too old":
-                unable to build bpf for the net test (bug 1837384)
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
     baltar:
         net:
-            "BPF API too old":
-                unable to build bpf for the net test (bug 1837384)
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
         powerpc:
-            "selftests: dscr: dscr_sysfs_test [FAIL]":
-                dscr_sysfs_test in powerpc/dscr (bug 1813136)
+            "dscr_sysfs_test [FAIL]":
+                dscr_sysfs_test in powerpc for P9 (bug 1813136)
+    s2lp6g003: &selftest-s390x
+        net:
+            "reuseport_dualstack [FAIL]":
+                reuseport_dualstack in net (bug 1812843)
+            "FAIL: ipv6 addrlabel":
+                rtnetlink.sh in net (bug 1812978)
+            "msg_zerocopy.sh [FAIL]":
+                msg_zerocopy in net (bug 1812620)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
+            "test_bpf: [FAIL]":
+                test_bpf in net (bug 1827845)
+    s2lp4:
+        <<: *selftest-s390x
+    kernel03:
+        <<: *selftest-s390x
+    s2lp6g001:
+        <<: *selftest-s390x
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -211,35 +256,66 @@ ubuntu_kvm_unit_tests:
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
+    fozzie:
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit* on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit* on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit* on i386 (bug 1822235)
     ms10-34-mcdivittB0-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
-                gicv2-mmio-3p (bug 1828027)
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
         gicv2-mmio-up:
             "FAIL gicv2-mmio-up":
-                gicv2-mmio-up (bug 1828026)
-        gicv3-ipi:
-            "FAIL gicv3-ipi":
-                gicv3-ipi failed on Moonshot (bug 1790825)
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+    kernel03:
+        skey:
+            "FAIL skey (2 tests)":
+                skey failed (bug 1778705)
+    s2lp6g003: &kvm-unit-s390x
+        setup:
+            "this systems does not have KVM extension support":
+                No KVM support on zKVM
     gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-            "FAIL svm":
-                svm (bug 1821903)
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
 ubuntu_ltp:
-    pepe:
+    amaura:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
             "failed: EROFS":
                 fs_fill (bug 1842266)
-        containers: &ltp-containers
-            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
-                userns06 (bug 1836162)
         controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -254,11 +330,6 @@ ubuntu_ltp:
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        cve:
-            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
-                cve-2015-3290 (bug 1837005)
-            "Kernel is already tainted:":
-                cve-2017-17053 failed because of cve-2015-3290 (bug 1837005)
         kernel_misc: &ltp-misc
             "/opt/ltp/testcases/bin/zram01.sh:":
                 zram01 (bug 1829991)
@@ -267,19 +338,6 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-    amaura:
-        fs:
-            <<: *ltp-fs
-        controllers:
-            <<: *ltp-controllers
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
-            "memcg_stat_rss 4 TFAIL: Process":
-                memcg_stat_rss (bug 1837035)
-        net.ipv6_lib:
-            <<: *ltp-net
-        crypto:
-            <<: *ltp-crypto
     naumann:
         fs:
             <<: *ltp-fs
@@ -294,8 +352,6 @@ ubuntu_ltp:
                 cpuset_load_balance in controllers (bug 1830360)
             "TFAIL: partition sched domains failed.":
                 cpuset_sched_domains (bug 1830361)
-            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
-                cpuset_memory_spread (bug 1830585)
         timers:
             <<: *ltp-timers
         cpuhotplug:
@@ -307,15 +363,21 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
+        containers: &ltp-containers
+            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
+                userns06 (bug 1836162)
         controllers:
-            <<: *ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
         timers:
             <<: *ltp-timers
         cpuhotplug:
@@ -333,7 +395,7 @@ ubuntu_ltp:
             <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
-    wright-kernel:
+    wright-kenrel:
         fs:
             <<: *ltp-fs
         containers:
@@ -351,9 +413,33 @@ ubuntu_ltp:
             <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
+    pepe:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "memcg_stat_rss 4 TFAIL: Process":
+                memcg_stat_rss (bug 1837035)
+            "memcg_move_charge_at_immigrate_test 5 TFAIL":
+                memcg_move_charge_at_immigrate_test (bug 1837037)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
+                cve-2015-3290 (bug 1837005)
+        kernel_misc:
+            <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
     baltar:
         fs:
             <<: *ltp-fs
+            "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
+                fs_fill (bug 1842266)
         mm:
             <<: *ltp-mm
         containers:
@@ -362,20 +448,19 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        net.ipv6_lib:
-            <<: *ltp-net
+        timers:
+            <<: *ltp-timers
         kernel_misc:
-            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
-                cpufreq_boost (bug 1842032)
+            <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
     modoc:
         fs:
             <<: *ltp-fs
+            "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
+                fs_fill (bug 1842266)
         mm:
             <<: *ltp-mm
-        containers:
-            <<: *ltp-containers
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
@@ -384,11 +469,96 @@ ubuntu_ltp:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
+        cve:
+            "BROK: Kernel is already tainted: 12800":
+                cve-2017-1000380 failed as kernel already tainted
+    riolu: &ltp
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
+                cpuset_base_ops in controllers (bug 1830359)
+            "TFAIL: load balance test failed.":
+                cpuset_load_balance in controllers (bug 1830360)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
+            "TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+        crypto:
+            <<: *ltp-crypto
+    grumman:
+        <<: *ltp
+    s2lp4:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_inherit 3 TFAIL: cpus: Test result":
+                cpuset_inherit (bug 1849825)
+        net.ipv6_lib:
+            <<: *ltp-net
+    kernel03:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "cpuset_inherit 3 TFAIL: cpus: Test result":
+                cpuset_inherit (bug 1849825)
+            "memcg_stat_rss 4 TBROK: timeouted":
+                memcg_stat_rss (bug 1837035)
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g001:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g002:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g003:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib:
+            <<: *ltp-net
 ubuntu_ltp_syscalls:
     pepe: &syscalls-amd64
         syscalls: &syscalls
             "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
             "BROK: Failed to open file":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     amaura:
@@ -401,30 +571,64 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
-    baltar:
-        syscalls:
-            <<: *syscalls
-            "stime01.c:51: FAIL: system time not set to":
-                stime01 (bug 1845620)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-            "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
-                move_pages12 (bug 1831043)
-    entei:
-        syscalls:
-            <<: *syscalls
-            "stime01.c:51: FAIL: system time not set to":
-                stime01 (bug 1845620)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
     modoc:
         syscalls:
             <<: *syscalls
-            "stime01.c:51: FAIL: system time not set to":
-                stime01 (bug 1845620)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
+    baltar:
+        syscalls:
+            <<: *syscalls
+            "FAIL: system time not set to":
+                stime (bug 1845620)
+            "FAIL: move_pages failed: EINVAL (22)":
+                move_pages12 (bug 1831043)
+            "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                fallocate05 (bug 1783880)
+    s2lp4: &syscall-s390x
+        syscalls:
+            <<: *syscalls
+            "FAIL: end of file reached":
+                acct02 (bug 1839836)
+    kernel03:
+        <<: *syscall-s390x
+    s2lp6g003:
+        <<: *syscall-s390x
+    s2lp6g001:
+        <<: *syscall-s390x
+    chico: &syscalls-kvm
+        syscalls:
+            "tst_test.c:1126: BROK: Test killed! (timeout?)":
+                getrandom02 timed out (bug 1797327)
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "sync_file_range02.c:56: FAIL":
+                sync_file_range02 (bug 1819116)
+    harpo:
+        <<: *syscalls-kvm
+    groucho:
+        <<: *syscalls-kvm
+    gummo:
+        <<: *syscalls-kvm
+    zeppo:
+        <<: *syscalls-kvm
 ubuntu_lxc:
+    kernel03:
+        exercise:
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp4:
+        exercise:
+            "FAIL: lxc-tests: lxc-test-api-reboot":
+                lxc-test-api-reboot failed (bug 1776381)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp6g003:
+        exercise:
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp6g001:
+        exercise:
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
     baltar: &lxc-download
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
@@ -434,52 +638,50 @@ ubuntu_lxc:
     modoc:
         <<: *lxc-download
 ubuntu_qrt_kernel_security:
-    modoc: &kernel-security-ppc
+    baltar: &ubuntu_qrt_kernel_security
         test-kernel-security.py:
             "FAIL: test_096_boot_symbols_unreadable":
                 test_096_boot_symbols_unreadable (bug 1845634)
-    baltar:
-        <<: *kernel-security-ppc
-    onza: &kernel-security-i386
-        test-kernel-security.py:
-            "FAIL: test_ulimit_stack_small":
-                flaky test on i386 (bug 1814295)
-    pepe:
-        <<: *kernel-security-i386
+    modoc:
+        <<: *ubuntu_qrt_kernel_security
 ubuntu_seccomp:
     baltar: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
-                failed on 5.0 s390x / PowerPC (bug 1850904)
+                failed on D s390x / PowerPC (bug 1850904)
     modoc:
         <<: *ubuntu_seccomp
+    s2lp4:
+        <<: *ubuntu_seccomp
+    s2lp6g001:
+        <<: *ubuntu_seccomp
+    s2lp6g003:
+        <<: *ubuntu_seccomp
+    kernel03:
+        <<: *ubuntu_seccomp
 ubuntu_sysdig_smoke_test:
-    onibi: &sysdig
+    onibi: &sysdig_smoke
         sysdig-smoke-test:
-            "TestError: DKMS failed to install":
-                failed to build sysdig DKMS with 5.0 kernel (bug 1826845)
-    wright-kernel:
-        <<: *sysdig
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.3 (bug 1844493)
     baltar:
-        <<: *sysdig
+        <<: *sysdig_smoke
     modoc:
-        <<: *sysdig
-    pepe:
-        <<: *sysdig
+        <<: *sysdig_smoke
+    s2lp4:
+        <<: *sysdig_smoke
+    kernel03:
+        <<: *sysdig_smoke
 xfstests:
-    fozzie: &xfstests
-        ext4:
-            "generic/429	 [not run]":
-                timed out on ext4 generic/430 test (bug 1755999)
-            "generic/430":
-                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
-    michael:
+    rizzo: &xfstests
+        setup:
+             "make: *** [Makefile:30: all] Error 1":
+                 failed to build on C/D (bug 1828391)
+    fozzie:
         <<: *xfstests
-    rizzo:
+    starmie-kernel:
         <<: *xfstests
     entei:
         <<: *xfstests
     modoc:
-        <<: *xfstests
-    starmie-kernel:
         <<: *xfstests

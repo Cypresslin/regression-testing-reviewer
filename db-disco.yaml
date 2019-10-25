@@ -92,6 +92,9 @@ ubuntu_kernel_selftests:
         ftrace:
             "ftrace - test for function traceon/off triggers":
                 traceon/off triggers in ftace (bug 1837040)
+        seccomp: &seccomp
+            "undefined reference to `BIT'":
+                seccomp build issue (bug 1849844)
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
@@ -105,6 +108,8 @@ ubuntu_kernel_selftests:
                 psock_snd in net (bug 1812618)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
+        seccomp:
+            <<: *seccomp
     naumann:
         <<: *kernel-selftests
     gonzo:
@@ -307,10 +312,10 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -436,6 +441,8 @@ ubuntu_ltp:
     baltar:
         fs:
             <<: *ltp-fs
+            "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
+                fs_fill (bug 1842266)
         mm:
             <<: *ltp-mm
         containers:
@@ -450,6 +457,24 @@ ubuntu_ltp:
             <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
+    modoc:
+        fs:
+            <<: *ltp-fs
+            "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
+                fs_fill (bug 1842266)
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        cve:
+            "BROK: Kernel is already tainted: 12800":
+                cve-2017-1000380 failed as kernel already tainted
     riolu: &ltp
         fs:
             <<: *ltp-fs
@@ -475,6 +500,41 @@ ubuntu_ltp:
             <<: *ltp-crypto
     grumman:
         <<: *ltp
+    s2lp4:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_inherit 3 TFAIL: cpus: Test result":
+                cpuset_inherit (bug 1849825)
+        net.ipv6_lib:
+            <<: *ltp-net
+    kernel04:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "cpuset_inherit 3 TFAIL: cpus: Test result":
+                cpuset_inherit (bug 1849825)
+            "memcg_stat_rss 4 TBROK: timeouted":
+                memcg_stat_rss (bug 1837035)
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g001:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib:
+            <<: *ltp-net
 ubuntu_ltp_syscalls:
     pepe: &syscalls-amd64
         syscalls: &syscalls
@@ -495,8 +555,6 @@ ubuntu_ltp_syscalls:
     modoc:
         syscalls:
             <<: *syscalls
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
     baltar:
         syscalls:
             <<: *syscalls
@@ -506,15 +564,11 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
     s2lp4: &syscall-s390x
         syscalls:
             <<: *syscalls
             "FAIL: end of file reached":
                 acct02 (bug 1839836)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
     kernel04:
         <<: *syscall-s390x
     s2lp6g003:
@@ -571,6 +625,21 @@ ubuntu_qrt_kernel_security:
                 test_096_boot_symbols_unreadable (bug 1845634)
     modoc:
         <<: *ubuntu_qrt_kernel_security
+ubuntu_seccomp:
+    baltar: &ubuntu_seccomp
+        seccomp:
+            "ERROR 36-sim":
+                failed on D s390x / PowerPC (bug 1850904)
+    modoc:
+        <<: *ubuntu_seccomp
+    s2lp4:
+        <<: *ubuntu_seccomp
+    s2lp6g001:
+        <<: *ubuntu_seccomp
+    s2lp6g003:
+        <<: *ubuntu_seccomp
+    kernel04:
+        <<: *ubuntu_seccomp
 xfstests:
     rizzo: &xfstests
         setup:

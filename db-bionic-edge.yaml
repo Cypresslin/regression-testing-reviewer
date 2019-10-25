@@ -1,4 +1,4 @@
-# 5.0 Bionic
+# 5.3 Bionic
 # Format:
 # test-suite:
 #   sut:
@@ -31,19 +31,11 @@ ubuntu_bpf:
     gonzo: &ubuntu_bpf
         test_maps:
             "BTF is required, but is missing or corrupted.":
-                failed to build test_maps (bug 1845860)
+                test_maps failed with BTF is required (bug 1850123)
     pepe:
         <<: *ubuntu_bpf
     onza:
-        ubuntu-bjf:
-            "#124/p invalid read past end of SK_MSG FAIL":
-                Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
-            "#126/p direct packet read for SK_MSG FAIL":
-                Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
-            "#127/p direct packet write for SK_MSG FAIL":
-                Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
-            "#128/p overlapping checks for direct packet access SK_MSG FAIL":
-                Some SK_MSG related tests in ubuntu_bpf failed on i386 B-4.18 (bug 1805994)
+        <<: *ubuntu_bpf
     baltar:
         <<: *ubuntu_bpf
     entei:
@@ -142,6 +134,11 @@ ubuntu_kernel_selftests:
                 dscr_sysfs_test in powerpc/dscr (bug 1813136)
             "ebb: cycles_test [FAIL]":
                 cycles_test in powerpc/ebb (bug 1830151)
+ubuntu_cts_kernel:
+    modoc:
+        lp1262692:
+            "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
+                test is a bit flaky (bug 1837536)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -160,6 +157,37 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
+    onza:
+        vmexit_cpuid:
+            "FAIL vmexit_cpuid":
+                vmexit* on i386 (bug 1822235)
+        vmexit_inl_pmtimer:
+            "FAIL vmexit_inl_pmtimer":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi:
+            "FAIL vmexit_ipi":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ipi_halt:
+            "FAIL vmexit_ipi_halt":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_from_cr8:
+            "FAIL vmexit_mov_from_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_mov_to_cr8:
+            "FAIL vmexit_mov_to_cr8":
+                vmexit* on i386 (bug 1822235)
+        vmexit_ple_round_robin:
+            "FAIL vmexit_ple_round_robin":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline:
+            "FAIL vmexit_tscdeadline":
+                vmexit* on i386 (bug 1822235)
+        vmexit_tscdeadline_immed:
+            "FAIL vmexit_tscdeadline_immed":
+                vmexit* on i386 (bug 1822235)
+        vmexit_vmcall:
+            "FAIL vmexit_vmcall":
+                vmexit* on i386 (bug 1822235)
     starmie-kernel:
         all:
             "FAIL psci":
@@ -198,14 +226,16 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
         mm:
             "vma05 1 TFAIL: [vsyscall] reporting wrong":
                 vma05 (bug 1845863)
         controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -242,8 +272,6 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
         cpuhotplug:
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
@@ -258,6 +286,23 @@ ubuntu_ltp:
         crypto:
             <<: *ltp-crypto
     baltar:
+        fs:
+            <<: *ltp-fs
+        mm:
+            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                ksm06* in mm (bug 1830316)
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
+                cpufreq_boost (bug 1842032)
+        crypto:
+            <<: *ltp-crypto
+    modoc:
         fs:
             <<: *ltp-fs
         mm:
@@ -338,6 +383,13 @@ ubuntu_qrt_kernel_security:
                 test_096_boot_symbols_unreadable (bug 1845634)
     baltar:
         <<: *kernel-security-ppc
+ubuntu_seccomp:
+    baltar: &ubuntu_seccomp
+        seccomp:
+            "ERROR 36-sim":
+                failed on 5.0 s390x / PowerPC (bug 1850904)
+    modoc:
+        <<: *ubuntu_seccomp
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:

@@ -351,10 +351,10 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp:
     pepe:
         fs: &ltp-fs
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+            "failed: EROFS":
+                fs_fill (bug 1842266)
         containers: &ltp-containers
             "user_namespace6    0  TINFO  :  Child process returned TFAIL":
                 userns06 (bug 1836162)
@@ -374,10 +374,11 @@ ubuntu_ltp:
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
         kernel_misc: &ltp-misc
-            "/opt/ltp/testcases/bin/zram01.sh:":
-                zram01 (bug 1829991)
             "zram02 1 TFAIL: unexpected num of devices:":
                 zram02 (bug 1829992)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
     naumann:
         fs:
             <<: *ltp-fs
@@ -428,7 +429,7 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
         timers:
             <<: *ltp-timers
-        cpuhotplug:
+        cpuhotplug: &ltp-cpuhotplug
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
             "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
@@ -439,8 +440,16 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
+    wright-kernel:
+        fs:
+            <<: *ltp-fs
+        cpuhotplug:
+            <<: *ltp-cpuhotplug
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "BROK: Kernel is already tainted: 12800":
+                cve-2017-1000380 failed as kernel already tainted
     baltar:
         fs:
             <<: *ltp-fs
@@ -456,6 +465,23 @@ ubuntu_ltp:
             <<: *ltp-net
         kernel_misc:
             <<: *ltp-misc
+    modoc:
+        fs:
+            <<: *ltp-fs
+        containers:
+            <<: *ltp-containers
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
+                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        timers:
+            <<: *ltp-timers
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
     amaura:
         fs:
             <<: *ltp-fs
@@ -468,8 +494,38 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
-            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
-                crypto_user02 (bug 1837543)
+            <<: *ltp-crypto
+    s2lp3:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
+                cpuacct_100_100 (bug 1829978)
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+    s2lp6g002:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
+                cpuacct_100_100 (bug 1829978)
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+        net.ipv6_lib:
+            <<: *ltp-net
+    kernel02:
+        fs:
+            <<: *ltp-fs
+            "failed: EPERM (1)":
+                fs_fill (bug 1842266)
+        net.ipv6_lib:
+            <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls: &syscalls

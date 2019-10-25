@@ -122,3 +122,8 @@ ubuntu_qrt_apparmor:
         test-apparmor.py:
             "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
                 test_old_trusty_regression_testsuite failed to build (bug 1699987)
+ubuntu_seccomp:
+    modoc:
+        setup:
+            "'__NR_seccomp' undeclared ":
+                failed to compile (bug 1849246)

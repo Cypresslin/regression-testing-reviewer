@@ -165,6 +165,8 @@ xenial:
                     mlock203 failed (bug 1793451)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "tag=fanotify09 stime=":
+                    fanotify09-2 (bug 1804594)
         onibi:
             syscalls:
                 <<: *syscalls-x
@@ -305,6 +307,11 @@ xenial-fips:
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
+    ubuntu_ltp_syscalls:
+        amaura:
+            syscalls:
+                "tag=fanotify09 stime=":
+                    fanotify09-2 (bug 1804594)
 xenial-kvm:
     ubuntu_blktrace_smoke_test:
         chico: &blktrace-smoke-test-x-kvm
@@ -579,9 +586,15 @@ bionic:
             <<: *kvm-unit-test-ppc
     ubuntu_ltp:
         chico:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
             commands:
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
+            kernel_misc:
+                "/opt/ltp/testcases/bin/zram01.sh:":
+                    zram01 (bug 1829991)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -732,6 +745,11 @@ bionic-hwe:
                     sprs timed out (bug 1740017)
                 " sprs (":
                     YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
+    ubunut_ltp:
+        pepe:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
@@ -895,6 +913,11 @@ bionic-oem:
             timers:
                 "raw_skew [FAIL]":
                     raw_skew in timer (bug 1811194)
+    ubuntu_ltp:
+        amaura:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -925,6 +948,11 @@ bionic-oem-osp1:
             apic-split:
                 "FAIL apic-split (timeout; duration=90s)":
                     apic-split timeouted (bug 1821390)
+    ubuntu_ltp:
+        amaura:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -1029,6 +1057,9 @@ cosmic-kvm:
 disco:
     ubuntu_ltp:
         amaura:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
             power_management_tests:
                 "Power_Management03 2 TFAIL: Changing governors":
                     runpwtests03 (bug 1830362)
@@ -1041,4 +1072,8 @@ disco:
                     copy_file_range02 (bug 1839130)
                 "inotify08.c:150: FAIL: didn't get event: mask=":
                     inotify08 (bug 1775784)
+        modoc:
+            syscalls:
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                    timer_create01 (bug 1838961)
 
