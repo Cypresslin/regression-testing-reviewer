@@ -1,0 +1,20 @@
+4.15.0-1049.49 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194) raw_skew in timers should be skipped (bug 1812352) user_copy in user skipped (bug 1812352)
+ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) memory (bug 1845687) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_apicv_test (bug 1827866) vmx_hlt_with_rvi_test (bug 1822308)
+  ubuntu_ltp - fs_fill (bug 1842266) proc01 (bug 1829849) hackbench01, hackbench02 (bug 1830675) netns_sysfs (bug 1830678) cgroup_fj_stress_blkio_10_3_each, cgroup_fj_stress_blkio_2_9_each, cgroup_fj_stress_cpu_10_3_each, cgroup_fj_stress_cpu_2_9_each, cgroup_fj_stress_cpuacct_10_3_each, cgroup_fj_stress_cpuacct_2_9_each, cgroup_fj_stress_cpuset_10_3_each, cgroup_fj_stress_cpuset_2_9_each, cgroup_fj_stress_devices_10_3_each, cgroup_fj_stress_devices_2_9_each, cgroup_fj_stress_freezer_10_3_each, cgroup_fj_stress_freezer_2_9_each, cgroup_fj_stress_hugetlb_10_3_each, cgroup_fj_stress_hugetlb_2_9_each, cgroup_fj_stress_memory_10_3_each, cgroup_fj_stress_memory_2_9_each, cgroup_fj_stress_net_cls_10_3_each, cgroup_fj_stress_net_cls_2_9_each, cgroup_fj_stress_net_prio_10_3_each, cgroup_fj_stress_net_prio_2_9_each, cgroup_fj_stress_perf_event_10_3_each, cgroup_fj_stress_perf_event_2_9_each (bug 1848473) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) hugetlb tests failed with the whole suite (bug 1848680) getaddrinfo_01 (bug 1829995) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) msgstress03 (bug 1797341) msgstress04 (bug 1797348) quotactl02, quotactl03 (bug 1797325)
+  ubuntu_lxc - lxc-test-no-new-privs failed with Temporary failure resolving 'archive.ubuntu.com' (bug 1821152)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp

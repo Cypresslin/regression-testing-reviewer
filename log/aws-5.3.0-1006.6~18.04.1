@@ -1,0 +1,30 @@
+5.3.0-1006.6~18.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619)
+  ubuntu_ltp - proc01 (bug 1829849) fs_fill (bug 1842266) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_stat_rss (bug 1837035) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) hugemmap01 (bug 1851777) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_qrt_kernel_security - test_140_kernel_modules_not_tainted (bug 1850888)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  tsc - failed on i3.metal (bug 1851607)
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619)
+  ubuntu_kvm_unit_tests - vmx on i3.metal (1821394) vmx_apicv_test on i3.metal (bug 1827866)
+  ubuntu_ltp - proc01 (bug 1829849) fs_fill (bug 1842266) vma05 (bug 1845863) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1829982)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881)
+  ubuntu_lttng_smoke_test - failed to build lttng module on 5.3 Bionic (bug 1844764)
+  ubuntu_qrt_kernel_security - test_140_kernel_modules_not_tainted (bug 1850888)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+Skipped / blacklisted:
+ * libhugetlbfs

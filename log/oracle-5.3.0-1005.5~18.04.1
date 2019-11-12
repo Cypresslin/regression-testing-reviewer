@@ -1,0 +1,16 @@
+5.3.0-1005.5~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) trace_printk in ftrace (bug 1830084)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) pcid (bug 1827979) port80 (bug 1748105) vmx (bug 1821394)
+  ubunut_ltp - proc01 (bug 1829849) fs_fill (bug 1842266) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1830676)
+  ubuntu_lttng_smoke_test - module failed to build on B-5.3 (bug 1844764)
+  ubuntu_qrt_kernel_security - test_140_kernel_modules_not_tainted (bug 1850888)
+  ubuntu_sysdig_smoke_test - module failed to build on B-5.3 (bug 1844766)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp
+
+* Note the ubuntu_kernel_selftests must be reviewed on the jenkins directly

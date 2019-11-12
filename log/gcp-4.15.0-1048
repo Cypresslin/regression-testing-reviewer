@@ -1,0 +1,10 @@
+4.15.0-1048.51 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) statx05 (bug 1798524)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp

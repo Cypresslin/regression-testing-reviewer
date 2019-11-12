@@ -1,0 +1,26 @@
+4.15.0-1053.55 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) fs_fill (bug 1842266) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_test_3 (bug 1836694) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) getaddrinfo_01 (bug 1829995) mm test failed on some instances
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * monotonic_time
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  tsc - failed on i3.metal
+  ubuntu_kernel_selftests - raw_skew in timer (bug 1811194)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split (bug 1821390) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_apicv_test (bug 1837543) vmx_hlt_with_rvi_test (bug 1822308) on i3.metal
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) fs_fill (bug 1842266) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_max_usage_in_bytes (bug 1829979) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266) fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266) msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * ubuntu_seccomp
