@@ -23,7 +23,6 @@ eoan:
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *e-non-x86
-        ? ubuntu_seccomp
         ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
@@ -33,7 +32,6 @@ disco:
         ? fips_boot
         ? libhugetlbfs
         ? ubuntu_ecryptfs
-        ? ubuntu_seccomp
     i386:
         <<: *d-amd64
         ? ubuntu_32_on_64
@@ -49,6 +47,7 @@ disco:
         ? ubuntu_cve_kernel
     arm64:
         <<: *d-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *d-non-x86
@@ -105,7 +104,6 @@ bionic:
         ? fips_boot
         ? libhugetlbfs
         ? ubuntu_ecryptfs
-        ? ubuntu_seccomp
     i386:
         <<: *b-amd64
         ? ubuntu_32_on_64
@@ -121,6 +119,7 @@ bionic:
         ? ubuntu_cve_kernel
     arm64:
         <<: *b-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
     s390x:
         <<: *b-non-x86
@@ -154,7 +153,6 @@ bionic-fips:
     amd64: &b-fips-amd64
         ? libhugetlbfs
         ? ubuntu_ecryptfs
-        ? ubuntu_seccomp
     s390x:
         <<: *b-fips-amd64
         ? iosched_bugs
@@ -171,7 +169,6 @@ bionic-hwe:
         ? fips_boot
         ? libhugetlbfs
         ? ubuntu_ecryptfs
-        ? ubuntu_seccomp
     i386:
         <<: *b-hwe-amd64
         ? ubuntu_32_on_64
@@ -187,6 +184,7 @@ bionic-hwe:
         ? ubuntu_cve_kernel
     arm64:
         <<: *b-hwe-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
 bionic-edge:
     amd64:
@@ -202,13 +200,13 @@ bionic-edge:
         <<: *b-hwe-non-x86
     arm64:
         <<: *b-hwe-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
 xenial:
     amd64: &x-amd64
         ? fips_boot
         ? ubuntu_bpf
         ? ubuntu_ltp
-        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
     i386:
         <<: *x-amd64
@@ -217,14 +215,15 @@ xenial:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_zfs_smoke_test
-    arm64: &x-non-x86
+    ppc64le: &x-non-x86
         <<: *x-amd64
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
         ? ubuntu_cve_kernel
-    ppc64le:
+    arm64:
         <<: *x-non-x86
+        ? ubuntu_seccomp
     s390x:
         <<: *x-non-x86
         ? ubuntu_btrfs_kernel_fixes
@@ -237,7 +236,6 @@ xenial-hwe:
         ? ubuntu_bpf
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
-        ? ubuntu_seccomp
     i386:
         <<: *x-hwe-amd64
         ? ubuntu_32_on_64
@@ -253,6 +251,7 @@ xenial-hwe:
         ? ubuntu_cve_kernel
     arm64:
         <<: *x-hwe-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
 xenial-edge:
     amd64: &x-edge-amd64
@@ -261,7 +260,6 @@ xenial-edge:
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
         ? ubuntu_ramfs_stress
-        ? ubuntu_seccomp
     i386:
         <<: *x-edge-amd64
         ? ubuntu_32_on_64
@@ -277,6 +275,7 @@ xenial-edge:
         ? ubuntu_cve_kernel
     arm64:
         <<: *x-edge-non-x86
+        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
 xenial-kvm:
     amd64:
@@ -299,7 +298,6 @@ xenial-fips:
     amd64: &x-fips-amd64
         ? ubuntu_bpf
         ? ubuntu_ltp
-        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
     ppc64le: &x-fips-non-x86
         <<: *x-fips-amd64
@@ -338,16 +336,15 @@ trusty:
     i386:
         <<: *t-amd64
         ? ubuntu_32_on_64
-        ? ubuntu_seccomp
     ppc64le: &t-non-x86
         <<: *t-amd64
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
-        ? ubuntu_seccomp
     arm64:
         <<: *t-non-x86
         ? ubuntu_ftrace_smoke_test
+        ? ubuntu_seccomp
 trusty-hwe:
     amd64: &t-hwe-amd64
         ? fips_boot
@@ -368,16 +365,15 @@ trusty-hwe:
     i386:
         <<: *t-hwe-amd64
         ? ubuntu_32_on_64
-        ? ubuntu_seccomp
     ppc64le: &t-hwe-non-x86
         <<: *t-hwe-amd64
         ? iosched_bugs
         ? monotonic_time
         ? ubuntu_32_on_64
-        ? ubuntu_seccomp
     arm64:
         <<: *t-hwe-non-x86
         ? ubuntu_ftrace_smoke_test
+        ? ubuntu_seccomp
 precise-hwe:
     amd64: &p-hwe-amd64
         ? fips_boot
@@ -426,7 +422,6 @@ precise-hwe:
         ? ubuntu_lxc
         ? ubuntu_nbd_smoke_test
         ? ubuntu_overlayfs_smoke_test
-        ? ubuntu_seccomp
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
@@ -445,6 +440,7 @@ precise:
         <<: *p-hwe-i386
         ? ubuntu_ftrace_smoke_test
         ? ubuntu_loop_smoke_test
+        ? ubuntu_seccomp
 full-list: [
     aio_dio_bugs,
     aiostress,
