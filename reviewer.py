@@ -23,6 +23,7 @@ Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
 #                   <strong> release title </strong>
 
 import argparse
+import re
 import sys
 import analyzer
 import utils
@@ -68,7 +69,7 @@ parser.add_argument('--fips', action='store_const', dest='flag', const='-fips',
 
 args = parser.parse_args()
 filters = {'-hwe': '~',
-           '-edge': '5.3.0',
+           '-edge': '5.3.0-.*~',
            '-kvm': ' - kvm',
            '-oem': ' - oem',
            '-oem-osp1': ' - oem-osp1',
@@ -161,6 +162,9 @@ for kernel in report[target_distro]:
     if args.flag:
         if 'oem' in filters[args.flag]:
             if not kernel.endswith(filters[args.flag]):
+                continue
+        elif args.flag == '-edge':
+            if not re.match(filters[args.flag], kernel):
                 continue
         elif filters[args.flag] not in kernel:
             continue
