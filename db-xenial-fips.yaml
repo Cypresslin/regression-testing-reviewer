@@ -53,6 +53,32 @@ ubuntu_kvm_smoke_test:
     s2lp6g003:
         <<: *1729854
 ubuntu_kvm_unit_tests:
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+    fili:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test":
+                vmx_hlt_with_rvi_test (bug 1822308)
     gonzo:
         apic:
             "FAIL apic":
@@ -136,6 +162,13 @@ ubuntu_qrt_kernel_security:
         <<: *kernel_security
     s2lp6g003:
         <<: *kernel_security
+ubuntu_seccomp:
+    modoc: &ubuntu_seccomp
+        seccomp:
+            "ERROR 36-sim":
+                failed on D s390x / PowerPC (bug 1850904)
+    s2lp6g001:
+        <<: *ubuntu_seccomp
 xfstests:
     rizzo:
         xfs:

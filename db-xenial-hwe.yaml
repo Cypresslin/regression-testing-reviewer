@@ -12,7 +12,7 @@
 #         reason
 #
 hwclock:
-    ms10-35-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
@@ -111,6 +111,26 @@ ubuntu_kvm_unit_tests:
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+    fili:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test":
+                vmx_hlt_with_rvi_test (bug 1822308)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls: &syscalls
@@ -146,6 +166,11 @@ ubuntu_qrt_kernel_security:
                 test_096_boot_symbols_unreadable (bug 1845634)
     modoc:
         <<: *ubuntu_qrt_kernel_security
+ubuntu_seccomp:
+    modoc:
+        seccomp:
+            "ERROR 36-sim":
+                failed on D s390x / PowerPC (bug 1850904)
 ubuntu_sysdig_smoke_test:
     entei: &sysdig
         sysdig-smoke-test:

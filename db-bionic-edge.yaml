@@ -18,7 +18,9 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
-    ms10-35-mcdivittB0-kernel:
+    modoc:
+        <<: *hwclock-ppc
+    ms10-34-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
@@ -32,7 +34,11 @@ ubuntu_bpf:
         test_maps:
             "BTF is required, but is missing or corrupted.":
                 test_maps failed with BTF is required (bug 1850123)
+    rizzo:
+        <<: *ubuntu_bpf
     pepe:
+        <<: *ubuntu_bpf
+    fozzie:
         <<: *ubuntu_bpf
     onza:
         <<: *ubuntu_bpf
@@ -135,10 +141,12 @@ ubuntu_kernel_selftests:
             "ebb: cycles_test [FAIL]":
                 cycles_test in powerpc/ebb (bug 1830151)
 ubuntu_cts_kernel:
-    modoc:
+    modoc: &cts_kernel_flaky
         lp1262692:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
+    rizzo:
+        <<: *cts_kernel_flaky
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -157,7 +165,7 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    onza:
+    onza: &kvm-unit-i386
         vmexit_cpuid:
             "FAIL vmexit_cpuid":
                 vmexit* on i386 (bug 1822235)
@@ -188,6 +196,8 @@ ubuntu_kvm_unit_tests:
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
                 vmexit* on i386 (bug 1822235)
+    fozzie:
+        <<: *kvm-unit-i386
     starmie-kernel:
         all:
             "FAIL psci":
@@ -215,14 +225,19 @@ ubuntu_kvm_unit_tests:
         <<: *kvm-unit-ppc
     modoc:
         <<: *kvm-unit-ppc
-    gonzo:
-        all:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
+    rizzo:
+        apic:
             "FAIL apic":
-                apic timeouted (bug 1748103)
-            "FAIL svm":
-                svm (bug 1821903)
+                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                 apic-split timeouted (bug 1821390)
+        port80:
+            "FAIL port80":
+                 port80 timeouted (bug 1748105)
+        realmode:
+            "FAIL realmode (timeout;":
+                realmode timeouted (bug 1854490)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -334,41 +349,14 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     pepe: &syscalls
         syscalls:
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    amaura:
-        <<: *syscalls
-    secchi:
-        <<: *syscalls
-    lodygin:
-        <<: *syscalls
-    ms10-35-mcdivittB0-kernel:
-        <<: *syscalls
-    wright-kernel:
-        <<: *syscalls
-    baltar:
-        <<: *syscalls
-    entei:
-        <<: *syscalls
+            "FAIL: copy_file_range failed unexpectedly; expected EOVERFLOW, but got: EFBIG (27)":
+                copy_file_range02 (bug 1851653)
+            "sync_file_range02.c:74: FAIL: Sync inside of write":
+                sync_file_range02 (bug 1851655)
     modoc:
-        <<: *syscalls
-ubuntu_lttng_smoke_test:
-    onibi: &lttng
-        lttng-smoke-test:
-            "‘const struct pipe_buf_operations’ has no member named ‘can_merge’":
-                failed to build lttng module on 5.3 Bionic (bug 1844764)
-    ms10-34-mcdivittB0-kernel:
-        <<: *lttng
-    wright-kernel:
-        <<: *lttng
-    baltar:
-        <<: *lttng
-    modoc:
-        <<: *lttng
-    pepe:
-        <<: *lttng
+        syscalls:
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
 ubuntu_lxc:
     modoc: &lxc
         exercise:
@@ -377,12 +365,10 @@ ubuntu_lxc:
     baltar:
         <<: *lxc
 ubuntu_qrt_kernel_security:
-    modoc: &kernel-security-ppc
+    onza:
         test-kernel-security.py:
-            "FAIL: test_096_boot_symbols_unreadable":
-                test_096_boot_symbols_unreadable (bug 1845634)
-    baltar:
-        <<: *kernel-security-ppc
+            "FAIL: test_ulimit_stack_small":
+                flaky test on i386 (bug 1814295)
 ubuntu_seccomp:
     baltar: &ubuntu_seccomp
         seccomp:

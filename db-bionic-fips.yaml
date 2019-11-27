@@ -29,6 +29,10 @@ ubuntu_bpf:
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
                 test_maps failed (bug 1839912)
+    rizzo:
+        test_maps:
+            "Allowed update sockmap '0:8' not in ESTABLISHED":
+                test_maps failed (bug 1839912)
     s2lp6g001: &ubuntu-bpf-s390x
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
@@ -61,17 +65,10 @@ ubuntu_btrfs_kernel_fixes:
     daedalus:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
-    gonzo:
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
     fozzie:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
@@ -106,15 +103,21 @@ ubuntu_kvm_unit_tests:
         setup:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                1 unexpected failures in apic-split (bug 1821390)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "failed: EROFS":
-                fs_fill (bug 1842266)
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -134,71 +137,30 @@ ubuntu_ltp:
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
-    chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-            "FAIL: information leak in field 'crypto_user_alg::cru_driver_name'":
-                CVE-2018-19854
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
+    s2lp6g002:
+        fs:
+            <<: *ltp-fs
+        contorllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
 ubuntu_ltp_syscalls:
     pepe: &syscalls-amd64
         syscalls:
-            "inotify08.c:127: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
             "sync_file_range02.c:74: FAIL":
                 sync_file_range02 (bug 1819116)
-    amaura:
-        syscalls:
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     secchi:
-        <<: *syscalls-amd64
-    lodygin:
         <<: *syscalls-amd64
     s2lp6g002:
         syscalls:
-            "failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-    chico: &syscalls-kvm
-        syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
-            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
-    harpo:
-        <<: *syscalls-kvm
-    groucho:
-        <<: *syscalls-kvm
-    gummo:
-        <<: *syscalls-kvm
-    zeppo:
-        <<: *syscalls-kvm
+            "msgstress04 1 TFAIL : msgstress04.c:220: Child exit status = 1":
+                msgstress04 (bug 1797348)
+            "stime01.c:51: FAIL: system time not set to":
+                stime01 (bug 1845620)
+            "FAIL: clock_settime(2): could not advance time":
+                clock_settime01 (bug 1850741)
 ubuntu_lxc:
     daedalus: &lxc-setup
         setup:
@@ -212,6 +174,11 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
+ubuntu_seccomp:
+    s2lp6g002:
+        seccomp:
+            "ERROR 36-sim":
+                failed on D s390x / PowerPC (bug 1850904)
 xfstests:
     fozzie: &xfstests
         ext4:

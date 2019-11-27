@@ -1,7 +1,7 @@
 # Tests here are the one that need to be excluded from the full-list below
 eoan:
     amd64: &e-amd64
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_ecryptfs
     i386:
@@ -29,7 +29,7 @@ eoan:
         ? ubuntu_xfstests_xfs
 disco:
     amd64: &d-amd64
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_ecryptfs
     i386:
@@ -52,7 +52,6 @@ disco:
     s390x:
         <<: *d-non-x86
         ? ubuntu_btrfs_kernel_fixes
-        ? ubuntu_ltp
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
@@ -101,7 +100,7 @@ cosmic-kvm:
         ? ubuntu_xfstests_xfs
 bionic:
     amd64: &b-amd64
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_ecryptfs
     i386:
@@ -160,13 +159,12 @@ bionic-fips:
         ? ubuntu_32_on_64
         ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cve_kernel
-        ? ubuntu_ltp
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
 bionic-hwe:
     amd64: &b-hwe-amd64
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_ecryptfs
     i386:
@@ -204,7 +202,7 @@ bionic-edge:
         ? ubuntu_sysdig_smoke_test
 xenial:
     amd64: &x-amd64
-        ? fips_boot
+        ? fips_test
         ? ubuntu_bpf
         ? ubuntu_ltp
         ? ubuntu_sysdig_smoke_test
@@ -232,7 +230,7 @@ xenial:
         ? ubuntu_xfstests_xfs
 xenial-hwe:
     amd64: &x-hwe-amd64
-        ? fips_boot
+        ? fips_test
         ? ubuntu_bpf
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
@@ -255,7 +253,7 @@ xenial-hwe:
         ? ubuntu_sysdig_smoke_test
 xenial-edge:
     amd64: &x-edge-amd64
-        ? fips_boot
+        ? fips_test
         ? ubuntu_bpf
         ? ubuntu_ecryptfs
         ? ubuntu_ltp
@@ -315,7 +313,7 @@ xenial-fips:
         ? ubuntu_xfstests_xfs
 trusty:
     amd64: &t-amd64
-        ? fips_boot
+        ? fips_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
         ? ubuntu_cve_kernel
@@ -347,7 +345,7 @@ trusty:
         ? ubuntu_seccomp
 trusty-hwe:
     amd64: &t-hwe-amd64
-        ? fips_boot
+        ? fips_test
         ? ubuntu_bpf
         ? ubuntu_cve_kernel
         ? ubuntu_fan_smoke_test
@@ -376,7 +374,7 @@ trusty-hwe:
         ? ubuntu_seccomp
 precise-hwe:
     amd64: &p-hwe-amd64
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
@@ -403,7 +401,7 @@ precise-hwe:
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
     i386: &p-hwe-i386
-        ? fips_boot
+        ? fips_test
         ? libhugetlbfs
         ? ubuntu_32_on_64
         ? ubuntu_bpf
@@ -445,7 +443,7 @@ full-list: [
     aio_dio_bugs,
     aiostress,
     ebizzy,
-    fips_boot,
+    fips_test,
     fs_mark,
     fsx,
     hwclock,

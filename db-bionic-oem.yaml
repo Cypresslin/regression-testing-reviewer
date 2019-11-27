@@ -21,6 +21,9 @@ ubuntu_bpf:
         test_maps: &bpf-test-map
             "Allowed update sockmap '0:8' not in ESTABLISHED":
                 test_maps failed (bug 1837386)
+    rizzo:
+        test_maps:
+            <<: *bpf-test-map
 ubuntu_btrfs_kernel_fixes:
     amaura: &btrfs_kernel_fixes
         2365dd3ca02bbb6d3412404482e1d85752549953:
@@ -31,6 +34,11 @@ ubuntu_btrfs_kernel_fixes:
                 6113077 failed (bug 1810384)
     daedalus:
         <<: *btrfs_kernel_fixes
+ubuntu_cts_kernel:
+    rizzo:
+        lp1262692:
+            "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
+                test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
         timers:
@@ -51,16 +59,24 @@ ubuntu_kvm_unit_tests:
         svm:
             "FAIL svm":
                 svm (bug 1821903)
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
 ubuntu_ltp:
     amaura:
         fs:
-            "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
-                binfmt_misc02 (bug 1822246)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "failed: EROFS":
-                fs_fill (bug 1842266)
         controllers:
+            "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
+                cpuacct_100_100 (bug 1829978)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -77,17 +93,6 @@ ubuntu_ltp:
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-ubuntu_ltp_syscalls:
-    amaura: &syscalls-amd64
-        syscalls: &syscalls
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    secchi:
-        <<: *syscalls-amd64
-    lodygin:
-        <<: *syscalls-amd64
 ubuntu_lxc:
     daedalus: &lxc-setup
         setup:

@@ -62,7 +62,7 @@ ubuntu_kvm_unit_tests:
         setup:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
-    gonzo:
+    rizzo:
         apic:
             "FAIL apic":
                 apic (bug 1748103)

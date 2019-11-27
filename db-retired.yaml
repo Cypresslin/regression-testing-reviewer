@@ -496,6 +496,15 @@ bionic:
             ubuntu-bjf:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+            test_verifier:
+                "#391/u bounds checks mixing signed and unsigned, variant 14 FAIL":
+                    391/u and 391/p (bug 1841704)
+                "#391/p bounds checks mixing signed and unsigned, variant 14 FAIL":
+                    391/u and 391/p (bug 1841704)
+                "#491/u check deducing bounds from const, 5 FAIL":
+                    491/u and 491/p (bug 1841707)
+                "#491/p check deducing bounds from const, 5 FAIL":
+                    491/u and 491/p (bug 1841707)
             test_maps:
                 "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
                     test_map failed on i386 Bionic (bug 1788580)
@@ -528,6 +537,9 @@ bionic:
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
+            timers:
+                "raw_skew [FAIL]":
+                    raw_skew in timer (bug 1811194)
         modoc:
             ftrace:
                 "Kprobe event argument syntax       [FAIL]":
@@ -589,6 +601,8 @@ bionic:
             fs:
                 "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                     binfmt_misc02 (bug 1822246)
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
             commands:
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
@@ -612,10 +626,24 @@ bionic:
                     fanotify10 (bug 1802454)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
         s2lp6g001:
             syscalls:
                 "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
                     perf_event_open02 (bug 1822032)
+        kernel02:
+            syscalls:
+                "failed: EACCES":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                    timer_create01 (bug 1838961)
+                "FAIL: end of file reached":
+                    acct02 (bug 1839836)
     ubuntu_lxc:
         amaura: &exercise-b
             setup:
@@ -750,6 +778,13 @@ bionic-hwe:
             fs:
                 "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                     binfmt_misc02 (bug 1822246)
+    ubuntu_ltp_syscalls:
+        pepe:
+            syscalls:
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     ubuntu_lttng_smoke_test:
         daedalus: &lttng
             lttng-smoke-test:
@@ -918,6 +953,8 @@ bionic-oem:
             fs:
                 "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                     binfmt_misc02 (bug 1822246)
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -929,6 +966,10 @@ bionic-oem:
                     inotify08 (bug 1775784)
                 "FAIL: first group got more than 2 events":
                     fanotify09 (bug 1804594)
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
 bionic-oem-osp1:
     ubuntu_bpf:
         gonzo:
@@ -953,6 +994,13 @@ bionic-oem-osp1:
             fs:
                 "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                     binfmt_misc02 (bug 1822246)
+    ubuntu_ltp_syscalls:
+        amaura:
+            syscalls:
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -974,6 +1022,15 @@ bionic-edge:
             syscalls:
                 "FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+    ubuntu_lttng_smoke_test:
+        onibi:
+            lttng-smoke-test:
+                "‘const struct pipe_buf_operations’ has no member named ‘can_merge’":
+                    failed to build lttng module on 5.3 Bionic (bug 1844764)
     ubuntu_lxc:
         daedalus: &lxc-setup
             setup:
@@ -984,12 +1041,45 @@ bionic-edge:
             test-kernel-security.py:
                 "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
                     LOCK_DOWN_KERNEL (bug 1811981)
+                "FAIL: test_096_boot_symbols_unreadable":
+                    test_096_boot_symbols_unreadable (bug 1845634)
 bionic-fips:
     ubuntu_kernel_selftests:
         gonzo:
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
+            timer:
+                "raw_skew [FAIL]":
+                    raw_skew in timer (bug 1811194)
+    ubuntu_ltp:
+        amaura:
+            fs:
+                "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
+                    binfmt_misc02 (bug 1822246)
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
+    ubuntu_ltp_syscalls:
+        amaura:
+            syscalls:
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "inotify08.c:127: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
+                "fanotify09.c:202: FAIL: first group got more than 2 events":
+                    fanotify09-2 (bug 1804594)
+        s2lp6g002:
+            syscalls:
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                    timer_create01 (bug 1838961)
+                "failed: EACCES":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "FAIL: end of file reached":
+                    acct02 (bug 1839836)
 bionic-kvm:
     ubuntu_kernel_selftests:
         chico:
@@ -1063,6 +1153,11 @@ disco:
             power_management_tests:
                 "Power_Management03 2 TFAIL: Changing governors":
                     runpwtests03 (bug 1830362)
+        kernel_misc: &ltp-misc
+            "/opt/ltp/testcases/bin/zram01.sh:":
+                zram01 (bug 1829991)
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:

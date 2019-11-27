@@ -20,7 +20,7 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
-    ms10-35-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
@@ -53,7 +53,7 @@ ubuntu_bpf:
                 test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
         test_maps:
             "Failed to load SK_SKB parse prog":
-                test_maps faile to load SK_SKB (bug 1845643)
+                test_maps failed to load SK_SKB (bug 1845643)
     s2lp4:
         <<: *bpf-s390x
     kernel04:
@@ -110,6 +110,8 @@ ubuntu_kernel_selftests:
                 ip_defrag in net (bug 1826848)
         seccomp:
             <<: *seccomp
+    rizzo:
+        <<: *kernel-selftests
     naumann:
         <<: *kernel-selftests
     gonzo:
@@ -309,13 +311,15 @@ ubuntu_kvm_unit_tests:
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+    rizzo:
+        vmx:
+            "FAIL vmx (timeout":
+                vmx timeout (bug 1821394)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "failed: EROFS":
-                fs_fill (bug 1842266)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -536,61 +540,50 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
-    pepe: &syscalls-amd64
-        syscalls: &syscalls
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    amaura:
-        <<: *syscalls-amd64
-    secchi:
-        <<: *syscalls-amd64
-    lodygin:
-        <<: *syscalls-amd64
+    pepe:
+        syscalls:
+            "sync_file_range02.c:74: FAIL: Sync inside of write:":
+                sync_file_range02 (bug 1851655)
     ms10-35-mcdivittB0-kernel:
-        <<: *syscalls-amd64
+        syscalls: &syscalls-all
+            "killed by signal SIGSEGV":
+                pivot_root01 (bug 1852966)
     wright-kernel:
-        <<: *syscalls-amd64
+        syscalls:
+            <<: *syscalls-all
     modoc:
-        syscalls:
-            <<: *syscalls
-    baltar:
-        syscalls:
-            <<: *syscalls
-            "FAIL: system time not set to":
-                stime (bug 1845620)
-            "FAIL: move_pages failed: EINVAL (22)":
-                move_pages12 (bug 1831043)
+        syscalls: &syscalls-ppc
             "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
-    s2lp4: &syscall-s390x
+            "killed by signal SIGSEGV":
+                pivot_root01 (bug 1852966)
+            "FAIL: system time not set to":
+                stime01 (bug 1845620)
+            "BROK: preadv203.":
+                preadv203, preadv203_64 ENOSPC on btrfs (bug 1842270)
+    baltar:
         syscalls:
-            <<: *syscalls
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
+            <<: *syscalls-ppc
+            "FAIL: move_pages failed: EINVAL (22)":
+                move_pages12 (bug 1831043)
+    s2lp4:
+        syscalls:
+            <<: *syscalls-all
     kernel04:
-        <<: *syscall-s390x
-    s2lp6g003:
-        <<: *syscall-s390x
-    s2lp6g001:
-        <<: *syscall-s390x
-    chico: &syscalls-kvm
         syscalls:
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
-            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+            <<: *syscalls-all
+            "msgstress03.c:157:         Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
-    harpo:
-        <<: *syscalls-kvm
-    groucho:
-        <<: *syscalls-kvm
-    gummo:
-        <<: *syscalls-kvm
-    zeppo:
-        <<: *syscalls-kvm
+    s2lp6g003:
+        syscalls:
+            <<: *syscalls-all
+            "msgstress03.c:157:         Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+    s2lp6g001:
+        syscalls:
+            <<: *syscalls-all
+            "msgstress03.c:157:         Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
 ubuntu_lxc:
     kernel04:
         exercise:

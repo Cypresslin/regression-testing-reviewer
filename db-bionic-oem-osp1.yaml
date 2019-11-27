@@ -20,6 +20,13 @@ ubuntu_kernel_selftests:
         <<: *kernel_selftests
     gonzo:
         <<: *kernel_selftests
+    rizzo:
+        <<: *kernel_selftests
+ubuntu_kvm_unit_tests:
+    rizzo:
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -77,17 +84,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    naumann:
-        <<: *syscalls-amd64
-
-    secchi:
-        <<: *syscalls-amd64
-    lodygin:
-        <<: *syscalls-amd64
+            "killed by signal SIGSEGV":
+                pivot_root01 (bug 1852966)
 xfstests:
     rizzo: &xfstests
         ext4:

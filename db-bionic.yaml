@@ -22,6 +22,10 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
                 hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+    ms10-34-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -38,20 +42,14 @@ ubuntu_blktrace_smoke_test:
                 attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
     amaura: &ubuntu_bpf
-        test_verifier: &bpf391-491
-            "#391/u bounds checks mixing signed and unsigned, variant 14 FAIL":
-                391/u and 391/p (bug 1841704)
-            "#391/p bounds checks mixing signed and unsigned, variant 14 FAIL":
-                391/u and 391/p (bug 1841704)
-            "#491/u check deducing bounds from const, 5 FAIL":
-                491/u and 491/p (bug 1841707)
-            "#491/p check deducing bounds from const, 5 FAIL":
-                491/u and 491/p (bug 1841707)
         test_maps: &bpf-test-map
             "Allowed update sockmap '0:8' not in ESTABLISHED":
                 test_maps failed (bug 1837386)
     gonzo:
         <<: *ubuntu_bpf
+    rizzo:
+        test_maps:
+            <<: *bpf-test-map
     onza:
         test_verifier:
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
@@ -61,6 +59,13 @@ ubuntu_bpf:
         test_maps:
             <<: *bpf-test-map
     pepe:
+        test_verifier:
+            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+            "check bpf_perf_event_data->sample_period":
+                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+        <<: *ubuntu_bpf
+    fozzie:
         test_verifier:
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
@@ -126,14 +131,7 @@ ubuntu_cts_kernel:
     s2lp6g002:
         <<: *ubuntu-cts-flaky
 ubuntu_kernel_selftests:
-    gonzo:
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
-    starmie-kernel: &kernel-selftests-arm64
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
+    starmie-kernel:
         ftrace:
             "[27] Kprobe dynamic event - probing module [FAIL]":
                 Kprobe probing module in ftrace (bug 1812636)
@@ -144,14 +142,13 @@ ubuntu_kernel_selftests:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
-        <<: *kernel-selftests-arm64
+        ftrace:
+            "(instance) ftrace - test for function traceon/off triggers	[FAIL]":
+                function traceon/off triggers in ftace (bug 1837040)
     fozzie:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
@@ -159,16 +156,10 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
         powerpc:
             "selftests: copy_unaligned [FAIL]":
                 alignment in powerpc (bug 1813118)
@@ -217,6 +208,16 @@ ubuntu_kvm_unit_tests:
         apic-split:
             "FAIL apic-split":
                 apic-split timeouted (bug 1821390)
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
     ms10-34-mcdivittB0-kernel:
          gicv3-active:
             "gicv3-active":
@@ -317,44 +318,44 @@ ubuntu_kvm_unit_tests:
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
-    pepe:
+    fozzie: &kvm-unit-test-vmexit-i386
         vmexit_cpuid:
             "FAIL vmexit_cpuid":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_inl_pmtimer:
             "FAIL vmexit_inl_pmtimer":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_ipi:
             "FAIL vmexit_ipi":
-                vmexit* on i386 (bug 1822235)
+                vmexit_ipi on i386 (bug 1822235)
         vmexit_ipi_halt:
             "FAIL vmexit_ipi_halt":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_mov_from_cr8:
             "FAIL vmexit_mov_from_cr8":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_mov_to_cr8:
             "FAIL vmexit_mov_to_cr8":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_ple_round_robin:
             "FAIL vmexit_ple_round_robin":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_tscdeadline:
             "FAIL vmexit_tscdeadline":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_tscdeadline_immed:
             "FAIL vmexit_tscdeadline_immed":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
-                vmexit* on i386 (bug 1822235)
+                vmexit_* on i386 (bug 1822235)
+    pepe:
+        <<: *kvm-unit-test-vmexit-i386
 ubuntu_ltp:
     pepe:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "failed: EROFS":
-                fs_fill (bug 1842266)
         containers: &ltp-containers
             "user_namespace6    0  TINFO  :  Child process returned TFAIL":
                 userns06 (bug 1836162)
@@ -405,7 +406,7 @@ ubuntu_ltp:
         fs:
             <<: *ltp-fs
         controllers:
-            "/opt/ltp/testcases/bin/cpuacct.sh":
+            "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -439,17 +440,27 @@ ubuntu_ltp:
             "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
-            <<: *ltp-net
+            "getaddrinfo IPv6 basic lookup (\"ms10-35-mcdivittB0-kernel\") returns -5 (\"No address associated with hostname\")":
+                getaddrinfo_01 (bug 1829995)
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            "zram01 1 TBROK: test killed, timeout! If you are running on slow machine, try exporting LTP_TIMEOUT_MUL > 1":
+                zram01 / zram02 / zram03 failed on slow system (bug 1854706)
     wright-kernel:
         fs:
             <<: *ltp-fs
         cpuhotplug:
             <<: *ltp-cpuhotplug
         net.ipv6_lib:
-            <<: *ltp-net
+            "getaddrinfo IPv6 basic lookup (\"wright-kernel\") returns -5 (\"No address associated with hostname\")":
+                getaddrinfo_01 (bug 1829995)
         cve:
             "BROK: Kernel is already tainted: 12800":
                 cve-2017-1000380 failed as kernel already tainted
+        kernel_misc:
+            "zram01 1 TBROK: test killed, timeout! If you are running on slow machine, try exporting LTP_TIMEOUT_MUL > 1":
+                zram01 / zram02 / zram03 failed on slow system (bug 1854706)
     baltar:
         fs:
             <<: *ltp-fs
@@ -527,19 +538,12 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
-    amaura: &syscalls-amd64
-        syscalls: &syscalls
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    ms10-35-mcdivittB0-kernel:
-        <<: *syscalls-amd64
     pepe:
-        <<: *syscalls-amd64
+        syscalls:
+            "sync_file_range02.c:74: FAIL: Sync inside of write":
+                sync_file_range02 (bug 1851655)
     baltar: &syscalls-ppc
         syscalls:
-            <<: *syscalls
             "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                 fallocate05 (bug 1783880)
             "move_pages12.c:114: FAIL: move_pages failed: ENOMEM":
@@ -552,65 +556,14 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
-    secchi:
-        <<: *syscalls-amd64
-    lodygin:
-        <<: *syscalls-amd64
-    ms10-35-mcdivittB0-kernel:
-        <<: *syscalls-amd64
-    wright-kernel:
-        <<: *syscalls-amd64
     kernel02: &syscalls-s390x
         syscalls:
-            "failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
             "msgstress03.c:157:     Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
-    s2lp3:
-        syscalls:
-            "failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
     s2lp6g002:
-        syscalls:
-            "failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
-                timer_create01 (bug 1838961)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
-            "settimeofday01 1 TFAIL : settimeofday01":
-                settimeofday01 (bug 1833905)
-    chico: &syscalls-kvm
-        syscalls:
-            <<: *syscalls
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
-            "msgstress03.c:157:        Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341
-    harpo:
-        <<: *syscalls-kvm
-    groucho:
-        <<: *syscalls-kvm
-    gummo:
-        <<: *syscalls-kvm
-    zeppo:
-        <<: *syscalls-kvm
+        <<: *syscalls-s390x
 ubuntu_lxc:
     kernel02:
         exercise:
@@ -641,6 +594,15 @@ ubuntu_qrt_kernel_security:
                 test_096_boot_symbols_unreadable (bug 1845634)
     modoc:
         <<: *ubuntu_qrt_kernel_security
+ubuntu_seccomp:
+    baltar: &ubuntu_seccomp
+        seccomp:
+            "ERROR 36-sim":
+                failed on s390x / PowerPC (bug 1850904)
+    modoc:
+        <<: *ubuntu_seccomp
+    s2lp3:
+        <<: *ubuntu_seccomp
 xfstests:
     fozzie: &xfstests
         ext4:
