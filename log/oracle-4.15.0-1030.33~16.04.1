@@ -1,0 +1,9 @@
+4.15.0-1030.33~16.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) pcid (bug 1827979) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308)
+  ubuntu_ltp_syscalls -  quotactl04 (bug 1854153) statx05 (bug 1798524)
+
+Skipped / blacklisted:
+ * ubuntu_ltp

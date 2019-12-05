@@ -1,0 +1,11 @@
+5.0.0-1026.27~18.04.2 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_k8s_unit_tests	- scheduler and spdy (bug 1824136)
+  ubunut_kernel_selftests - cpu-hotplug fail with 1 cpu (bug 1812149) test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) trace_printk in ftrace (bug 1830084)
+  ubuntu_ltp - test timeout
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) clock_settime01 (bug 1850741) and stime01 (bug 1845620)
+
+Skipped / blacklisted:
+ * libhugetlbfs

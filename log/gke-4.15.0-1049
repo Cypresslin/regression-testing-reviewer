@@ -1,0 +1,10 @@
+4.15.0-1049.52 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_ltp - test suite timeout with the controller (bug 1839144)
+  ubuntu_ltp_syscalls - clock_settime01 (bug 1850741) msgstress03 (bug 1797341) pivot_root01 (bug 1852966) stime01 (bug 1845620) settimeofday01 (bug 1833905)
+
+Skipped / blacklisted:
+ * libhugetlbfs

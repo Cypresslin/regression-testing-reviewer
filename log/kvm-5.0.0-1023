@@ -1,0 +1,19 @@
+5.0.0-1023.25 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - 2 tests in test_verifier failed (bug 1848005) test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - psock_tpacket in net (bug 1812176) test_bpf in net (bug 1812189) rtnetlink in net (bug 1812194) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) fib_rule_tests in net (bug 1812622) msg_zerocopy in net (bug 1812620) test_vxlan_under_vrf in net (bug 1837348) ftrace (bug 1812318)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) memory (bug 1845687) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) hackbench01 (bug 1830675) netns_sysfs (bug 1830678) cpuacct_100_100 (bug 1829978) memcg_failcnt (bug 1845919) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) memcg_subgroup_charge (bug 1847982) hugetlb tests failed with the whole suite (bug 1848680) getaddrinfo_01 (bug 1829995) ltp_acpi (bug 1830676)
+  ubuntu_ltp_syscalls - clock_settime01 (bug 1850741) msgstress03 (bug 1797341) msgstress04 (bug 1797348) stime01 (bug 1845620)
+  xfstests - failed because no scratch drive
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_blktrace_smoke_test
+  * ubuntu_ecryptfs
+  * ubuntu_fan_smoke_test
+  * ubuntu_ftrace_smoke_test
+  * ubuntu_lttng_smoke_test
+  * ubuntu_seccomp

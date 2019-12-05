@@ -1,0 +1,9 @@
+4.15.0-1030.33 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) false-negative in access (bug 1831451) ept (bug 1824228) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) pcid (bug 1827979) pmu (bug 1751000) port80 (bug 1748105) vmx (bug 1821394) vmx_apicv_test status not correctly reported (bug 1827866) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308)
+  ubunut_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) umip_basic_test (bug 1853798)
+
+Skipped / blacklisted:
+ * libhugetlbfs

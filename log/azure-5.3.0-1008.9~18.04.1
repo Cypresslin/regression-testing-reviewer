@@ -1,0 +1,15 @@
+5.3.0-1008.9~18.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) trace_printk in ftrace (bug 1830084) ftrace failures (bug 1851811) posix_timers (bug 1851805)
+  ubuntu_kvm_unit_tests - ept (bug 1824228) memory (bug 1831449) vmx (bug 1821394) on Standard_F32s_v2
+  ubuntu_ltp - proc01 (bug 1829849) fs_fill (bug 1842266) ksm06* in mm (bug 1830316) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) cve-2017-17053 (bug 1830011) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) msgstress04 (bug 1797348)
+  ubuntu_lttng_smoke_test - module failed to build on B-5.3 (bug 1844764)
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_DS15_v2, Standard_DS5_v2 (bug 1821152), passed on the rest
+  ubuntu_qrt_kernel_security - test_140_kernel_modules_not_tainted (bug 1850888)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+Skipped / blacklisted:
+  * libhugetlbfs

@@ -1,0 +1,28 @@
+5.0.0-1022.25 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  tsc - failed on i3.metal / c5.metal (bug 1851607)
+  ubuntu_kernel_selftests - msg_zerocopy in net on some nodes (bug 1812620)
+  ubuntu_kvm_unit_tests - vmx on i3.metal / c5.metal / r5.metal (1821394)
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 on c5.metal (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) mm test failed on some instances
+  ubuntu_ltp_syscalls - msgstress03 on t2.small (bug 1783881) pivot_root01 (bug 1852966)
+  ubuntu_stress_smoke_test - schedpolicy on t2.small (bug 1853944)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - msg_zerocopy in net on some nodes (bug 1812620)
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 on t2.small (bug 1783881) pivot_root01 (bug 1852966)
+  ubuntu_stress_smoke_test - schedpolicy on t2.small (bug 1853944)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * tsc
+ * ubuntu_32_on_64
+ * libhugetlbfs
+ * ubuntu_seccomp
+

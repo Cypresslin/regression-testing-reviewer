@@ -1,0 +1,12 @@
+5.0.0-1026.27~18.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) trace_printk in ftrace (bug 1830084)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - clock_settime01 (bug 1850741) msgstress03 (bug 1797341) pivot_root01 (bug 1852966) stime01 (bug 1845620)
+  ubuntu_stress_smoke_test - schedpolicy on every instances (bug 1853944)
+
+Skipped / blacklisted:
+ * libhugetlbfs

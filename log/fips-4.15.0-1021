@@ -1,0 +1,17 @@
+4.15.0-1021.24 - fips
+Regression test CMPL, RTB.
+
+57 / 61 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) 1 unexpected failures in apic-split (bug 1821390) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+
+52 / 53 tests were run, missing: ubuntu_boot
+Issue to note in s390x (KVM):
+  fips_test - should be skipped
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - reuseport_dualstack in net (bug 1812843) TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_ltp - proc01 (bug 1829849) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - clock_settime01 (bug 1850741) stime01 (bug 1845620)
+  ubuntu_seccomp - failed on D s390x / PowerPC (bug 1850904)

@@ -1,0 +1,63 @@
+5.3.0-24.26~18.04.2 - lowlatency
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kvm_unit_tests - vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1851655) copy_file_range02 (bug 1851653)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+5.3.0-24.26~18.04.2 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_cts_kernel - test is a bit flaky (bug 1837536)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 timeouted (bug 1748105) realmode timeouted (bug 1854490)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Test 13 in test_verifier (bug 1845870) failed to build test_maps (bug 1845860)
+  ubuntu_kvm_unit_tests - gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) gicv3-active failed on Moonshot (bug 1790825) gicv3-ipi failed on Moonshot (bug 1790825)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) crypto_user02 (bug 1837543)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kvm_unit_tests - vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - sync_file_range02 (bug 1851655) copy_file_range02 (bug 1851653)
+  ubuntu_qrt_kernel_security - flaky test on i386 (bug 1814295)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec differences / time out waiting for time change (bug 1802233)=
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_cts_kernel - test is a bit flaky (bug 1837536)
+  ubuntu_ltp - proc01 (bug 1829849) ksm06* in mm (bug 1830316) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - stime01 (bug 1845620)
+  ubuntu_lxc - failed to download template on PPC (bug 1839835)
+  ubuntu_seccomp - failed on 5.0 s390x / PowerPC (bug 1850904)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_ltp - proc01 (bug 1829849) ksm06* in mm (bug 1830316) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_lxc - failed to download template on PPC (bug 1839835)
+  ubuntu_seccomp - failed on 5.0 s390x / PowerPC (bug 1850904)
+  ubuntu_sysdig_smoke_test - failed to build sysdig DKMS with 5.3 kernel (bug 1844766)

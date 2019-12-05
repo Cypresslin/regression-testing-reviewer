@@ -1,0 +1,14 @@
+5.0.0-1026.28 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests -  cpu-hotplug (bug 1814232) test_bpf in net (bug 1812189) msg_zerocopy in net (bug 1812620) trace_printk in ftrace (bug 1830084)
+  ubuntu_kvm_unit_tests - ept (bug 1824228) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) binfmt_misc02 (bug 1822246) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982)  memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - move_pages12 (bug 1831043)
+  ubuntu_lttng_smoke_test - module build issue on Standard_B1ms (bug 1847989)
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_B1ms, Standard_DC2s, Standard_F1s, Standard_F2s (bug 1821152), passed on the rest
+  ubuntu_qrt_apparmor - timed out on Standard-B1ms only
+
+Skipped / blacklisted:
+  * libhugetlbfs
