@@ -20,19 +20,17 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
-    ms10-35-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel: &hwclock-moonshot
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
+    ms10-35-mcdivittB0-kernel:
+        <<: *hwclock-moonshot
 ubuntu_bpf:
     onza: &bpf-i386
         test_maps:
             "run_parallel: Assertion `status == 0' failed.":
                 test_map failed on i386 (bug 1845641)
-    pepe:
-        <<: *bpf-i386
-    fozzie:
-        <<: *bpf-i386
     baltar: &bpf-ppc
         test_maps:
             "Failed to load SK_SKB parse prog":
@@ -162,8 +160,8 @@ ubuntu_kvm_smoke_test:
         <<: *1765668
     modoc: &kvm-smoke-ppc
         kvm_smoke_test:
-            "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
-               failed to start KVM with uvtool on P8 Bionic (bug 1798358)
+            "internal error: process exited while connecting to monitor":
+               failed to start KVM with uvtool on P8 (bug 1798358)
     entei:
         <<: *kvm-smoke-ppc
     pepe:
@@ -171,122 +169,6 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    onza:
-        eventinj:
-            "FAIL eventinj":
-                eventinj on i386 (bug 1822235)
-        hypercall:
-            "FAIL hypercall":
-                hypercall on i386 (bug 1822235)
-        hyperv_connections:
-            "FAIL hyperv_connections":
-                hyperv_connections on i386 (bug 1822235)
-        hyperv_stimer:
-            "FAIL hyperv_stimer":
-                hyperv_stimer on i386 (bug 1822235)
-        kvmclock_test:
-            "FAIL kvmclock_test":
-                kvmclock_test on i386 (bug 1822235)
-        msr:
-            "FAIL msr":
-                msr on i386 (bug 1822235)
-        port80:
-            "FAIL port80":
-                port80 on i386 (bug 1822235)
-        realmode:
-            "FAIL realmode":
-                realmode on i386 (bug 1822235)
-        s3:
-            "FAIL s3":
-                s3 on i386 (bug 1822235)
-        sieve:
-            "FAIL sieve":
-                sieve on i386 (bug 1822235)
-        smap:
-            "FAIL smap":
-                smap on i386 (bug 1822235)
-        smptest:
-            "FAIL smptest":
-                smptest on i386 (bug 1822235)
-        smptest3:
-            "FAIL smptest3":
-                smptest3 on i386 (bug 1822235)
-        taskswitch:
-            "FAIL taskswitch":
-                taskswitch on i386 (bug 1822235)
-        taskswitch2:
-            "FAIL taskswitch2":
-                taskswitch2 on i386 (bug 1822235)
-        tsc:
-            "FAIL tsc":
-                tsc on i386 (bug 1822235)
-        tsc_adjust:
-            "FAIL tsc_adjust":
-                tsc_adjust on i386 (bug 1822235)
-        umip:
-            "FAIL umip":
-                umip on i386 (bug 1822235)
-        vmexit_cpuid:
-            "FAIL vmexit_cpuid":
-                vmexit_cpuid on i386 (bug 1822235)
-        vmexit_inl_pmtimer:
-            "FAIL vmexit_inl_pmtimer":
-                vmexit_inl_pmtimer on i386 (bug 1822235)
-        vmexit_ipi:
-            "FAIL vmexit_ipi":
-                vmexit_ipi on i386 (bug 1822235)
-        vmexit_ipi_halt:
-            "FAIL vmexit_ipi_halt":
-                vmexit_ipi_halt on i386 (bug 1822235)
-        vmexit_mov_from_cr8:
-            "FAIL vmexit_mov_from_cr8":
-                vmexit_mov_from_cr8 on i386 (bug 1822235)
-        vmexit_mov_to_cr8:
-            "FAIL vmexit_mov_to_cr8":
-                vmexit_mov_to_cr8 on i386 (bug 1822235)
-        vmexit_ple_round_robin:
-            "FAIL vmexit_ple_round_robin":
-                vmexit_ple_round_robin on i386 (bug 1822235)
-        vmexit_tscdeadline:
-            "FAIL vmexit_tscdeadline":
-                vmexit_tscdeadline on i386 (bug 1822235)
-        vmexit_tscdeadline_immed:
-            "FAIL vmexit_tscdeadline_immed":
-                vmexit_tscdeadline_immed on i386 (bug 1822235)
-        vmexit_vmcall:
-            "FAIL vmexit_vmcall":
-                vmexit_vmcall on i386 (bug 1822235)
-    fozzie:
-        vmexit_cpuid:
-            "FAIL vmexit_cpuid":
-                vmexit* on i386 (bug 1822235)
-        vmexit_inl_pmtimer:
-            "FAIL vmexit_inl_pmtimer":
-                vmexit* on i386 (bug 1822235)
-        vmexit_ipi:
-            "FAIL vmexit_ipi":
-                vmexit* on i386 (bug 1822235)
-        vmexit_ipi_halt:
-            "FAIL vmexit_ipi_halt":
-                vmexit* on i386 (bug 1822235)
-        vmexit_mov_from_cr8:
-            "FAIL vmexit_mov_from_cr8":
-                vmexit* on i386 (bug 1822235)
-        vmexit_mov_to_cr8:
-            "FAIL vmexit_mov_to_cr8":
-                vmexit* on i386 (bug 1822235)
-        vmexit_ple_round_robin:
-            "FAIL vmexit_ple_round_robin":
-                vmexit* on i386 (bug 1822235)
-        vmexit_tscdeadline:
-            "FAIL vmexit_tscdeadline":
-                vmexit* on i386 (bug 1822235)
-        vmexit_tscdeadline_immed:
-            "FAIL vmexit_tscdeadline_immed":
-                vmexit* on i386 (bug 1822235)
-        vmexit_vmcall:
-            "FAIL vmexit_vmcall":
-                vmexit* on i386 (bug 1822235)
     ms10-34-mcdivittB0-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
@@ -306,13 +188,34 @@ ubuntu_kvm_unit_tests:
         realmode:
             "FAIL realmode":
                 realmode failed (bug 1850653)
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+    fili:
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apicv_test:
+            "FAIL vmx_apicv_test":
+                vmx_apicv_test (bug 1827866)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "failed: EROFS":
-                fs_fill (bug 1842266)
+        mm:
+            "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                vma05 (bug 1845863)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -324,62 +227,26 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        timers: &ltp-timers
-            "leapsec_timer 2 TBROK : leapsec_timer.c":
-                leapsec_timer (bug 1829971)
+        commands: &ltp-commands
+            "mkfs01 2 TFAIL: 'mkfs -t ext3 /dev/loop2 16000' failed, not expected.":
+                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4 /dev/loop2 16000' failed, not expected.":
+                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
+            "nm01 5 TFAIL: Got wrong format with -f bsd":
+                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        kernel_misc: &ltp-misc
-            "/opt/ltp/testcases/bin/zram01.sh:":
-                zram01 (bug 1829991)
-            "zram02 1 TFAIL: unexpected num of devices:":
-                zram02 (bug 1829992)
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-    naumann:
-        fs:
-            <<: *ltp-fs
-        mm: &ltp-mm
-            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
-                ksm06* in mm (bug 1830316)
-        controllers:
-            <<: *ltp-controllers
-            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
-                cpuset_base_ops in controllers (bug 1830359)
-            "TFAIL: load balance test failed.":
-                cpuset_load_balance in controllers (bug 1830360)
-            "TFAIL: partition sched domains failed.":
-                cpuset_sched_domains (bug 1830361)
-        timers:
-            <<: *ltp-timers
-        cpuhotplug:
-            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline":
-                cpuhotplug04 (bug 1836169)
-        net.ipv6_lib:
-            <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
-        crypto:
-            <<: *ltp-crypto
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
-        containers: &ltp-containers
-            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
-                userns06 (bug 1836162)
         controllers:
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
-            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
-                memcg_stat (bug 1829983)
-            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
-                memcg_use_hierarchy (bug 1829989)
-        timers:
-            <<: *ltp-timers
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
         cpuhotplug:
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
@@ -391,65 +258,23 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
-    wright-kenrel:
-        fs:
-            <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
-        timers:
-            <<: *ltp-timers
-        cpuhotplug:
-            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline":
-                cpuhotplug04 (bug 1836169)
-        net.ipv6_lib:
-            <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
-        crypto:
-            <<: *ltp-crypto
-    pepe:
-        fs:
-            <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
-        controllers:
-            <<: *ltp-controllers
-            "memcg_stat_rss 4 TFAIL: Process":
-                memcg_stat_rss (bug 1837035)
-            "memcg_move_charge_at_immigrate_test 5 TFAIL":
-                memcg_move_charge_at_immigrate_test (bug 1837037)
-        timers:
-            <<: *ltp-timers
-        net.ipv6_lib:
-            <<: *ltp-net
-        cve:
-            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
-                cve-2015-3290 (bug 1837005)
-        kernel_misc:
-            <<: *ltp-misc
-        crypto:
-            <<: *ltp-crypto
+        kernel_misc: &ltp-misc
+            "zram01 1 TBROK: test killed, timeout!":
+                zram01 / zram02 / zram03 timeout (bug 1854706)
     baltar:
         fs:
             <<: *ltp-fs
-            "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
-                fs_fill (bug 1842266)
-        mm:
-            <<: *ltp-mm
-        containers:
-            <<: *ltp-containers
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        timers:
-            <<: *ltp-timers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
         kernel_misc:
             <<: *ltp-misc
         crypto:
@@ -459,44 +284,19 @@ ubuntu_ltp:
             <<: *ltp-fs
             "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
                 fs_fill (bug 1842266)
-        mm:
-            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
-        cve:
-            "BROK: Kernel is already tainted: 12800":
-                cve-2017-1000380 failed as kernel already tainted
-    riolu: &ltp
-        fs:
-            <<: *ltp-fs
-        mm:
-            <<: *ltp-mm
-        controllers:
-            <<: *ltp-controllers
-            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
-                cpuset_base_ops in controllers (bug 1830359)
-            "TFAIL: load balance test failed.":
-                cpuset_load_balance in controllers (bug 1830360)
-            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
-                cpuset_memory_spread (bug 1830585)
-            "TFAIL: partition sched domains failed.":
-                cpuset_sched_domains (bug 1830361)
-        timers:
-            <<: *ltp-timers
-        net.ipv6_lib:
-            <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
-        crypto:
-            <<: *ltp-crypto
-    grumman:
-        <<: *ltp
     s2lp4:
         fs:
             <<: *ltp-fs
@@ -506,6 +306,8 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_inherit 3 TFAIL: cpus: Test result":
                 cpuset_inherit (bug 1849825)
+        commands:
+            <<: *ltp-commands
         net.ipv6_lib:
             <<: *ltp-net
     kernel03:
@@ -519,75 +321,35 @@ ubuntu_ltp:
                 cpuset_inherit (bug 1849825)
             "memcg_stat_rss 4 TBROK: timeouted":
                 memcg_stat_rss (bug 1837035)
+        commands:
+            <<: *ltp-commands
         net.ipv6_lib:
             <<: *ltp-net
-    s2lp6g001:
+    s2lp6g001: &ltp-s390x-kvm
         fs:
             <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
+        hugetlb:
+            "hugemmap05 hugemmap05_1 hugemmap05_2 hugemmap05_3 hugemmap06":
+                hugemmap05* / hugemmap06 (bug 1851606)
+        commands:
+            <<: *ltp-commands
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g002:
-        fs:
-            <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
-        controllers:
-            <<: *ltp-controllers
-            "/opt/ltp/testcases/bin/cpuacct.sh":
-                cpuacct_100_100 (bug 1829978)
-        net.ipv6_lib:
-            <<: *ltp-net
-    s2lp6g003:
-        fs:
-            <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
-        controllers:
-            <<: *ltp-controllers
-            "/opt/ltp/testcases/bin/cpuacct.sh":
-                cpuacct_100_100 (bug 1829978)
-        net.ipv6_lib:
-            <<: *ltp-net
+        <<: *ltp-s390x-kvm
 ubuntu_ltp_syscalls:
-    pepe: &syscalls-amd64
-        syscalls: &syscalls
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
-    amaura:
-        <<: *syscalls-amd64
-    secchi:
-        <<: *syscalls-amd64
-    lodygin:
-        <<: *syscalls-amd64
-    ms10-35-mcdivittB0-kernel:
-        <<: *syscalls-amd64
-    wright-kernel:
-        <<: *syscalls-amd64
-    modoc:
-        syscalls:
-            <<: *syscalls
     baltar:
         syscalls:
-            <<: *syscalls
             "FAIL: system time not set to":
-                stime (bug 1845620)
-            "FAIL: move_pages failed: EINVAL (22)":
-                move_pages12 (bug 1831043)
-            "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
-                fallocate05 (bug 1783880)
+                stime01 (bug 1845620)
     s2lp4: &syscall-s390x
         syscalls:
-            <<: *syscalls
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
+            "msgstress03    1  TFAIL":
+                msgstress03 (bug 1797341)
     kernel03:
         <<: *syscall-s390x
     s2lp6g003:
@@ -602,14 +364,6 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
-    harpo:
-        <<: *syscalls-kvm
-    groucho:
-        <<: *syscalls-kvm
-    gummo:
-        <<: *syscalls-kvm
-    zeppo:
-        <<: *syscalls-kvm
 ubuntu_lxc:
     kernel03:
         exercise:
@@ -671,6 +425,12 @@ ubuntu_sysdig_smoke_test:
     s2lp4:
         <<: *sysdig_smoke
     kernel03:
+        <<: *sysdig_smoke
+    s2lp6g001:
+        <<: *sysdig_smoke
+    s2lp6g002:
+        <<: *sysdig_smoke
+    s2lp6g003:
         <<: *sysdig_smoke
 xfstests:
     rizzo: &xfstests

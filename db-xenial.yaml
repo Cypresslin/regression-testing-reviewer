@@ -213,18 +213,14 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-p8
     kernel01: &syscalls-s390x
         syscalls:
-            "failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
-            "BROK: Failed to open FILE 'mntpoint":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
             "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                 timer_create01 (bug 1838961)
+            "FAIL: Sync inside of write: Synced":
+                sync_file_range02 with xfs (bug 1853422)
     s2lp3:
         <<: *syscalls-s390x
     s2lp6g001:
@@ -258,7 +254,7 @@ ubuntu_seccomp:
     modoc: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
-                failed on D s390x / PowerPC (bug 1850904)
+                failed on s390x / PowerPC (bug 1850904)
     s2lp3:
         <<: *ubuntu_seccomp
     s2lp6g001:

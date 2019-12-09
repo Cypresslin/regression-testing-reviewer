@@ -186,6 +186,12 @@ xenial:
                 <<: *syscalls-x
                 "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
                     fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+                "failed: EACCES":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+                "BROK: Failed to open FILE 'mntpoint":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+                "FAIL: end of file reached":
+                    acct02 (bug 1839836)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x
             079:
@@ -1171,4 +1177,27 @@ disco:
             syscalls:
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                     timer_create01 (bug 1838961)
-
+eoan:
+    ubuntu_ltp:
+        amaura:
+            fs:
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
+            mm:
+                "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
+                    ksm06* in mm (bug 1830316)
+            timers: &ltp-timers
+                "leapsec_timer 2 TBROK : leapsec_timer.c":
+                    leapsec_timer (bug 1829971)
+            kernel_misc: &ltp-misc
+                "/opt/ltp/testcases/bin/zram01.sh:":
+                    zram01 (bug 1829991)
+                "zram02 1 TFAIL: unexpected num of devices:":
+                    zram02 (bug 1829992)
+    ubuntu_ltp_syscalls:
+        pepe: &syscalls-amd64
+            syscalls: &syscalls
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)

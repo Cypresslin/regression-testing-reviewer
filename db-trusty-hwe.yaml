@@ -12,6 +12,10 @@
 #         reason
 #
 hwclock:
+    ms10-34-mcdivittB0-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
     ms10-35-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -112,6 +116,15 @@ ubuntu_ltp_syscalls:
             <<: *syscalls-all
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
                 open14 (bug 1798061)
+ubuntu_lxc:
+    modoc: &lxc-non-x86
+        exercise:
+            "There is no download available":
+                failed because no cloud image for non-x86 (bug 1855871)
+    ms10-34-mcdivittB0-kernel:
+        <<: *lxc-non-x86
+    ms10-35-mcdivittB0-kernel:
+        <<: *lxc-non-x86
 ubuntu_qrt_kernel_security:
     ms10-35-mcdivittB0-kernel:
         test-kernel-security.py:
