@@ -1,0 +1,26 @@
+5.3.0-1009.10 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) frm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy in net (bug 1812620)
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_subgroup_charge (bug 1847982) hugemmap01 (bug 1851777) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  tsc - failed on c5.metal, i3.metal (bug 1851607)
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) frm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy in net (bug 1812620)
+  ubuntu_kvm_unit_tests - realmode (bug 1850653) vmx (bug 1821394) vmx_apicv_test (bug 1827866) failed on bare-metal nodes
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) cpuset_sched_domains (bug 1830361)  memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) cpuhotplug03 (bug 1836167) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) signal06 on some instances (bug 1855817)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

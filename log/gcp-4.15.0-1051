@@ -1,0 +1,9 @@
+4.15.0-1051.54 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
+  ubuntu_ltp_syscalls - statx05 (bug 1798524) quotactl04 (bug 1854153)
+
+Skipped / blacklisted:
+ * ubuntu_ltp

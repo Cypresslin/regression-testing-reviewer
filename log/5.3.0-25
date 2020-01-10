@@ -1,0 +1,55 @@
+5.3.0-25.27 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - realmode failed (bug 1850653) vmx (bug 1821394) vmx_apicv_test (bug 1827866) apic timeouted (bug 1748103) apic-split timeouted (bug 1821390)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) crypto_user02 (bug 1837543) zram01 / zram02 / zram03 timeout (bug 1854706)
+
+4 / 56 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, fs_mark, fsx, iperf, ipv6connect, rmaptest, rtc, signaltest, synctest, ubuntu_aufs_smoke_test, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_btrfs_kernel_fixes, ubuntu_cts_kernel, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_futex, ubuntu_kernel_selftests, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_ltp, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_ramfs_stress, ubuntu_seccomp, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_unionmount_ovlfs, ubuntu_vfat_stress, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zfs_xfs_generic, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in ppc64le:
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+
+45 / 56 tests were run, missing: hwclock, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_lxc, ubuntu_seccomp, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_kvm_smoke_test - failed to start KVM with uvtool on P8 (bug 1798358)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) crypto_user02 (bug 1837543) zram01 / zram02 / zram03 timeout (bug 1854706)
+  ubuntu_ltp_syscalls - stime01 (bug 1845620)
+  ubuntu_lxc - Failed to download image index (bug 1839835)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) hugemmap05* / hugemmap06 (bug 1851606) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+44 / 52 tests were run, missing: hwclock, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_lxc, ubuntu_seccomp
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - OOM causing other tests failed to run (bug 1856163)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_use_hierarchy (bug 1829989) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+* Note: missing tests in s390x LPAR casued by ubuntu_bpf OOM issue (bug 1856163)
