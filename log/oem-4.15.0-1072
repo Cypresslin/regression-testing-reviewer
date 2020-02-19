@@ -1,0 +1,10 @@
+4.15.0-1072.82 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1837386)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+  ubuntu_xfstests_btrfs - timed out on generic/241
+  ubuntu_xfstests_ext4 - timed out on generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - timed out on generic/430 test (bug 1755999)

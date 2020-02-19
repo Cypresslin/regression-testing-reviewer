@@ -1,0 +1,61 @@
+5.3.0-40.32 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_kernel_selftests - test failed to build (bug 1862263) 
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) realmode failed (bug 1850653)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+  ubuntu_lxc - failed to fetch GPG key, probably FW issue
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_fan_smoke_test -  failed to fetch file from ports.ubuntu.com, probably FW issue
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_kvm_smoke_test - failed with qemu unexpectedly closed the monitor (bug 1862944) 
+  ubuntu_kvm_unit_tests - emulator on P8 (bug 1862951) rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956) selftest-setup on P8 (bug 1862955) spapr_hcall on P8 (bug 1862953)
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+  ubuntu_lxc -  failed to fetch file from ports.ubuntu.com, probably FW issue
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_fan_smoke_test - failed to fetch file from ports.ubuntu.com, probably FW issue 
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) crypto_user02 (bug 1837543) cve-2017-1000380 failures caused by pty03
+  ubuntu_lxc -  failed to fetch file from ports.ubuntu.com, probably FW issue
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test failed to build (bug 1862263)
+  ubuntu_kernel_selftests - test failed to build (bug 1862263)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)

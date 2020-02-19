@@ -1,0 +1,22 @@
+4.15.0-1055.57~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kvm_unit_tests - 2 failures in apic (bug 1853433) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) 
+  ubuntu_ltp_syscalls - pivot_root01 (bug 1852966) statx05 (bug 1798524) move_pages12 (bug 1831043) on i3.en
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - cpu_hotplug on arm64 (bug 1814232)
+  ubuntu_ltp_syscalls - pivot_root01 (bug 1852966) statx05 (bug 1798524)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

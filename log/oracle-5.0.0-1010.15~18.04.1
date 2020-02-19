@@ -1,0 +1,12 @@
+5.0.0-1010.15~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - net test timeout (bug 1860111) trace_printk in ftrace (bug 1830084)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split (bug 1821390) pmu (bug 1853797) port80 (bug 1845688) vmx (bug 1821394)
+  ubunut_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) umip_basic_test (bug 1853798)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+* Note the ubuntu_kernel_selftests must be reviewed on the jenkins directly (bug 1860093)

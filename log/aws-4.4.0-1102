@@ -1,0 +1,13 @@
+4.4.0-1102.113 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  tsc - failed on c5.metal, i3.metal (bug 1851607)
+  ubuntu_kernel_selftests - cpu_hotplug (bug 1812149) on t2.small script permission in net (bug 1861973)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_apicv_test (bug 1827866) vmx_eoi_bitmap_ioapic_scan (bug 1860515) vmx_hlt_with_rvi_test (bug 1822308) on bare metal nodes
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify07 blacklisted (bug 1775165) fanotify10 (bug 1802454) move_pages12 (bug 1831043) on some instances
+  ubuntu_unionmount_ovlfs - failed with the latest code in upstream (bug 1854298)
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_sysdig_smoke_test

@@ -1,0 +1,12 @@
+5.0.0-1011.16 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) trace_printk in ftrace (bug 1830084) user_notification_basic in seccomp (bug 1862588)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split (bug 1821390) ept (bug 1824228)  hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) pcid (bug 1827979) port80 (bug 1845688) vmx (bug 1821394)
+  ubunut_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) umip_basic_test (bug 1853798) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+* ubunut_ltp test result has to be reviewed on Jekins this round, it timeout with 4hr but looks like it's finished

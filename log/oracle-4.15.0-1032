@@ -1,0 +1,13 @@
+4.15.0-1032.35 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - memory-hotplug failed on 2 of 3 instances (bug 1862312)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) false-negative in access (bug 1831451) pmu (bug 1751000) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308)
+  ubunut_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) umip_basic_test (bug 1853798) cve-2017-1000380 cve-2017-17053 failures caused by pty03
+  ubuntu_ltp_syscalls - move_pages12 (bug 1831043) on some instance
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+* ubunut_ltp test result has to be reviewed on Jekins this round, it timeout with 4hr but looks like it's finished

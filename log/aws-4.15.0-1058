@@ -1,0 +1,21 @@
+4.15.0-1058.60 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  tsc - failed on c5.metal, i3.metal
+  ubuntu_kvm_unit_tests - 2 failures in apic (bug 1853433) vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) on c5.metal, i3.metal, r5.metal
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_max_usage_in_bytes (bug 1829979) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) cpuhotplug03 on some instances (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1783881) socketcall01 (bug 1860310)
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_test_3 (bug 1836694) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) getaddrinfo_01 (bug 1829995) mm test failed on some instances
+  ubuntu_ltp_syscalls - msgstress03 (bug 1783881) socketcall01 (bug 1860310)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * monotonic_time
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

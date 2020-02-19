@@ -1,0 +1,38 @@
+4.4.0-173.203~14.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) umip should be skipped (bug 1821905)
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_unionmount_ovlfs - failed because of upstream changes (bug 1854298)
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_unionmount_ovlfs - failed because of upstream changes (bug 1854298)
+
+4.4.0-173.203~14.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) umip should be skipped (bug 1821905)
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_unionmount_ovlfs - failed because of upstream changes (bug 1854298)
+
+41 / 43 tests were run, missing: ubuntu_btrfs_kernel_fixes, ubuntu_ltp_syscalls
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_ecryptfs - Firewall issue (RT #123768)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_lxc - failed to fetch PGP key
+  ubuntu_qrt_kernel_security - 050 failed (bug 1684776)
+  ubuntu_unionmount_ovlfs - failed because of upstream changes (bug 1854298)
+
+Issue to note in i386:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fanotify07 won't fix (bug 1775165) fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064)
+  ubuntu_unionmount_ovlfs - failed because of upstream changes (bug 1854298)

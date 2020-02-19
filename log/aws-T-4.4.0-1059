@@ -1,0 +1,18 @@
+4.4.0-1059.63 aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  tsc - failed on i3.metal (bug 1853417)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) umip (1821905) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) on i3.metal
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064) fanotify07 won't fix (bug 1775165) pivot_root01 (bug 1852966) sync_file_range02 (bug 1853422) move_pages12 (bug 1831043) on i3.en
+
+Skipped / blacklisted:
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_ltp
+ * ubuntu_lttng_smoke_test
+ * ubuntu_nbd_smoke_test
+ * ubuntu_quota_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test

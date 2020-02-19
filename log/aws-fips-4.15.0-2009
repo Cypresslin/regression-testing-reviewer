@@ -1,0 +1,14 @@
+4.15.0-2009.9 - aws-fips
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  tsc - failed on c5.metal, i3.metal, r5.metal
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split (bug 1821390) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_apicv_test (bug 1827866) on i3.metal
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) cpuset_hotplug (bug 1834006) memcg_usage_in_bytes (bug 1829984) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2017-17053 failures caused by pty03
+  ubuntu_ltp_syscalls - msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+* ubuntu_ltp test must be reviewed on Jenkins directly, probably pty03 is causing this issue

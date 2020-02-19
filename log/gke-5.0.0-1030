@@ -1,0 +1,11 @@
+5.0.0-1030.31 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - msg_zerocopy in net (bug 1812620) test_bpf missing config in net (bug 1812189)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341)
+
+Skipped / blacklisted:
+ * libhugetlbfs

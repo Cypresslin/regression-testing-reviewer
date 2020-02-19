@@ -1,0 +1,22 @@
+4.15.0-1057.59~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kvm_unit_tests - 2 failures in apic (bug 1853433) vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) on c5.metal, i3.metal, r5.metal
+  ubuntu_ltp_syscalls -  move_pages12 on some instances (bug 1831043) quotactl04 (bug 1854153) statx05 (bug 1798524)
+  ubuntu_lxc - unable to fetch GPG key, failed on m3.large only passed on the rest
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp_syscalls - quotactl04 (bug 1854153) statx05 (bug 1798524)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
