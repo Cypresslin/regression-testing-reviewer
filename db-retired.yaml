@@ -616,6 +616,10 @@ bionic:
                 "/opt/ltp/testcases/bin/zram01.sh:":
                     zram01 (bug 1829991)
     ubuntu_ltp_syscalls:
+        baltar:
+            syscalls:
+                "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                    fallocate05 (bug 1783880)
         onibi:
             syscalls:
                 "inotify08.c:127: FAIL: didn't get event: mask=":
@@ -636,6 +640,10 @@ bionic:
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "stime01.c:51: FAIL: system time not set to":
+                    stime01 (bug 1845620)
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                    timer_create01 (bug 1838961)
         s2lp6g001:
             syscalls:
                 "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":

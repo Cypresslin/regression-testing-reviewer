@@ -145,6 +145,8 @@ ubuntu_cts_kernel:
         lp1262692:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
+    baltar:
+        <<: *cts_kernel_flaky
     rizzo:
         <<: *cts_kernel_flaky
 ubuntu_kvm_smoke_test:
@@ -308,12 +310,28 @@ ubuntu_ltp:
                 ksm06* in mm (bug 1830316)
         controllers:
             <<: *ltp-controllers
-            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
-                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+                cpuset_syscall (bug 1862908)
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
-            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
+            "cpufreq_boost 1 TBROK":
                 cpufreq_boost (bug 1842032)
         crypto:
             <<: *ltp-crypto
@@ -325,8 +343,24 @@ ubuntu_ltp:
                 ksm06* in mm (bug 1830316)
         controllers:
             <<: *ltp-controllers
-            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
-                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+                cpuset_syscall (bug 1862908)
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
@@ -379,8 +413,8 @@ ubuntu_seccomp:
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:
-            "TestError: DKMS failed to install":
-                failed to build sysdig DKMS with 5.3 kernel (bug 1844766)
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.3 (bug 1844493)
     wright-kernel:
         <<: *sysdig
     baltar:

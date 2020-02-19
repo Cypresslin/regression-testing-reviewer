@@ -13,6 +13,9 @@
 #
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
+        seccomp:
+            "FAIL ] global.user_notification_basic":
+                global.user_notification_basic in seccomp (bug 1862588)
         net:
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)

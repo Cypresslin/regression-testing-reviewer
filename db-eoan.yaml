@@ -160,8 +160,8 @@ ubuntu_kvm_smoke_test:
         <<: *1765668
     modoc: &kvm-smoke-ppc
         kvm_smoke_test:
-            "internal error: process exited while connecting to monitor":
-               failed to start KVM with uvtool on P8 (bug 1798358)
+            "uvt-kvm: error: libvirt: internal error: qemu unexpectedly closed the monitor":
+               failed with qemu unexpectedly closed the monitor (bug 1862944)
     entei:
         <<: *kvm-smoke-ppc
     pepe:
@@ -208,6 +208,25 @@ ubuntu_kvm_unit_tests:
         vmx_apicv_test:
             "FAIL vmx_apicv_test":
                 vmx_apicv_test (bug 1827866)
+    modoc:
+        emulator:
+            "FAIL emulator":
+                emulator on P8 (bug 1862951)
+        rtas-get-time-of-day:
+            "FAIL rtas-get-time-of-day":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        rtas-get-time-of-day-base:
+            "FAIL rtas-get-time-of-day-base":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        rtas-set-time-of-day:
+            "FAIL rtas-set-time-of-day":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        selftest-setup:
+            "FAIL selftest-setup":
+                selftest-setup on P8 (bug 1862955)
+        spapr_hcall:
+            "FAIL spapr_hcall":
+                spapr_hcall on P8 (bug 1862953)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -228,12 +247,10 @@ ubuntu_ltp:
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
         commands: &ltp-commands
-            "mkfs01 2 TFAIL: 'mkfs -t ext3 /dev/loop2 16000' failed, not expected.":
-                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
-            "mkfs01 2 TFAIL: 'mkfs -t ext4 /dev/loop2 16000' failed, not expected.":
-                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
-            "nm01 5 TFAIL: Got wrong format with -f bsd":
-                mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -268,12 +285,28 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
-            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
-                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+                cpuset_syscall (bug 1862908)
         commands:
             <<: *ltp-commands
         cpuhotplug:
-            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
         kernel_misc:
             <<: *ltp-misc
@@ -286,12 +319,28 @@ ubuntu_ltp:
                 fs_fill (bug 1842266)
         controllers:
             <<: *ltp-controllers
-            "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
-                cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+                cpuset_syscall (bug 1862908)
         commands:
             <<: *ltp-commands
         cpuhotplug:
-            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
@@ -324,7 +373,8 @@ ubuntu_ltp:
         commands:
             <<: *ltp-commands
         net.ipv6_lib:
-            <<: *ltp-net
+            "getaddrinfo_01   12 TFAIL":
+                getaddrinfo_01 (bug 1829995)
     s2lp6g001: &ltp-s390x-kvm
         fs:
             <<: *ltp-fs
@@ -340,6 +390,8 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g002:
+        <<: *ltp-s390x-kvm
+    s2lp6g003:
         <<: *ltp-s390x-kvm
 ubuntu_ltp_syscalls:
     baltar:
