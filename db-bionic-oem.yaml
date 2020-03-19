@@ -41,9 +41,6 @@ ubuntu_cts_kernel:
                 test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
     naumann:
         <<: *kernel_selftests
     gonzo:
@@ -69,6 +66,21 @@ ubuntu_kvm_unit_tests:
         vmx:
             "FAIL vmx":
                 vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL vmx_pending_event_test":
+                vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
     amaura:
         fs:

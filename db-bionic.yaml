@@ -133,17 +133,14 @@ ubuntu_cts_kernel:
 ubuntu_kernel_selftests:
     starmie-kernel:
         ftrace:
-            "[27] Kprobe dynamic event - probing module [FAIL]":
-                Kprobe probing module in ftrace (bug 1812636)
-        breakpoints:
-            "error: ‘TRAP_HWBKPT’ undeclared":
-                breakpoint test failed to build (bug 1680507)
+            "test for function traceon/off triggers	[FAIL]":
+                traceon/off triggers in ftace (bug 1837040)
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
         ftrace:
-            "ftrace - test for function traceon/off triggers	[FAIL]":
+            "test for function traceon/off triggers	[FAIL]":
                 function traceon/off triggers in ftace (bug 1837040)
     fozzie:
         net:
@@ -182,8 +179,14 @@ ubuntu_kernel_selftests:
             "reuseport_dualstack [FAIL]":
                 reuseport_dualstack in net (bug 1812843)
         seccomp:
-            "FAIL ] TRACE_syscall.":
-                TRACE_syscall in seccomp (bug 1812824)
+            "FAIL ] TRACE_syscall.skip_after_RET_TRACE":
+                TRACE_syscall.skip_after_RET_TRACE in seccomp (bug 1812824)
+            "FAIL ] TRACE_syscall.kill_after_RET_TRACE":
+                TRACE_syscall.kill_after_RET_TRACE in seccomp (bug 1812824)
+            "FAIL ] TRACE_syscall.skip_after_ptrace":
+                TRACE_syscall.skip_after_ptrace in seccomp (bug 1812824)
+            "FAIL ] TRACE_syscall.kill_after_ptrace":
+                TRACE_syscall.kill_after_ptrace in seccomp (bug 1812824)
     kernel02:
         <<: *kernel-selftests-s390x
     s2lp3:
@@ -371,9 +374,9 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        timers: &ltp-timers
-            "leapsec_timer    2  TBROK  :  leapsec_timer.c":
-                leapsec_timer (bug 1829971)
+        hugetlb: &ltp-hugetlb
+            "BROK: hugeshmctl01":
+                hugeshmctl01 (bug 1866196)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -396,8 +399,8 @@ ubuntu_ltp:
                 cpuset_memory_spread (bug 1830585)
             "cpuset_check_domains    1  TFAIL  :  cpuset_sched_domains_check.c":
                 cpuset_sched_domains (bug 1830361)
-        timers:
-            <<: *ltp-timers
+        hugetlb:
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         cve:
@@ -431,8 +434,6 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "cpuset_hotplug 1 TFAIL: CPU#1 failed.":
                 cpuset_hotplug (bug 1834006)
-        timers:
-            <<: *ltp-timers
         cpuhotplug: &ltp-cpuhotplug
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
@@ -442,6 +443,8 @@ ubuntu_ltp:
                 cpuhotplug04 (bug 1836169)
             "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
                 cpuhotplug06 (bug 1836170)
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             "getaddrinfo IPv6 basic lookup (\"ms10-35-mcdivittB0-kernel\") returns -5 (\"No address associated with hostname\")":
                 getaddrinfo_01 (bug 1829995)
@@ -455,6 +458,8 @@ ubuntu_ltp:
             <<: *ltp-fs
         cpuhotplug:
             <<: *ltp-cpuhotplug
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             "getaddrinfo IPv6 basic lookup (\"wright-kernel\") returns -5 (\"No address associated with hostname\")":
                 getaddrinfo_01 (bug 1829995)
@@ -473,8 +478,8 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        timers:
-            <<: *ltp-timers
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
@@ -488,8 +493,8 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        timers:
-            <<: *ltp-timers
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
@@ -505,6 +510,8 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
             "memcg_failcnt 1 TBROK: timeouted on memory.usage_in_bytes":
                 memcg_failcnt (bug 1845919)
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
@@ -520,6 +527,8 @@ ubuntu_ltp:
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+        hugetlb: 
+            <<: *ltp-hugetlb
     s2lp6g002:
         fs:
             <<: *ltp-fs
@@ -531,6 +540,8 @@ ubuntu_ltp:
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
     kernel02:
@@ -538,6 +549,8 @@ ubuntu_ltp:
             <<: *ltp-fs
             "failed: EPERM (1)":
                 fs_fill (bug 1842266)
+        hugetlb: 
+            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
@@ -604,10 +617,20 @@ ubuntu_qrt_kernel_security:
     modoc:
         <<: *ubuntu_qrt_kernel_security
 ubuntu_seccomp:
+    fozzie:
+        seccomp:
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     baltar: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
-                failed on s390x / PowerPC (bug 1850904)
+                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     modoc:
         <<: *ubuntu_seccomp
     s2lp3:

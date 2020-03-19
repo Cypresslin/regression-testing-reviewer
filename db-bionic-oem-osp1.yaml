@@ -16,9 +16,9 @@ ubuntu_kernel_selftests:
         seccomp:
             "FAIL ] global.user_notification_basic":
                 global.user_notification_basic in seccomp (bug 1862588)
-        net:
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
+        ftrace:
+            "Register/unregister many kprobe events	[FAIL]":
+                Register/unregister many kprobe events in ftrace (bug 1866972)
     naumann:
         <<: *kernel_selftests
     gonzo:
@@ -27,9 +27,9 @@ ubuntu_kernel_selftests:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
     rizzo:
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area":
+                vmx_host_state_area (bug 1866585)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs

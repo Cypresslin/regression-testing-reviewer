@@ -80,14 +80,14 @@ ubuntu_kernel_selftests:
             "error: ‘TRAP_HWBKPT’ undeclared":
                 breakpoint test failed to build (bug 1680507)
         net:
+            "selftests: net: xfrm_policy.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: pmtu.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: udpgso_bench.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "test_bpf.sh [FAIL]":
                 test_bpf in net (bug 1812189)
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: macsec":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: ipsec":
-                rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         ftrace:
@@ -100,6 +100,12 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-arm64
     gonzo: &kernel-selftests-amd64
         net:
+            "selftests: net: xfrm_policy.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: pmtu.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: udpgso_bench.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "./ip_defrag: sendto overlap: 2120: Operation not permitted":
                  ip_defrag in net (bug 1826848)
             "./psock_snd: recv: Resource temporarily unavailable":
@@ -107,9 +113,9 @@ ubuntu_kernel_selftests:
             "TEST: ipv6: list and flush cached exceptions [FAIL]":
                 pmtu.sh in net (bug 1845858)
         seccomp:
-            "‘PTRACE_EVENTMSG_SYSCALL_ENTRY’ undeclared":
-                seccomp failed to build (bug 1845856)
-    naumann:
+            "FAIL ] global.user_notification_basic":
+                global.user_notification_basic failed in seccomp (bug 1862588)
+    rizzo:
         <<: *kernel-selftests-amd64
     fozzie:
         <<: *kernel-selftests-amd64
@@ -118,10 +124,14 @@ ubuntu_kernel_selftests:
                 Kprobe event string type argument in ftrace (bug 1812645)
     modoc:
         net:
-            "reuseport_bpf_numa [FAIL]":
+            "selftests: net: xfrm_policy.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: pmtu.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: udpgso_bench.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: reuseport_bpf_numa":
                 reuseport_bpf_numa in net (bug 1812638)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         powerpc:
@@ -129,8 +139,12 @@ ubuntu_kernel_selftests:
                 ebb in powerpc (bug 1812805)
     baltar:
         net:
-            "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
+            "selftests: net: xfrm_policy.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: pmtu.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: udpgso_bench.sh # TIMEOUT":
+                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "test_bpf.sh [FAIL]":
                 test_bpf in net (bug 1812189)
             "./psock_snd: recv: Resource temporarily unavailable":
@@ -261,6 +275,9 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
+        hugetlb: &ltp-hugetlb
+            "BROK: hugeshmctl01":
+                hugeshmctl01 (bug 1866196)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -404,11 +421,29 @@ ubuntu_qrt_kernel_security:
             "FAIL: test_ulimit_stack_small":
                 flaky test on i386 (bug 1814295)
 ubuntu_seccomp:
+    fozzie:
+        seccomp:
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     baltar: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
-                failed on 5.0 s390x / PowerPC (bug 1850904)
+                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     modoc:
+        <<: *ubuntu_seccomp
+    s2lp3:
+        <<: *ubuntu_seccomp
+    kernel02:
+        <<: *ubuntu_seccomp
+    s2lp6g002:
+        <<: *ubuntu_seccomp
+    s2lp6g003:
         <<: *ubuntu_seccomp
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig

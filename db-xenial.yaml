@@ -64,6 +64,11 @@ ubuntu_btrfs_kernel_fixes:
         e755f780865221252ef3321215c9796b78e7b1c5:
             "BUG btrfs_extent_map":
                 e755f780 on 4.4 i386 (bug 1822560)
+ubuntu_fan_smoke_test:
+    modoc:
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
 ubuntu_kernel_selftests:
     chico: &kernel-selftests-kvm
         cpu-hotplug:
@@ -251,16 +256,43 @@ ubuntu_qrt_kernel_security:
     s2lp3:
         <<: *kernel_security
 ubuntu_seccomp:
+    fozzie:
+        seccomp:
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     modoc: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
-                failed on s390x / PowerPC (bug 1850904)
+                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
+            "FAILURE 53-sim-binary_tree rc=14":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "FAILURE 55-basic-pfc_binary_tree.sh":
+                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
     s2lp3:
         <<: *ubuntu_seccomp
     s2lp6g001:
         <<: *ubuntu_seccomp
     kernel01:
         <<: *ubuntu_seccomp
+ubuntu_unionmount_ovlfs:
+    amaura: &ovlfs
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on upper layer":
+                failed with the latest code in upstream (bug 1854298)
+    ms10-34-mcdivittB0-kernel:
+        <<: *ovlfs
+    fozzie:
+        <<: *ovlfs
+    modoc:
+        <<: *ovlfs
+    s2lp3:
+        <<: *ovlfs
+    s2lp6g001:
+        <<: *ovlfs
+    kernel01:
+        <<: *ovlfs
 xfstests:
     rizzo:
         xfs:

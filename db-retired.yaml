@@ -219,6 +219,10 @@ xenial-hwe:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
                 "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                     bind03 (bug 1788351)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
@@ -233,6 +237,10 @@ xenial-hwe:
             syscalls:
                 "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
                     bpf_prog01 (bug 1845938)
+                "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                    fallocate05 (bug 1783880)
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
+                    timer_create01 (bug 1838961)
     ubuntu_qrt_kernel_security:
         modoc: &kernel-security-ppc
             test-kernel-security.py:
@@ -546,6 +554,9 @@ bionic:
             timers:
                 "raw_skew [FAIL]":
                     raw_skew in timer (bug 1811194)
+            ftrce:
+                "[27] Kprobe dynamic event - probing module [FAIL]":
+                    Kprobe probing module in ftrace (bug 1812636)
         modoc:
             ftrace:
                 "Kprobe event argument syntax       [FAIL]":
@@ -612,6 +623,9 @@ bionic:
             commands:
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
+            timers: &ltp-timers
+                "leapsec_timer    2  TBROK  :  leapsec_timer.c":
+                    leapsec_timer (bug 1829971
             kernel_misc:
                 "/opt/ltp/testcases/bin/zram01.sh:":
                     zram01 (bug 1829991)
@@ -1031,6 +1045,8 @@ bionic-edge:
             seccomp:
                 "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                     TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+                "‘PTRACE_EVENTMSG_SYSCALL_ENTRY’ undeclared":
+                    seccomp failed to build (bug 1845856)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -1209,3 +1225,8 @@ eoan:
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+    ubuntu_kernel_selftests:
+        amaura:
+            seccomp:
+                "undefined reference to `BIT'":
+                    seccomp build issue (bug 1849844)

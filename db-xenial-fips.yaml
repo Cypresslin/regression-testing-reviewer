@@ -34,6 +34,11 @@ ubuntu_bpf_jit:
         ubuntu-bjf-jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
                 4 failures reported for X s390x (bug 1768452)
+ubuntu_fan_smoke_test:
+    modoc:
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
 ubuntu_kernel_selftests:
     s2lp6g001: &kernel-selftests-s390x
         net:
