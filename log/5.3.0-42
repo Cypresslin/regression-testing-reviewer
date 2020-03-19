@@ -1,0 +1,65 @@
+5.3.0-42.34 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) global.user_notification_basic in seccomp (bug 1862588) timer timeout (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) realmode failed (bug 1850653)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) hugeshmctl01 (bug 1866196) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) traceon/off triggers in ftace (bug 1837040) timer timeout (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_kvm_unit_tests - gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) hugeshmctl01 (bug 1866196) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092) 
+  ubuntu_lxc - failed to fetch GPG key (bug 1864429)
+
+45 / 56 tests were run, missing: ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_seccomp, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_fan_smoke_test - failed to fetch file from ports.ubuntu.com
+  ubuntu_kvm_smoke_test - failed with qemu unexpectedly closed the monitor (bug 1862944)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - failed to fetch GPG key (bug 1864429)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - failed to fetch file from ports.ubuntu.com
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) crypto_user02 (bug 1837543) timer timeout (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - failed to fetch GPG key (bug 1864429)
+  ubuntu_seccomp - 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+44 / 52 tests were run, missing: hwclock, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_lxc, ubuntu_seccomp
+Issue to note in s390x (KVM):
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+44 / 52 tests were run, missing: hwclock, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_lxc, ubuntu_seccomp
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+  ubuntu_kernel_selftests - psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+  ubuntu_seccomp - 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+* Note: missing tests in s390x LPAR casued by ubuntu_bpf OOM issue (bug 1856163)
+* Note: missing tests in Power8 caused by bug 1867155

@@ -1,0 +1,20 @@
+4.15.0-1024.29 - fips
+Regression test CMPL, RTB.
+
+51 / 61 tests were run, missing: ubuntu_boot, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kvm_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_quota_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_zram_smoke_test
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) 1 unexpected failures in apic-split (bug 1821390) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_qrt_apparmor - 
+  ubuntu_xfstests_btrfs - 
+  ubuntu_xfstests_ext4 - 
+  ubuntu_xfstests_xfs - 
+
+52 / 53 tests were run, missing: ubuntu_boot
+Issue to note in s390x (KVM):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_ltp - proc01 (bug 1829849) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - add_key01 (bug 1862878) msgstress03 (bug 1797341)
+  ubuntu_seccomp - failed on D s390x / PowerPC (bug 1850904)
+

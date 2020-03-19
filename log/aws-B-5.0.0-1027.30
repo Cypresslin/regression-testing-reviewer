@@ -1,0 +1,24 @@
+5.0.0-1027.30 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - msg_zerocopy in net on some nodes (bug 1812620)
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) memcg_stat (bug 1829983) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) hugemmap05* / hugemmap06 (bug 1851606) hugeshmctl01 (bug 1866196) getaddrinfo_01 (bug 1829995) mm test failed on some instances
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  tsc - failed on bare-metals
+  ubuntu_kernel_selftests - msg_zerocopy in net on some nodes (bug 1812620) global.user_notification_basic in seccomp (bug 1862588) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx on bare-metal nodes (bug 1821394) vmx_host_state_area (bug 1866585)
+  ubuntu_ltp - proc01 (bug 1829849) ksm06* in mm on i3.en (bug 1830316) mtest06 on t2.small (bug 1854722) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) hugeshmctl01 (bug 1866196) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)  cpufreq_boost (bug 1842032) zram01 / zram02 / zram03 failed on t2.small (bug 1854706)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092) 
+
+Skipped / blacklisted:
+ * libhugetlbfs

@@ -1,0 +1,13 @@
+5.3.0-1014.15~18.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test	- enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) msg_zerocopy in net (bug 1812620) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) lobal.user_notification_basic failed in seccomp (bug 1862588) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172) memory-hotplug on some instances (bug 1866846)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) quotactl07 (bug 1864092) fallocate06 (bug 1865967) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

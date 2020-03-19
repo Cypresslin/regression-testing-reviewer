@@ -1,0 +1,11 @@
+5.0.0-1040.45 - oem-osp1
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.user_notification_basic in seccomp (bug 1862588)
+  ubuntu_kvm_unit_tests - vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) pty03 (bug 1862114) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - quotactl07 (bug 1864092) 
+  ubuntu_xfstests_btrfs - generic/225 timeout
+  ubuntu_xfstests_ext4 - generic/430 time out (bug 1755999)
+  ubuntu_xfstests_xfs - generic/430 time out (bug 1755999)

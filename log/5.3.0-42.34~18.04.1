@@ -1,0 +1,76 @@
+5.3.0-42.34~18.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) global.user_notification_basic failed in seccomp (bug 1862588) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+  ubuntu_xfstests_btrfs - generic/166 time out
+  ubuntu_xfstests_ext4 - generic/430 time out (bug 1755999)
+  ubuntu_xfstests_xfs - generic/430 time out (bug 1755999)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1851653) fallocate06 (bug 1865967) kill11 (bug 1865965)
+  ubuntu_seccomp - 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+5.3.0-42.34~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) global.user_notification_basic failed in seccomp (bug 1862588) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) vma05 (bug 1845863) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+  ubuntu_xfstests_btrfs - generic/166 time out
+  ubuntu_xfstests_ext4 - generic/430 time out (bug 1755999)
+  ubuntu_xfstests_xfs - generic/430 time out (bug 1755999)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - Test 13 in test_verifier (bug 1845870) failed to build test_maps (bug 1845860)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - failed to fetch GPG key, probably FW issue
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - copy_file_range02 (bug 1851653) fallocate06 (bug 1865967) kill11 (bug 1865965)
+  ubuntu_seccomp - 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_fan_smoke_test - failed to fetch file from ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_seccomp - 36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904) 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_fan_smoke_test - failed to fetch file from ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) nsleep-lat / set-timer-lat / inconsistency-check / raw_skew timeout in timers (bug 1864626) ftrace timeout (bug 1864172)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) kill11 (bug 1865965) quotactl07 (bug 1864092)
+  ubuntu_lxc - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_seccomp - 36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904) 53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
