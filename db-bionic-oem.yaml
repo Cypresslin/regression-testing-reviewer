@@ -39,12 +39,6 @@ ubuntu_cts_kernel:
         lp1262692:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
-ubuntu_kernel_selftests:
-    amaura: &kernel_selftests
-    naumann:
-        <<: *kernel_selftests
-    gonzo:
-        <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
     gonzo:
         apic:
@@ -105,19 +99,56 @@ ubuntu_ltp:
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-ubuntu_lxc:
-    daedalus: &lxc-setup
-        setup:
-            "E: Unable to correct problems, you have held broken packages.":
-                package from -proposed and from -update casuing apt issue (bug 1805978)
-    onibi:
-        <<: *lxc-setup
-xfstests:
-    rizzo: &xfstests
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+ubuntu_ltp_syscalls:
+    amaura:
+        syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
+ubuntu_xfstests_btrfs:
+    bavor:
+        btrfs:
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+            "btrfs/186	- output mismatch":
+                btrfs/186 (bug 1869660)
+            "btrfs/187	- output mismatch":
+                btrfs/187 (bug 1848421)
+            "btrfs/193	- output mismatch":
+                btrfs/193 (bug 1848422)
+            "generic/089	- output mismatch":
+                generic/089 (bug 1869657)
+            "generic/102	- output mismatch":
+                generic/102 (bug 1869656)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+ubuntu_xfstests_ext4:
+    bavor:
         ext4:
-            "generic/429	 [not run]":
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
                 timed out on ext4 generic/430 test (bug 1755999)
             "generic/430":
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
-    michael:
-        <<: *xfstests
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK

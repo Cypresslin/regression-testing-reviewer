@@ -27,6 +27,15 @@ eoan:
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
+eoan-kvm:
+    amd64:
+        <<: *e-amd64
+        ? monotonic_time
+        ? ubuntu_blktrace_smoke_test
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_ftrace_smoke_test
+        ? ubuntu_kvm_smoke_test
+        ? ubuntu_lttng_smoke_test
 disco:
     amd64: &d-amd64
         ? fips_test
@@ -128,20 +137,13 @@ bionic:
         ? ubuntu_xfstests_xfs
 bionic-kvm:
     amd64:
-        <<: *b-amd64
+        <<: *e-amd64
+        ? monotonic_time
         ? ubuntu_blktrace_smoke_test
-        ? ubuntu_bpf
-        ? ubuntu_bpf_jit
-        ? ubuntu_btrfs_kernel_fixes
-        ? ubuntu_cts_kernel
-        ? ubuntu_cve_kernel
+        ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
+        ? ubuntu_kvm_smoke_test
         ? ubuntu_lttng_smoke_test
-        ? ubuntu_zfs_fstest
-        ? ubuntu_zfs_xfs_generic
-        ? ubuntu_xfstests_btrfs
-        ? ubuntu_xfstests_ext4
-        ? ubuntu_xfstests_xfs
 bionic-oem:
     amd64:
         <<: *b-amd64
@@ -277,21 +279,13 @@ xenial-edge:
         ? ubuntu_sysdig_smoke_test
 xenial-kvm:
     amd64:
-        <<: *x-amd64
+        <<: *e-amd64
+        ? monotonic_time
         ? ubuntu_blktrace_smoke_test
-        ? ubuntu_bpf_jit
-        ? ubuntu_btrfs_kernel_fixes
-        ? ubuntu_cts_kernel
-        ? ubuntu_cve_kernel
-        ? ubuntu_ecryptfs
+        ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_ltp
+        ? ubuntu_kvm_smoke_test
         ? ubuntu_lttng_smoke_test
-        ? ubuntu_zfs_fstest
-        ? ubuntu_zfs_xfs_generic
-        ? ubuntu_xfstests_btrfs
-        ? ubuntu_xfstests_ext4
-        ? ubuntu_xfstests_xfs
 xenial-fips:
     amd64: &x-fips-amd64
         ? ubuntu_bpf

@@ -68,7 +68,7 @@ ubuntu_ltp:
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "quota_remount_test01 1 TFAIL"
+            "quota_remount_test01 1 TFAIL":
                 quota_remount_test01 (bug 1830670)
         containers:
             "netns_sysfs 1 TBROK: failed to add a new (host) dummy device":
@@ -212,16 +212,18 @@ ubuntu_sysdig_smoke_test:
         <<: *1766565
     zeppo:
         <<: *1766565
-ubuntu_zram_smoke_test:
-    chico: &1766823
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
-    harpo:
-        <<: *1766823
-    groucho:
-        <<: *1766823
-    gummo:
-        <<: *1766823
-    zeppo:
-        <<: *1766823
+ubuntu_xfstests_btrfs:
+    automation-vm2:
+        btrfs:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test
+ubuntu_xfstests_ext4:
+    automation-vm3:
+        ext4:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test
+ubuntu_xfstests_xfs:
+    automation-vm4:
+        xfs:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test

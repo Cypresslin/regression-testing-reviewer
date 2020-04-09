@@ -101,6 +101,11 @@ ubuntu_kernel_selftests:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
         <<: *kernel-selftests-arm64
+    hotdog-kernel:
+        <<: *kernel-selftests-arm64
+        ftrace:
+            "Register/unregister many kprobe events	[FAIL]":
+                Register/unregister many kprobe events in seccomp (bug 1866972)
     amaura: &kernel-selftests
         net:
             "FAIL: ipv6 addrlabel":
@@ -118,6 +123,9 @@ ubuntu_kernel_selftests:
         seccomp: &seccomp
             "FAIL ] global.user_notification_basic":
                 global.user_notification_basic in seccomp (bug 1862588)
+        ftrace:
+            "Register/unregister many kprobe events	[FAIL]":
+                Register/unregister many kprobe events in seccomp (bug 1866972)
     naumann:
         <<: *kernel-selftests
     gonzo:
@@ -140,6 +148,11 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+        ftrace:
+            "Kprobe event user-memory access	[UNRESOLVED]":
+                Kprobe event user-memory access in ftrace (bug 1869227)
+            "Meta-selftest	[UNRESOLVED]":
+                Meta-selftest unresolved in ftrace (bug 1869289)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
@@ -153,8 +166,15 @@ ubuntu_kernel_selftests:
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
         powerpc:
-            "dscr_sysfs_test [FAIL]":
-                dscr_sysfs_test in powerpc for P9 (bug 1813136)
+            "dscr_sysfs_test # TIMEOUT":
+                dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
+            "futex_bench # TIMEOUT":
+                futex_bench timeout in powerpc (bug 1864642)
+        ftrace:
+            "Kprobe event user-memory access	[UNRESOLVED]":
+                Kprobe event user-memory access in ftrace (bug 1869227)
+            "Meta-selftest	[UNRESOLVED]":
+                Meta-selftest unresolved in ftrace (bug 1869289)
     s2lp6g003: &selftest-s390x
         net:
             "reuseport_dualstack [FAIL]":
@@ -175,6 +195,15 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "not ok 30 selftests: net: tcp_fastopen_backup_key.sh":
+                tcp_fastopen_backup_key.sh in net on s390x (bug 1869134)
+        ftrace:
+            "Register/unregister many kprobe events	[FAIL]":
+                Register/unregister many kprobe events in ftrace (bug 1866972)
+            "Kprobe event auto/manual naming	[FAIL]":
+                Kprobe event auto/manual naming in  ftrace (bug 1869143)
+            "Kprobe event user-memory access	[UNRESOLVED]":
+                Kprobe event user-memory access in ftrace (bug 1869227)
     s2lp4:
         <<: *selftest-s390x
     kernel03:
@@ -219,12 +248,6 @@ ubuntu_kvm_unit_tests:
             "FAIL realmode":
                 realmode failed (bug 1850653)
     rizzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
         realmode:
             "FAIL realmode":
                 realmode failed (bug 1850653)
@@ -276,9 +299,6 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        hugetlb: &ltp-hugetlb
-            "BROK: hugeshmctl01":
-                hugeshmctl01 (bug 1866196)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
@@ -290,6 +310,55 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+    appleton-kernel:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+            "zram01 1 TBROK: test killed, timeout!":
+                zram01 / zram02 / zram03 timeout (bug 1854706)
+    hotdog-kernel:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+            "zram01 1 TBROK: test killed, timeout!":
+                zram01 / zram02 / zram03 timeout (bug 1854706)
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
@@ -306,8 +375,6 @@ ubuntu_ltp:
                 cpuhotplug04 (bug 1836169)
             "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
                 cpuhotplug06 (bug 1836170)
-        hugetlb:
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
@@ -338,17 +405,16 @@ ubuntu_ltp:
                 cpuset_sched_domains (bug 1830361)
             "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
                 cpuset_syscall (bug 1862908)
-        hugetlb:
-            <<: *ltp-hugetlb
         commands:
             <<: *ltp-commands
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
-        kernel_misc:
-            <<: *ltp-misc
         crypto:
             <<: *ltp-crypto
+        kernel_misc:
+            "cpufreq_boost 1 TBROK":
+                cpufreq_boost on P9 (bug 1842032)
     modoc:
         fs:
             <<: *ltp-fs
@@ -374,8 +440,6 @@ ubuntu_ltp:
                 cpuset_sched_domains (bug 1830361)
             "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
                 cpuset_syscall (bug 1862908)
-        hugetlb:
-            <<: *ltp-hugetlb
         commands:
             <<: *ltp-commands
         cpuhotplug:
@@ -385,6 +449,9 @@ ubuntu_ltp:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
     s2lp4:
         fs:
             <<: *ltp-fs
@@ -394,12 +461,16 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_inherit 3 TFAIL: cpus: Test result":
                 cpuset_inherit (bug 1849825)
-        hugetlb:
-            <<: *ltp-hugetlb
         commands:
             <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
     kernel03:
         fs:
             <<: *ltp-fs
@@ -411,8 +482,6 @@ ubuntu_ltp:
                 cpuset_inherit (bug 1849825)
             "memcg_stat_rss 4 TBROK: timeouted":
                 memcg_stat_rss (bug 1837035)
-        hugetlb:
-            <<: *ltp-hugetlb
         commands:
             <<: *ltp-commands
         net.ipv6_lib:
@@ -437,28 +506,33 @@ ubuntu_ltp:
     s2lp6g003:
         <<: *ltp-s390x-kvm
 ubuntu_ltp_syscalls:
+    amaura:
+        syscalls: &syscalls-all
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+    appleton-kernel:
+        syscalls:
+            <<: *syscalls-all
+    hotdog-kernel:
+        syscalls:
+            <<: *syscalls-all
+    modoc:
+        syscalls:
+            <<: *syscalls-all
     baltar:
         syscalls:
-            "FAIL: system time not set to":
-                stime01 (bug 1845620)
+            <<: *syscalls-all
     s2lp4: &syscall-s390x
         syscalls:
             "msgstress03    1  TFAIL":
                 msgstress03 (bug 1797341)
+            <<: *syscalls-all
     kernel03:
         <<: *syscall-s390x
     s2lp6g003:
         <<: *syscall-s390x
     s2lp6g001:
         <<: *syscall-s390x
-    chico: &syscalls-kvm
-        syscalls:
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
-            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
-            "sync_file_range02.c:56: FAIL":
-                sync_file_range02 (bug 1819116)
 ubuntu_lxc:
     kernel03:
         exercise:
@@ -494,23 +568,14 @@ ubuntu_qrt_kernel_security:
     modoc:
         <<: *ubuntu_qrt_kernel_security
 ubuntu_seccomp:
-    fozzie:
-            "FAILURE 53-sim-binary_tree rc=14":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-            "FAILURE 55-basic-pfc_binary_tree.sh":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-    baltar: &ubuntu_seccomp
+    s2lp4: &ubuntu_seccomp
         seccomp:
-            "ERROR 36-sim":
-                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
-            "FAILURE 53-sim-binary_tree rc=14":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-            "FAILURE 55-basic-pfc_binary_tree.sh":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-    modoc:
-        <<: *ubuntu_seccomp
-    s2lp4:
-        <<: *ubuntu_seccomp
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
     s2lp6g001:
         <<: *ubuntu_seccomp
     s2lp6g003:

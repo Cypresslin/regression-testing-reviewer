@@ -48,7 +48,9 @@ ubuntu_kernel_selftests:
         net:
             <<: *kernel-selftests-net
             "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
+                reuseport_bpf_numa in net (bug 1867570)
+            "reuseport_bpf: ebpf error":
+                reuseport_bpf in net (bug 1868654)
         seccomp:
             "FAIL ] TRACE_syscall.ptrace_syscall_errno":
                 TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
@@ -123,6 +125,21 @@ ubuntu_kvm_unit_tests:
         vmx:
             "FAIL vmx":
                 vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (timeout; duration=30)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
     fili:
         apic:
             "FAIL apic":
@@ -143,6 +160,12 @@ ubuntu_ltp_syscalls:
                 statx05 (bug 1798524)
             "Invalid filesystem option set:  quota,project":
                 quotactl04 (bug 1854153)
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     entei: &syscalls-ppc
         syscalls:
             <<: *syscalls

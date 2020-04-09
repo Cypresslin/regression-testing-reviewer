@@ -1,0 +1,142 @@
+# 5.3 Eoan KVM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_kernel_selftests:
+    automation-vm4:
+        net:
+            "FAIL: cannot add dummy interface":
+                RTNETLINK in net (bug 1812194)
+            "selftests: net: xfrm_policy.sh # TIMEOUT":
+                xfrm_policy.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: udpgso_bench.sh # TIMEOUT":
+                xfrm_policy.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
+            "selftests: net: rtnetlink.sh # exit=2":
+                rtnetlink.sh in net (bug 1812194)
+            "selftests: net: fib_tests.sh # exit=2":
+                fib_tests in net (bug 1812622)
+            "selftests: net: fib-onlink-tests.sh # exit=2":
+                fib-onlink-tests in net (bug 1812622)
+            "selftests: net: fib_rule_tests.sh # exit=2":
+                fib_rule_tests in net (bug 1812622)
+            "selftests: net: pmtu.sh # exit=1":
+                pmtu.sh failed because some modules not found in net (bug 1870099)
+            "net: ip_defrag.sh # exit=255":
+                ip_defrag.sh in net (bug 1826848)
+            "selftests: net: msg_zerocopy.sh # exit=1":
+                msg_zerocopy.sh in net (bug 1812620)
+            "selftests: net: test_vxlan_under_vrf.sh # exit=2":
+                test_vxlan_under_vrf.sh (bug 1837348)
+            "selftests: net: so_txtime.sh # exit=2":
+                so_txtime.sh in net (bug 1870106)
+        seccomp:
+            "FAIL ] global.user_notification_basic":
+                global.user_notification_basic in seccomp (bug 1862588)
+        ftrace:
+            "Test trace_printk from module	[UNRESOLVED]":
+                Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)
+            "Meta-selftest	[UNRESOLVED]":
+                Meta-selftest UNRESOLVED in ftrace (bug 1869289)
+ubuntu_kvm_unit_tests:
+    automation-vm1:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
+        memory:
+            "FAIL memory":
+                memory (bug 1831449)
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apicv_test:
+            "FAIL vmx_apicv_test":
+                vmx_apicv_test (bug 1827866)
+ubuntu_ltp:
+    automation-vm4:
+        fs:
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        mm:
+            "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                vma05 (bug 1845863)
+        sched:
+            "fork() (error: Resource temporarily unavailable)":
+                hackbench01 (bug 1830675)
+        containers:
+            "netns_sysfs 1 TBROK: failed to add a new (host) dummy device":
+                netns_sysfs (bug 1830678)
+        controllers:
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979) 
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+        commands:
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+        net.ipv6_lib:
+            "getaddrinfo_01 2 TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+ubuntu_ltp_syscalls:
+    automation-vm5:
+        syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
+            "msgstress03    1  TFAIL  :  msgstress03.c:155: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "msgstress04    1  TFAIL  :  msgstress04.c:219: Child exit status = 1":
+                msgstress04 (bug 1797348)
+ubuntu_lxc:
+    automation-vm1:
+        exercise:
+            "FAIL: lxc-tests: lxc-test-no-new-privs":
+                lxc-test-no-new-privs failed to fetch file (bug 1821152)
+ubuntu_sysdig_smoke_test:
+    automation-vm4:
+        sysdig-smoke-test:
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                failed to trace read / write (bug 1844493)
+ubuntu_xfstests_btrfs:
+    automation-vm2:
+        btrfs:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test
+ubuntu_xfstests_ext4:
+    automation-vm3:
+        ext4:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test
+ubuntu_xfstests_xfs:
+    automation-vm4:
+        xfs:
+            "Error: Could not stat device /dev/sdb":
+               No scratch drive available for the test

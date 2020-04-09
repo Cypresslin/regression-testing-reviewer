@@ -30,6 +30,10 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
+    hotdog-kernel:
+        hwclock:
+            "TestFail: Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)                  
 monotonic_time:
     lodygin:
         tsc:
@@ -131,6 +135,10 @@ ubuntu_cts_kernel:
     s2lp6g002:
         <<: *ubuntu-cts-flaky
 ubuntu_kernel_selftests:
+    vickers-armstrong:
+        net:
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
     starmie-kernel:
         ftrace:
             "test for function traceon/off triggers	[FAIL]":
@@ -207,23 +215,22 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    gonzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
     rizzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (timeout; duration=30)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
     ms10-34-mcdivittB0-kernel:
          gicv3-active:
             "gicv3-active":
@@ -325,36 +332,39 @@ ubuntu_kvm_unit_tests:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
     fozzie: &kvm-unit-test-vmexit-i386
+        msr:
+            "FAIL msr":
+                msr on i386 (bug 1822235)
         vmexit_cpuid:
             "FAIL vmexit_cpuid":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_cpuid on i386 (bug 1822235)
         vmexit_inl_pmtimer:
             "FAIL vmexit_inl_pmtimer":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_inl_pmtimer on i386 (bug 1822235)
         vmexit_ipi:
             "FAIL vmexit_ipi":
                 vmexit_ipi on i386 (bug 1822235)
         vmexit_ipi_halt:
             "FAIL vmexit_ipi_halt":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_ipi_halt on i386 (bug 1822235)
         vmexit_mov_from_cr8:
             "FAIL vmexit_mov_from_cr8":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_mov_from_cr8 on i386 (bug 1822235)
         vmexit_mov_to_cr8:
             "FAIL vmexit_mov_to_cr8":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_mov_to_cr8 on i386 (bug 1822235)
         vmexit_ple_round_robin:
             "FAIL vmexit_ple_round_robin":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_ple_round_robin on i386 (bug 1822235)
         vmexit_tscdeadline:
             "FAIL vmexit_tscdeadline":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_tscdeadline on i386 (bug 1822235)
         vmexit_tscdeadline_immed:
             "FAIL vmexit_tscdeadline_immed":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_tscdeadline_immed on i386 (bug 1822235)
         vmexit_vmcall:
             "FAIL vmexit_vmcall":
-                vmexit_* on i386 (bug 1822235)
+                vmexit_vmcall on i386 (bug 1822235)
     pepe:
         <<: *kvm-unit-test-vmexit-i386
 ubuntu_ltp:
@@ -374,18 +384,20 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        hugetlb: &ltp-hugetlb
-            "BROK: hugeshmctl01":
-                hugeshmctl01 (bug 1866196)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        kernel_misc: &ltp-misc
-            "zram02 1 TFAIL: unexpected num of devices:":
-                zram02 (bug 1829992)
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
+        cve:
+            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
+                cve-2015-3290 (bug 1837005)
+        kernel_misc: &ltp-misc
+            "zram02 1 TFAIL: unexpected num of devices:":
+                zram02 (bug 1829992)
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
     naumann:
         fs:
             <<: *ltp-fs
@@ -399,8 +411,6 @@ ubuntu_ltp:
                 cpuset_memory_spread (bug 1830585)
             "cpuset_check_domains    1  TFAIL  :  cpuset_sched_domains_check.c":
                 cpuset_sched_domains (bug 1830361)
-        hugetlb:
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         cve:
@@ -443,8 +453,6 @@ ubuntu_ltp:
                 cpuhotplug04 (bug 1836169)
             "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
                 cpuhotplug06 (bug 1836170)
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             "getaddrinfo IPv6 basic lookup (\"ms10-35-mcdivittB0-kernel\") returns -5 (\"No address associated with hostname\")":
                 getaddrinfo_01 (bug 1829995)
@@ -458,8 +466,6 @@ ubuntu_ltp:
             <<: *ltp-fs
         cpuhotplug:
             <<: *ltp-cpuhotplug
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             "getaddrinfo IPv6 basic lookup (\"wright-kernel\") returns -5 (\"No address associated with hostname\")":
                 getaddrinfo_01 (bug 1829995)
@@ -469,6 +475,40 @@ ubuntu_ltp:
         kernel_misc:
             "zram01 1 TBROK: test killed, timeout! If you are running on slow machine, try exporting LTP_TIMEOUT_MUL > 1":
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+    appleton-kernel:
+        fs:
+            <<: *ltp-fs
+        cpuhotplug:
+            <<: *ltp-cpuhotplug
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            "getaddrinfo IPv6 basic lookup (\"appleton-kernel\") returns -5 (\"No address associated with hostname\")":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "BROK: Kernel is already tainted: 12800":
+                cve-2017-1000380 failed as kernel already tainted
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+    hotdog-kernel:
+        fs:
+            <<: *ltp-fs
+        cpuhotplug:
+            <<: *ltp-cpuhotplug
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            "getaddrinfo IPv6 basic lookup (\"hotdog-kernel\") returns -5 (\"No address associated with hostname\")":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "BROK: Kernel is already tainted: 12800":
+                cve-2017-1000380 failed as kernel already tainted
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
     baltar:
         fs:
             <<: *ltp-fs
@@ -478,8 +518,6 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
@@ -493,8 +531,6 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
@@ -510,82 +546,99 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
             "memcg_failcnt 1 TBROK: timeouted on memory.usage_in_bytes":
                 memcg_failcnt (bug 1845919)
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
     s2lp3:
         fs:
             <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
-        hugetlb: 
-            <<: *ltp-hugetlb
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
     s2lp6g002:
         fs:
             <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
-        hugetlb: 
-            <<: *ltp-hugetlb
         net.ipv6_lib:
             <<: *ltp-net
     kernel02:
         fs:
             <<: *ltp-fs
-            "failed: EPERM (1)":
-                fs_fill (bug 1842266)
-        hugetlb: 
-            <<: *ltp-hugetlb
+        controllers:
+            <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
+    amaura:
+        syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     pepe:
         syscalls:
-            "sync_file_range02.c:74: FAIL: Sync inside of write":
-                sync_file_range02 (bug 1851655)
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     baltar: &syscalls-ppc
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             "move_pages12.c:95: FAIL: madvise failed: ENOMEM":
                 move_pages12 (bug 1831043)
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
     kernel02: &syscalls-s390x
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL  :  msgstress04":
                 msgstress04 (bug 1797348)
             "FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
+            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     s2lp6g002:
         <<: *syscalls-s390x
     s2lp6g003:
         <<: *syscalls-s390x
     s2lp3:
         <<: *syscalls-s390x
-    wright-kernel:
+    appleton-kernel: &syscalls-arm64
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
+    hotdog-kernel:
+        <<: *syscalls-arm64
+    wright-kernel:
+        <<: *syscalls-arm64
 ubuntu_lxc:
     kernel02:
         exercise:
@@ -601,14 +654,14 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    baltar: &lxc-download
+    baltar: &lxc
         exercise:
-            "ERROR: Failed to download http://images.linuxcontainers.org":
-                Failed to download image index (bug 1839835)
+            "Failed to fetch http://ports.ubuntu.com/":
+                failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
     entei:
-        <<: *lxc-download
+        <<: *lxc
     modoc:
-        <<: *lxc-download
+        <<: *lxc
 ubuntu_qrt_kernel_security:
     baltar: &ubuntu_qrt_kernel_security
         test-kernel-security.py:
@@ -619,28 +672,40 @@ ubuntu_qrt_kernel_security:
 ubuntu_seccomp:
     fozzie:
         seccomp:
-            "FAILURE 53-sim-binary_tree rc=14":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-            "FAILURE 55-basic-pfc_binary_tree.sh":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
     baltar: &ubuntu_seccomp
         seccomp:
             "ERROR 36-sim":
                 36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
-            "FAILURE 53-sim-binary_tree rc=14":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-            "FAILURE 55-basic-pfc_binary_tree.sh":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
     modoc:
         <<: *ubuntu_seccomp
-    s2lp3:
-        <<: *ubuntu_seccomp
+    s2lp3: &ubuntu_seccomp_s390x
+        seccomp:
+            "ERROR 36-sim":
+                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
     kernel02:
-        <<: *ubuntu_seccomp
+        <<: *ubuntu_seccomp_s390x
     s2lp6g002:
-        <<: *ubuntu_seccomp
+        <<: *ubuntu_seccomp_s390x
     s2lp6g003:
-        <<: *ubuntu_seccomp
+        <<: *ubuntu_seccomp_s390x
 xfstests:
     fozzie: &xfstests
         ext4:

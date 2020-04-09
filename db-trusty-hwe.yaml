@@ -11,29 +11,6 @@
 #       "errmsg2":
 #         reason
 #
-hwclock:
-    ms10-34-mcdivittB0-kernel:
-        hwclock:
-            "Failed to set hwclock back to Warthog's birthday.":
-                issue for HP m400 (bug 1716603)
-    ms10-35-mcdivittB0-kernel:
-        hwclock:
-            "Failed to set hwclock back to Warthog's birthday.":
-                issue for HP m400 (bug 1716603)
-ubuntu_btrfs_kernel_fixes:
-    pepe:
-        aa9ddcd4b5557102fa25695c11904f249b4dec49:
-            "BUG btrfs_extent_map":
-                btrfs module removal after failed fallocate attempt (bug 1822579)
-ubuntu_cts_kernel:
-    entei:
-        lp1262692:
-            "Error: either \"dev\" is duplicate, or \"enP34p1s0f0\" is a garbage.":
-                lp1262692 failed, bug for iproute2 (bug 1715376)
-    ms10-34-mcdivittB0-kernel:
-        lp1262692:
-            "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
-                lp1262692 failed, bug for iproute2 (bug 1715376)
 ubuntu_ecryptfs:
     onibi: &ecryptfs
         extend-file-random.sh.btrfs:
@@ -46,21 +23,11 @@ ubuntu_ecryptfs:
         <<: *ecryptfs
     pepe:
         <<: *ecryptfs
-    ms10-34-mcdivittB0-kernel:
-        <<: *ecryptfs
 ubuntu_kvm_smoke_test:
     pepe:
         kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
-    modoc:
-        kvm_smoke_test:
-            "uvt-kvm: error: libvirt: XML error: No PCI buses available":
-                uvtool issue (bug 1729854)
-    ms10-34-mcdivittB0-kernel:
-        kvm_smoke_test:
-            "libvirt: internal error: process exited while connecting to monitor: Error: Cirrus VGA not available":
-                unable to create KVM with uvtool (bug 1749427)
 ubuntu_kvm_unit_tests:
     onza:
         setup:
@@ -73,12 +40,27 @@ ubuntu_kvm_unit_tests:
         debug:
             "FAIL debug":
                 debug (bug 1821906)
-        svm:
-            "FAIL svm":
-                svm (bug 1821903)
         umip:
             "FAIL umip":
                 umip should be skipped (bug 1821905)
+        vmx:
+            "FAIL vmx (timeout; duration=90s)":
+                vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (65 tests, 33 unexpected failures)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all
@@ -88,8 +70,6 @@ ubuntu_ltp_syscalls:
                 fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 3 got event":
                 fanotify06 (bug 1833028)
-            "FAIL: first group got more than 2 events":
-                fanotify09-1 (bug 1804594)
             "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "openat03.c:223: file mode read 0, but expected 7777":
@@ -100,54 +80,24 @@ ubuntu_ltp_syscalls:
                 fanotify07 won't fix (bug 1775165)
     pepe:
         <<: *syscalls-x86
-    modoc:
-        syscalls:
-            <<: *syscalls-all
-            "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
-                openat03 (bug 1798027)
-            "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
-                open14 (bug 1798061)
-            "move_pages12.c:81: FAIL: madvise failed: SUCCESS":
-                move_pages12 (bug 1831043)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
-                timer_create01 (bug 1838961)
-    ms10-35-mcdivittB0-kernel:
-        syscalls:
-            <<: *syscalls-all
-            "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
-                open14 (bug 1798061)
 ubuntu_lxc:
-    modoc: &lxc-non-x86
-        exercise:
-            "There is no download available":
-                failed because no cloud image for non-x86 (bug 1855871)
-    ms10-34-mcdivittB0-kernel:
-        <<: *lxc-non-x86
-    ms10-35-mcdivittB0-kernel:
-        <<: *lxc-non-x86
-ubuntu_qrt_kernel_security:
-    ms10-35-mcdivittB0-kernel:
-        test-kernel-security.py:
-            "init missing READ_IMPLIES_EXEC ... (/proc/1/personality) FAIL":
-                050 failed (bug 1684776)
-ubuntu_qrt_apparmor:
-    ms10-35-mcdivittB0-kernel:
-        test-apparmor.py:
-            "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
-                test_old_trusty_regression_testsuite failed to build (bug 1699987)
+    rizzo: &lxc
+         exercise:
+             "set(container.get_interfaces()) == set(('lo', 'eth0')))":
+                 python-API test (bug 1764618)
+    fozzie:
+        <<: *lxc
 ubuntu_seccomp:
     fozzie:
         seccomp:
-            "FAILURE 53-sim-binary_tree rc=14":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-            "FAILURE 55-basic-pfc_binary_tree.sh":
-                53-sim-binary_tree and 55-basic-pfc_binary_tree failed (bug 1866041)
-    modoc:
-        setup:
-            "'__NR_seccomp' undeclared ":
-                failed to compile (bug 1849246)
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
 ubuntu_unionmount_ovlfs:
-    amaura: &ovlfs
+    rizzo: &ovlfs
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on upper layer":
                 failed with the latest code in upstream (bug 1854298)

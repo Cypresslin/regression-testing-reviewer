@@ -59,6 +59,11 @@ trusty:
                 "modprobe: FATAL: Module zram not found.":
                     zram module not found on ppc64le (bug 1752551)
 trusty-hwe:
+    ubuntu_btrfs_kernel_fixes:
+        pepe:
+            aa9ddcd4b5557102fa25695c11904f249b4dec49:
+                "BUG btrfs_extent_map":
+                    btrfs module removal after failed fallocate attempt (bug 1822579)
     ubuntu_kvm_unit_tests:
         pepe:
             all:
@@ -81,6 +86,12 @@ trusty-hwe:
                     fanotify07 causing timeout on fanotify08, fanotify09, fanotify10, fanotify11, fanotify12, fanotify13, fanotify14, fanotify15 (bug 1775165)
                 "FAIL: first group got more than 2 events":
                     fanotify09-1 (bug 1804594)
+                "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
+                    openat03 (bug 1798027)
+                "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
+                    open14 (bug 1798061)
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
+                    timer_create01 (bug 1838961)
         ms10-35-mcdivittB0-kernel:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -91,6 +102,15 @@ trusty-hwe:
                     fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+        modoc: &lxc-non-x86
+            exercise:
+                "There is no download available":
+                    failed because no cloud image for non-x86 (bug 1855871)
+    ubuntu_qrt_apparmor:
+        ms10-35-mcdivittB0-kernel:
+            test-apparmor.py:
+                "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
+                    test_old_trusty_regression_testsuite failed to build (bug 1699987)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:
@@ -102,6 +122,13 @@ trusty-hwe:
                     STACKPROTECTOR should be unset (bug 1789353)
                 "AssertionError: HAVE_CC_STACKPROTECTOR option was expected to be unset in the kernel config":
                     STACKPROTECTOR should be unset (bug 1789353)
+                "init missing READ_IMPLIES_EXEC ... (/proc/1/personality) FAIL":
+                    050 failed (bug 1684776)
+    ubuntu_seccomp:
+        modoc:
+            setup:
+                "'__NR_seccomp' undeclared ":
+                    failed to compile (bug 1849246)
 xenial:
     aio_dio_bugs:
         kernel01:
@@ -142,6 +169,14 @@ xenial:
             <<: *1689240-x
         s2lp6g001:
             <<: *1689240-x
+    ubuntu_btrfs_kernel_fixes:
+        pepe:
+            aa9ddcd4b5557102fa25695c11904f249b4dec49:
+                "BUG btrfs_extent_map":
+                    aa9ddcd4 on 4.4 i386 (bug 1821913)
+            e755f780865221252ef3321215c9796b78e7b1c5:
+                "BUG btrfs_extent_map":
+                    e755f780 on 4.4 i386 (bug 1822560)
     ubuntu_kvm_unit_tests:
         entei:
             all:
@@ -152,6 +187,10 @@ xenial:
             test-kernel-security.py:
               "FAIL: test_095_kernel_symbols_missing_proc_self_stack":
                     test_095_kernel_symbols_missing_proc_self_stack (bug 1802069)
+        s2lp6g01:
+            test-kernel-security.py:
+                "SECURITY_SELINUX_DISABLE option was expected to be set":
+                    SECURITY_SELINUX_DISABLE option should be enable on X s390x (bug 1813721)
     ubuntu_ltp_syscalls:
         ms10-35-mcdivittB0-kernel:
             syscalls: &syscalls-x
@@ -174,13 +213,8 @@ xenial:
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
                 "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
-        rumford:
-            syscalls:
-                <<: *syscalls-x
-                "fcntl35.c:98: FAIL: an unprivileged user init the capacity of a pipe to 65536 unexpectedly, expected 4096":
-                    fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
-                "getxattr04.c:72: FAIL: getxattr() failed to get an existing attribute":
-                    getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
+                "killed by signal SIGSEGV":
+                    pivot_root01 (bug 1852966)
         s2lp3:
             syscalls:
                 <<: *syscalls-x
@@ -620,9 +654,14 @@ bionic:
                     binfmt_misc02 (bug 1822246)
                 "failed: EROFS":
                     fs_fill (bug 1842266)
+                "failed: EPERM (1)":
+                    fs_fill (bug 1842266)
             commands:
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
+            hugetlb: &ltp-hugetlb
+                "BROK: hugeshmctl01":
+                    hugeshmctl01 (bug 1866196)
             timers: &ltp-timers
                 "leapsec_timer    2  TBROK  :  leapsec_timer.c":
                     leapsec_timer (bug 1829971
@@ -683,17 +722,9 @@ bionic:
                 "FAIL: unable to create first nic":
                     lxc-test-usernic.in failed on Bionic (bug 1775809)
         baltar:
-            <<: *exercise-b
-        kernel02:
-            <<: *exercise-b
-        michael:
-            <<: *exercise-b
-        ms10-34-mcdivittB0-kernel:
-            <<: *exercise-b
-        kernel02:
-            <<: *exercise-b
-        s2lp6g002:
-            <<: *exercise-b
+            exercise:
+                "ERROR: Failed to download http://images.linuxcontainers.org":
+                    Failed to download image index (bug 1839835)
     ubuntu_qrt_kernel_security:
         daedalus: &kernel-security-b
             test-kernel-security.py:
@@ -998,6 +1029,11 @@ bionic-oem:
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+    ubuntu_lxc:
+        daedalus:
+            setup:
+                "E: Unable to correct problems, you have held broken packages.":
+                    package from -proposed and from -update casuing apt issue (bug 1805978)
 bionic-oem-osp1:
     ubuntu_bpf:
         gonzo:
@@ -1225,8 +1261,18 @@ eoan:
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "FAIL: system time not set to":
+                    stime01 (bug 1845620)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
                 "undefined reference to `BIT'":
                     seccomp build issue (bug 1849844)
+    ubuntu_kvm_unit_tests:
+        rizzo:
+            apic:
+                "FAIL apic":
+                    apic timeouted (bug 1748103)
+            apic-split:
+            "FAIL apic-split":
+                apic-split timeouted (bug 1821390)
