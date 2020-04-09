@@ -1,0 +1,11 @@
+4.15.0-1037.41 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap '0:3' not in ESTABLISHED" (bug 1839912)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubunut_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) umip_basic_test (bug 1853798) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) move_pages12 (bug 1831043) on some instance kill11 (bug 1865965)
+
+Skipped / blacklisted:
+ * libhugetlbfs
