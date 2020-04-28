@@ -17,7 +17,7 @@ hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is 'Wed Oct 20 04:09:59":
                 hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
 libhugetlbfs:
-    s2lp6g001: &libhugetlbfs
+    s2lp6g001: &libhugetlbfs-s390x
         libhugetlbfs:
             "FAIL:     0     11":
                 failed 11
@@ -26,14 +26,18 @@ libhugetlbfs:
             "Bad configuration:     0      1":
                 bad config 1
     s2lp6g002:
-        <<: *libhugetlbfs
+        <<: *libhugetlbfs-s390x
     s2lp6g003:
-        <<: *libhugetlbfs
+        <<: *libhugetlbfs-s390x
 ubuntu_bpf_jit:
-    s2lp6g001:
+    s2lp6g001: &ubuntu_bpf_jit-s390x
         ubuntu-bjf-jit:
             "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
                 4 failures reported for X s390x (bug 1768452)
+    s2lp6g002:
+        <<: *ubuntu_bpf_jit-s390x
+    s2lp6g003:
+        <<: *ubuntu_bpf_jit-s390x
 ubuntu_fan_smoke_test:
     modoc:
         fan-smoke-test:
@@ -68,6 +72,21 @@ ubuntu_kvm_unit_tests:
         vmx:
             "FAIL vmx":
                 vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (65 tests, 33 unexpected failures)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
     fili:
         apic:
             "FAIL apic":
@@ -116,18 +135,20 @@ ubuntu_kvm_unit_tests:
     s2lp6g003:
         <<: *kvm-unit-s390x
 ubuntu_ltp_syscalls:
-    amaura:
+    amaura: &syscalls
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "BROK: Failed to open FILE 'mntpoint":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     entei: &syscalls-p8
         syscalls:
             ") failed: ENOSPC":
@@ -145,19 +166,11 @@ ubuntu_ltp_syscalls:
     modoc:
         <<: *syscalls-p8
     s2lp6g001:
-        syscalls:
-            ") failed: EACCES":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842314)
-            "BROK: Failed to open FILE 'mntpoint":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
-            "FAIL: end of file reached":
-                acct02 (bug 1839836)
-            "fanotify06.c:220: FAIL: group 8 got event":
-                fanotify06 (bug 1833028)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
-                timer_create01 (bug 1838961)
+        <<: *syscalls
+    s2lp6g002:
+        <<: *syscalls
+    s2lp6g003:
+        <<: *syscalls
 ubuntu_qrt_kernel_security:
     s2lp6g001: &kernel_security
         test-kernel-security.py:
@@ -174,6 +187,45 @@ ubuntu_seccomp:
                 failed on D s390x / PowerPC (bug 1850904)
     s2lp6g001:
         <<: *ubuntu_seccomp
+    s2lp6g002:
+        <<: *ubuntu_seccomp
+    s2lp6g003:
+        <<: *ubuntu_seccomp
+ubuntu_unionmount_ovlfs:
+    rizzo: &ovlfs
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on lower fs":
+                failed with the latest code in upstream (bug 1854298)
+    vought:
+        <<: *ovlfs
+    modoc:
+        <<: *ovlfs
+    s2lp6g001:
+        <<: *ovlfs
+    s2lp6g002:
+        <<: *ovlfs
+ubuntu_xfstests_btrfs:
+    vickers-armstrong:
+        btrfs: &xfstest-no-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+    s2lp6g002:
+        btrfs:
+            <<: *xfstest-no-sdb
+ubuntu_xfstests_ext4:
+    s2lp6g002:
+        ext4:
+            <<: *xfstest-no-sdb
+    s2lp6g003:
+        ext4:
+            <<: *xfstest-no-sdb
+ubuntu_xfstests_xfs:
+    s2lp6g002:
+        xfs:
+            <<: *xfstest-no-sdb
+    s2lp6g003:
+        xfs:
+            <<: *xfstest-no-sdb
 xfstests:
     rizzo:
         xfs:

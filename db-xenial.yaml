@@ -182,6 +182,8 @@ ubuntu_ltp_syscalls:
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -245,26 +247,20 @@ ubuntu_seccomp:
     kernel01:
         <<: *ubuntu_seccomp
 ubuntu_unionmount_ovlfs:
-    ms10-34-mcdivittB0-kernel:
+    automation-vm4:
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on lower fs":
-                failed with commit dc24a45a upstream (bug 1868212)
-    amaura: &ovlfs
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on upper layer":
                 failed with the latest code in upstream (bug 1854298)
-    fozzie:
-        <<: *ovlfs
-    rizzo:
-        <<: *ovlfs
-    modoc:
-        <<: *ovlfs
-    s2lp3:
-        <<: *ovlfs
-    s2lp6g001:
-        <<: *ovlfs
-    kernel01:
-        <<: *ovlfs
+ubuntu_xfstests_btrfs:
+    vickers-armstrong:
+        btrfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+ubuntu_xfstests_xfs:
+    vought:
+        xfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
 xfstests:
     rizzo:
         xfs:

@@ -20,6 +20,10 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
+    hotdog-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed due to 0.x sec differences (bug 1802233)
     ms10-34-mcdivittB0-kernel: &hwclock-moonshot
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
@@ -27,6 +31,10 @@ hwclock:
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock-moonshot
 ubuntu_bpf:
+    lagalla:
+        test_maps:
+            "Failed sockmap unexpected timeout":
+                timeout on lagalla (bug 1874029)
     rizzo: &bpf
         test_maps:
             "Failed to load SK_SKB verdict prog":
@@ -61,6 +69,10 @@ ubuntu_bpf:
         <<: *bpf-s390x
     s2lp6g001:
         <<: *bpf-s390x
+    hotdog-kernel:
+        test_verifier:
+            "#13/p valid read map access into a read-only array 2 FAIL":
+                test_verifier failed for valid read map access into a read-only array (bug 1874387)
 ubuntu_bpf_jit:
     s2lp6g001: &bpf-jit-s390x
         ubuntu-bjf-jit:
@@ -77,6 +89,13 @@ ubuntu_btrfs_kernel_fixes:
         f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
             "btrfs balance failed":
                 f88ba6a failed (bug 1828380)
+ubuntu_fan_smoke_test:
+    modoc: &ubuntu_fan_smoke_test
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+    baltar:
+        <<: *ubuntu_fan_smoke_test
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         net:
@@ -105,14 +124,12 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-arm64
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
-                Register/unregister many kprobe events in seccomp (bug 1866972)
+                Register/unregister many kprobe events in ftrace (bug 1866972)
     amaura: &kernel-selftests
         net:
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-            "selftests: net: ip_defrag.sh [FAIL]":
+            "selftests: net: ip_defrag.sh # exit=255":
                 ip_defrag in net (bug 1826848)
             "selftests: net: xfrm_policy.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
@@ -125,7 +142,7 @@ ubuntu_kernel_selftests:
                 global.user_notification_basic in seccomp (bug 1862588)
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
-                Register/unregister many kprobe events in seccomp (bug 1866972)
+                Register/unregister many kprobe events in ftrace (bug 1866972)
     naumann:
         <<: *kernel-selftests
     gonzo:
@@ -201,7 +218,7 @@ ubuntu_kernel_selftests:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
             "Kprobe event auto/manual naming	[FAIL]":
-                Kprobe event auto/manual naming in  ftrace (bug 1869143)
+                Kprobe event auto/manual naming in ftrace (bug 1869143)
             "Kprobe event user-memory access	[UNRESOLVED]":
                 Kprobe event user-memory access in ftrace (bug 1869227)
     s2lp4:
@@ -323,7 +340,7 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
-            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found":
                 cpuhotplug03 (bug 1836167)
             "cpuhotplug04 1 TFAIL: Could not offline cpu0":
                 cpuhotplug04 (bug 1836169)
@@ -354,6 +371,9 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "failed: ENOPROTOOPT (92)":
+                cve-2018-9568 (bug 1874012)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
@@ -508,6 +528,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls-all
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
     appleton-kernel:
@@ -552,14 +574,20 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    baltar: &lxc-download
+    baltar: &lxc
         exercise:
-            "ERROR: Failed to download http://images.linuxcontainers.org":
-                Failed to download image index (bug 1839835)
+            "Failed to fetch http://ports.ubuntu.com/":
+                failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
     entei:
-        <<: *lxc-download
+        <<: *lxc
     modoc:
-        <<: *lxc-download
+        <<: *lxc
+    starmie-kernel: &lxc-arm64
+        exercise:
+            "ERROR: Unable to fetch GPG key from keyserver":
+                failed to fetch GPG key
+    hotdog-kernel:
+        <<: *lxc-arm64
 ubuntu_qrt_kernel_security:
     baltar: &ubuntu_qrt_kernel_security
         test-kernel-security.py:
@@ -601,16 +629,33 @@ ubuntu_sysdig_smoke_test:
         <<: *sysdig_smoke
     s2lp6g003:
         <<: *sysdig_smoke
-xfstests:
-    rizzo: &xfstests
-        setup:
-             "make: *** [Makefile:30: all] Error 1":
-                 failed to build on C/D (bug 1828391)
-    fozzie:
-        <<: *xfstests
-    starmie-kernel:
-        <<: *xfstests
-    entei:
-        <<: *xfstests
-    modoc:
-        <<: *xfstests
+ubuntu_xfstests_ext4:
+    bavor:
+        ext4:
+            "generic/228        - output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394        - output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429        [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    vought:
+        ext4:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/228        - output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394        - output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429        [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    douglas:
+        xfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes

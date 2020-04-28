@@ -11,159 +11,123 @@
 #       "errmsg2":
 #         reason
 #
-libhugetlbfs:
-    chico: &libhugetlbfs
-        libhugetlbfs:
-            "FAIL:     0      1":
-                failed 1
-            "Killed by signal:     0      1":
-                killed by signal 1
-            "Bad configuration:     0      3":
-                bad config 3
-    harpo:
-        <<: *libhugetlbfs
-    groucho:
-        <<: *libhugetlbfs
-    gummo:
-        <<: *libhugetlbfs
-    zeppo:
-        <<: *libhugetlbfs
-ubuntu_fan_smoke_test:
-    chico: &1763323
-        fan-smoke-test:
-            "enable disable fan test: FAILED":
-                ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
-    harpo:
-        <<: *1763323
-    groucho:
-        <<: *1763323
-    gummo:
-        <<: *1763323
-    zeppo:
-        <<: *1763323
+ubuntu_ecryptfs:
+    automation-vm3:
+        miscdev-bad-count.sh.ext2:
+            "miscdev-bad-count	FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        lp-994247.sh.ext2:
+            "lp-994247 FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        miscdev-bad-count.sh.ext3:
+            "miscdev-bad-count  FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        lp-994247.sh.ext3:
+            "lp-994247 FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        miscdev-bad-count.sh.ext4:
+            "miscdev-bad-count  FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        lp-994247.sh.ext4:
+            "lp-994247 FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        miscdev-bad-count.sh.xfs:
+            "miscdev-bad-count  FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        lp-994247.sh.xfs:
+            "lp-994247 FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        miscdev-bad-count.sh.btrfs:
+            "miscdev-bad-count  FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+        lp-994247.sh.btrfs:
+            "lp-994247 FAIL":
+                miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
 ubuntu_kernel_selftests:
-    chico: &kernel_selftests
+    automation-vm5: &kernel_selftests
         net:
             "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
                 psock_tpacket in net failed (bug 1812176)
             "test_bpf: [FAIL]":
                 test_bpf in net (bug 1812189)
-    harpo:
-        <<: *kernel_selftests
-    groucho:
-        <<: *kernel_selftests
-    gummo:
-        <<: *kernel_selftests
-    zeppo:
-        <<: *kernel_selftests
-ubuntu_lxc:
-    chico: &1764618
-        exercise:
-             "FAIL: python3: API":
-                 python3 API failed (bug 1764618)
-    harpo:
-        <<: *1764618
-    groucho:
-        <<: *1764618
-    gummo:
-        <<: *1764618
-    zeppo:
-        <<: *1764618
+        user:
+            "user: module test_user_copy is not found [SKIP]":
+                skip return code treated as failure on X (bug 1851486)
+ubuntu_kvm_unit_tests:
+    automation-vm2:
+        apic:
+            "FAIL apic":
+                apic timeouted (bug 1748103)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        memory:
+            "FAIL memory":
+                memory (bug 1845687)
+        port80:
+            "FAIL port80":
+                port80 timeouted (bug 1748105)
+        vmx:
+            "FAIL vmx (timeout; duration=90s)":
+                vmx (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test":
+                vmx_hlt_with_rvi_test (bug 1822308)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (65 tests, 33 unexpected failures)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
 ubuntu_ltp_syscalls:
-    chico: &syscalls
+    automation-vm5: &syscalls
         syscalls:
-            "inotify07.c:157: FAIL: didn't get event: mask=":
-                inotify07 (bug 1774387)
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "FAIL: quotactl failed to set":
-                quotactl01, quotactl02, quotactl03 (bug 1797325)
-            "BROK: tst_test.c:760: mount(/dev/loop2, mnt_point, xfs":
-                quotactl01, quotactl02, quotactl03 (bug 1797325)
-            "tst_test.c:1126: BROK: Test killed! (timeout?)":
-                getrandom02 timed out (bug 1797327)
-            "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
-                process_vm_readv01, process_vm_writev01 (bug 1797330)
-            "process_vm_readv: errno=ENOSYS(38): Function not implemented":
-                process_vm_writev02, process_vm_readv02, process_vm_readv03 (bug 1797331)
-            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
-            "msgstress04.c:220: Child exit status = 1":
-                msgstress04 (bug 1797348)
-            "FAIL: first group got more than 2 events":
-                fanotify09-2 (bug 1804594)
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "fanotify06.c:220: FAIL: group 8 got event":
+                fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-    harpo:
-        <<: *syscalls
-    groucho:
-        <<: *syscalls
-    gummo:
-        <<: *syscalls
-    zeppo:
-        <<: *syscalls
-ubuntu_nbd_smoke_test:
-    chico: &1793491
-        nbd-smoke-test:
-            "Cannot load Network Block Device module nbd.o":
-                failed with KVM kernels (bug 1793491)
-    harpo:
-        <<: *1793491
-    groucho:
-        <<: *1793491
-    gummo:
-        <<: *1793491
-    zeppo:
-        <<: *1793491
-ubuntu_qrt_kernel_security:
-    chico: &kernel_security
-        test-kernel-security.py:
-            "SCHED_STACK_END_CHECK option was expected to be set in the kernel config":
-                SCHED_STACK_END_CHECK should be enabled (bug 1812159)
-    harpo:
-        <<: *kernel_security
-    groucho:
-        <<: *kernel_security
-    gummo:
-        <<: *kernel_security
-    zeppo:
-        <<: *kernel_security
-ubuntu_quota_smoke_test:
-    chico: &1784535
-        quota-smoke-test:
-            "quotaon: Quota format not supported in kernel.":
-                failed with KVM kernel (bug 1784535)
-    harpo:
-        <<: *1784535
-    groucho:
-        <<: *1784535
-    gummo:
-        <<: *1784535
-    zeppo:
-        <<: *1784535
-ubuntu_stress_smoke_test:
-    chico: &1782723
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed on KVM kernels (bug 1782723)
-    harpo:
-        <<: *1782723
-    groucho:
-        <<: *1782723
-    gummo:
-        <<: *1782723
-    zeppo:
-        <<: *1782723
-ubuntu_zram_smoke_test:
-    chico: &1766823
-        zram-smoke-test:
-            "modprobe: FATAL: Module zram not found in directory":
-                zram module not found (bug 1766823)
-    harpo:
-        <<: *1766823
-    groucho:
-        <<: *1766823
-    gummo:
-        <<: *1766823
-    zeppo:
-        <<: *1766823
+            "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
+            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                ptrace08 (bug 1873781)
+ubuntu_lxc:
+    automation-vm1:
+        exercise:
+            "ERROR: Unable to fetch GPG key from keyserver":
+                Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+ubuntu_unionmount_ovlfs:
+    automation-vm4:
+        overlayfs:
+            "/mnt/a/foo100: File unexpectedly on lower fs":
+                failed with the latest code in upstream (bug 1854298)
+ubuntu_xfstests_btrfs:
+    automation-vm1:
+        btrfs: &xfstest-no-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+ubuntu_xfstests_ext4:
+    automation-vm2:
+        ext4:
+            <<: *xfstest-no-sdb
+ubuntu_xfstests_xfs:
+    automation-vm3:
+        xfs:
+            <<: *xfstest-no-sdb

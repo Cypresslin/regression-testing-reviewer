@@ -11,34 +11,13 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_fan_smoke_test:
-    chico: &1763323
-        fan-smoke-test:
-           "enable disable fan test: FAILED (fanatic enable-fan returned 1)":
-               ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
-    harpo:
-        <<: *1763323
-    groucho:
-        <<: *1763323
-    gummo:
-        <<: *1763323
-    zeppo:
-        <<: *1763323
-ubuntu_ltp:
-    chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
+ubuntu_bpf:
+    automation-vm2:
+        test_maps:
+            "Failed to create sockmap -1":
+                test_maps failed with sockmap creation (bug 1848004)
 ubuntu_kernel_selftests:
-    chico: &kernel_selftests
+    automation-vm4:
         net:
             "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
                 psock_tpacket in net failed (bug 1812176)
@@ -46,30 +25,54 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1812189)
             "FAIL: cannot add dummy interface":
                 RTNETLINK in net (bug 1812194)
-        timers:
-            "raw_skew [FAIL]":
-                raw_skew in timer (bug 1811194)
-        user:
-            "user_copy: [FAIL]":
-                user_copy in user (bug 1812198)
-        ftrace:
-            "Error: No ftrace directory found":
-                ftrace (bug 1812318)
-    harpo:
-        <<: *kernel_selftests
-    groucho:
-        <<: *kernel_selftests
-    gummo:
-        <<: *kernel_selftests
-    zeppo:
-        <<: *kernel_selftests
+ubuntu_kvm_unit_tests:
+    automation-vm1:
+        apic:
+            "FAIL apic (timeout":
+                apic timeouted (bug 1748103)
+        memory:
+            "FAIL memory":
+                memory (bug 1845687)
+        port80:
+            "FAIL port80":
+                port80 timeouted (bug 1748105)
+        tsc_adjust:
+            "FAIL: MSR_IA32_TSC_ADJUST msr adjustment on tsc write":
+                tsc_adjust (bug 1845902)
+        vmx:
+            "FAIL vmx (timeout; duration=90s)":
+                vmx (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test":
+                vmx_hlt_with_rvi_test (bug 1822308)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (timeout; duration=30)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
-    riolu: &ltp
+    automation-vm4:
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-            "quota_remount_test01 1 TFAIL":
-                quota_remount_test01 (bug 1830670)
+        sched:
+            "fork() (error: Resource temporarily unavailable)":
+                hackbench01, hackbench02 (bug 1830675)
+            "thread_create failed: Resource temporarily unavailable (11)":
+                hackbench01, hackbench02 (bug 1830675)
         containers:
             "netns_sysfs 1 TBROK: failed to add a new (host) dummy device":
                 netns_sysfs (bug 1830678)
@@ -84,134 +87,43 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-        sched:
-            "fork() (error: Resource temporarily unavailable)":
-                hackbench01 (bug 1830675)
-        timers:
-            "leapsec_timer 2 TBROK : leapsec_timer.c":
-                leapsec_timer (bug 1829971)
-        kernel_misc:
-            "ltp_acpi 9 TFAIL":
-                ltp_acpi (bug 1830676)
+            "/opt/ltp/testcases/bin/cgroup_fj_stress.sh: Cannot fork":
+                cgroup_fj_stress_blkio_10_3_each, cgroup_fj_stress_blkio_2_9_each, cgroup_fj_stress_cpu_10_3_each, cgroup_fj_stress_cpu_2_9_each, cgroup_fj_stress_cpuacct_10_3_each, cgroup_fj_stress_cpuacct_2_9_each, cgroup_fj_stress_cpuset_10_3_each, cgroup_fj_stress_cpuset_2_9_each, cgroup_fj_stress_devices_10_3_each, cgroup_fj_stress_devices_2_9_each, cgroup_fj_stress_freezer_10_3_each, cgroup_fj_stress_freezer_2_9_each, cgroup_fj_stress_hugetlb_10_3_each, cgroup_fj_stress_hugetlb_2_9_each, cgroup_fj_stress_memory_10_3_each, cgroup_fj_stress_memory_2_9_each, cgroup_fj_stress_net_cls_10_3_each, cgroup_fj_stress_net_cls_2_9_each, cgroup_fj_stress_net_prio_10_3_each, cgroup_fj_stress_net_prio_2_9_each, cgroup_fj_stress_perf_event_10_3_each, cgroup_fj_stress_perf_event_2_9_each (bug 1848473) 
         net.ipv6_lib:
             "getaddrinfo_01 2 TFAIL":
                 getaddrinfo_01 (bug 1829995)
         cve:
-            "Kernel is already tainted:":
-                cve-2017-17053 (bug 1830011)
-            "BROK: Failed to open FILE '/proc/kallsyms' for reading at meltdown.c":
-                cve-2017-5754 (bug 1830682)
+            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                cve-2018-1000199 (bug 1874006)
+            "failed: ENOPROTOOPT (92)":
+                cve-2018-9568 (bug 1874012)
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+            "zram01 1 TBROK: test killed":
+                zram01 / zram02 / zram03 failed on slow system (bug 1854706)
 ubuntu_ltp_syscalls:
-    chico: &1775784
+    automation-vm5:
         syscalls:
-            "inotify08.c:150: FAIL: didn't get event: mask=":
-                inotify08 (bug 1775784)
-            "FAIL: quotactl failed to set":
-                quotactl01, quotactl02, quotactl03 (bug 1797325)
-            "BROK: tst_test.c:760: mount(/dev/loop2, mnt_point, xfs":
-                quotactl01, quotactl02, quotactl03 (bug 1797325)
-            "unexpected failure - expected = 14 : Bad address, actual: TEST_ERRNO=ENOSYS(38): Function not implemented":
-                process_vm_readv01, process_vm_writev01 (bug 1797330)
-            "process_vm_readv: errno=ENOSYS(38): Function not implemented":
-                process_vm_writev02, process_vm_readv02, process_vm_readv03 (bug 1797331)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04.c:220: Child exit status = 1":
                 msgstress04 (bug 1797348)
-            "fanotify09.c:202: FAIL: first group got more than 2 events":
-                fanotify09 case 2 (bug 1804594)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
-    harpo:
-        <<: *1775784
-    groucho:
-        <<: *1775784
-    gummo:
-        <<: *1775784
-    zeppo:
-        <<: *1775784
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                ptrace08 (bug 1873781)
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
+            "BROK: fork() failed: EAGAIN/EWOULDBLOCK (11)":
+                futex_cmp_requeue01 (bug 1874016)
 ubuntu_lxc:
-    chico: &1775809
+    automation-vm1:
         exercise:
-            "FAIL: unable to create first nic":
-                lxc-test-usernic.in failed on Bionic (bug 1775809)
-    harpo:
-        <<: *1775809
-    groucho:
-        <<: *1775809
-    gummo:
-        <<: *1775809
-    zeppo:
-        <<: *1775809
-ubuntu_nbd_smoke_test:
-    chico: &1793491
-        nbd-smoke-test:
-            "Cannot load Network Block Device module nbd.o":
-                failed with KVM kernels (bug 1793491)
-    harpo:
-        <<: *1793491
-    groucho:
-        <<: *1793491
-    gummo:
-        <<: *1793491
-    zeppo:
-        <<: *1793491
-ubuntu_qrt_kernel_security:
-    chico: &kernel_security
-        test-kernel-security.py:
-            "SCHED_STACK_END_CHECK option was expected to be set in the kernel config":
-                SCHED_STACK_END_CHECK should be enabled (bug 1812159)
-            "SECURITY_SELINUX_DISABLE option was expected to be unset in the kernel config":
-                CONFIG_SECURITY_SELINUX_DISABLE should be disabled (bug 1812153)
-            "LOCK_DOWN_KERNEL option was expected to be set in the kernel config":
-                LOCK_DOWN_KERNEL should be enabled (bug 1811981)
-    harpo:
-        <<: *kernel_security
-    groucho:
-        <<: *kernel_security
-    gummo:
-        <<: *kernel_security
-    zeppo:
-        <<: *kernel_security
-ubuntu_quota_smoke_test:
-    chico: &1784535
-        quota-smoke-test:
-             "quotaon: Quota format not supported in kernel.":
-                 failed with KVM kernel (bug 1784535)
-    harpo:
-        <<: *1784535
-    groucho:
-        <<: *1784535
-    gummo:
-        <<: *1784535
-    zeppo:
-        <<: *1784535
-ubuntu_stress_smoke_test:
-    chico: &1782723
-        stress-smoke-test:
-            "dnotify FAILED":
-                dnotify failed (bug 1782723)
-    harpo:
-        <<: *1782723
-    groucho:
-        <<: *1782723
-    gummo:
-        <<: *1782723
-    zeppo:
-        <<: *1782723
-ubuntu_sysdig_smoke_test:
-    chico: &1766565
-        sysdig-smoke-test:
-            "Could not find start of capture message, maybe sysdig didn't start?":
-                Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
-    harpo:
-        <<: *1766565
-    groucho:
-        <<: *1766565
-    gummo:
-        <<: *1766565
-    zeppo:
-        <<: *1766565
+            "FAIL: lxc-tests: lxc-test-no-new-privs":
+                lxc-test-no-new-privs failed to fetch file (bug 1821152)
 ubuntu_xfstests_btrfs:
     automation-vm2:
         btrfs:

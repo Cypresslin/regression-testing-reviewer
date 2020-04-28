@@ -78,6 +78,8 @@ ubuntu_ltp_syscalls:
                 prctl07 (bug 1839064)
             "Blacklisted test cases: fanotify07":
                 fanotify07 won't fix (bug 1775165)
+            "add_key05.c:124: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     pepe:
         <<: *syscalls-x86
 ubuntu_lxc:
@@ -99,7 +101,7 @@ ubuntu_seccomp:
 ubuntu_unionmount_ovlfs:
     rizzo: &ovlfs
         overlayfs:
-            "/mnt/a/foo100: File unexpectedly on upper layer":
+            "/mnt/a/foo100: File unexpectedly on lower fs":
                 failed with the latest code in upstream (bug 1854298)
     fozzie:
         <<: *ovlfs

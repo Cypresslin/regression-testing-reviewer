@@ -104,15 +104,21 @@ ubuntu_kvm_unit_tests:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
     rizzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                1 unexpected failures in apic-split (bug 1821390)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (timeout; duration=30)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -137,18 +143,39 @@ ubuntu_ltp:
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
+        kernel_misc: &ltp-misc
+            "Failed test cases : tpci":
+                tpci (bug 1868707)
+    s2lp6g001:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
     s2lp6g002:
         fs:
             <<: *ltp-fs
-        contorllers:
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g003:
+        fs:
+            <<: *ltp-fs
+        controllers:
             <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
     secchi:
         <<: *syscalls-amd64
     s2lp6g002:
@@ -159,6 +186,8 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "add_key01.c:77: FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                add_key05 (bug 1869644)
 ubuntu_lxc:
     daedalus: &lxc-setup
         setup:
@@ -177,6 +206,72 @@ ubuntu_seccomp:
         seccomp:
             "ERROR 36-sim":
                 failed on D s390x / PowerPC (bug 1850904)
+ubuntu_xfstests_btrfs:
+    vickers-armstrong:
+        btrfs: &xfstest-no-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+    s2lp6g002:
+        btrfs:
+            <<: *xfstest-no-sdb
+    s2lp6g003:
+        btrfs:
+            <<: *xfstest-no-sdb
+    bavor:
+        btrfs:
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+            "btrfs/186	- output mismatch":
+                btrfs/186 (bug 1869660)
+            "btrfs/187	- output mismatch":
+                btrfs/187 (bug 1848421)
+            "btrfs/193	- output mismatch":
+                btrfs/193 (bug 1848422)
+            "generic/089	- output mismatch":
+                generic/089 (bug 1869657)
+            "generic/102	- output mismatch":
+                generic/102 (bug 1869656)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+ubuntu_xfstests_ext4:
+    bavor:
+        ext4:
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    vought:
+        ext4:
+            <<: *xfstest-no-sdb
+    s2lp6g002:
+        ext4:
+            <<: *xfstest-no-sdb
+    s2lp6g003:
+        ext4:
+            <<: *xfstest-no-sdb
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    s2lp6g002:
+        xfs:
+            <<: *xfstest-no-sdb
+    s2lp6g003:
+        xfs:
+            <<: *xfstest-no-sdb
 xfstests:
     fozzie: &xfstests
         ext4:

@@ -34,7 +34,6 @@ eoan-kvm:
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kvm_smoke_test
         ? ubuntu_lttng_smoke_test
 disco:
     amd64: &d-amd64
@@ -137,12 +136,11 @@ bionic:
         ? ubuntu_xfstests_xfs
 bionic-kvm:
     amd64:
-        <<: *e-amd64
+        <<: *b-amd64
         ? monotonic_time
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kvm_smoke_test
         ? ubuntu_lttng_smoke_test
 bionic-oem:
     amd64:
@@ -279,12 +277,12 @@ xenial-edge:
         ? ubuntu_sysdig_smoke_test
 xenial-kvm:
     amd64:
-        <<: *e-amd64
+        <<: *x-amd64
         ? monotonic_time
         ? ubuntu_blktrace_smoke_test
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kvm_smoke_test
+        ? ubuntu_ltp
         ? ubuntu_lttng_smoke_test
 xenial-fips:
     amd64: &x-fips-amd64

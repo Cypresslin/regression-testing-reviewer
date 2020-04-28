@@ -68,6 +68,9 @@ ubuntu_kvm_unit_tests:
         vmx_apicv_test:
             "FAIL vmx_apicv_test":
                 vmx_apicv_test (bug 1827866)
+        vmx_vmcs_shadow_test:
+            "FAIL vmx_vmcs_shadow_test (timeout":
+                vmx_vmcs_shadow_test timeout (bug 1874186)
 ubuntu_ltp:
     automation-vm4:
         fs:
@@ -101,6 +104,9 @@ ubuntu_ltp:
         net.ipv6_lib:
             "getaddrinfo_01 2 TFAIL":
                 getaddrinfo_01 (bug 1829995)
+        cve:
+            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                cve-2018-1000199 (bug 1874006)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
@@ -109,12 +115,14 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
             "msgstress03    1  TFAIL  :  msgstress03.c:155: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL  :  msgstress04.c:219: Child exit status = 1":
                 msgstress04 (bug 1797348)
+            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                ptrace08 (bug 1873781)
 ubuntu_lxc:
     automation-vm1:
         exercise:

@@ -48,7 +48,7 @@ ubuntu_bpf:
     amaura: &ubuntu_bpf
         test_maps: &bpf-test-map
             "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed (bug 1837386)
+                test_maps failed (bug 1839912)
     gonzo:
         <<: *ubuntu_bpf
     rizzo:
@@ -134,6 +134,13 @@ ubuntu_cts_kernel:
         <<: *ubuntu-cts-flaky
     s2lp6g002:
         <<: *ubuntu-cts-flaky
+ubuntu_fan_smoke_test:
+    modoc: &ubuntu_fan_smoke_test
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+    baltar:
+        <<: *ubuntu_fan_smoke_test
 ubuntu_kernel_selftests:
     vickers-armstrong:
         net:
@@ -589,13 +596,13 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
     pepe:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
     baltar: &syscalls-ppc
         syscalls:
@@ -605,7 +612,7 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
-            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
     entei:
         <<: *syscalls-ppc
@@ -621,7 +628,7 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
-            "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
     s2lp6g002:
         <<: *syscalls-s390x
@@ -662,6 +669,12 @@ ubuntu_lxc:
         <<: *lxc
     modoc:
         <<: *lxc
+    starmie-kernel: &lxc-arm64
+        exercise:
+            "ERROR: Unable to fetch GPG key from keyserver":
+                failed to fetch GPG key
+    hotdog-kernel:
+        <<: *lxc-arm64
 ubuntu_qrt_kernel_security:
     baltar: &ubuntu_qrt_kernel_security
         test-kernel-security.py:
@@ -706,6 +719,59 @@ ubuntu_seccomp:
         <<: *ubuntu_seccomp_s390x
     s2lp6g003:
         <<: *ubuntu_seccomp_s390x
+ubuntu_xfstests_btrfs:
+    vickers-armstrong:
+        btrfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
+    bavor:
+        btrfs:
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+            "btrfs/186	- output mismatch":
+                btrfs/186 (bug 1869660)
+            "btrfs/187	- output mismatch":
+                btrfs/187 (bug 1848421)
+            "btrfs/193	- output mismatch":
+                btrfs/193 (bug 1848422)
+            "generic/089	- output mismatch":
+                generic/089 (bug 1869657)
+            "generic/102	- output mismatch":
+                generic/102 (bug 1869656)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+ubuntu_xfstests_ext4:
+    bavor:
+        ext4:
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    vought:
+        ext4:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    douglas:
+        xfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
 xfstests:
     fozzie: &xfstests
         ext4:
