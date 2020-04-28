@@ -1,0 +1,19 @@
+4.15.0-1066.70 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kvm_unit_tests - vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on c5.metal, i3.metal, r5.metal
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) on t2.small cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_max_usage_in_bytes (bug 1829979) cpuhotplug03 on some instances (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) clock_nanosleep02 (bug 1872388) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1783881)
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) on a1.medium pty04 (bug 1872912) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_test_3 (bug 1836694) getaddrinfo_01 (bug 1829995) instances tpci (bug 1868707) cve-2017-10661 cve-2017-17712 cve-2018-18559 cve-2018-7566 failed on a1.large only with kernel already tainted
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

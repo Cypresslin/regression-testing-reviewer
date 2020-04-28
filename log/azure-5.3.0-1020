@@ -1,0 +1,15 @@
+Marked as incomplete for the bpf build issue (bug 1871613)
+
+5.3.0-1020.21 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - bpf build issue (bug 1871613) in net global.user_notification_basic failed in seccomp (bug 1862588) inconsistency-check (bug 1864626) Register/unregister many kprobe events in ftrace (bug 1866972) Test trace_printk from module UNRESOLVED in ftrace (bug 1869347) ftrace - function trace on module UNRESOLVED (bug 1869349) Kprobe event auto/manual naming UNRESOLVED in ftrace (bug 1874679)
+  ubuntu_kvm_unit_tests - test crashed with vmx_host_state_area (bug 1874693) on Standard_D48_v3, Standard_F32s_v2
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_base_ops (bug 1830359) cpuset_hotplug (bug 1834006) cpuset_load_balance (bug 1830360) cpuset_memory_spread (bug 1830585) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) cve-2018-9568 (bug 1874012) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1797341) 
+  ubuntu_lxc - lxc-test-no-new-privs (failed to fetch package) on Standard_B1ms, Standard_DS5_v2 (bug 1821152), passed on the rest
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+  * libhugetlbfs

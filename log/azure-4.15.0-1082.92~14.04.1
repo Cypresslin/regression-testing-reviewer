@@ -1,0 +1,17 @@
+4.15.0-1077.82~14.04.1  - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) port80 (bug 1748105) umip (1821905) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_D48_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) connect02 (bug 1874014) getrusage04 (bug 1841425) on Basic_A2 move_pages12 (bug 1831043) on Standard_D48_v3 openat03 (bug 1798027) prctl07 (bug 1839064) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+  ubuntu_lxc - lxc test failed on Azure T-4.15 (bug 1813878)
+  ubunut_qrt_apparmor - timed out on Standard-B1ms (bug 1783922)
+
+Skipped / blacklisted:
+  * ubuntu_fan_smoke_test
+  * ubuntu_kernel_selftests
+  * ubuntu_ltp
+  * ubuntu_lttng_smoke_test
+  * ubuntu_nbd_smoke_test
+  * ubuntu_sysdig_smoke_test
+  * ubuntu_zfs_smoke_test

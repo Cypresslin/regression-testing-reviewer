@@ -1,0 +1,15 @@
+4.15.0-1054.60 - ibm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_map (bug 1839912)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) port80 (bug 1748105) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) memcg_failcnt (bug 1845919) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cve-2018-9568 (bug 1874012) tpci (bug 1868707) zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) btrfs fill_fs test in fallocate06 (bug 1866323) connect02 (bug 1874014) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - No scratch drive available for the test
+  ubuntu_xfstests_ext4 - No scratch drive available for the test
+  ubuntu_xfstests_xfs - No scratch drive available for the test
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_ecryptfs

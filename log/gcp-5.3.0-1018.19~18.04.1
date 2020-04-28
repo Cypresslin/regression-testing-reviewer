@@ -1,0 +1,15 @@
+Marked as incomplete for the bpf build issue (bug 1871613)
+
+5.3.0-1018.19~18.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test	- enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - global.user_notification_basic failed in seccomp (bug 1862588) Register/unregister many kprobe events in ftrace (bug 1866972) memory-hotplug on some instances (bug 1866846) Test trace_printk from module UNRESOLVED in ftrace (bug 1869347) ftrace - function trace on module UNRESOLVED in ftrace (bug 1869349) ftrace - function trace with cpumask UNRESOLVED in ftrace (bug 1874198) net test failed to build because of bpf (bug 1871613)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644)  btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) kill11 (bug 1865965) connect02 (bug 1874014)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

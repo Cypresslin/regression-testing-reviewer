@@ -1,0 +1,20 @@
+5.0.0-47.51~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - global.user_notification_basic in seccomp (bug 1862588) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat_rss (bug 1837035) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - btrfs/153 (bug 1848409) btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/187 (bug 1848421)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs  - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999) 
+
+Issue to note in arm64:
+  hwclock - hwclock test failed due to 0.x sec differences (bug 1802233)
+  ubuntu_bpf - Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat_rss (bug 1837035) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) move_pages12 (bug 1831043)
+  ubuntu_lxc - failed to fetch GPG key
+  ubuntu_stress_smoke_test - sysfs oopsed on hotdog (bug 1866772)
+  ubuntu_vfat_stress - failed on hotdog-kernel but passed on wright-kernel

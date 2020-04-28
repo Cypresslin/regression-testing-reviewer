@@ -1,0 +1,15 @@
+Marked as Incomplete for bpf test build issue, issue raised.
+(Affecting the ubuntu_bpf and the net test in ubuntu_kernel_selftests)
+
+5.0.0-1048.53 - oem-osp1
+Regression test CMPL, RTB.
+
+59 / 60 tests were run, missing: ubuntu_xfstests_btrfs
+Issue to note in amd64:
+  ubuntu_bpf - test failed to build (bug 1872431)
+  ubuntu_kernel_selftests - global.user_notification_basic in seccomp (bug 1862588) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) btrfs fill_fs test in fallocate06 (bug 1866323)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)

@@ -1,0 +1,25 @@
+4.15.0-1028.33 - fips
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - add_key05 (bug 1869644) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_qrt_apparmor -  failed on Intel SDP instance (bug 1873737)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/186 (bug 1869660) btrfs/187 (bug 1848421) btrfs/193 (bug 1848422) generic/089 (bug 1869657) generic/102 (bug 1869656) generic/228 (bug 1846308)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999) no scratch drive for the test
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+Test case ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs does not exist in the database, please check
+55 / 53 tests were run, missing: fips_test
+Issue to note in s390x:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - TRACE_syscall in seccomp (bug 1812824)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - add_key01 (bug 1862878) add_key05 (bug 1869644) msgstress03 (bug 1797341) kill11 (bug 1865965) some other failures caused by kernel-already-tainted error caused by add_key01
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
+
+* Missing fips_test because of bug 1873417
