@@ -1,0 +1,14 @@
+4.15.0-1060.61 - kvm
+Regression test CMPL, RTB.
+
+53 / 55 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - psock_tpacket in net failed (bug 1812176) test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) memory (bug 1845687) port80 timeouted (bug 1748105) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - test timeout on jenkins
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) ptrace08 (bug 1873781) futex_cmp_requeue01 (bug 1874016)
+  ubuntu_lxc - lxc-test-no-new-privs failed to fetch file (bug 1821152)
+  ubuntu_xfstests_ext4 - No scratch drive available for the test
+  ubuntu_xfstests_xfs - No scratch drive available for the test
+

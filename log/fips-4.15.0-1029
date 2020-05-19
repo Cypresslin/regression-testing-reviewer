@@ -1,0 +1,20 @@
+4.15.0-1029.34 - fips
+Regression test CMPL, RTB.
+
+59 / 61 tests were run, missing: ubuntu_boot, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - No scratch drive available for the test
+  ubuntu_xfstests_ext4 - No scratch drive available for the test
+
+Test case ubuntu_xfstests_xfs does not exist in the database, please check
+18 / 53 tests were run, missing: aio_dio_bugs, ebizzy, fips_test, fsx, hwclock, ipv6connect, rmaptest, signaltest, synctest, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kernel_selftests, ubuntu_kvm_smoke_test, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_seccomp, ubuntu_squashfs_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_unionmount_ovlfs, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in s390x:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012)
+  ubuntu_xfstests_xfs - No scratch drive available for the test
+
+* Incomplete s390x KVM because of the maas issue

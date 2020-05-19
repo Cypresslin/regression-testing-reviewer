@@ -1,0 +1,11 @@
+5.0.0-1052.57 - oem-osp1
+Regression test CMPL, RTB.
+
+59 / 60 tests were run, missing: ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kernel_selftests - Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - fanotify09 case 3 (bug 1876684) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - No scratch drive available for the test
+  ubuntu_xfstests_ext4 - No scratch drive available for the test

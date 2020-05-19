@@ -1,0 +1,63 @@
+4.15.0-101.102 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/186 (bug 1869660) btrfs/187 (bug 1848421) btrfs/193 (bug 1848422) generic/089 (bug 1869657) generic/102 (bug 1869656) generic/228 (bug 1846308)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) cpuhotplug04 (bug 1836169) zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch GPG key
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578) test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - msr on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359) TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359) TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363) dscr_sysfs_test in powerpc/dscr (bug 1813136) subpage_prot in powerpc/mm (bug 1813140)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - TRACE_syscall.skip_after_RET_TRACE in seccomp (bug 1812824) TRACE_syscall.kill_after_RET_TRACE in seccomp (bug 1812824) TRACE_syscall.skip_after_ptrace in seccomp (bug 1812824) TRACE_syscall.kill_after_ptrace in seccomp (bug 1812824)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - add_key01 (bug 1862878) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) ioctl_loop05 on s390x (bug 1879236) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - TRACE_syscall.skip_after_RET_TRACE in seccomp (bug 1812824) TRACE_syscall.kill_after_RET_TRACE in seccomp (bug 1812824) TRACE_syscall.skip_after_ptrace in seccomp (bug 1812824) TRACE_syscall.kill_after_ptrace in seccomp (bug 1812824)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - add_key01 (bug 1862878) connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) ioctl_loop05 on s390x (bug 1879236) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) msgstress04 (bug 1797348) kill11 (bug 1865965)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+Note:
+  * missing s390x KVM because of the maas issue

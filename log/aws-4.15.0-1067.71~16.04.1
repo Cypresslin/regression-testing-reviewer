@@ -1,0 +1,24 @@
+4.15.0-1067.71~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kvm_unti_tests - 2 failures in apic (bug 1853433) vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on bare-metal nodes
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 on some instances (bug 1831043) pkey01 on some instances (c5.metal) (bug 1849093) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965) clock_nanosleep02 (bug 1872388)
+  ubuntu_lxc - unable to fetch GPG key, failed on c4.large, c5.large, m5.xlarge, t2.small passed on the rest
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp
+
+Issue to note in arm64 (aws):
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+  ubuntu_lxc - unable to fetch GPG key, failed on a1.large
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_bpf
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

@@ -1,0 +1,13 @@
+5.0.0-1037.38 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_fan_smoke_test  - failed with unknown underlay network format (bug 1874703)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - msg_zerocopy in net (bug 1812620) test_bpf missing config in net (bug 1812189) (bug 1862588) Register/unregister many kprobe events in ftrace (bug 1866972) Test trace_printk from module UNRESOLVED in ftrace (bug 1869347) ftrace - function trace on module UNRESOLVED (bug 1869349) ftrace - function trace with cpumask UNRESOLVED in ftrace (bug 1874198)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-share-ns (bug 1827383)
+
+Skipped / blacklisted:
+ * libhugetlbfs
