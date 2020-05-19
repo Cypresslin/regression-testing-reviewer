@@ -401,10 +401,10 @@ ubuntu_ltp:
             "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
                 cve-2015-3290 (bug 1837005)
         kernel_misc: &ltp-misc
-            "zram02 1 TFAIL: unexpected num of devices:":
-                zram02 (bug 1829992)
+            "zram02 2 TFAIL: can't set":
+                zram02 (bug 1878896)
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     naumann:
         fs:
             <<: *ltp-fs
@@ -483,7 +483,7 @@ ubuntu_ltp:
             "zram01 1 TBROK: test killed, timeout! If you are running on slow machine, try exporting LTP_TIMEOUT_MUL > 1":
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     appleton-kernel:
         fs:
             <<: *ltp-fs
@@ -499,7 +499,7 @@ ubuntu_ltp:
                 cve-2017-1000380 failed as kernel already tainted
         kernel_misc:
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     hotdog-kernel:
         fs:
             <<: *ltp-fs
@@ -515,7 +515,7 @@ ubuntu_ltp:
                 cve-2017-1000380 failed as kernel already tainted
         kernel_misc:
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     baltar:
         fs:
             <<: *ltp-fs
@@ -570,7 +570,7 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
         kernel_misc:
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     s2lp6g002:
         fs:
             <<: *ltp-fs
@@ -591,45 +591,38 @@ ubuntu_ltp:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura:
-        syscalls:
+        syscalls: &syscalls
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
+            "FAIL: group 1 got event: mask 10":
+                fanotify09 case 3 (bug 1876684)
     pepe:
         syscalls:
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
+            <<: *syscalls
     baltar: &syscalls-ppc
         syscalls:
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
+            <<: *syscalls
             "move_pages12.c:95: FAIL: madvise failed: ENOMEM":
                 move_pages12 (bug 1831043)
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
     entei:
         <<: *syscalls-ppc
     modoc:
         <<: *syscalls-ppc
     kernel02: &syscalls-s390x
         syscalls:
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
+            <<: *syscalls
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL  :  msgstress04":
                 msgstress04 (bug 1797348)
             "FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
+            "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                ioctl_loop05 on s390x (bug 1879236)
     s2lp6g002:
         <<: *syscalls-s390x
     s2lp6g003:
@@ -638,8 +631,7 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-s390x
     appleton-kernel: &syscalls-arm64
         syscalls:
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
+            <<: *syscalls
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
     hotdog-kernel:

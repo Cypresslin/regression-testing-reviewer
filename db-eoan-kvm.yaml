@@ -40,9 +40,6 @@ ubuntu_kernel_selftests:
                 test_vxlan_under_vrf.sh (bug 1837348)
             "selftests: net: so_txtime.sh # exit=2":
                 so_txtime.sh in net (bug 1870106)
-        seccomp:
-            "FAIL ] global.user_notification_basic":
-                global.user_notification_basic in seccomp (bug 1862588)
         ftrace:
             "Test trace_printk from module	[UNRESOLVED]":
                 Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)

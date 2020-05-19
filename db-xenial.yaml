@@ -32,14 +32,14 @@ libhugetlbfs:
     s2lp6g001:
         <<: *libhugetlbfs
 ubuntu_bpf_jit:
-    s2lp3: &1768452
+    s2lp3: &ubuntu_bpf_jit
         ubuntu-bjf-jit:
-            "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
-                4 failures reported for X s390x (bug 1768452)
+            "ld_abs+vlan_push/pop FAIL to select_runtime":
+                ld_abs+vlan_push/pop from ubuntu_bpf_jit will fail on X s390x (bug 1868243)
     s2lp6g001:
-        <<: *1768452
+        <<: *ubuntu_bpf_jit
     kernel01:
-        <<: *1768452
+        <<: *ubuntu_bpf_jit
 ubuntu_fan_smoke_test:
     modoc:
         fan-smoke-test:
@@ -176,14 +176,14 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -247,10 +247,24 @@ ubuntu_seccomp:
     kernel01:
         <<: *ubuntu_seccomp
 ubuntu_unionmount_ovlfs:
-    automation-vm4:
+    automation-vm4: &ubuntu_unionmount_ovlfs
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on lower fs":
                 failed with the latest code in upstream (bug 1854298)
+    rizzo:
+        <<: *ubuntu_unionmount_ovlfs
+    fozzie:
+        <<: *ubuntu_unionmount_ovlfs
+    ms10-34-mcdivittB0-kernel:
+        <<: *ubuntu_unionmount_ovlfs
+    modoc:
+        <<: *ubuntu_unionmount_ovlfs
+    s2lp6g001:
+        <<: *ubuntu_unionmount_ovlfs
+    s2lp3:
+        <<: *ubuntu_unionmount_ovlfs
+    kernel01:
+        <<: *ubuntu_unionmount_ovlfs
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
         btrfs:

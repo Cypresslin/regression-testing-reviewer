@@ -19,8 +19,10 @@ hwclock:
 libhugetlbfs:
     s2lp6g001: &libhugetlbfs-s390x
         libhugetlbfs:
-            "FAIL:     0     11":
-                failed 11
+            "Address is not hugepage":
+                libhugetlbfs failed with "Address is not hugepage / Heap not on hugepages" (bug 1864650)
+            "Heap not on hugepages":
+                libhugetlbfs failed with "Address is not hugepage / Heap not on hugepages" (bug 1864650)
             "Killed by signal:     0      7":
                 killed by signal 7
             "Bad configuration:     0      1":
@@ -137,6 +139,8 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls
         syscalls:
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
@@ -147,10 +151,10 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
     entei: &syscalls-p8
         syscalls:
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
             ") failed: ENOSPC":
                 fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":
@@ -159,8 +163,6 @@ ubuntu_ltp_syscalls:
                 fanotify07 won't fix (bug 1775165)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
-                timer_create01 (bug 1838961)
             "move_pages12.c:95: FAIL: madvise failed: EIO (5)":
                 move_pages12 (bug 1831043)
     modoc:
@@ -224,6 +226,9 @@ ubuntu_xfstests_xfs:
         xfs:
             <<: *xfstest-no-sdb
     s2lp6g003:
+        xfs:
+            <<: *xfstest-no-sdb
+    douglas:
         xfs:
             <<: *xfstest-no-sdb
 xfstests:

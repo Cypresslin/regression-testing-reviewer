@@ -140,17 +140,22 @@ ubuntu_ltp:
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
+        cve: &ltp-cve
+            "failed: ENOPROTOOPT":
+                cve-2018-9568 (bug 1874012)
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
-                tpci (bug 1868707)
+                tpci (bug 1878389)
     s2lp6g001:
         fs:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
+        cve:
+            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g002:
@@ -158,6 +163,8 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
+        cve:
+            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g003:
@@ -165,17 +172,21 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
+        cve:
+            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
+            "FAIL: group 1 got event: mask 10":
+                fanotify09 case 3 (bug 1876684)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
     secchi:
         <<: *syscalls-amd64
     s2lp6g002:
@@ -186,8 +197,6 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "add_key01.c:77: FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
 ubuntu_lxc:
     daedalus: &lxc-setup
         setup:

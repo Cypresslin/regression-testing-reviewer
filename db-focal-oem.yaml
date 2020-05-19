@@ -1,4 +1,4 @@
-# 5.0 Bionic OEM
+# 5.6 Focal OEM
 # Format:
 # test-suite:
 #   sut:
@@ -11,17 +11,24 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_kernel_selftests:
-    amaura: &kernel_selftests
-        ftrace:
-            "Register/unregister many kprobe events	[FAIL]":
-                Register/unregister many kprobe events in ftrace (bug 1866972)
-    naumann:
-        <<: *kernel_selftests
-    gonzo:
-        <<: *kernel_selftests
+ubuntu_aufs_smoke_test:
+    onibi:
+        aufs-smoke-test:
+            "unknown filesystem type 'aufs'":
+               failed on F-OEM-5.6 (bug 1879308)
+ubuntu_bpf:
     rizzo:
-        <<: *kernel_selftests
+        setup:
+            "BPF obj compilation failed":
+                ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+ubuntu_kernel_selftests:
+    rizzo:
+        net:
+            "Couldn't find kernel BTF; set VMLINUX_BTF to specify its location.":
+                ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+        ftrace:
+            "Kprobe event parser error log check	[FAIL]":
+                Kprobe event parser error log check in ftrace (bug 1879345)
 ubuntu_kvm_unit_tests:
     rizzo:
         vmx_host_state_area:
@@ -45,43 +52,20 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "memcg_stat_rss 7 TFAIL: rss is":
                 memcg_stat_rss (bug 1837035)
+        commands: &ltp-commands
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
         net.ipv6_lib: &ltp-net-ipv6-lib
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-        cve:
-            "failed: ENOPROTOOPT (92)":
-                cve-2018-9568 (bug 1874012)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
-    naumann:
-        fs:
-            <<: *ltp-fs
-        mm:
-            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
-                ksm06* in mm (bug 1830316)
-        controllers:
-            <<: *ltp-controllers
-            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result -  Expected string - ":
-                cpuset_base_ops in controllers (bug 1830359)
-            "TFAIL: load balance test failed.":
-                cpuset_load_balance in controllers (bug 1830360)
-            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
-                cpuset_memory_spread (bug 1830585)
-            "TFAIL: partition sched domains failed.":
-                cpuset_sched_domains (bug 1830361)
-        cpuhotplug:
-            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline":
-                cpuhotplug04 (bug 1836169)
-        net.ipv6_lib:
-            <<: *ltp-net-ipv6-lib
-        crypto:
-            <<: *ltp-crypto
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
@@ -89,32 +73,46 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "failed: ENOPROTOOPT":
-                 connect02 (bug 1874014)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: got unnecessary event:":
+                fanotify15 (bug 1878748)
+ubuntu_qrt_kernel_security:
+    onibi:
+        test-kernel-security.py:
+            "FAIL: test_310_config_security_perf_events_restrict":
+                test_310_config_security_perf_events_restrict / test_400_refcount_config (bug 1879339)
+            "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
+                test_310_config_security_perf_events_restrict / test_400_refcount_config (bug 1879339)
+            "FAIL: test_072_strict_devmem":
+                test_072_strict_devmem (bug 1879340)
+            "FAIL: test_350_retpolined_modules":
+                test_350_retpolined_modules (bug 1879341)
+ubuntu_sysdig_smoke_test:
+    onibi:
+        sysdig-smoke-test:
+            "Error! Bad return status for module build on kernel":
+                sysdig module build failed on F-OEM-5.6 (bug 1879336)
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:
+            "btrfs/136	[failed":
+                btrfs/136 (bug 1878347)
+            "btrfs/139	- output mismatch":
+                btrfs/139 (bug 1878349)
+            "btrfs/153	- output mismatch":
+                btrfs/153 (bug 1848409)
             "btrfs/172	- output mismatch":
                 btrfs/172 (bug 1848417)
             "btrfs/182	- output mismatch":
                 btrfs/182 (bug 1848418)
-            "btrfs/186	- output mismatch":
-                btrfs/186 (bug 1869660)
-            "btrfs/187	- output mismatch":
-                btrfs/187 (bug 1848421)
-            "btrfs/193	- output mismatch":
-                btrfs/193 (bug 1848422)
-            "generic/089	- output mismatch":
-                generic/089 (bug 1869657)
-            "generic/102	- output mismatch":
-                generic/102 (bug 1869656)
-            "generic/228	- output mismatch":
-                generic/228 (bug 1846308)
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
 ubuntu_xfstests_ext4:
     bavor:
         ext4:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
             "generic/228	- output mismatch":
                 generic/228 (bug 1846308)
             "generic/394	- output mismatch":
@@ -126,6 +124,8 @@ ubuntu_xfstests_ext4:
 ubuntu_xfstests_xfs:
     bavor:
         xfs:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
             "generic/228	- output mismatch":
                 generic/228 (bug 1846308)
             "generic/394	- output mismatch":

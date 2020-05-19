@@ -168,6 +168,10 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                 add_key05 (bug 1869644)
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
+            "FAIL: group 2 got event: mask 10":
+                fanotify09 case 3 (bug 1876684)
     entei: &syscalls-ppc
         syscalls:
             <<: *syscalls

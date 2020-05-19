@@ -48,11 +48,7 @@ ubuntu_bpf:
         <<: *ubuntu_bpf
     modoc:
         <<: *ubuntu_bpf
-    starmie-kernel:
-        ubuntu-bjf:
-            "Failed sockmap unexpected timeout":
-                Failed sockmap unexpected timeout on ARM64 (bug 1805806)
-    ms10-34-mcdivittB0-kernel:
+    hotdog-kernel:
         test_verifier:
             "valid read map access into a read-only array 2 FAIL":
                 Test 13 in test_verifier (bug 1845870)
@@ -75,85 +71,52 @@ ubuntu_btrfs_kernel_fixes:
     baltar:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
-    starmie-kernel: &kernel-selftests-arm64
-        breakpoints:
-            "error: ‘TRAP_HWBKPT’ undeclared":
-                breakpoint test failed to build (bug 1680507)
-        net:
+    gonzo: 
+        net: &net-kselftests
             "selftests: net: xfrm_policy.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: pmtu.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
+        ftrace: &ftrace-kselftests
+            "Register/unregister many kprobe events     [FAIL]":
+                Register/unregister many kprobe events in ftrace (bug 1866972)
+    rizzo:
+        net:
+            <<: *net-kselftests
         ftrace:
-            "[27] Kprobe dynamic event - probing module [FAIL]":
-                Kprobe probing module in ftrace (bug 1812636)
-    ms10-34-mcdivittB0-kernel:
-        cpu-hotplug:
-            "echo: write error: Operation not supported":
-                cpu-hotplug failed on moonshot (bug 1809701)
-        <<: *kernel-selftests-arm64
-    gonzo: &kernel-selftests-amd64
+            <<: *ftrace-kselftests
+    fozzie:
         net:
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            <<: *net-kselftests
             "./ip_defrag: sendto overlap: 2120: Operation not permitted":
                  ip_defrag in net (bug 1826848)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-            "TEST: ipv6: list and flush cached exceptions [FAIL]":
-                pmtu.sh in net (bug 1845858)
-        seccomp:
-            "FAIL ] global.user_notification_basic":
-                global.user_notification_basic failed in seccomp (bug 1862588)
-    rizzo:
-        <<: *kernel-selftests-amd64
-    fozzie:
-        <<: *kernel-selftests-amd64
         ftrace:
-            "Kprobe event string type argument   [FAIL]":
-                Kprobe event string type argument in ftrace (bug 1812645)
+            <<: *ftrace-kselftests
+            "Kprobe event user-memory access	[FAIL]":
+                Kprobe event user-memory access (bug 1878784)
+    hotdog-kernel:
+        net:
+            <<: *net-kselftests
+        ftrace:
+            <<: *ftrace-kselftests
     modoc:
         net:
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: reuseport_bpf_numa":
+            <<: *net-kselftests
+            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
                 reuseport_bpf_numa in net (bug 1812638)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-        powerpc:
-            " for symbol `' out of range":
-                ebb in powerpc (bug 1812805)
+            "./reuseport_bpf_cpu: failed to pin to cpu: Invalid argument":
+                reuseport_bpf_cpu in net (bug 1872652)
+            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
+                 ip_defrag in net (bug 1826848)
     baltar:
         net:
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1812189)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-        powerpc:
-            "dscr: dscr_sysfs_test [FAIL]":
-                dscr_sysfs_test in powerpc/dscr (bug 1813136)
-            "ebb: cycles_test [FAIL]":
-                cycles_test in powerpc/ebb (bug 1830151)
+            <<: *net-kselftests
+            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
+                reuseport_bpf_numa in net (bug 1812638)
+            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
+                 ip_defrag in net (bug 1826848)
 ubuntu_cts_kernel:
     modoc: &cts_kernel_flaky
         lp1262692:
@@ -163,6 +126,13 @@ ubuntu_cts_kernel:
         <<: *cts_kernel_flaky
     rizzo:
         <<: *cts_kernel_flaky
+ubuntu_fan_smoke_test:
+    modoc: &ubuntu_fan_smoke_test
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+    baltar:
+        <<: *ubuntu_fan_smoke_test
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -257,13 +227,8 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
-            "failed: EROFS":
-                fs_fill (bug 1842266)
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
-            "vma05 1 TFAIL: [vsyscall] reporting wrong":
-                vma05 (bug 1845863)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -284,6 +249,12 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
+        cve: &ltp-cve
+            "failed: ENOPROTOOPT":
+                cve-2018-9568 (bug 1874012)
+        kernel_misc: &ltp-misc
+            "Failed test cases : tpci":
+                tpci (bug 1878389)
     pepe:
         fs:
             <<: *ltp-fs
@@ -292,18 +263,21 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
         cve:
+            <<: *ltp-cve
+        cve:
             "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
                 cve-2015-3290 (bug 1837005)
-            "Kernel is already tainted:":
-                cve-2017-17053 / cve-2017-1000380 failed because of cve-2015-3290 (bug 1837005)
         crypto:
             <<: *ltp-crypto
         kernel_misc:
-            "zram02 3 TFAIL: can't set":
-                zram02 (bug 1829992)
-    ms10-35-mcdivittB0-kernel:
+            <<: *ltp-misc
+            "zram02 2 TFAIL: can't set":
+                zram02 (bug 1878896)
+    appleton-kernel:
         fs:
             <<: *ltp-fs
+            "BROK: fs_fill.c:":
+                fs_fill failed with ENOSPC in fs (bug 1878877)
         controllers:
             <<: *ltp-controllers
         cpuhotplug:
@@ -317,12 +291,18 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
     baltar:
         fs:
             <<: *ltp-fs
+            "BROK: fs_fill.c:":
+                fs_fill failed with ENOSPC in fs (bug 1878877)
         mm:
+            "FAIL: pages_unshared is not 1 but 0":
+                ksm04 in mm on P9 (bug 1878893)
             "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
                 ksm06* in mm (bug 1830316)
         controllers:
@@ -348,8 +328,10 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
-            "cpufreq_boost 1 TBROK":
+            "cpufreq_boost    1  TBROK":
                 cpufreq_boost (bug 1842032)
+        cve:
+            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
     modoc:
@@ -380,41 +362,50 @@ ubuntu_ltp:
                 cpuset_syscall (bug 1862908)
         net.ipv6_lib:
             <<: *ltp-net
-        kernel_misc:
-            "cpufreq_boost 1 TFAIL : cpufreq_boost.c":
-                cpufreq_boost (bug 1842032)
+        cve:
+            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
-    chico: &1765331
-        ltp:
-            "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
-                ar test failed with 4.15 KVM (bug 1765331)
-    harpo:
-        <<: *1765331
-    groucho:
-        <<: *1765331
-    gummo:
-        <<: *1765331
-    zeppo:
-        <<: *1765331
 ubuntu_ltp_syscalls:
-    pepe: &syscalls
+    amaura:
+        syscalls: &syscalls
+            "failed: ENOPROTOOPT":
+                connect02 (bug 1874014)
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
+            "FAIL: group 1 got event: mask 10":
+                fanotify09 case 3 (bug 1876684) 
+            "FAIL: got unnecessary event:":
+                fanotify15 (bug 1878748)
+    pepe:
         syscalls:
+            <<: *syscalls
             "FAIL: copy_file_range failed unexpectedly; expected EOVERFLOW, but got: EFBIG (27)":
                 copy_file_range02 (bug 1851653)
-            "sync_file_range02.c:74: FAIL: Sync inside of write":
-                sync_file_range02 (bug 1851655)
+    hotdog-kernel:
+        syscalls:
+            <<: *syscalls
     modoc:
         syscalls:
-            "stime01.c:51: FAIL: system time not set to":
-                stime01 (bug 1845620)
-ubuntu_lxc:
-    modoc: &lxc
-        exercise:
-            "ERROR: Failed to download":
-                failed to download template on PPC (bug 1839835)
+            <<: *syscalls
     baltar:
+        syscalls:
+            <<: *syscalls
+ubuntu_lxc:
+    baltar: &lxc
+        exercise:
+            "Failed to fetch http://ports.ubuntu.com/":
+                failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+    entei:
         <<: *lxc
+    modoc:
+        <<: *lxc
+    starmie-kernel: &lxc-arm64
+        exercise:
+            "ERROR: Unable to fetch GPG key from keyserver":
+                failed to fetch GPG key
+    hotdog-kernel:
+        <<: *lxc-arm64
 ubuntu_qrt_kernel_security:
     onza:
         test-kernel-security.py:
@@ -458,20 +449,36 @@ ubuntu_sysdig_smoke_test:
         <<: *sysdig
     pepe:
         <<: *sysdig
-xfstests:
-    fozzie: &xfstests
+ubuntu_xfstests_btrfs:
+    bavor:
+        btrfs:
+            "btrfs/139	- output mismatch":
+                btrfs/139 (bug 1878349)
+            "btrfs/153	- output mismatch":
+                btrfs/153 (bug 1848409)
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+ubuntu_xfstests_ext4:
+    bavor:
         ext4:
-            "generic/429	 [not run]":
+            "generic/228	- output mismatch":
+                 generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
                 timed out on ext4 generic/430 test (bug 1755999)
             "generic/430":
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
-    michael:
-        <<: *xfstests
-    rizzo:
-        <<: *xfstests
-    entei:
-        <<: *xfstests
-    modoc:
-        <<: *xfstests
-    starmie-kernel:
-        <<: *xfstests
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/228	- output mismatch":
+                 generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK

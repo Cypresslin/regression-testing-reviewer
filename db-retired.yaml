@@ -169,6 +169,11 @@ xenial:
             <<: *1689240-x
         s2lp6g001:
             <<: *1689240-x
+    ubuntu_bpf_jit:
+        s2lp3: &ubuntu_bpf_jit
+            ubuntu-bjf-jit:
+                "modprobe: ERROR: could not insert 'test_bpf': Invalid argument":
+                    4 failures reported for X s390x (bug 1768452)
     ubuntu_btrfs_kernel_fixes:
         pepe:
             aa9ddcd4b5557102fa25695c11904f249b4dec49:
@@ -194,6 +199,8 @@ xenial:
     ubuntu_ltp_syscalls:
         ms10-35-mcdivittB0-kernel:
             syscalls: &syscalls-x
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
                 "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                     bind03 (bug 1788351)
                 "BROK: msgctl02.c:68: msgget":
@@ -273,6 +280,8 @@ xenial-hwe:
                     inotify08 (bug 1775784)
                 "FAIL: first group got more than 2 events (72 > 48)":
                     fanotify09-2 (bug 1804594)
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
         modoc:
             syscalls:
                 "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
@@ -366,6 +375,10 @@ xenial-fips:
             syscalls:
                 "tag=fanotify09 stime=":
                     fanotify09-2 (bug 1804594)
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
+                "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
+                    timer_create01 (bug 1838961)
 xenial-kvm:
     ubuntu_blktrace_smoke_test:
         chico: &blktrace-smoke-test-x-kvm
@@ -690,6 +703,10 @@ bionic:
             kernel_misc:
                 "/opt/ltp/testcases/bin/zram01.sh:":
                     zram01 (bug 1829991)
+                "zram02 1 TFAIL: unexpected num of devices:":
+                    zram02 (bug 1829992)
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         baltar:
             syscalls:
@@ -719,6 +736,8 @@ bionic:
                     stime01 (bug 1845620)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                     timer_create01 (bug 1838961)
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
         s2lp6g001:
             syscalls:
                 "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
@@ -1083,6 +1102,9 @@ bionic-oem:
                     binfmt_misc02 (bug 1822246)
                 "failed: EROFS":
                     fs_fill (bug 1842266)
+            kernel_misc:
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
@@ -1098,6 +1120,8 @@ bionic-oem:
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "add_key05.c:133: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
     ubuntu_lxc:
         daedalus:
             setup:
@@ -1114,6 +1138,9 @@ bionic-oem-osp1:
             net:
                 "undefined reference to `bpf_probe_prog_type'":
                     function does not exist (1829812)
+            seccomp:
+                "FAIL ] global.user_notification_basic":
+                    global.user_notification_basic in seccomp (bug 1862588)
     ubuntu_kvm_unit_tests:
         gonzo:
             apic:
@@ -1127,9 +1154,14 @@ bionic-oem-osp1:
             fs:
                 "binfmt_misc02 1 TFAIL: Recognise a disabled binary type successfully":
                     binfmt_misc02 (bug 1822246)
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
             timers: &ltp-timers
                 "leapsec_timer 2 TBROK : leapsec_timer.c":
                     leapsec_timer (bug 1829971)
+            kernel_misc:
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         amaura:
             syscalls:
@@ -1139,6 +1171,8 @@ bionic-oem-osp1:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
                 "killed by signal SIGSEGV":
                     pivot_root01 (bug 1852966)
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -1157,15 +1191,42 @@ bionic-edge:
                     TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
                 "‘PTRACE_EVENTMSG_SYSCALL_ENTRY’ undeclared":
                     seccomp failed to build (bug 1845856)
+                "FAIL ] global.user_notification_basic":
+                    global.user_notification_basic failed in seccomp (bug 1862588)
+            ftrace:
+                "Kprobe event string type argument   [FAIL]":
+                    Kprobe event string type argument in ftrace (bug 1812645)
+            powerpc:
+                "ebb: cycles_test [FAIL]":
+                    cycles_test in powerpc/ebb (bug 1830151)
+                "dscr: dscr_sysfs_test [FAIL]":
+                    dscr_sysfs_test in powerpc/dscr (bug 1813136)
+    ubuntu_ltp:
+        amaura:
+            fs:
+                "failed: EROFS":
+                    fs_fill (bug 1842266)
+            mm:
+                "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                    vma05 (bug 1845863)
+            kernel_misc:
+                "zram02 1 TFAIL: unexpected num of devices:":
+                    zram02 (bug 1829992)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
                 "FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify15, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "sync_file_range02.c:74: FAIL: Sync inside of write":
+                    sync_file_range02 (bug 1851655)
+                "stime01.c:51: FAIL: system time not set to":
+                    stime01 (bug 1845620)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -1176,6 +1237,9 @@ bionic-edge:
             setup:
                 "E: Unable to correct problems, you have held broken packages.":
                     package from -proposed and from -update casuing apt issue (bug 1805978)
+            exercise:
+                "ERROR: Failed to download":
+                    failed to download template on PPC (bug 1839835)
     ubuntu_qrt_kernel_security:
         modoc: &kernel-security-ppc
             test-kernel-security.py:
@@ -1210,9 +1274,14 @@ bionic-fips:
                     binfmt_misc02 (bug 1822246)
                 "failed: EROFS":
                     fs_fill (bug 1842266)
+            kernel_misc:
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         amaura:
             syscalls:
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
@@ -1339,9 +1408,13 @@ eoan:
                     zram01 (bug 1829991)
                 "zram02 1 TFAIL: unexpected num of devices:":
                     zram02 (bug 1829992)
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         pepe: &syscalls-amd64
             syscalls: &syscalls
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
@@ -1361,6 +1434,8 @@ eoan:
             seccomp:
                 "undefined reference to `BIT'":
                     seccomp build issue (bug 1849844)
+                "FAIL ] global.user_notification_basic":
+                    global.user_notification_basic in seccomp (bug 1862588)
     ubuntu_kvm_unit_tests:
         rizzo:
             apic:
@@ -1374,3 +1449,29 @@ eoan:
             setup:
                  "make: *** [Makefile:30: all] Error 1":
                      failed to build on C/D (bug 1828391)
+eoan-kvm:
+    ubuntu_kernel_selftests:
+        automation-vm4:
+            seccomp:
+                "FAIL ] global.user_notification_basic":
+                    global.user_notification_basic in seccomp (bug 1862588)
+focal:
+    ubuntu_ltp:
+        amaura:
+            kernel_misc:
+                "Failed test cases : tpci":
+                    tpci (bug 1868707)
+        modoc:
+            fs:
+                "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
+                    fs_fill (bug 1842266)
+        s2lp4:
+            fs:
+                "failed: EPERM (1)":
+                    fs_fill (bug 1842266)
+    ubuntu_kernel_selftests:
+        amaura:
+            seccomp:
+                "FAIL ] global.user_notification_basic":
+                    global.user_notification_basic in seccomp (bug 1862588)
+
