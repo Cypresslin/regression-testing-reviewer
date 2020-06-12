@@ -38,6 +38,9 @@ trusty:
             all:
                 "make: *** [lib/x86/usermode.o] Error":
                     failed to build (bug 1765366)
+            eventinj:
+                "FAIL eventinj":
+                    eventinj (bug 1824293)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
@@ -53,6 +56,10 @@ trusty:
                     keyctl03, keyctl05, keyctl07 (bug 1798045)
                 "FAIL: group ":
                     fanotify06 (bug 1775378)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842266)
     ubuntu_zram_smoke_test:
         entei:
             zram-smoke-test:
@@ -72,6 +79,8 @@ trusty-hwe:
     ubuntu_ltp_syscalls:
         entei:
             syscalls: &syscalls-t-hwe
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                     bind03 (bug 1788351)
                 "BROK: msgctl02.c:68: msgget":
@@ -203,6 +212,8 @@ xenial:
                     add_key05 (bug 1869644)
                 "bind03.c:55: FAIL: expected EINVAL: EADDRINUSE":
                     bind03 (bug 1788351)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "BROK: msgctl02.c:68: msgget":
                     msgctl02 failed (bug 1782091)
                 "BROK: msgctl04.c:93: msgget":
@@ -239,6 +250,19 @@ xenial:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+    ubuntu_seccomp:
+        fozzie:
+            seccomp:
+                "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+        modoc:
+            seccomp:
+                "ERROR 36-sim":
+                    36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x
             079:
@@ -266,6 +290,8 @@ xenial-hwe:
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
@@ -373,6 +399,8 @@ xenial-fips:
     ubuntu_ltp_syscalls:
         amaura:
             syscalls:
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "tag=fanotify09 stime=":
                     fanotify09-2 (bug 1804594)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
@@ -413,7 +441,8 @@ xenial-kvm:
                     process_vm_readv01, process_vm_writev01 (bug 1797330)
                 "process_vm_readv: errno=ENOSYS(38): Function not implemented":
                     process_vm_writev02, process_vm_readv02, process_vm_readv03 (bug 1797331)
-
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+     				add_key05 (bug 1869644)
     ubuntu_lttng_smoke_test:
         chico: &1760647-x-kvm
             lttng-smoke-test:
@@ -574,6 +603,11 @@ bionic:
             <<: *1689240-b
         kernel02:
             <<: *1689240-b
+    ubuntu_blktrace_smoke_test:
+        baltar:
+            blktrace-smoke-test:
+                "FAILED to start thread on CPU 156: 22/Invalid argument":
+                    attempt to run blktrace on offline CPUs (bug 1827318)
     ubuntu_bpf:
         amaura: &1775837-b
             ubuntu-bjf:
@@ -608,6 +642,19 @@ bionic:
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
                 "error: field ‘regs’ has incomplete type":
                     failed to build on ARM64 (bug 1675395)
+    ubuntu_bpf_jit:
+        kernel02:
+            ubuntu-bjf-jit:
+                "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
+                    ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+                "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
+                    ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+                "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
+                    ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+                "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
+                    ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+                "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
+                    ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
     ubuntu_fan_smoke_test:
         kernel02: &1775847-b
             fan-smoke-test:
@@ -648,6 +695,14 @@ bionic:
                     tm-unavailable in powerpc (bug 1813129)
                 " for symbol `' out of range":
                     ebb in powerpc (bug 1812805)
+                "selftests: copy_unaligned [FAIL]":
+                    alignment in powerpc (bug 1813118)
+                "selftests: paste_unaligned [FAIL]":
+                    alignment in powerpc (bug 1813118)
+                "selftests: paste_last_unaligned [FAIL]":
+                    alignment in powerpc (bug 1813118)
+                "selftests:  dscr_sysfs_test [FAIL]":
+                    dscr_sysfs_test in powerpc/dscr (bug 1813136)
         s2lp6g002:
             ftrace:
                 "function glob filters      [FAIL]":
@@ -694,6 +749,9 @@ bionic:
             commands:
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
+            containers: &ltp-containers
+                "user_namespace6    0  TINFO  :  Child process returned TFAIL":
+                    userns06 (bug 1836162)
             hugetlb: &ltp-hugetlb
                 "BROK: hugeshmctl01":
                     hugeshmctl01 (bug 1866196)
@@ -714,6 +772,8 @@ bionic:
                     fallocate05 (bug 1783880)
         onibi:
             syscalls:
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "inotify08.c:127: FAIL: didn't get event: mask=":
                     inotify08 (bug 1775784)
                 "bind03.c:55 FAIL: expected EINVAL: EADDRINUSE":
@@ -773,12 +833,10 @@ bionic:
                     test_095_kernel_symbols_missing (bug 1751202)
                 "FAIL: test_072_config_security_apparmor":
                     test_072_config_security_apparmor (bug 1751207)
-        lodygin:
-            <<: *kernel-security-b
-        rumford:
-            <<: *kernel-security-b
-        entei:
-            <<: *kernel-security-b
+        baltar:
+            test-kernel-security.py:
+                "FAIL: test_096_boot_symbols_unreadable":
+                    test_096_boot_symbols_unreadable (bug 1845634)
         kernel02:
             test-kernel-security.py:
                 "ERROR: test_095_kernel_symbols_missing":
@@ -787,18 +845,19 @@ bionic:
                     test_072_config_security_apparmor (bug 1751207)
                 "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
                     lttng_probe_writeback is tainted (bug 1751213)
-        s2lp4:
-            test-kernel-security.py:
-                "ERROR: test_095_kernel_symbols_missing":
-                    test_095_kernel_symbols_missing (bug 1751202)
-                "FAIL: test_072_config_security_apparmor":
-                    test_072_config_security_apparmor (bug 1751207)
-                "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
-                    lttng_probe_writeback is tainted (bug 1751213)
-        s2lp6g002:
-            test-kernel-security.py:
-                "AssertionError: Module 'lttng_probe_writeback' is tainted: (OE)":
-                    lttng_probe_writeback is tainted (bug 1751213)
+    ubuntu_seccomp:
+        fozzie:
+            seccomp:
+                "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+        baltar:
+            seccomp:
+                "ERROR 36-sim":
+                    36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
     ubuntu_stress_smoke_test:
         chico:
             stress-smoke-test:
@@ -811,26 +870,6 @@ bionic:
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on union layer":
                     File unexpectedly on union layer (bug 1751243)
-        daedalus:
-            <<: *1751243-b
-        fozzie:
-            <<: *1751243-b
-        gummo:
-            <<: *1751243-b
-        lodygin:
-            <<: *1751243-b
-        michael:
-            <<: *1751243-b
-        rizzo:
-            <<: *1751243-b
-        s2lp4:
-            <<: *1751243-b
-        kernel02:
-            <<: *1751243-b
-        s2lp6g002:
-            <<: *1751243-b
-        starmie-kernel:
-            <<: *1751243-b
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-b
             079:
@@ -953,18 +992,24 @@ bionic-kvm:
             fs:
                 "quota_remount_test01 1 TFAIL":
                     quota_remount_test01 (bug 1830670)
-
             ltp:
                 "IOError: [Errno 28] No space left on device":
                     growfiles test failed (bug 1790445)
                 "ar01 14 TFAIL: ar haven't updated modified file0 (-u)":
                     ar test failed with 4.15 KVM (bug 1765331)
+            cve:
+                "failed: ENOPROTOOPT (92)":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "ltp_acpi 9 TFAIL":
                     ltp_acpi (bug 1830676)
     ubuntu_ltp_syscalls:
         chico:
             syscalls:
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "tst_test.c:1126: BROK: Test killed! (timeout?)":
                     getrandom02 timed out (bug 1797327)
                 "inotify08.c:150: FAIL: didn't get event: mask=":
@@ -984,14 +1029,6 @@ bionic-kvm:
             lttng-smoke-test:
                 "Error! Bad return status for module build on kernel":
                     Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
-        harpo:
-            <<: *1760647-b-kvm
-        groucho:
-            <<: *1760647-b-kvm
-        gummo:
-            <<: *1760647-b-kvm
-        zeppo:
-            <<: *1760647-b-kvm
     ubuntu_lxc:
         zeppo:
             exercise:
@@ -1007,14 +1044,6 @@ bionic-kvm:
             test-apparmor.py:
                 "Error: mount failed. Test 'MOUNT ":
                     mount test in test_regression_testsuite failed (bug 1765025)
-        harpo:
-            <<: *1765025-b-kvm
-        groucho:
-            <<: *1765025-b-kvm
-        gummo:
-            <<: *1765025-b-kvm
-        zeppo:
-            <<: *1765025-b-kvm
     ubuntu_qrt_kernel_security:
         harpo:
             test-kernel-security.py:
@@ -1102,12 +1131,17 @@ bionic-oem:
                     binfmt_misc02 (bug 1822246)
                 "failed: EROFS":
                     fs_fill (bug 1842266)
+            cve:
+                "failed: ENOPROTOOPT (92)":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "Failed test cases : tpci":
                     tpci (bug 1868707)
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
+                "failed: ENOPROTOOPT":
+                     connect02 (bug 1874014)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
@@ -1159,6 +1193,9 @@ bionic-oem-osp1:
             timers: &ltp-timers
                 "leapsec_timer 2 TBROK : leapsec_timer.c":
                     leapsec_timer (bug 1829971)
+            cve:
+                "failed: ENOPROTOOPT (92)":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "Failed test cases : tpci":
                     tpci (bug 1868707)
@@ -1173,6 +1210,8 @@ bionic-oem-osp1:
                     pivot_root01 (bug 1852966)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "failed: ENOPROTOOPT":
+                     connect02 (bug 1874014)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -1209,6 +1248,9 @@ bionic-edge:
             mm:
                 "vma05 1 TFAIL: [vsyscall] reporting wrong":
                     vma05 (bug 1845863)
+            cve:
+                "failed: ENOPROTOOPT":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "zram02 1 TFAIL: unexpected num of devices:":
                     zram02 (bug 1829992)
@@ -1217,6 +1259,8 @@ bionic-edge:
             syscalls:
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
                 "failed: EROFS":
@@ -1274,6 +1318,9 @@ bionic-fips:
                     binfmt_misc02 (bug 1822246)
                 "failed: EROFS":
                     fs_fill (bug 1842266)
+            cve:
+                "failed: ENOPROTOOPT":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "Failed test cases : tpci":
                     tpci (bug 1868707)
@@ -1282,6 +1329,8 @@ bionic-fips:
             syscalls:
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
@@ -1300,6 +1349,11 @@ bionic-fips:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
                 "FAIL: end of file reached":
                     acct02 (bug 1839836)
+     ubuntu_lxc:
+        daedalus:
+            setup:
+                "E: Unable to correct problems, you have held broken packages.":
+                    package from -proposed and from -update casuing apt issue (bug 1805978)
 bionic-kvm:
     ubuntu_kernel_selftests:
         chico:
@@ -1403,6 +1457,9 @@ eoan:
             timers: &ltp-timers
                 "leapsec_timer 2 TBROK : leapsec_timer.c":
                     leapsec_timer (bug 1829971)
+            cve:
+                "failed: ENOPROTOOPT":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc: &ltp-misc
                 "/opt/ltp/testcases/bin/zram01.sh:":
                     zram01 (bug 1829991)
@@ -1415,6 +1472,8 @@ eoan:
             syscalls: &syscalls
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
                 "failed: EROFS":
                     fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01, statx04 (bug 1842266)
                 "BROK: Failed to open file":
@@ -1455,9 +1514,17 @@ eoan-kvm:
             seccomp:
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
+    ubuntu_ltp_syscalls:
+        automation-vm5:
+            syscalls:
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
 focal:
     ubuntu_ltp:
         amaura:
+            cve:
+                "failed: ENOPROTOOPT":
+                    cve-2018-9568 (bug 1874012)
             kernel_misc:
                 "Failed test cases : tpci":
                     tpci (bug 1868707)
@@ -1469,9 +1536,32 @@ focal:
             fs:
                 "failed: EPERM (1)":
                     fs_fill (bug 1842266)
+    ubuntu_ltp_syscalls:
+        amaura:
+           syscalls:
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 187401
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
-
+        baltar:
+            powerpc:
+                "dscr_sysfs_test # TIMEOUT":
+                    dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
+focal-oem:
+    ubuntu_ltp_syscalls:
+        rizzo:
+            syscalls:
+                "FAIL: got unnecessary event:":
+                    fanotify15 (bug 1878748)
+                "failed: ENOPROTOOPT":
+                    connect02 (bug 1874014)
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
+    ubuntu_qrt_kernel_security:
+        onibi:
+            test-kernel-security.py:
+                "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
+                    test_400_refcount_config (bug 1879339)

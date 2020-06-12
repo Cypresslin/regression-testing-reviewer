@@ -30,6 +30,14 @@ focal:
 focal-oem:
     amd64:
         <<: *f-amd64
+focal-kvm:
+    amd64:
+        <<: *f-amd64
+        ? monotonic_time
+        ? ubuntu_blktrace_smoke_test
+        ? ubuntu_fan_smoke_test
+        ? ubuntu_ftrace_smoke_test
+        ? ubuntu_lttng_smoke_test
 eoan:
     amd64: &e-amd64
         ? fips_test

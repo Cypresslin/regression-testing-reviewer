@@ -53,7 +53,7 @@ ubuntu_kernel_selftests:
     s2lp6g001: &kernel-selftests-s390x
         net:
             "selftests: test_bpf.sh [FAIL]":
-                test_bpf in net (bug 1768452)
+                ld_abs+vlan_push/pop in test_bpf from net will fail on X s390x (bug 1868243)
     s2lp3:
         <<: *kernel-selftests-s390x
     kernel01:
@@ -176,8 +176,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
@@ -221,31 +219,6 @@ ubuntu_lxc:
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     s2lp6g001:
         <<: *exercise
-ubuntu_seccomp:
-    fozzie:
-        seccomp:
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-    modoc: &ubuntu_seccomp
-        seccomp:
-            "ERROR 36-sim":
-                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-    s2lp3:
-        <<: *ubuntu_seccomp
-    s2lp6g001:
-        <<: *ubuntu_seccomp
-    kernel01:
-        <<: *ubuntu_seccomp
 ubuntu_unionmount_ovlfs:
     automation-vm4: &ubuntu_unionmount_ovlfs
         overlayfs:

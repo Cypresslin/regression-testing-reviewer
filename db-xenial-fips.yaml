@@ -139,8 +139,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls
         syscalls:
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
@@ -153,8 +151,6 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1786737)
     entei: &syscalls-p8
         syscalls:
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             ") failed: ENOSPC":
                 fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 8 got event":

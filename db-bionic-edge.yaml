@@ -71,7 +71,7 @@ ubuntu_btrfs_kernel_fixes:
     baltar:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
-    gonzo: 
+    gonzo:
         net: &net-kselftests
             "selftests: net: xfrm_policy.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
@@ -80,7 +80,7 @@ ubuntu_kernel_selftests:
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
         ftrace: &ftrace-kselftests
-            "Register/unregister many kprobe events     [FAIL]":
+            "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
     rizzo:
         net:
@@ -224,6 +224,9 @@ ubuntu_kvm_unit_tests:
         realmode:
             "FAIL realmode (timeout;":
                 realmode timeouted (bug 1854490)
+        vmx_vmcs_shadow_test:
+            "FAIL vmx_vmcs_shadow_test (timeout":
+                vmx_vmcs_shadow_test timeouted (bug 1874186)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -249,9 +252,6 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-        cve: &ltp-cve
-            "failed: ENOPROTOOPT":
-                cve-2018-9568 (bug 1874012)
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
@@ -262,8 +262,6 @@ ubuntu_ltp:
             <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         cve:
             "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
                 cve-2015-3290 (bug 1837005)
@@ -291,8 +289,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
     baltar:
@@ -330,8 +326,6 @@ ubuntu_ltp:
         kernel_misc:
             "cpufreq_boost    1  TBROK":
                 cpufreq_boost (bug 1842032)
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
     modoc:
@@ -362,15 +356,11 @@ ubuntu_ltp:
                 cpuset_syscall (bug 1862908)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":

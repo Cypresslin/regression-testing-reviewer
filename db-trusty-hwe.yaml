@@ -64,8 +64,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "BROK: Failed to open file":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "failed: EROFS":

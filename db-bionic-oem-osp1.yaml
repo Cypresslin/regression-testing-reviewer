@@ -51,9 +51,6 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-        cve:
-            "failed: ENOPROTOOPT (92)":
-                cve-2018-9568 (bug 1874012)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
@@ -89,8 +86,6 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "failed: ENOPROTOOPT":
-                 connect02 (bug 1874014)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
 ubuntu_xfstests_btrfs:

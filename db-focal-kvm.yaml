@@ -1,4 +1,4 @@
-# 5.3 Eoan KVM
+# 5.4 Eoan KVM
 # Format:
 # test-suite:
 #   sut:
@@ -24,7 +24,7 @@ ubuntu_kernel_selftests:
                 fib-onlink-tests in net (bug 1812622)
             "selftests: net: pmtu.sh # exit=1":
                 pmtu.sh failed because some modules not found in net (bug 1870099)
-            "selftests: net: ip_defrag.sh [FAIL]":
+            "ip_defrag.sh # exit=255":
                 ip_defrag in net (bug 1826848)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / udpgso_bench.sh timeout in net (bug 1856010)

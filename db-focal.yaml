@@ -100,12 +100,15 @@ ubuntu_kernel_selftests:
                 Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
-            "echo: write error: Operation not supported":
+            "unexpected fail":
                 cpu-hotplug failed on moonshot (bug 1809701)
         <<: *kernel-selftests-arm64
     hotdog-kernel:
         <<: *kernel-selftests-arm64
     rizzo: &kernel-selftests
+        net:
+            "ip_defrag.sh # exit=1":
+                ip_defrag in net (bug 1826848)
         ftrace:
             "Test wakeup tracer	[FAIL]":
                 Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
@@ -139,7 +142,7 @@ ubuntu_kernel_selftests:
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
+                reuseport_bpf_numa in net (bug 1867570)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
             "selftests: net: xfrm_policy.sh # TIMEOUT":
@@ -149,8 +152,8 @@ ubuntu_kernel_selftests:
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
         powerpc:
-            "dscr_sysfs_test # TIMEOUT":
-                dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
+            "failure: dscr_sysfs_test":
+                dscr_sysfs_test in powerpc for P9 (bug 1880833)
             "futex_bench # TIMEOUT":
                 futex_bench timeout in powerpc (bug 1864642)
         ftrace:
@@ -289,9 +292,6 @@ ubuntu_ltp:
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-        cve: &ltp-cve
-            "failed: ENOPROTOOPT":
-                cve-2018-9568 (bug 1874012)
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
@@ -335,8 +335,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         kernel_misc:
             <<: *ltp-misc
             "zram01 1 TBROK: test killed, timeout!":
@@ -359,8 +357,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -395,8 +391,6 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -435,8 +429,6 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -455,8 +447,6 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         kernel_misc:
             <<: *ltp-misc
     kernel04:
@@ -475,8 +465,6 @@ ubuntu_ltp:
         net.ipv6_lib:
             "getaddrinfo_01   12 TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        cve:
-            <<: *ltp-cve
         kernel_misc:
             <<: *ltp-misc
     s2lp6g001: &ltp-s390x-kvm
@@ -500,14 +488,10 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls-all
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all

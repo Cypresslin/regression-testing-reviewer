@@ -12,7 +12,7 @@
 #         reason
 #
 ubuntu_ecryptfs:
-    automation-vm3:
+    automation-vm3: &ubuntu_ecryptfs
         miscdev-bad-count.sh.ext2:
             "miscdev-bad-count	FAIL":
                 miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
@@ -43,6 +43,8 @@ ubuntu_ecryptfs:
         lp-994247.sh.btrfs:
             "lp-994247 FAIL":
                 miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+    harpo:
+        <<: *ubuntu_ecryptfs
 ubuntu_kernel_selftests:
     automation-vm5: &kernel_selftests
         net:
@@ -53,8 +55,10 @@ ubuntu_kernel_selftests:
         user:
             "user: module test_user_copy is not found [SKIP]":
                 skip return code treated as failure on X (bug 1851486)
+    zeppo:
+        <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
-    automation-vm2:
+    automation-vm2: &kvm_unit_tests
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
@@ -94,8 +98,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     automation-vm5: &syscalls
         syscalls:
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "fanotify06.c:220: FAIL: group 8 got event":
@@ -108,26 +110,43 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
+    zeppo:
+        <<: *syscalls
 ubuntu_lxc:
     automation-vm1:
         exercise:
             "ERROR: Unable to fetch GPG key from keyserver":
                 Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+    moe:
+        exercise:
+             "set(container.get_interfaces()) == set(('lo', 'eth0')))":
+                 python-API test (bug 1764618)
 ubuntu_unionmount_ovlfs:
-    automation-vm4:
+    automation-vm4: &ubuntu_unionmount_ovlfs
         overlayfs:
             "/mnt/a/foo100: File unexpectedly on lower fs":
                 failed with the latest code in upstream (bug 1854298)
+    gummo:
+        <<: *ubuntu_unionmount_ovlfs
 ubuntu_xfstests_btrfs:
     automation-vm1:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 no scratch drive for the test
+    moe:
+        btrfs:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
     automation-vm2:
         ext4:
             <<: *xfstest-no-sdb
+    larry:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm3:
+        xfs:
+            <<: *xfstest-no-sdb
+    harpo:
         xfs:
             <<: *xfstest-no-sdb

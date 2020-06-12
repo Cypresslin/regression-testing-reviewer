@@ -13,11 +13,14 @@
 #
 ubuntu_bpf:
     automation-vm2:
-        test_maps:
+        test_maps: &test-maps
             "Failed to create sockmap -1":
                 test_maps failed with sockmap creation (bug 1848004)
+    larry:
+        test_maps:
+            <<: *test-maps
 ubuntu_kernel_selftests:
-    automation-vm4:
+    automation-vm4: &ubuntu_kernel_selftests
         net:
             "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
                 psock_tpacket in net failed (bug 1812176)
@@ -25,6 +28,8 @@ ubuntu_kernel_selftests:
                 test_bpf in net (bug 1812189)
             "FAIL: cannot add dummy interface":
                 RTNETLINK in net (bug 1812194)
+    gummo:
+        <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
     automation-vm1:
         apic:
@@ -64,7 +69,7 @@ ubuntu_kvm_unit_tests:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
-    automation-vm4:
+    automation-vm4: &ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
@@ -95,30 +100,30 @@ ubuntu_ltp:
         cve:
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 cve-2018-1000199 (bug 1874006)
-            "failed: ENOPROTOOPT (92)":
-                cve-2018-9568 (bug 1874012)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
             "zram01 1 TBROK: test killed":
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+    gummo:
+        <<: *ltp
 ubuntu_ltp_syscalls:
-    automation-vm5:
+    automation-vm5: &syscalls
         syscalls:
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04.c:220: Child exit status = 1":
                 msgstress04 (bug 1797348)
-            "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "BROK: fork() failed: EAGAIN/EWOULDBLOCK (11)":
                 futex_cmp_requeue01 (bug 1874016)
+            "FAIL: group 1 got event: mask 10":
+                fanotify09 case 3 (bug 1876684)
+    zeppo:
+        <<: *syscalls
 ubuntu_lxc:
     automation-vm1:
         exercise:
@@ -126,16 +131,25 @@ ubuntu_lxc:
                 lxc-test-no-new-privs failed to fetch file (bug 1821152)
 ubuntu_xfstests_btrfs:
     automation-vm2:
+        btrfs: &xfstest-no-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+    larry:
         btrfs:
-            "Error: Could not stat device /dev/sdb":
-               No scratch drive available for the test
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
     automation-vm3:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    harpo:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    gummo:
+        xfs:
+            <<: *xfstest-no-sdb

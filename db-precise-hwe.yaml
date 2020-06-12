@@ -11,3 +11,10 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_seccomp:
+    precise-amd64: &ubuntu_seccomp
+        setup:
+            "'__NR_seccomp' undeclared":
+                 failed to build on P-lts-trusty (bug 1862014)
+    precise-i386-2:
+        <<: *ubuntu_seccomp

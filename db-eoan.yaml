@@ -321,9 +321,6 @@ ubuntu_ltp:
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        cve: &ltp-cve
-            "failed: ENOPROTOOPT":
-                cve-2018-9568 (bug 1874012)
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
@@ -348,8 +345,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         kernel_misc:
             <<: *ltp-misc
             "zram01 1 TBROK: test killed, timeout!":
@@ -372,8 +367,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         kernel_misc:
             <<: *ltp-misc
             "zram01 1 TBROK: test killed, timeout!":
@@ -396,8 +389,6 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -435,8 +426,6 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -475,8 +464,6 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
-        cve:
-            <<: *ltp-cve
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -493,8 +480,6 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
         kernel_misc:
@@ -513,8 +498,6 @@ ubuntu_ltp:
                 memcg_stat_rss (bug 1837035)
         commands:
             <<: *ltp-commands
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             "getaddrinfo_01   12 TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -530,8 +513,6 @@ ubuntu_ltp:
                 hugemmap05* / hugemmap06 (bug 1851606)
         commands:
             <<: *ltp-commands
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g002:
@@ -541,8 +522,6 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls-all
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":

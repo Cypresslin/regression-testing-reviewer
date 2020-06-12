@@ -33,17 +33,12 @@ hwclock:
     hotdog-kernel:
         hwclock:
             "TestFail: Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)                  
+                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
 monotonic_time:
     lodygin:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
-ubuntu_blktrace_smoke_test:
-    baltar:
-        blktrace-smoke-test:
-            "FAILED to start thread on CPU 156: 22/Invalid argument":
-                attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
     amaura: &ubuntu_bpf
         test_maps: &bpf-test-map
@@ -52,29 +47,21 @@ ubuntu_bpf:
     gonzo:
         <<: *ubuntu_bpf
     rizzo:
-        test_maps:
-            <<: *bpf-test-map
+        <<: *ubuntu_bpf
     onza:
-        test_verifier:
-            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-            "check bpf_perf_event_data->sample_period":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-        test_maps:
-            <<: *bpf-test-map
-    pepe:
-        test_verifier:
+        test_verifier: &bpf-test-verifier-i386
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
             "check bpf_perf_event_data->sample_period":
                 Some test in test_verifier failed on i386 Bionic (bug 1788578)
         <<: *ubuntu_bpf
+    pepe:
+        test_verifier:
+            <<: *bpf-test-verifier-i386
+        <<: *ubuntu_bpf
     fozzie:
         test_verifier:
-            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-            "check bpf_perf_event_data->sample_period":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
+            <<: *bpf-test-verifier-i386
         <<: *ubuntu_bpf
     baltar:
         <<: *ubuntu_bpf
@@ -92,23 +79,6 @@ ubuntu_bpf:
         <<: *ubuntu_bpf
     kernel02:
         <<: *ubuntu_bpf
-ubuntu_bpf_jit:
-    kernel02: &1753941
-        ubuntu-bjf-jit:
-            "BPF_MAXINSNS: Ctx heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: Call heavy transformations FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+get_processor_id FAIL to prog_create err=-524 len=4096":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: ld_abs+vlan_push/pop FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-            "BPF_MAXINSNS: jump around ld_abs FAIL to select_runtime err=-524":
-                ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
-    s2lp3:
-        <<: *1753941
-    s2lp6g002:
-        <<: *1753941
 ubuntu_btrfs_kernel_fixes:
     amaura: &btrfs_kernel_fixes
         2365dd3ca02bbb6d3412404482e1d85752549953:
@@ -164,28 +134,31 @@ ubuntu_kernel_selftests:
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
+    rizzo:
+        timers:
+            "Bail out!":
+                raw_skew test in timers bail out (bug 1882511)
     modoc: &kernel-selftests-p8
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
+            "reuseport_bpf_cpu [FAIL]":
+                reuseport_bpf_cpu n net (bug 1872652)
         seccomp:
             "TRACE_syscall.ptrace_syscall_errno: Test failed at step":
                 TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
             "TRACE_syscall.ptrace_syscall_faked: Test failed at step":
                 TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
+        ftrace:
+            "test for function traceon/off triggers [FAIL]":
+                traceon/off triggers in ftace (bug 1837040)
     baltar:
         <<: *kernel-selftests-p8
         powerpc:
-            "selftests: copy_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests: paste_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests: paste_last_unaligned [FAIL]":
-                alignment in powerpc (bug 1813118)
-            "selftests:  dscr_sysfs_test [FAIL]":
-                dscr_sysfs_test in powerpc/dscr (bug 1813136)
             "selftests:  subpage_prot [FAIL]":
                 subpage_prot in powerpc/mm (bug 1813140)
+            "dscr_sysfs_test [FAIL]":
+                dscr_sysfs_test in powerpc on P9 (bug 1880833)
         ftrace:
             "Kprobe event argument syntax       [FAIL]":
                 Kprobe event argument syntax in ftrace (bug 1812809)
@@ -379,9 +352,6 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        containers: &ltp-containers
-            "user_namespace6    0  TINFO  :  Child process returned TFAIL":
-                userns06 (bug 1836162)
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -442,8 +412,6 @@ ubuntu_ltp:
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
         controllers:
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
@@ -519,8 +487,6 @@ ubuntu_ltp:
     baltar:
         fs:
             <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
@@ -532,8 +498,6 @@ ubuntu_ltp:
     modoc:
         fs:
             <<: *ltp-fs
-        containers:
-            <<: *ltp-containers
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
@@ -592,8 +556,6 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
@@ -667,50 +629,6 @@ ubuntu_lxc:
                 failed to fetch GPG key
     hotdog-kernel:
         <<: *lxc-arm64
-ubuntu_qrt_kernel_security:
-    baltar: &ubuntu_qrt_kernel_security
-        test-kernel-security.py:
-            "FAIL: test_096_boot_symbols_unreadable":
-                test_096_boot_symbols_unreadable (bug 1845634)
-    modoc:
-        <<: *ubuntu_qrt_kernel_security
-ubuntu_seccomp:
-    fozzie:
-        seccomp:
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-    baltar: &ubuntu_seccomp
-        seccomp:
-            "ERROR 36-sim":
-                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-    modoc:
-        <<: *ubuntu_seccomp
-    s2lp3: &ubuntu_seccomp_s390x
-        seccomp:
-            "ERROR 36-sim":
-                36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC  (bug 1850904)
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-    kernel02:
-        <<: *ubuntu_seccomp_s390x
-    s2lp6g002:
-        <<: *ubuntu_seccomp_s390x
-    s2lp6g003:
-        <<: *ubuntu_seccomp_s390x
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
         btrfs:
@@ -764,20 +682,3 @@ ubuntu_xfstests_xfs:
         xfs:
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 no scratch drive for the test on Intel KVM nodes
-xfstests:
-    fozzie: &xfstests
-        ext4:
-            "generic/429	 [not run]":
-                timed out on ext4 generic/430 test (bug 1755999)
-            "generic/430":
-                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
-    michael:
-        <<: *xfstests
-    rizzo:
-        <<: *xfstests
-    entei:
-        <<: *xfstests
-    modoc:
-        <<: *xfstests
-    starmie-kernel:
-        <<: *xfstests

@@ -28,15 +28,15 @@ ubuntu_bpf:
     gonzo:
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed (bug 1839912)
+                test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
     rizzo:
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed (bug 1839912)
+                test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
     s2lp6g001: &ubuntu-bpf-s390x
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed (bug 1839912)
+                test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
     s2lp6g002:
         <<: *ubuntu-bpf-s390x
     s2lp6g003:
@@ -89,16 +89,6 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    gonzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
-        svm:
-            "FAIL svm":
-                svm (bug 1821903)
     s2lp6g002:
         setup:
             "This systems does not have KVM extension support":
@@ -140,9 +130,6 @@ ubuntu_ltp:
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        cve: &ltp-cve
-            "failed: ENOPROTOOPT":
-                cve-2018-9568 (bug 1874012)
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
@@ -154,8 +141,6 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g002:
@@ -163,8 +148,6 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
     s2lp6g003:
@@ -172,15 +155,11 @@ ubuntu_ltp:
             <<: *ltp-fs
         controllers:
             <<: *ltp-controllers
-        cve:
-            <<: *ltp-cve
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
-            "failed: ENOPROTOOPT":
-                connect02 (bug 1874014)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
@@ -198,14 +177,6 @@ ubuntu_ltp_syscalls:
             "add_key01.c:77: FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
 ubuntu_lxc:
-    daedalus: &lxc-setup
-        setup:
-            "E: Unable to correct problems, you have held broken packages.":
-                package from -proposed and from -update casuing apt issue (bug 1805978)
-    onibi:
-        <<: *lxc-setup
-    onza:
-        <<: *lxc-setup
     s2lp6g002:
         exercise:
             "Container \"reboot\" is defined":

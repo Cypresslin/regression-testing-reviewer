@@ -1,4 +1,4 @@
-# 5.6 Focal OEM
+# 5.4 Focal FIPS
 # Format:
 # test-suite:
 #   sut:
@@ -11,49 +11,24 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_aufs_smoke_test:
-    onibi:
-        aufs-smoke-test:
-            "unknown filesystem type 'aufs'":
-               failed on F-OEM-5.6 (bug 1879308)
 ubuntu_bpf:
-    rizzo:
-        setup:
-            "BPF obj compilation failed":
-                ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+    lagalla:
+        test_maps:
+            "Failed sockmap unexpected timeout":
+                timeout on lagalla (bug 1874029)
 ubuntu_kernel_selftests:
     rizzo:
-        net:
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "ip_defrag.sh # exit=1":
-                ip_defrag in net (bug 1826848)
-            "Warning: file l2tp.sh is not executable, correct this.":
-                l2tp.sh in net not executable (bug 1880631)
-            "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
-                icmp_redirect.sh (bug 1880645)
-            "net: fib_nexthop_multiprefix.sh # exit=1":
-                fib_nexthop_multiprefix.sh (bug 1880648)
         ftrace:
-            "Kprobe event parser error log check	[FAIL]":
-                Kprobe event parser error log check in ftrace (bug 1879345)
-ubuntu_kvm_unit_tests:
-    rizzo:
-        vmx_host_state_area:
-            "FAIL vmx_host_state_area":
-                vmx_host_state_area (bug 1866585)
+            "Test wakeup tracer	[FAIL]":
+                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+            "Test wakeup RT tracer	[FAIL]":
+                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
         controllers: &ltp-controllers
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -62,52 +37,56 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-            "memcg_stat_rss 7 TFAIL: rss is":
-                memcg_stat_rss (bug 1837035)
-        commands: &ltp-commands
-            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
-                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
-            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
-                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
-        net.ipv6_lib: &ltp-net-ipv6-lib
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        crypto: &ltp-crypto
-            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+        crypto:
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
-        kernel_misc:
+        kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+    s2lp6g001:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g002:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g003:
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
-                msgstress03 (bug 1797341)
-            "FAIL: group 2 got event: mask 10":
+            "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
-ubuntu_qrt_kernel_security:
-    onibi:
-        test-kernel-security.py: &qrt_kernel_security
-            "FAIL: test_310_config_security_perf_events_restrict":
-                test_310_config_security_perf_events_restrict (bug 1879339)
-            "FAIL: test_072_strict_devmem":
-                test_072_strict_devmem (bug 1879340)
-            "FAIL: test_350_retpolined_modules":
-                test_350_retpolined_modules (bug 1879341)
-    kili:
-        test-kernel-security.py:
-            <<: *qrt_kernel_security
-            "FAIL: test_120_smep_works":
-                test_120_smep_works on kili (bug 1880659)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
+            "msgstress03    1  TFAIL  :  msgstress03":
+                msgstress03 (bug 1797341)
 ubuntu_sysdig_smoke_test:
-    onibi:
+    onibi: &sysdig_smoke
         sysdig-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                sysdig module build failed on F-OEM-5.6 (bug 1879336)
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.3 (bug 1844493)
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:
@@ -146,8 +125,10 @@ ubuntu_xfstests_ext4:
                 generic/435 (bug 1846298)
             "generic/440	- output mismatch":
                 generic/440 (bug 1846297)
-            "generic/471	- output mismatch":
-                generic/471 (bug 1880655)
+    vought:
+        ext4:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
 ubuntu_xfstests_xfs:
     bavor:
         xfs:
@@ -155,9 +136,13 @@ ubuntu_xfstests_xfs:
                 generic/001 (bug 1878356)
             "generic/228	- output mismatch":
                 generic/228 (bug 1846308)
-            "generic/394	- output mismatch":
+            "generic/394        - output mismatch":
                 generic/394 (bug 1846306)
-            "generic/429	[not run]":
+            "generic/429        [not run]":
                 timed out on ext4 generic/430 test (bug 1755999)
             "generic/430":
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    douglas:
+        xfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
