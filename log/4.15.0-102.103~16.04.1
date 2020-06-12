@@ -1,0 +1,42 @@
+4.15.0-102.103~16.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+56 / 59 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+
+50 / 54 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+
+4.15.0-102.103~16.04.1 - generic
+Regression test CMPL, RTB.
+
+56 / 59 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+
+50 / 53 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi (bug 1790825) gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) gicv2 related test failed on ThunderX (bug 1828153) pmu on starmie (bug 1751000)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+  ubuntu_lxc - failed on moonshot passed on ThunderX
+
+50 / 54 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+
+51 / 55 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu in net (bug 1872652) reuseport_bpf_numa in net (bug 1867570) reuseport_bpf in net (bug 1868654) TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359) TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
+  ubuntu_ltp_syscalls - 
+  ubuntu_sysdig_smoke_test - Unable to build sysdig module on PowerPC with X-4.15 (bug 1810916)
+

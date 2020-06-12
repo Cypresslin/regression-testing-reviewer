@@ -1,0 +1,12 @@
+3.2.0-145.192 - generic
+Regression test CMPL, RTB.
+
+33 / 34 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  ubuntu_cts_kernel - perf with redirection issue (bug 1801877)
+
+32 / 33 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_cts_kernel - perf with redirection issue (bug 1801877)
+  ubuntu_qrt_kernel_security - test_ulimit_stack_small failed on P-i386 (bug 1814295) test_021_aslr_dapper_libs failed on P-i386 (bug 1747847) test_022_aslr_hardy_vdso failed on P-i386 (bug 1747630)
+

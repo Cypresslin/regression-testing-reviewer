@@ -1,0 +1,12 @@
+5.3.0-1019.21 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) test_blackhole_dev in net (bug 1851619)  msg_zerocopy in net (bug 1812620) Register/unregister many kprobe events in ftrace (bug 1866972) Test trace_printk from module UNRESOLVED in ftrace (bug 1869347) ftrace - function trace on module UNRESOLVED (bug 1869349)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) hyperv_connections (bug 1882238) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1748105) realmode (bug 1850653) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_nm_test (bug 1872419)
+  ubunut_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) umip_basic_test (bug 1853798)
+  ubuntu_ltp_syscalls - fallocate06 (bug 1865967) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

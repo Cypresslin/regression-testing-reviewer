@@ -1,0 +1,76 @@
+5.3.0-56.50~18.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx_vmcs_shadow_test timeouted (bug 1874186)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+  ubuntu_xfstests_btrfs - btrfs/139 (bug 1878349) btrfs/153 (bug 1848409) btrfs/172 (bug 1848417) btrfs/182 (bug 1848418)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) Kprobe event user-memory access (bug 1878784) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - bind04 cause failure to connect02, sendmsg03, setsockopt05, setsockopt06, timerfd_settime02 (bug 1878888) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) copy_file_range02 (bug 1851653) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+5.3.0-56.50~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+  ubuntu_xfstests_btrfs - btrfs/139 (bug 1878349) btrfs/153 (bug 1848409) btrfs/172 (bug 1848417) btrfs/182 (bug 1848418)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - hwclock test failed due to 0.x sec differences
+  ubuntu_bpf - Test 13 in test_verifier (bug 1845870) failed to build test_maps (bug 1845860)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch GPG key
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) Kprobe event user-memory access (bug 1878784) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - bind04 cause failure to connect02, sendmsg03, setsockopt05, setsockopt06, timerfd_settime02 (bug 1878888) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) copy_file_range02 (bug 1851653) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 56 tests were run, missing: ubuntu_boot, ubuntu_btrfs_kernel_fixes, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu in net (bug 1872652) reuseport_bpf_numa in net (bug 1812638) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) cpufreq_boost (bug 1842032)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+* Missing P8 test results as the provisioning is not working well

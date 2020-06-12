@@ -1,0 +1,18 @@
+Marked as Incomplete for bug 1881072
+
+4.15.0-1061.62 - kvm
+Regression test CMPL, RTB.
+
+53 / 55 tests were run, missing: ubuntu_boot, ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194)
+  ubuntu_kvm_smoke_test - failed with potential regression (bug 1881072)
+  ubuntu_ltp - proc01 (bug 1829849) hackbench01, hackbench02 (bug 1830675) netns_sysfs (bug 1830678) memcg_usage_in_bytes (bug 1829984) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cgroup_fj_stress_blkio_10_3_each, cgroup_fj_stress_blkio_2_9_each, cgroup_fj_stress_cpu_10_3_each, cgroup_fj_stress_cpu_2_9_each, cgroup_fj_stress_cpuacct_10_3_each, cgroup_fj_stress_cpuacct_2_9_each, cgroup_fj_stress_cpuset_10_3_each, cgroup_fj_stress_cpuset_2_9_each, cgroup_fj_stress_devices_10_3_each, cgroup_fj_stress_devices_2_9_each, cgroup_fj_stress_freezer_10_3_each, cgroup_fj_stress_freezer_2_9_each, cgroup_fj_stress_hugetlb_10_3_each, cgroup_fj_stress_hugetlb_2_9_each, cgroup_fj_stress_memory_10_3_each, cgroup_fj_stress_memory_2_9_each, cgroup_fj_stress_net_cls_10_3_each, cgroup_fj_stress_net_cls_2_9_each, cgroup_fj_stress_net_prio_10_3_each, cgroup_fj_stress_net_prio_2_9_each, cgroup_fj_stress_perf_event_10_3_each, cgroup_fj_stress_perf_event_2_9_each (bug 1848473) cpuacct_100_100 (bug 1829978) cve-2018-1000199 (bug 1874006) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) msgstress04 (bug 1797348) ptrace08 (bug 1873781)
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
+
+Note:
+.* ubuntu_kvm_unit_tests failed with bug 1881072 as well.

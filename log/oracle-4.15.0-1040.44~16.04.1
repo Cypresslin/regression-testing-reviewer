@@ -1,0 +1,12 @@
+4.15.0-1040.44~16.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) on some instance quotactl04 (bug 1854153) statx05 (bug 1798524) kill11 (bug 1865965)
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp
+
+Note:
+  * ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401)

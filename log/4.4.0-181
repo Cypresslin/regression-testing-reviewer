@@ -1,0 +1,26 @@
+Leverage the test result from 4.4.0-180, and here are some basic test result.
+
+4.4.0-181.211 - generic
+Regression test CMPL, RTB.
+
+55 / 59 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop failed (bug 1879752)
+  ubuntu_kernel_selftests - ld_abs+vlan_push/pop failed in test_bpf from net (bug 1879752)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+  ubuntu_unionmount_ovlfs - failed with the latest code in upstream (bug 1854298)
+  ubuntu_zfs_xfs_generic - test build issue (bug 1882167)
+
+50 / 54 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop failed (bug 1879752)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701) ld_abs+vlan_push/pop failed in test_bpf from net (bug 1879752)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-mmio on X-ARM64 (bug 1828165) gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+  ubuntu_unionmount_ovlfs - failed with the latest code in upstream (bug 1854298)
+  ubuntu_zfs_xfs_generic - test build issue (bug 1882167)
+
+* Missing s390x KVM because of the maas issue

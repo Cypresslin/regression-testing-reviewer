@@ -1,0 +1,15 @@
+5.3.0-1018.20 - kvm
+Regression test CMPL, RTB.
+
+54 / 55 tests were run, missing: ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  ubuntu_kernel_selftests - rtnetlink.sh in net (bug 1812194) xfrm_policy.sh / udpgso_bench.sh timeout in net (bug 1856010) fib_tests in net (bug 1812622) fib-onlink-tests in net (bug 1812622) pmtu.sh failed because some modules not found in net (bug 1870099) fib_rule_tests in net (bug 1812622) msg_zerocopy.sh in net (bug 1812620) test_vxlan_under_vrf.sh (bug 1837348) so_txtime.sh in net (bug 1870106) seccomp_benchmark timeout in seccomp (bug 1881576)
+  ubuntu_ltp - proc01 (bug 1829849) hackbench01 (bug 1830675) netns_sysfs (bug 1830678) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuacct_100_100 (bug 1829978) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cve-2018-1000199 (bug 1874006) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) msgstress03 (bug 1797341) msgstress04 (bug 1797348) ptrace08 (bug 1873781)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+  ubuntu_xfstests_btrfs - No scratch drive available for the test
+  ubuntu_xfstests_ext4 - No scratch drive available for the test
+  ubuntu_xfstests_xfs - No scratch drive available for the test
+
+Note:
+  * ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401)

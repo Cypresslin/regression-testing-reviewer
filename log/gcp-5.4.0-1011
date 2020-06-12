@@ -1,0 +1,16 @@
+5.4.0-1011.11~18.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_bpf - build failed with "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559)
+  ubuntu_fan_smoke_test - enable disable fan test failed with unknown underlay network format (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - net test failed to build ith "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559) Test Wakeup Tracer / RT Tracer failed in ftrace (bug 1873054)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - connect02 (bug 1874014) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) fanotify15 (bug 1878748) kill11 (bug 1865965) msgstress03 (bug 1797341) quotactl07 (bug 1864092) sched_getscheduler01 sched_rr_get_interval01 sched_rr_get_interval02 sched_rr_get_interval03 sched_setparam02 sched_setparam03 (bug 1882567)
+  ubuntu_qrt_apparmor - Error: syscall_setscheduler failed in test_regression_testsuite (bug 1876697)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+  ubuntu_zfs_smoke_test - kernel-smoke-test-encrypt	failed (bug 1882472)
+
+Skipped / blacklisted:
+ * libhugetlbfs

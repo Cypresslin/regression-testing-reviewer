@@ -1,0 +1,13 @@
+Marked in Incomplete for the missing deb-src issue
+
+4.15.0-1084.94 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - missing deb-src, issue logged on Trello board
+  ubuntu_kernel_selftests - missing deb-src, issue logged on Trello board
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) ept (bug 1824228) memory (bug 1831449) port80 (bug 1748105) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_D48_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) getrusage04 (bug 1841425) kill11 (bug 1865965) move_pages12 on some instances(bug 1831043)
+  ubuntu_lxc - missing deb-src, issue logged on Trello board
+  ubuntu_qrt_apparmor - missing deb-src, issue logged on Trello board
