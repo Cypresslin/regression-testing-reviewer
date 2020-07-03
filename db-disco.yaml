@@ -50,7 +50,7 @@ ubuntu_bpf:
     s2lp6g003: &bpf-s390x
         test_verifier:
             "Failed to load prog 'Success'":
-                test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+                test_verifier failed with 'Failed to load prog' on D s390x (bug 1845646)
         test_maps:
             "Failed to load SK_SKB parse prog":
                 test_maps failed to load SK_SKB (bug 1845643)

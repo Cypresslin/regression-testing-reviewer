@@ -192,7 +192,7 @@ ubuntu_ltp_syscalls:
         syscalls:
             <<: *syscalls
             "btrfs, 0, (nil)) failed: ENOSPC":
-                copy_file_range01, fallocate04, fanotify13, fanotify14, fanotify15, fdatasync03, fgetxattr01,fremovexattr01, fremovexattr02, fsetxattr01, fsync01, fsync04, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01 (bug 1842270)
+                copy_file_range01, fallocate04, fanotify13, fanotify14, fanotify15, fanotify16, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fspick01, fspick02, fsync01, fsync04, lremovexattr01, msync04, open_tree01, open_tree02, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01 (bug 1842270)
             "FAIL: madvise failed: EIO":
                 move_pages12 (bug 1831043)
     modoc:

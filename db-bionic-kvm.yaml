@@ -12,18 +12,15 @@
 #         reason
 #
 ubuntu_bpf:
-    automation-vm2:
-        test_maps: &test-maps
+    automation-vm2: &ubuntu_bpf
+        test_maps:
             "Failed to create sockmap -1":
                 test_maps failed with sockmap creation (bug 1848004)
     larry:
-        test_maps:
-            <<: *test-maps
+        <<: *ubuntu_bpf
 ubuntu_kernel_selftests:
     automation-vm4: &ubuntu_kernel_selftests
         net:
-            "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
-                psock_tpacket in net failed (bug 1812176)
             "test_bpf: [FAIL]":
                 test_bpf in net (bug 1812189)
             "FAIL: cannot add dummy interface":
@@ -133,7 +130,7 @@ ubuntu_xfstests_btrfs:
     automation-vm2:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
-                no scratch drive for the test
+                No scratch drive available for the test
     larry:
         btrfs:
             <<: *xfstest-no-sdb

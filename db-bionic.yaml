@@ -33,7 +33,7 @@ hwclock:
     hotdog-kernel:
         hwclock:
             "TestFail: Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+                hwclock test failed due to 0.x sec difference (bug 1802233)
 monotonic_time:
     lodygin:
         tsc:

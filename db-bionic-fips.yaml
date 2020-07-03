@@ -72,6 +72,10 @@ ubuntu_kernel_selftests:
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
+    rizzo:
+        timers:
+            "raw_skew [FAIL]":
+                raw_skew in timers bail out (bug 1882511)
     s2lp6g001: &kernel-selftests-s390x
         net:
             "reuseport_dualstack [FAIL]":

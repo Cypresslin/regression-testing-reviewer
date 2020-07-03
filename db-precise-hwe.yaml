@@ -18,3 +18,8 @@ ubuntu_seccomp:
                  failed to build on P-lts-trusty (bug 1862014)
     precise-i386-2:
         <<: *ubuntu_seccomp
+ubuntu_qrt_kernel_security:
+    precise-i386:
+        test-kernel-security.py:
+            "FAIL: test_062_guard_page_split":
+                test_062_guard_page_split (bug 1820828)

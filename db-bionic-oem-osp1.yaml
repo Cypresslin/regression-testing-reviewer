@@ -86,8 +86,8 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "FAIL: group 2 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:

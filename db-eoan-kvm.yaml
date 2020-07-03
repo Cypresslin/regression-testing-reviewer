@@ -121,10 +121,8 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
-            "FAIL: group 1 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
     zeppo:
         <<: *ubuntu_ltp_syscalls
 ubuntu_lxc:

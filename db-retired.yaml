@@ -412,17 +412,14 @@ xenial-kvm:
         chico: &blktrace-smoke-test-x-kvm
             blktrace-smoke-test:
                 "(CONFIG_BLK_DEV_IO_TRACE=y in /boot/config-4.4.0":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+                    ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
                 "FAILED (/sys/kernel/debug/tracing does not exist)":
-                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
-        harpo:
-            <<: *blktrace-smoke-test-x-kvm
-        groucho:
-            <<: *blktrace-smoke-test-x-kvm
-        gummo:
-            <<: *blktrace-smoke-test-x-kvm
-        zeppo:
-            <<: *blktrace-smoke-test-x-kvm
+                    ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
+    ubuntu_kernel_selftests:
+        automation-vm5: &kernel_selftests
+            net:
+                "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
+                    psock_tpacket in net failed (bug 1812176)
     ubuntu_kvm_smoke_test:
         zeppo:
             kvm_smoke_test:
@@ -969,6 +966,8 @@ bionic-kvm:
             net:
                 "test_bpf.sh [FAIL]":
                     test_bpf in net (bug 1812189)
+                "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
+                    psock_tpacket in net failed (bug 1812176)
             timer:
                 "raw_skew [FAIL]":
                     raw_skew in timer (bug 1811194)
@@ -1212,6 +1211,8 @@ bionic-oem-osp1:
                     add_key05 (bug 1869644)
                 "failed: ENOPROTOOPT":
                      connect02 (bug 1874014)
+                "FAIL: group 2 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
     ubuntu_lttng_smoke_test:
         onibi:
             lttng-smoke-test:
@@ -1480,6 +1481,10 @@ eoan:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842266)
                 "FAIL: system time not set to":
                     stime01 (bug 1845620)
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
+                "FAIL: got unnecessary event:":
+                    fanotify15 (bug 1878748)
     ubuntu_lxc:
         baltar: &lxc-download
             exercise:
@@ -1519,6 +1524,10 @@ eoan-kvm:
             syscalls:
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "FAIL: got unnecessary event:":
+                    fanotify15 (bug 1878748)
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
 focal:
     ubuntu_ltp:
         amaura:
@@ -1540,7 +1549,9 @@ focal:
         amaura:
            syscalls:
                 "failed: ENOPROTOOPT":
-                    connect02 (bug 187401
+                    connect02 (bug 1874014)
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
@@ -1550,6 +1561,14 @@ focal:
             powerpc:
                 "dscr_sysfs_test # TIMEOUT":
                     dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
+focal-kvm:
+    ubuntu_ltp_syscalls:
+        rizzo:
+            syscalls:
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)
+                "FAIL: got unnecessary event:":
+                    fanotify15 (bug 1878748)
 focal-oem:
     ubuntu_ltp_syscalls:
         rizzo:
@@ -1565,3 +1584,9 @@ focal-oem:
             test-kernel-security.py:
                 "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
                     test_400_refcount_config (bug 1879339)
+focal-fips:
+    ubuntu_ltp_syscalls:
+        amaura:
+            syscalls:
+                "FAIL: group 1 got event: mask 10":
+                    fanotify09 case 3 (bug 1876684)

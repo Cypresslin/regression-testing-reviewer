@@ -30,6 +30,10 @@ focal:
 focal-oem:
     amd64:
         <<: *f-amd64
+focal-fips:
+    amd64: &f-fips-amd64
+        ? libhugetlbfs
+        ? ubuntu_ecryptfs
 focal-kvm:
     amd64:
         <<: *f-amd64
@@ -187,6 +191,21 @@ bionic-oem:
 bionic-oem-osp1:
     amd64:
         <<: *b-amd64
+bionic-ibm-gt:
+    amd64:
+        <<: *b-amd64
+    ppc64le:
+        <<: *b-non-x86
+    s390x:
+        <<: *b-non-x86
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_btrfs_kernel_fixes
+        ? ubuntu_cve_kernel
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 bionic-fips:
     amd64: &b-fips-amd64
         ? libhugetlbfs

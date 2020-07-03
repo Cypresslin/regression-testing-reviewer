@@ -59,7 +59,7 @@ ubuntu_bpf:
     s2lp6g003: &bpf-s390x
         test_verifier:
             "Failed to load prog 'Success'":
-                test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+                test_verifier failed with 'Failed to load prog' on D s390x (bug 1845646)
         test_maps:
             "Failed to load SK_SKB parse prog":
                 test_maps faile to load SK_SKB (bug 1845643)
@@ -129,7 +129,7 @@ ubuntu_kernel_selftests:
         net:
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
-            "selftests: net: ip_defrag.sh # exit=255":
+            "ip_defrag.sh # exit=1":
                 ip_defrag in net (bug 1826848)
             "selftests: net: xfrm_policy.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
@@ -235,6 +235,8 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt: internal error: qemu unexpectedly closed the monitor":
                failed with qemu unexpectedly closed the monitor (bug 1862944)
+            "qemu-system-ppc64le: Requested safe cache capability level not supported by kvm, try cap-cfpc=broken":
+               failed with Requested safe cache capability level not supported by kvm, try cap-cfpc=broken (bug 1882492)
     entei:
         <<: *kvm-smoke-ppc
     pepe:
@@ -524,10 +526,8 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 1 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all

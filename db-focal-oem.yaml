@@ -38,9 +38,13 @@ ubuntu_kernel_selftests:
                 icmp_redirect.sh (bug 1880645)
             "net: fib_nexthop_multiprefix.sh # exit=1":
                 fib_nexthop_multiprefix.sh (bug 1880648)
+            "psock_snd.sh # exit=1":
+                 psock_snd.sh failed in net (bug 1884234)
         ftrace:
             "Kprobe event parser error log check	[FAIL]":
                 Kprobe event parser error log check in ftrace (bug 1879345)
+            "ftrace - test for function traceon/off triggers	[FAIL]":
+                traceon/off triggers in ftrace (bug 1876687)
 ubuntu_kvm_unit_tests:
     rizzo:
         vmx_host_state_area:
@@ -83,12 +87,10 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "FAIL: group 2 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
 ubuntu_qrt_kernel_security:
     onibi:
         test-kernel-security.py: &qrt_kernel_security

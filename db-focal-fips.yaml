@@ -76,8 +76,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 1 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
             "FAIL: group 0 got event: mask 1020 (expected 1000)":
                 fanotify10 case 16 (bug 1882717)
             "msgstress03    1  TFAIL  :  msgstress03":

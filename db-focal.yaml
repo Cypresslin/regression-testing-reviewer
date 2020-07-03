@@ -59,7 +59,7 @@ ubuntu_bpf:
     s2lp6g003: &bpf-s390x
         test_verifier:
             "Failed to load prog 'Success'":
-                test_verifier failed with 'Failed to load prog' on D s390x (bug 1812176)
+                test_verifier failed with 'Failed to load prog' on D s390x (bug 1845646)
         test_maps:
             "Failed to load SK_SKB parse prog":
                 test_maps faile to load SK_SKB (bug 1845643)
@@ -91,6 +91,10 @@ ubuntu_fan_smoke_test:
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     baltar:
         <<: *ubuntu_fan_smoke_test
+    s2lp4:
+        fan-smoke-test:
+            "docker still configured":
+                docker still configured (bug 1879299)
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         ftrace:
@@ -122,45 +126,27 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests
     modoc:
         net:
-            "reuseport_bpf_numa [FAIL]":
+            "reuseport_bpf_cpu # exit=1":
+                reuseport_bpf_cpu in net (bug 1872652)
+            "reuseport_bpf_numa # exit=1":
                 reuseport_bpf_numa in net (bug 1812638)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
+            "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
+                pmtu.sh in net (bug 1881643)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-        ftrace:
-            "Test wakeup tracer [FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
-            "Test wakeup RT tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
     baltar:
         net:
-            "reuseport_bpf_numa [FAIL]":
+            "reuseport_bpf_numa # exit=1":
                 reuseport_bpf_numa in net (bug 1867570)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+            "selftests: net: ip_defrag.sh [FAIL]":
+                ip_defrag in net (bug 1826848)
         powerpc:
             "failure: dscr_sysfs_test":
                 dscr_sysfs_test in powerpc for P9 (bug 1880833)
             "futex_bench # TIMEOUT":
                 futex_bench timeout in powerpc (bug 1864642)
-        ftrace:
-            "Kprobe event user-memory access	[UNRESOLVED]":
-                Kprobe event user-memory access in ftrace (bug 1869227)
-            "Meta-selftest	[UNRESOLVED]":
-                Meta-selftest unresolved in ftrace (bug 1869289)
+            "eeh-basic.sh # TIMEOUT":
+                 eeh-basic.sh timeout in powerpc (bug 1882503)
     s2lp6g003: &selftest-s390x
         net:
             "reuseport_dualstack [FAIL]":
@@ -277,6 +263,8 @@ ubuntu_ltp:
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
+            "memcg_stat_rss 7 TFAIL: rss is":
+                memcg_stat_rss (bug 1837035)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
@@ -490,8 +478,8 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 1 got event: mask 10":
-                fanotify09 case 3 (bug 1876684)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
