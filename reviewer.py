@@ -58,6 +58,8 @@ parser.add_argument('--oem-osp1', action='store_const', dest='flag', const='-oem
                     help='Get only OEM OSP1 kernel result')
 parser.add_argument('--fips', action='store_const', dest='flag', const='-fips',
                     help='Get only FIPS kernel result')
+parser.add_argument('--ibm', action='store_const', dest='flag', const='-ibm-gt',
+                    help='Get only IBM-GT kernel result')
 #parser.add_argument('--aws', dest='kernel_filter', action='store_const', const='aws',
 #                    help='Get only AWS kernel result')
 #parser.add_argument('--gcp', dest='kernel_filter', action='store_const', const='gcp',
@@ -73,7 +75,8 @@ filters = {'-hwe': '~',
            '-kvm': ' - kvm',
            '-oem': ' - oem',
            '-oem-osp1': ' - oem-osp1',
-           '-fips': ' - fips'}
+           '-fips': ' - fips',
+           '-ibm-gt': ' - ibm-gt'}
 highlighted = False
 target_found = False
 unused_all = []
