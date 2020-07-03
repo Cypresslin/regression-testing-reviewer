@@ -1,0 +1,12 @@
+5.0.0-53.57~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - failed with unknown underlay network format (bug 1874703)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - msg_zerocopy in net (bug 1812620) Register/unregister many kprobe events in ftrace (bug 1866972) raw_skew in timers on some instances (bug 1825491)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 test case 16 (bug 1882717) msgstress03 (bug 1797341) kill11 (bug 1865965)
+
+Skipped / blacklisted:
+ * libhugetlbfs

@@ -1,0 +1,71 @@
+5.3.0-60.54 - lowlatency
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - realmode failed (bug 1850653)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+5.3.0-60.54 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) ip_defrag in net (bug 1826848) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - realmode failed (bug 1850653)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  ubuntu_bpf - test_verifier failed for valid read map access into a read-only array (bug 1874387)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch GPG key
+
+44 / 56 tests were run, missing: hwclock, ubuntu_boot, ubuntu_bpf_jit, ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_lxc, ubuntu_seccomp, ubuntu_unionmount_ovlfs, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kvm_smoke_test - failed with Requested safe cache capability level not supported by kvm, try cap-cfpc=broken (bug 1882492)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+51 / 52 tests were run, missing: ubuntu_bpf
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_fan_smoke_test - failed with docker still configured, unable to disable fan (bug 1879299)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) tcp_fastopen_backup_key.sh in net on s390x (bug 1869134) Kprobe event auto/manual naming in ftrace (bug 1869143)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_verifier failed with 'Failed to load prog' on D s390x (bug 1845646)
+  ubuntu_fan_smoke_test - failed with docker still configured, unable to disable fan (bug 1879299)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd in net (bug 1812618) tcp_fastopen_backup_key.sh in net on s390x (bug 1869134) Kprobe event auto/manual naming in ftrace (bug 1869143)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_inherit (bug 1849825) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+
+* Note: missing ubuntu_bpf test result due to OOM issue (bug 1856163)
+* Missing s390x KVM because of the maas issue
+* Note: missing tests in Power8 caused by bug 1867155

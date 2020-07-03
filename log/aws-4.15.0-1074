@@ -1,0 +1,21 @@
+4.15.0-1074.78 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap 'x:x' not in ESTABLISHED (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on c5.metal, i3.metal, r5.metal
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) on t2.small cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug03 on some instances (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965) msgstress03 (bug 1783881) move_pages12 (bug 1831043) on some instance pkey01 (bug 1849093) on bare-metal nodes
+
+Issue to note in arm64 (aws):
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap 'x:x' not in ESTABLISHED (bug 1839912)
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) on a1.medium cgroup_fj_* failure caused by memcg_test_3 (bug 18366f94) on a1.medium cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_test_3 (bug 1836694) getaddrinfo_01 (bug 1829995) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965) msgstress03 (bug 1783881)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

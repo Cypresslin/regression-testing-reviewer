@@ -1,0 +1,15 @@
+5.6.0-1012.12 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_aufs_smoke_test - failed on F-OEM-5.6 (bug 1879308)
+  ubuntu_bpf - ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd.sh failed in net (bug 1884234) l2tp.sh in net not executable (bug 1880631) fib_nexthop_multiprefix.sh (bug 1880648) icmp_redirect.sh (bug 1880645) traceon/off triggers in ftrace (bug 1876687) Kprobe event parser error log check in ftrace (bug 1879345)
+  ubuntu_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_qrt_kernel_security - test_310_config_security_perf_events_restrict (bug 1879339) test_350_retpolined_modules (bug 1879341)
+  ubuntu_sysdig_smoke_test - sysdig module build failed on F-OEM-5.6 (bug 1879336)
+  ubuntu_xfstests_btrfs - btrfs/136 (bug 1878347) btrfs/139 (bug 1878349) btrfs/153 (bug 1848409) btrfs/172 (bug 1848417) generic/001 (bug 1878356)
+  ubuntu_xfstests_ext4 - generic/001 (bug 1878356) generic/228 (bug 1846308) generic/394 (bug 1846306) generic/397 (bug 1846305) generic/398 (bug 1846304) generic/399 (bug 1846303)
+  ubuntu_xfstests_xfs - generic/001 (bug 1878356) generic/228 (bug 1846308)
+

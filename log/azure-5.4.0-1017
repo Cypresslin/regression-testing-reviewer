@@ -1,0 +1,12 @@
+5.4.0-1017.17 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - test_maps failed sockmap unexpected timeout on some instances
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965) msgstress03 on some instances (bug 1797341) msgstress04 on some instances (bug 1797348)
+  ubuntu_lxc - lxc-test-no-new-privs failed with Temporary failure resolving on Standard_B1ms
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Note:
+ * ftracetest in ubuntu_kernel_selftests and ubuntu_ftrace_smoke_test will crash Focal Azure instances (bug 1882669)

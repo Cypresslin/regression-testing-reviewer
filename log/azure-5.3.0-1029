@@ -1,0 +1,13 @@
+5.3.0-1029.30 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - test_maps failed sockmap unexpected timeout on some instances
+  ubuntu_kernel_selftests - cpu-hotplug on Basic_A2, Standard_DS15_v2, Standard_DS4_v2 (bug 1814232) test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy in net (bug 1812620)
+  ubuntu_kvm_unit_tests - ept (bug 1824228) memory (bug 1831449) realmode (bug 1850653) vmx (bug 1821394) on Standard_F32s_v2 test crashed with vmx_host_state_area (bug 1874693) on Standard_D48_v3
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_base_ops (bug 1830359) cpuset_hotplug (bug 1834006) cpuset_load_balance (bug 1830360) cpuset_memory_spread (bug 1830585) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965) msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+  * libhugetlbfs

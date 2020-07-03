@@ -1,0 +1,28 @@
+5.4.0-1016.16~18.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_bpf - build failed with "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559)
+  ubuntu_kernel_selftests - net test failed to build ith "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559)
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  ubuntu_bpf - build failed with "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559)
+  ubuntu_kernel_selftests - memory-hotplug on some instances net test failed to build ith "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559) raw_skew test in timers bail out on c5.metal (bug 1882511) nsleep-lat in timers (bug 1884884) set-timer-lat in timers (bug 1884885)
+  ubuntu_kvm_unit_tests - vmx on i3.metal (1821394) vmx_apicv_test on i3.metal (bug 1827866)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) mtest06 on t2.small (bug 1854722) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) on t2.small getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 test case 16 (bug 1882717) msgstress03 on some nodes (bug 1783881) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

@@ -1,0 +1,13 @@
+5.4.0-1017.17~18.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - build failed with "error: use of unknown builtin '__builtin_preserve_access_index'" (bug 1882559)
+  ubuntu_kvm_unit_tests - ept (bug 1824228) memory (bug 1831449) vmx (bug 1821394) on Standard_F32s_v2 test crashed with vmx_host_state_area (bug 1874693) on Standard_D48_v3
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965) msgstress03 on some instances (bug 1797341) msgstress04 on some instances (bug 1797348)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Note:
+ * ftracetest in ubuntu_kernel_selftests and ubuntu_ftrace_smoke_test will crash Focal Azure instances (bug 1882669)

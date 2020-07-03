@@ -1,0 +1,13 @@
+5.3.0-1032.33~18.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - test_maps in ubuntu_bpf failed with Failed to load SK_SKB verdict prog (bug 1845860)
+  ubuntu_kernel_selftests - cpu-hotplug on some instances (bug 1814232) test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) ip_defrag in net (bug 1826848) msg_zerocopy in net (bug 1812620)
+  ubuntu_kvm_unit_tests - ept (bug 1824228) memory (bug 1831449) vmx (bug 1821394) on Standard_F32s_v2
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 test case 16 (bug 1882717) kill11 (bug 1865965) msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+  * libhugetlbfs

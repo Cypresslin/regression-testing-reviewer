@@ -1,0 +1,26 @@
+5.3.0-1024.26 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_bpf - valid read map access into a read-only array failed on ARM64 (bug 1845870)
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy in net (bug 1812620)
+  ubuntu_ltp - proc01 (bug 1829849) mtest06 (bug 1854722) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 test case 16 (bug 1882717) msgstress03 on some nodes (bug 1783881) kill11 (bug 1865965)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  ubuntu_kernel_selftests - test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+  ubuntu_kvm_unit_tests - realmode (bug 1850653) vmx (bug 1821394) vmx_apicv_test (bug 1827866) failed on bare-metal nodes
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) on t2.small cpuhotplug03 (bug 1836167) mkfs01_ext3_sh, mkfs01_ext4_sh, nm01_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) cve-2018-9568 (bug 1874012) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 test case 16 (bug 1882717) msgstress03 on some nodes (bug 1783881) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

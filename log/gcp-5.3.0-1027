@@ -1,0 +1,13 @@
+5.3.0-1027.29 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test	- enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests - cmd (bug 1855808) vclib (bug 1855809) podautoscaler (bug 1855810) container (bug 1855811) kuberuntime (bug 1855812) ipset (bug 1855813) label (bug 1855814) flag (bug 1855815) naming (bug 1855816)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) msg_zerocopy in net (bug 1812620) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) ip_defrag.sh in net (bug 1826848)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
