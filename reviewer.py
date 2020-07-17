@@ -71,7 +71,7 @@ parser.add_argument('--ibm', action='store_const', dest='flag', const='-ibm-gt',
 
 args = parser.parse_args()
 filters = {'-hwe': '~',
-           '-edge': '5.3.0-.*~',
+           '-edge': '5.4.0-.*~',
            '-kvm': ' - kvm',
            '-oem': ' - oem',
            '-oem-osp1': ' - oem-osp1',
