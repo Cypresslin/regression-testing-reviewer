@@ -1,0 +1,33 @@
+4.15.0-1065.71 - ibm-gt
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_smoke_test - failed to fetch KVM image (bug 1882518)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/186 (bug 1869660)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu in net (bug 1872652) reuseport_bpf_numa in net (bug 1812638) ptrace-gpr in powerpc (bug 1884867) ptrace-tm-gpr in powerpc (bug 1884869) ptrace-tm-spd-gpr in powerpc (bug 1884870)
+  ubuntu_kvm_smoke_test - failed to fetch KVM image (bug 1882518)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages04 (bug 1882539) move_pages12 (bug 1831043) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) dscr_sysfs_test in powerpc on P9 (bug 1880833) subpage_prot in powerpc/mm (bug 1813140) ptrace-gpr in powerpc (bug 1884867)
+  ubuntu_kvm_smoke_test - failed to fetch KVM image (bug 1882518)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains_check (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages04 (bug 1882539) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test

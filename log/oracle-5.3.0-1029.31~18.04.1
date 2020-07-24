@@ -1,0 +1,16 @@
+5.3.0-1029.31~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_bpf - test_maps failed with BTF is required (bug 1850123)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy.sh in net (bug 1812620) psock_snd.sh failed in net (bug 1884234)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1845688) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_nm_test (bug 1872419)
+  ubunut_ltp - proc01 (bug 1829849) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707) umip_basic_test (bug 1853798)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+  * ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401) on VM.Standard2.16

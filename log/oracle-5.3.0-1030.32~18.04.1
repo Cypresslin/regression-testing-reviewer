@@ -1,0 +1,15 @@
+5.3.0-1030.32~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+missing: ubuntu_kvm_unit_tests
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) msg_zerocopy.sh in net (bug 1812620) psock_snd.sh failed in net (bug 1884234)
+  ubunut_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707) umip_basic_test (bug 1853798)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1797341)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+  * ubuntu_kvm_unit_tests hang with vmx_nm_test (bug 1872401)

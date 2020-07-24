@@ -1,0 +1,13 @@
+Marked as Incomplete for the net test timeout issue (bug 1888381)
+
+5.0.0-53.57~18.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - failed with unknown underlay network format (bug 1874703)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) kill11 (bug 1865965)
+
+Skipped / blacklisted:
+ * libhugetlbfs
