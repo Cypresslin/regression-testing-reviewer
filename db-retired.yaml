@@ -321,6 +321,8 @@ xenial-hwe:
             test-kernel-security.py:
                 "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
                     LOCK_DOWN_KERNEL (bug 1811981)
+                "FAIL: test_096_boot_symbols_unreadable":
+                   test_096_boot_symbols_unreadable (bug 1845634)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x-hwe
             079:
@@ -1453,6 +1455,8 @@ eoan:
                 "failed: EROFS":
                     fs_fill (bug 1842266)
             mm:
+                "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                    vma05 (bug 1845863)
                 "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
                     ksm06* in mm (bug 1830316)
             timers: &ltp-timers
@@ -1519,6 +1523,20 @@ eoan-kvm:
             seccomp:
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
+                "seccomp_benchmark # TIMEOUT":
+                    seccomp_benchmark timeout in seccomp (bug 1881576)
+            ftrace:
+                "Test trace_printk from module  [UNRESOLVED]":
+                    Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)
+                "Meta-selftest  [UNRESOLVED]":
+                    Meta-selftest UNRESOLVED in ftrace (bug 1869289)
+    ubuntu_ltp:
+        automation-vm4:
+            mm:
+                "Failed test cases : ksm02 ksm02_1 ksm03 ksm03_1 ksm04 ksm04_1":
+                    ksm02 ksm02_1 ksm03 ksm03_1 ksm04 ksm04_1 failed on KVM kernels (bug 1886409)
+                "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                    vma05 (bug 1845863)
     ubuntu_ltp_syscalls:
         automation-vm5:
             syscalls:
@@ -1528,6 +1546,8 @@ eoan-kvm:
                     fanotify15 (bug 1878748)
                 "FAIL: group 1 got event: mask 10":
                     fanotify09 case 3 (bug 1876684)
+                "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                    fanotify10 case 16 (bug 1882717)
 focal:
     ubuntu_ltp:
         amaura:
@@ -1570,6 +1590,16 @@ focal-kvm:
                 "FAIL: got unnecessary event:":
                     fanotify15 (bug 1878748)
 focal-oem:
+    ubuntu_aufs_smoke_test:
+        onibi:
+            aufs-smoke-test:
+                "unknown filesystem type 'aufs'":
+                    failed on F-OEM-5.6 (bug 1879308)
+    ubuntu_bpf:
+        rizzo:
+            setup:
+                "BPF obj compilation failed":
+                    ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
     ubuntu_ltp_syscalls:
         rizzo:
             syscalls:
@@ -1579,6 +1609,8 @@ focal-oem:
                     connect02 (bug 1874014)
                 "FAIL: group 1 got event: mask 10":
                     fanotify09 case 3 (bug 1876684)
+                "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                    fanotify10 case 16 (bug 1882717)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:

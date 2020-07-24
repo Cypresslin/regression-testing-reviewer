@@ -24,99 +24,22 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-ubuntu_blktrace_smoke_test:
-    baltar:
-        blktrace-smoke-test:
-            "FAILED to start thread on CPU 156: 22/Invalid argument":
-                attempt to run blktrace on offline CPUs (bug 1827318)
 ubuntu_bpf:
-    gonzo: &ubuntu_bpf
-        test_maps:
-            "BTF is required, but is missing or corrupted.":
-                test_maps failed with BTF is required (bug 1850123)
-    rizzo:
-        <<: *ubuntu_bpf
-    pepe:
-        <<: *ubuntu_bpf
     fozzie:
-        <<: *ubuntu_bpf
-    onza:
-        <<: *ubuntu_bpf
-    baltar:
-        <<: *ubuntu_bpf
-    entei:
-        <<: *ubuntu_bpf
-    modoc:
-        <<: *ubuntu_bpf
-    hotdog-kernel:
+        test_maps:
+            "FAIL:failed to create hashmap err: Cannot allocate memory":
+                test_maps FAIL:failed to create hashmap on i386
+    starmie-kernel:
         test_verifier:
             "valid read map access into a read-only array 2 FAIL":
                 Test 13 in test_verifier (bug 1845870)
         test_maps:
-            "BTF is required, but is missing or corrupted.":
-                failed to build test_maps (bug 1845860)
-ubuntu_btrfs_kernel_fixes:
-    pepe: &btrfs_kernel_fixes
-        f88ba6a2a44ee98e8d59654463dc157bb6d13c43:
-            "btrfs balance failed":
-                f88ba6a failed (bug 1828380)
-    amaura:
-        <<: *btrfs_kernel_fixes
-    gonzo:
-        <<: *btrfs_kernel_fixes
-    ms10-35-mcdivittB0-kernel:
-        <<: *btrfs_kernel_fixes
-    modoc:
-        <<: *btrfs_kernel_fixes
-    baltar:
-        <<: *btrfs_kernel_fixes
-ubuntu_kernel_selftests:
-    gonzo:
-        net: &net-kselftests
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-        ftrace: &ftrace-kselftests
-            "Register/unregister many kprobe events	[FAIL]":
-                Register/unregister many kprobe events in ftrace (bug 1866972)
-    rizzo:
-        net:
-            <<: *net-kselftests
-        ftrace:
-            <<: *ftrace-kselftests
-    fozzie:
-        net:
-            <<: *net-kselftests
-            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
-                 ip_defrag in net (bug 1826848)
-        ftrace:
-            <<: *ftrace-kselftests
-            "Kprobe event user-memory access	[FAIL]":
-                Kprobe event user-memory access (bug 1878784)
+            "Failed sockmap unexpected timeout":
+                Failed sockmap unexpected timeout on ARM64 (bug 1805806)
     hotdog-kernel:
-        net:
-            <<: *net-kselftests
-        ftrace:
-            <<: *ftrace-kselftests
-    modoc:
-        net:
-            <<: *net-kselftests
-            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
-                reuseport_bpf_numa in net (bug 1812638)
-            "./reuseport_bpf_cpu: failed to pin to cpu: Invalid argument":
-                reuseport_bpf_cpu in net (bug 1872652)
-            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
-                 ip_defrag in net (bug 1826848)
-    baltar:
-        net:
-            <<: *net-kselftests
-            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
-                reuseport_bpf_numa in net (bug 1812638)
-            "./ip_defrag: sendto overlap: 2120: Operation not permitted":
-                 ip_defrag in net (bug 1826848)
+        test_verifier:
+            "valid read map access into a read-only array 2 FAIL":
+                Test 13 in test_verifier (bug 1845870)
 ubuntu_cts_kernel:
     modoc: &cts_kernel_flaky
         lp1262692:
@@ -126,6 +49,46 @@ ubuntu_cts_kernel:
         <<: *cts_kernel_flaky
     rizzo:
         <<: *cts_kernel_flaky
+ubuntu_kernel_selftests:
+    gonzo:
+        net: &net-kselftests
+            "pmtu.sh # exit=1":
+                pmtu.sh failed without error message in net (bug 1887661)
+    rizzo:
+        net:
+            <<: *net-kselftests
+    fozzie:
+        net:
+            <<: *net-kselftests
+        ftrace:
+            "Kprobe event user-memory access	[FAIL]":
+                Kprobe event user-memory access (bug 1878784)
+    hotdog-kernel:
+        net:
+            <<: *net-kselftests
+    starmie-kernel:
+        net:
+            <<: *net-kselftests
+    modoc:
+        net:
+            <<: *net-kselftests
+            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
+                reuseport_bpf_numa in net (bug 1812638)
+            "./reuseport_bpf_cpu: failed to pin to cpu: Invalid argument":
+                reuseport_bpf_cpu in net (bug 1872652)
+        powerpc:
+            "eeh-basic.sh # TIMEOUT":
+                 eeh-basic.sh timeout in powerpc (bug 1882503)
+    baltar:
+        net:
+            <<: *net-kselftests
+            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
+                reuseport_bpf_numa in net (bug 1812638)
+        powerpc:
+            "failure: dscr_sysfs_test":
+                dscr_sysfs_test in powerpc for P9 (bug 1880833)
+            "eeh-basic.sh # TIMEOUT":
+                 eeh-basic.sh timeout in powerpc (bug 1882503)
 ubuntu_fan_smoke_test:
     modoc: &ubuntu_fan_smoke_test
         fan-smoke-test:
@@ -134,22 +97,10 @@ ubuntu_fan_smoke_test:
     baltar:
         <<: *ubuntu_fan_smoke_test
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
-        kvm_smoke_test:
-            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
-                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
-    wright-kernel:
-        <<: *1765668
     modoc: &kvm-smoke-ppc
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                failed to start KVM with uvtool on P8 Bionic (bug 1798358)
-    entei:
-        <<: *kvm-smoke-ppc
-    pepe:
-        kvm_smoke_test:
-            "timed out waiting for dnsmasq lease":
-                timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     onza: &kvm-unit-i386
         vmexit_cpuid:
@@ -184,54 +135,14 @@ ubuntu_kvm_unit_tests:
                 vmexit* on i386 (bug 1822235)
     fozzie:
         <<: *kvm-unit-i386
-    starmie-kernel:
-        all:
-            "FAIL psci":
-                psci (bug 1828545)
-    ms10-34-mcdivittB0-kernel:
-        gicv2-mmio-3p:
-            "FAIL gicv2-mmio-3p":
-                gicv2-mmio-3p (bug 1828027)
-        gicv2-mmio-up:
-            "FAIL gicv2-mmio-up":
-                gicv2-mmio-up (bug 1828026)
-        gicv3-ipi:
-            "FAIL gicv3-ipi":
-                gicv3-ipi failed on Moonshot (bug 1790825)
-        gicv3-active:
-            "FAIL gicv3-active":
-                gicv3-active failed on Moonshot (bug 1790825)
-    entei: &kvm-unit-ppc
-        all:
-            "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
-                sprs timed out (bug 1740017)
-            " sprs (":
-                YOU SHOULD NOT SEE THIS, sprs DIDN'T HANG, PLEASE CHECK
-    baltar:
-        <<: *kvm-unit-ppc
-    modoc:
-        <<: *kvm-unit-ppc
-    rizzo:
-        apic:
-            "FAIL apic":
-                 apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                 apic-split timeouted (bug 1821390)
-        port80:
-            "FAIL port80":
-                 port80 timeouted (bug 1748105)
-        realmode:
-            "FAIL realmode (timeout;":
-                realmode timeouted (bug 1854490)
-        vmx_vmcs_shadow_test:
-            "FAIL vmx_vmcs_shadow_test (timeout":
-                vmx_vmcs_shadow_test timeouted (bug 1874186)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -258,6 +169,8 @@ ubuntu_ltp:
     pepe:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         net.ipv6_lib:
@@ -297,10 +210,7 @@ ubuntu_ltp:
             "BROK: fs_fill.c:":
                 fs_fill failed with ENOSPC in fs (bug 1878877)
         mm:
-            "FAIL: pages_unshared is not 1 but 0":
-                ksm04 in mm on P9 (bug 1878893)
-            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
-                ksm06* in mm (bug 1830316)
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -332,8 +242,7 @@ ubuntu_ltp:
         fs:
             <<: *ltp-fs
         mm:
-            "BROK: Failed to close FILE '/sys/kernel/mm/ksm/max_page_sharing'":
-                ksm06* in mm (bug 1830316)
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -363,10 +272,10 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 1 got event: mask 10":
-                fanotify09 case 3 (bug 1876684) 
-            "FAIL: got unnecessary event:":
-                fanotify15 (bug 1878748)
+            "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                fanotify10 case 16 (bug 1882717)
+            "msgstress03    1  TFAIL":
+                msgstress03 (bug 1797341)
     pepe:
         syscalls:
             <<: *syscalls
@@ -382,10 +291,18 @@ ubuntu_ltp_syscalls:
         syscalls:
             <<: *syscalls
 ubuntu_lxc:
+    rizzo:
+        exercise: &lxc-test-device-add-remove
+            "FAIL: lxc-tests: lxc-test-device-add-remove":
+                lxc-test-device-add-remove (bug 1884024)
+    fozzie:
+        exercise:
+            <<: *lxc-test-device-add-remove
     baltar: &lxc
         exercise:
             "Failed to fetch http://ports.ubuntu.com/":
                 failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+            <<: *lxc-test-device-add-remove
     entei:
         <<: *lxc
     modoc:
@@ -430,7 +347,7 @@ ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                Failed on 5.3 (bug 1844493)
+                Failed on 5.4 (bug 1844493)
     wright-kernel:
         <<: *sysdig
     baltar:

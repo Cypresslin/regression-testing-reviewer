@@ -182,6 +182,8 @@ ubuntu_ltp_syscalls:
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                sched_rr_get_interval01 (bug 1886890)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -200,9 +202,17 @@ ubuntu_ltp_syscalls:
     kernel01:
         syscalls:
             <<: *syscalls
+            "BROK: Test killed by SIGFPE!":
+                clock_gettime04 (bug 1887459)
+            "FAIL: timer_delete() failed!: EINVAL":
+                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
     s2lp3:
         syscalls:
             <<: *syscalls
+            "BROK: Test killed by SIGFPE!":
+                clock_gettime04 (bug 1887459)
+            "FAIL: timer_delete() failed!: EINVAL":
+                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
     s2lp6g001:
         syscalls:
             <<: *syscalls

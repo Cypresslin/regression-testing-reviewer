@@ -11,16 +11,19 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_aufs_smoke_test:
-    onibi:
-        aufs-smoke-test:
-            "unknown filesystem type 'aufs'":
-               failed on F-OEM-5.6 (bug 1879308)
 ubuntu_bpf:
+    lagalla:
+        test_maps:
+            "Failed sockmap unexpected timeout":
+                timeout on lagalla (bug 1874029)
     rizzo:
-        setup:
-            "BPF obj compilation failed":
-                ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+        test_verifier:
+            "#555/p jgt32: range bound deduction, reg op imm FAIL":
+                range bound deduction test failed in test_verifier (bug 1887487)
+            "#556/p jgt32: range bound deduction, reg1 op reg2, reg1 unknown FAIL":
+                range bound deduction test failed in test_verifier (bug 1887487)
+            "#557/p jle32: range bound deduction, reg1 op reg2, reg2 unknown FAIL":
+                range bound deduction test failed in test_verifier (bug 1887487)
 ubuntu_kernel_selftests:
     rizzo:
         net:
@@ -87,8 +90,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 0 got event: mask 1020 (expected 1000)":
-                fanotify10 case 16 (bug 1882717)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
 ubuntu_qrt_kernel_security:

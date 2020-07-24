@@ -36,15 +36,9 @@ ubuntu_kernel_selftests:
                 test_vxlan_under_vrf.sh (bug 1837348)
             "selftests: net: so_txtime.sh # exit=2":
                 so_txtime.sh in net (bug 1870106)
-        seccomp:
-            "seccomp_benchmark # TIMEOUT":
-                seccomp_benchmark timeout in seccomp (bug 1881576)
-        ftrace:
-            "Test trace_printk from module	[UNRESOLVED]":
-                Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)
-            "Meta-selftest	[UNRESOLVED]":
-                Meta-selftest UNRESOLVED in ftrace (bug 1869289)
     gummo:
+       <<: *ubuntu_kernel_selftests
+    larry:
        <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
     automation-vm1:
@@ -74,9 +68,6 @@ ubuntu_ltp:
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
-            "vma05 1 TFAIL: [vsyscall] reporting wrong":
-                vma05 (bug 1845863)
         sched:
             "fork() (error: Resource temporarily unavailable)":
                 hackbench01 (bug 1830675)
@@ -87,7 +78,7 @@ ubuntu_ltp:
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
-                memcg_max_usage_in_bytes (bug 1829979) 
+                memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
@@ -110,6 +101,8 @@ ubuntu_ltp:
                 tpci (bug 1868707)
     gummo:
         <<: *ubuntu_ltp
+    moe:
+        <<: *ubuntu_ltp
 ubuntu_ltp_syscalls:
     automation-vm5: &ubuntu_ltp_syscalls
         syscalls:
@@ -121,8 +114,8 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
-            "FAIL: group 0 got event: mask 1020 (expected 1000)":
-                fanotify10 case 16 (bug 1882717)
+    larry:
+        <<: *ubuntu_ltp_syscalls
     zeppo:
         <<: *ubuntu_ltp_syscalls
 ubuntu_lxc:
@@ -137,12 +130,17 @@ ubuntu_sysdig_smoke_test:
                 failed to trace read / write (bug 1844493)
     gummo:
         <<: *ubuntu_sysdig_smoke_test
+    larry:
+        <<: *ubuntu_sysdig_smoke_test
 ubuntu_xfstests_btrfs:
     automation-vm2:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
     larry:
+        btrfs:
+            <<: *xfstest-no-sdb
+    moe:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
@@ -153,11 +151,17 @@ ubuntu_xfstests_ext4:
     harpo:
         ext4:
             <<: *xfstest-no-sdb
+    larry:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
     gummo:
+        xfs:
+            <<: *xfstest-no-sdb
+    moe:
         xfs:
             <<: *xfstest-no-sdb

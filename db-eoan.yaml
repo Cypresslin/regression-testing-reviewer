@@ -96,6 +96,12 @@ ubuntu_fan_smoke_test:
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     baltar:
         <<: *ubuntu_fan_smoke_test
+    s2lp4: &ubuntu_fan_smoke_test_s390x
+        fan-smoke-test:
+            "docker still configured":
+                docker still configured (bug 1879299)
+    kernel03:
+        <<: *ubuntu_fan_smoke_test_s390x
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         net:
@@ -137,9 +143,12 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew in timers bail out (bug 1882511)
         ftrace:
-            "Register/unregister many kprobe events	[FAIL]":
-                Register/unregister many kprobe events in ftrace (bug 1866972)
+            "test for function traceon/off triggers	[FAIL]":
+                traceon/off triggers in ftace (bug 1837040)
     naumann:
         <<: *kernel-selftests
     gonzo:
@@ -167,6 +176,13 @@ ubuntu_kernel_selftests:
                 Kprobe event user-memory access in ftrace (bug 1869227)
             "Meta-selftest	[UNRESOLVED]":
                 Meta-selftest unresolved in ftrace (bug 1869289)
+        powerpc:
+            "failure: ptrace_tar":
+                ptrace_tar in powerpc (bug 1888339)
+            "failure: tm_resched_dscr":
+                tm-resched-dscr in powerpc (bug 1888334)
+            "failure: dscr_inherit_exec_test":
+                dscr_inherit_exec_test in powerpc (bug 1888332)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
@@ -301,9 +317,9 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
-            "vma05 1 TFAIL: [vsyscall] reporting wrong":
-                vma05 (bug 1845863)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -439,6 +455,8 @@ ubuntu_ltp:
             <<: *ltp-fs
             "tst_test.c:1287: BROK: Test killed! (timeout?)":
                 fs_fill timeout with btrfs (bug 1878763)
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -473,6 +491,8 @@ ubuntu_ltp:
     s2lp4:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_inherit 3 TFAIL: cpus: Test result":
@@ -490,6 +510,8 @@ ubuntu_ltp:
     kernel03:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh":
@@ -506,6 +528,8 @@ ubuntu_ltp:
     s2lp6g001: &ltp-s390x-kvm
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh":
@@ -545,6 +569,12 @@ ubuntu_ltp_syscalls:
             "msgstress03    1  TFAIL":
                 msgstress03 (bug 1797341)
             <<: *syscalls-all
+            "Test killed by SIGFPE":
+                clock_gettime04 (bug 1887459)
+            "FAIL: CLOCK_MONOTONIC failed: EINVAL":
+                timer_settime01 (bug 1887469)
+            "FAIL: CLOCK_REALTIME didn't fail as expected. Expected: EFAULT - Got: EINVAL":
+                timer_settime01 (bug 1887473)
     kernel03:
         <<: *syscall-s390x
     s2lp6g003:

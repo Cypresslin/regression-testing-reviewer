@@ -352,6 +352,9 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -378,6 +381,8 @@ ubuntu_ltp:
     naumann:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "TFAIL: cpuset.cpus: Test result -  Expected string":
@@ -398,6 +403,8 @@ ubuntu_ltp:
     riolu:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
@@ -412,6 +419,8 @@ ubuntu_ltp:
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
@@ -439,6 +448,8 @@ ubuntu_ltp:
     wright-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         cpuhotplug:
             <<: *ltp-cpuhotplug
         net.ipv6_lib:
@@ -455,6 +466,8 @@ ubuntu_ltp:
     appleton-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         cpuhotplug:
             <<: *ltp-cpuhotplug
         controllers:
@@ -471,6 +484,8 @@ ubuntu_ltp:
     hotdog-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         cpuhotplug:
             <<: *ltp-cpuhotplug
         controllers:
@@ -487,6 +502,8 @@ ubuntu_ltp:
     baltar:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
@@ -498,6 +515,8 @@ ubuntu_ltp:
     modoc:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
@@ -511,6 +530,8 @@ ubuntu_ltp:
     amaura:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
@@ -526,6 +547,8 @@ ubuntu_ltp:
     s2lp3:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
@@ -538,6 +561,8 @@ ubuntu_ltp:
     s2lp6g002:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
@@ -549,6 +574,8 @@ ubuntu_ltp:
     kernel02:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         net.ipv6_lib:
@@ -629,6 +656,19 @@ ubuntu_lxc:
                 failed to fetch GPG key
     hotdog-kernel:
         <<: *lxc-arm64
+ubuntu_seccomp:
+    pepe: &ubuntu-seccomp-i386
+        seccomp:
+            "Test 53-sim-binary_tree%%001-00001 result:   FAILURE bpf_sim resulted in KILL":
+                Test 53-sim-binary_tree failed on i386 / s390x (bug 1887879)
+    fozzie:
+        <<: *ubuntu-seccomp-i386
+    s2lp3: &ubuntu-seccomp-s390x
+        seccomp:
+            "Test 53-sim-binary_tree%%015-00001 result:   ERROR bpf_sim rc=14":
+                Test 53-sim-binary_tree failed on i386 / s390x (bug 1887879)
+    kernel02:
+        <<: *ubuntu-seccomp-s390x
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
         btrfs:

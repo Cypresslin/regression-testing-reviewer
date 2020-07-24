@@ -118,6 +118,9 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)

@@ -129,6 +129,8 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
+    gummo:
+        <<: *ubuntu_ltp_syscalls
     harpo:
         <<: *ubuntu_ltp_syscalls
     zeppo:
@@ -146,6 +148,8 @@ ubuntu_sysdig_smoke_test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 failed to trace read / write (bug 1844493)
     gummo:
+        <<: *ubuntu_sysdig_smoke_test
+    larry:
         <<: *ubuntu_sysdig_smoke_test
     zeppo:
         <<: *ubuntu_sysdig_smoke_test
@@ -165,6 +169,9 @@ ubuntu_xfstests_ext4:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    gummo:
+        ext4:
+            <<: *xfstest-no-sdb
     harpo:
         ext4:
             <<: *xfstest-no-sdb
@@ -182,3 +189,6 @@ ubuntu_xfstests_xfs:
     larry:
         xfs:
             <<: *xfstest-no-sdb
+    moe:
+        xfs:
+             <<: *xfstest-no-sdb

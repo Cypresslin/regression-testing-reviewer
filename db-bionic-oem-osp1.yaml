@@ -11,8 +11,16 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_bpf:
+    lagalla:
+        test_maps:
+            "Failed sockmap unexpected timeout":
+                timeout on lagalla (bug 1874029)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)

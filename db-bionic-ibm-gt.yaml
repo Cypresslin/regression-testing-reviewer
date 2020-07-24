@@ -144,6 +144,9 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
@@ -180,6 +183,8 @@ ubuntu_ltp:
     baltar:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -214,6 +219,8 @@ ubuntu_ltp:
     modoc:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":

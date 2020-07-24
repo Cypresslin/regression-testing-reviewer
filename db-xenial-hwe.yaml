@@ -180,18 +180,19 @@ ubuntu_ltp_syscalls:
     ms10-35-mcdivittB0-kernel:
         <<: *syscalls-amd64
     pepe:
-        <<: *syscalls-amd64
+        syscalls:
+            <<: *syscalls
+            "BROK: preadv203.c":
+                preadv203 / preadv203_64 failed on X-i386 with ENOSPC (bug 1864425)
     secchi:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
 ubuntu_qrt_kernel_security:
-    baltar: &ubuntu_qrt_kernel_security
+    onza:
         test-kernel-security.py:
-            "FAIL: test_096_boot_symbols_unreadable":
-                test_096_boot_symbols_unreadable (bug 1845634)
-    modoc:
-        <<: *ubuntu_qrt_kernel_security
+            "FAIL: test_ulimit_stack_small":
+                flaky test on i386 (bug 1814295)
 ubuntu_seccomp:
     fozzie:
         seccomp:

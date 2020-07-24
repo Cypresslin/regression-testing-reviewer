@@ -110,6 +110,8 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
+            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                sched_rr_get_interval01 (bug 1886890)
     zeppo:
         <<: *syscalls
 ubuntu_lxc:

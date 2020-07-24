@@ -36,6 +36,11 @@ ubuntu_cts_kernel:
         lp1262692:
             "ovs-vsctl: unix:/var/run/openvswitch/db.sock: database connection failed (No such file or directory)":
                 test is a bit flaky (bug 1837536)
+ubuntu_kernel_selftests:
+    rizzo:
+        timers:
+            "Bail out!":
+                raw_skew test in timers bail out (bug 1882511)
 ubuntu_kvm_unit_tests:
     rizzo:
         apic:
@@ -67,6 +72,9 @@ ubuntu_ltp:
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm:
+            "BROK: Failed to close FILE '/tmp/cgroup_mem/cgroup.subtree_control":
+                ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742)
         controllers:
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)

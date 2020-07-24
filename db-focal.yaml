@@ -31,25 +31,12 @@ hwclock:
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock-moonshot
 ubuntu_bpf:
-    lagalla:
-        test_maps:
-            "Failed sockmap unexpected timeout":
-                timeout on lagalla (bug 1874029)
     rizzo: &bpf
         test_maps:
             "Failed to load SK_SKB verdict prog":
                 Failed to load SK_SKB verdict prog (bug 1845860)
     fozzie:
         <<: *bpf
-
-    baltar: &bpf-ppc
-        test_maps:
-            "Failed to load SK_SKB parse prog":
-                test_map failed on PowerPC (bug 1802474)
-    entei:
-        <<: *bpf-ppc
-    modoc:
-        <<: *bpf-ppc
     starmie-kernel: &bpf-arm64
         test_maps:
             "Failed sockmap unexpected timeout":
@@ -63,12 +50,6 @@ ubuntu_bpf:
         test_maps:
             "Failed to load SK_SKB parse prog":
                 test_maps faile to load SK_SKB (bug 1845643)
-    s2lp4:
-        <<: *bpf-s390x
-    kernel04:
-        <<: *bpf-s390x
-    s2lp6g001:
-        <<: *bpf-s390x
     hotdog-kernel:
         test_verifier:
             "#13/p valid read map access into a read-only array 2 FAIL":

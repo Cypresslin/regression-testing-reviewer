@@ -104,12 +104,14 @@ ubuntu_ltp:
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
     gummo:
         <<: *ltp
+    larry:
+        <<: *ltp
 ubuntu_ltp_syscalls:
     automation-vm5: &syscalls
         syscalls:
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "msgstress04.c:220: Child exit status = 1":
+            "msgstress04    1  TFAIL":
                 msgstress04 (bug 1797348)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
@@ -119,7 +121,11 @@ ubuntu_ltp_syscalls:
                 futex_cmp_requeue01 (bug 1874016)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                sched_rr_get_interval01 (bug 1886890)
     zeppo:
+        <<: *syscalls
+    gummo:
         <<: *syscalls
 ubuntu_lxc:
     automation-vm1:
@@ -142,11 +148,17 @@ ubuntu_xfstests_ext4:
     harpo:
         ext4:
             <<: *xfstest-no-sdb
+    gummo:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
     gummo:
+        xfs:
+            <<: *xfstest-no-sdb
+    moe:
         xfs:
             <<: *xfstest-no-sdb
