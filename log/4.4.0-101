@@ -1,0 +1,60 @@
+4.4.0-101.124 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 20 failed on michael, 50 failed on secchi, 30 failed on pepe, 31 failed on amaura
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on wright
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tsc, taskswitch2)
+  xfstests - xfs eat up all free space, bug 1720343
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_lttng_smoke_test - DKMS issue, bug 1732651, passed with module rebuild
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container), lxc-test-unpriv failed (bug 1730915, 1730926)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - selftest-setup and intercept failed, bug 1726225
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container), lxc-test-unpriv failed (bug 1730915, 1730926)
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - IOError: [Errno 524] Unknown error 524, bug 1729510
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_lxc - lxc-test-unpriv failed (bug 1730915, 1730926)
+
+4.4.0-101.124 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 50 failed on secchi, 20 failed on michael, 32 failed on amaura, 30 failed on pepe
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tst, taskswitch2)
+  xfstests - xfs eat up all free space, bug 1720343

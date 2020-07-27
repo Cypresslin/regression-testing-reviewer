@@ -1,0 +1,50 @@
+Mark this as Incomplete due to the ThunderX issue (bug 1758036)
+
+4.13.0-38.43~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on rumford
+  rtc - failed on daedalus only
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael (apic, vmx, vmx_interrupt, vmx_controls), 21 failed on pepe
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_unionmount_overlayfs_suite - timed out on rizzo only, passed on daedalus and michael
+  ubuntu_zfs_fstest - failed on gonzo only, passed on the others
+  xfstests - timedout on xfs/438 xfs/476
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+  xfstests - timedout on xfs generic/308
+
+4.13.0-38.43~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on daedalus
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael (apic, vmx, vmx_interrupt, vmx_controls), 21 failed on pepe
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_unionmount_overlayfs_suite - timed out on rizzo, passed on daedalus and michael
+  xfstests - xfs/438, xfs/471 timed out
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) pmu on starmie (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_zfs_xfs_generic - failed with test 079 (bug 1732370)
+  ubuntu_zram_smoke_test - zram smoke test timed out on Artful thunderX arm64 (CPU soft lockup) (bug 1758036)
+
+Issue to note in i386:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in ppc64le:
+  ubuntu_ecryptfs - directory-concurrent.sh.btrfs failed
+  ubuntu_kvm_smoke_test - uvtool isseu (bug 1755118)
+  ubuntu_kvm_unit_tests - emulator failed (bug 1723914) sprs failed (bug 1723904)
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_stress_smoke_test - passed after re-test
+  xfstests - timed out on btrfs/176

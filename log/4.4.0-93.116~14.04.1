@@ -1,0 +1,28 @@
+4.4.0-93.116~14.04.1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - smap, pku, hyperv_clock, svm failed, issue seen before
+
+Issue to note in arm64:
+  hwclock - failed to change time
+  libhugetlbfs - failed to build (bug 1707887)
+  ubuntu_cts_kernel - lp1262692, issue seen before
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 050 (bug 1684776) failed
+
+Issue to note in i386:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+
+Issue to note in ppc64le:
+  rtc - RTC_AIE_ON ioctl: Input/output error
+  ubuntu_cts_kernel - grub-ieee1275 issue, bug 1641567
+  ubuntu_ecryptfs - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_apparmor - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_aslr_collisions - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_hardening - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_panic - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_security - grub-ieee1275 issue, bug 1641567

@@ -1,0 +1,9 @@
+3.13.0-153.203~precise1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  None
+
+Issue to note in i386:
+  None
+

@@ -1,0 +1,42 @@
+4.13.0-39.44 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - bad config 1 failed 7 killed by signal 7
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - 23 failed on amaura, 3 failed on lodygin, 16 failed on gummo, 22 failed on pepe
+  ubuntu_zfs_xfs_generic - failed on pepe, passed after re-test
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - failed 1 killed by signal 1 bad config 1
+  ubuntu_bpf - failed to build on ARM64 (bug 1675395)
+  ubuntu_ecryptfs - directory-concurrent.sh.ext4 in ubuntu_ecryptfs failed on A/B ARM64 (bug 1765653)
+  ubuntu_kvm_smoke_test - Unable to create KVM with uvtool on arm64 system (bug 1749427)
+  ubuntu_qrt_kernel_security - test_181_config_vmap_stack failed with 4.15 KVM / 4.13 ARM64 kernel (bug 1764985)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 killed by signal 4 bad config 1
+  ubuntu_bpf - test_verifier failed on Artful i386 (bug 1755101) test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - failed to build (bug 1765366)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299) 
+  ubuntu_kvm_unit_tests - Test skipped, this systems does not have KVM extension support
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_smoke_test - uvtool-libvirt needs arch specific template (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed (0 tests)
+
+MISSING ppc64le result in this cycle: testing node out-of-order

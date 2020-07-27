@@ -1,0 +1,14 @@
+4.4.0-1002.2 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  ebizzy - failed only on one instance, passed on the rest
+  libhugetlbfs - 1 failed, bad configuration 3, passed on many other instances
+  ubuntu_fan_smoke_test - should be skipped on Trusty
+  ubuntu_kvm_smoke_test - test case issue
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lttng_smoke_test - should be skipped on Trusty
+  ubuntu_stress_smoke_test - should be skipped on Trusty
+  ubuntu_sysdig_smoke_test - should be skipped on Trusty
+

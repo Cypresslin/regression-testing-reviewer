@@ -1,0 +1,50 @@
+4.13.0-18.21~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  monotonic_time - gtod, tsc failed on lodygin (bug 1732620)
+  ubuntu_kvm_unit_tests - 5 failed on michael, 25 failed on amaura, 57 fauled on lodygin, 24 failed on pepe
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - failed on michael only
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on wright
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_fan_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_stress_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_zfs_xfs_generic - failed with test 079
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - smap, hypercall, msr, tsc failed on pepe
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+4.13.0-18.21~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  monotonic_time - tsc failed on lodygin (bug 1732620), gtod failed on rumford
+  ubuntu_kvm_unit_tests - 5 failed on michael, 24 failed on amaura, 57 failed on lodygin, 24 failed on pepe
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - failed on michael only
+  ubuntu_zfs_xfs_generic - failed on amaura and michael, manually re-tested and passed
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 4 failed on pepe (smap, hypercall, msr, tsc)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Leveraging the result before respin (4.13.0-18.21~16.04.1)

@@ -1,0 +1,12 @@
+4.4.0-1041.50 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  ebizzy - failed only on one instance (t2.nano), passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge), Killed by signal 1, bad config 3, failed on 4 instances, passed on the rest
+  ubuntu_kvm_smoke_test - CPU does not support KVM extensions
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lttng_smoke_test - failed only on t2.nano and t2.micro only, passed on the rest
+  ubuntu_lxc - lxc-test-ubunut failed (Failed to start networking in ubuntu-cloud container, Failed creating ubuntu-cloud container due to too many open files)
+

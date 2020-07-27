@@ -1,0 +1,64 @@
+4.15.0-23.25 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+  ubuntu_fan_smoke_test - failed on gonzo, passed on the rest
+  ubuntu_kvm_unit_tests - 27 failed on amaura, 16 failed on harpo, 11 failed on michael, 23 failed on pepe
+  ubuntu_ltp - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify09 failed with T/A/B kernel (bug 1775153) ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+  ubuntu_docker_smoke_test - test case issue (bug 1775574)
+  ubuntu_ecryptfs - directory-concurrent.sh.ext4 failed on wright, passed on the rest
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on ms10-34-mcdivittB0-kernel, passed on the rest
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in i386:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+  ubuntu_kvm_unit_tests - 28 failed on pepe
+  ubuntu_ltp_syscalls - fcntl36 failed with X/X-LTS/X-HWE/X-EDGE/B i386 kernel (bug 1774396) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify09 failed with T/A/B kernel (bug 1775153)
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in ppc64le:
+  hwclock - hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
+  ubuntu_ecryptfs - file-concurrent.sh.xfs failed, others passed
+  ubuntu_kvm_unit_tests - sprs hang, bug 1740017
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_stress_smoke_test - Firewall issue on Baltar
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - should be skipped
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_fan_smoke_test - fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_qrt_kernel_security - lttng_probe_writeback is tainted (bug 1751213)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - should be skipped
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_fan_smoke_test - fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
+  ubuntu_kvm_unit_tests - skey (2 tests)
+  ubuntu_lxc - lxc-tests package removed on bionic (bug 1758255)
+  ubuntu_qrt_kernel_security - lttng_probe_writeback is tainted (bug 1751213)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+

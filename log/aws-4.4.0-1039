@@ -1,0 +1,11 @@
+4.4.0-1039.48 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  ebizzy - failed only on one instance, passed on the rest
+  libhugetlbfs - 1 failed, Killed by signal 15, bad configuration 3, passed on many other instances
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lttng_smoke_test - failed only on one instance, passed on the rest
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+

@@ -1,0 +1,7 @@
+4.13.0-1014.18 - gcp
+Regression test CMPL.
+
+Issue to note in gcp:
+  libhugetlbfs - 1 failed , 1 killed by signal, 3 bad config
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container)

@@ -1,0 +1,54 @@
+4.4.0-98.121 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on fozzie
+  ubuntu_kvm_unit_tests - 17 failed on michael, 30 failed on onza, 21 failed on archytas, 32 failed on amaura
+  xfstests - btrfs timed out, bug 1718925
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on starmie
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed
+  ubuntu_zfs_xfs_generic - failed with test 079
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on onza (smap, hypercall, msr, tsc, taskswitch2)
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 10 failed, 7 killed by signal, 1 bad configuration
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_unit_tests - all 3 tests passed after re-test
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 10 failed, 7 killed by signal, 1 bad configuration
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_unit_tests - selftest-setup and intercept failed, bug 1726225
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - IOError: [Errno 524] Unknown error 524, issue seen before
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_unit_tests - all 3 tests passed after re-test
+
+4.4.0-98.121 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - failed on fozzie, minus 0.1 second, looks like a glitch
+  ubuntu_kvm_unit_tests - 30 failed on onza, 32 failed on amaura, 21 failed on archytas, 20 failed on michael
+  xfstests - btrfs timed out, bug 1718925
+
+Issue to note in i386:
+  monotonic_time - gtod failed on onza
+  ubuntu_kvm_unit_tests - 5 failed on onza (smap, hypercall, msr, tsc, taskswitch2)

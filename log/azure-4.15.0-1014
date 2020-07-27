@@ -1,0 +1,25 @@
+Mark this task as Incomplete for the lttng issue (bug 1778642)
+
+4.15.0-1014.14 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  monotonic_time - tsc failed on some instances, clock failed on Standard_E4s_v3, Standard_E64-16s(bug 1774959), passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp - test disabled on azure
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - ubuntu_lttng_smoke_test failed on Azure 4.15 (bug 1778642)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_quota_smoke_test - need the -extra package (bug 1777114)
+  ubuntu_ramfs_stress - failed on Standard_B1s only, passed on the rest
+  ubuntu_stress_smoke_test - sysfs caused kernel oopsed on some instances (bug 1757057)
+
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+  ubuntu_zram_smoke_test - zram module missing (bug 1762756)
+
+Skipped / blacklisted:
+  * libhugetlbfs
+  * ubuntu_nbd_smoke_test
+  * ubuntu_seccomp

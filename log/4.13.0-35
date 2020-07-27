@@ -1,0 +1,45 @@
+4.13.0-35.39 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - failed 7 (Heap did not shrink, small_const is not hugepage), killed by signal 7, bad config 1
+  ubuntu_bpf - FAILED ON PEPE AND DAEDALUS, NEEDS TO BE INVESTIGATED
+  ubuntu_ecryptfs - directory-concurrent.sh.ext2 failed on rumford, bug 1741437
+  ubuntu_kvm_unit_tests - 21 failed on amaura, 15 failed on daedalus, 20 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container), failed on daedalus only
+  ubuntu_stress_smoke_test - FAILED ON GONZO, RETESTING, NEEDS TO BE INVESTIGATED
+  xfstests - timed out on ext4 test with the repo from upstream 
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - failed 1 (Heap did not shrink), killed by signal 1, bad config 1
+  ubuntu_bpf - failed to build, bug 1675395
+  ubuntu_kernel_selftests - breakpoint test failed to build, bug 1680507
+  ubuntu_kvm_smoke_test - failed to create KVM, bug 1749428 
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  
+
+Issue to note in ppc64le:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const is not hugepage), killed by signal 6
+  ubuntu_bpf - failed to build
+  ubuntu_kvm_smoke_test - PROBABLY A UVTOOL ISSUE, NEEDS TO BE INVESTIGATED
+  ubuntu_kvm_unit_tests - sprs hang, bug 1740017
+  xfstests - 
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepage, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_bpf - failed to build, bug 1711299
+  ubuntu_kvm_unit_tests - failed to build, bug 1749422 
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepage, small_const/small_data is not hugepage), killed by signal 7, bad config 1 
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_bpf - failed to build, bug 1711299 
+  ubuntu_kvm_unit_tests - failed to build, bug 1749422
+
+Note: s390x (Ubuntu on LPAR) was switched to Bionic, it will be skipped from this cycle.

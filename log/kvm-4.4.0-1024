@@ -1,0 +1,8 @@
+4.4.0-1024.29 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_smoke_test - CONFIG_AUDITSYSCALL needs to be enabled (bug 1770245)
+  ubuntu_qrt_kernel_security - test_072_config_debug_rodata (bug 1760643) test_072_config_debug_set_module_ronx (bug 1760646) test_074_config_security_default_mmap_min_addr (bug 1760650) test_076_config_security_acl_ext4 (bug 1760652) test_077_config_security_ipsec (bug 1760653) test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656) test_160_setattr_CVE_2015_1350 (bug 1760657)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)

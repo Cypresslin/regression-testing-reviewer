@@ -1,0 +1,26 @@
+3.13.0-131.180 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  libhugetlbfs - 3 failed (no fallocate support in kernels before 4.3.0), 14 killed by signal, 1 bad configuration
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+  ubuntu_kvm_unit_tests - realmode timed out on onibi, ioapic, smap, pku, svm, hyperv_clock failed
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603, or a bug to test case
+  libhugetlbfs - failed to build, bug 1707887
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060,  072, 075, 82, 140 failed, issue seen before, bug 1630000
+
+Issue to note in i386:
+  libhugetlbfs - 3 failed (no fallocate support in kernels before 4.3.0)
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+
+Issue to note in ppc64le:
+  libhugetlbfs - 3 failed (no fallocate support in kernels before 4.3.0)
+  rtc - Update IRQs not supported
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+

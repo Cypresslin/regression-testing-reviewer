@@ -1,0 +1,51 @@
+4.4.0-117.141 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 28 failed on amaura, 14 failed on daedalus, 17 failed on michael, 26 failed on pepe 
+  xfstests - xfs generic/438 timed out 
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 15 failed on pepe (vmexit*, msr, syscall, tsc, taskswitch2, hyperv_clock)
+  ubuntu_unionmount_overlayfs_suite - failed on pepe, passed after re-test
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+4.4.0-117.141 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on daedalus, passed on the other two
+  ubuntu_kvm_unit_tests - 28 failed on amaura, 14 failed on daedalus, 16 failed on michael, 25 failed on pepe
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container on daedalus 
+  ubuntu_unionmount_overlayfs_suite - timed out on rizzo, passed on the other two
+  xfstests - xfs generic/475 timed out on rizzo, ext4 generic/475 timed out on michael 
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi and gicv2-active on starmie pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+  ubuntu_zfs_xfs_generic - failed with test 079 (bug 1732370)
+
+Issue to note in i386:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - 15 failed on pepe (vmexit*, msr, syscall, tsc, taskswitch2, hyperv_clock)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in ppc64le:
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_kvm_unit_tests - emulator failed (bug 1723914) sprs failed (bug 1723904)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+
+Note: Ubuntu s390x zKVM was not tested due to the server outage.

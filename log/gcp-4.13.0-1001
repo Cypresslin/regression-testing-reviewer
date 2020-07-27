@@ -1,0 +1,10 @@
+4.13.0-1001.4 - gcp
+Regression test CMPL.
+
+Issue to note in gcp:
+  libhugetlbfs - 1 failed (brk_near_huge), 1 killed by signal, 3 bad configuration
+  ubuntu_kvm_smoke-tests - KVM not supported by CPU
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container)
+

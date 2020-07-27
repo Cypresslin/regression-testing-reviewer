@@ -1,0 +1,28 @@
+4.4.0-98.121~14.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - missing git package, passed after re-test
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - 30 failed on onza, 20 failed on michael, 21 failed on archytas, 31 failed on amaura
+  ubuntu_lxc - network issue, failed to fetch GPG key on archytas and onza
+
+Issue to note in arm64:
+  libhugetlbfs - failed to build (bug 1707887)
+  rtc - Update IRQs not supported on node starmie
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - passed after re-test
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 050 (bug 1684776) failed
+
+Issue to note in i386:
+  libhugetlbfs - missing git package, passed after re-test
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests -
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_kvm_unit_tests - passed after re-test
+

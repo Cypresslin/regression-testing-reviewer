@@ -1,0 +1,8 @@
+4.4.0-1027.36 - aws
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (aws):
+  ebizzy - failed on one instance but passed on the other two
+  libhugetlbfs - 1 failed (brk_near_huge), Killed by signal 15, bad configuration 3
+  ubuntu_lxc - Failed creating ubuntu-cloud container due to too many open files on 1 of 3 testing instances

@@ -1,0 +1,7 @@
+4.4.0-1028.28 - gke
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (gke):
+  libhugetlbfs - 1 failed (brk_near_huge bug 1653597), Killed by signal 15, bad configuration 3
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container

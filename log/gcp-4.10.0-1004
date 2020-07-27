@@ -1,0 +1,8 @@
+4.10.0-1004.4 - gcp
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (gce):
+  libhugetlbfs - 1 failed (brk_near_huge), 15 killed by signal, 3 bad configuration
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+

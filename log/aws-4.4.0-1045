@@ -1,0 +1,9 @@
+4.4.0-1045.54 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge), Killed by signal 1, bad config 3
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lxc - lxc-test-ubunut failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_stress_smoke_test - test will stuck dev test, bug 1741409 (not a regression since it can be reproduce with an older kernel)

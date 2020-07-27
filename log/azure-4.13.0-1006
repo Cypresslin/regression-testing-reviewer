@@ -1,0 +1,14 @@
+4.13.0-1006.8 - azure
+Regression test CMPL.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, passed on the rest
+  monotonic_time - all three tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests - 15 test failed (apic, ioapic, vmexit_vmcall, emulator, hypercall, idt_test, realmode, s3, sieve, syscall, svm, kvmclock_test, pcid, debug, hyperv_clock), some node will have sieve test passed
+  ubuntu_ltp - test disabled
+  ubuntu_lttng_smoke_test - failed on Standard_B1s only, passed on the rest
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container, Failed creating ubuntu-cloud container due to too many open files), passed on the rest
+  ubuntu_unionmount_overlayfs_suite	- bug 1727290
+
+Note that the ubuntu_kvm_unit_tests will be marked as passed even it have some tests failed.

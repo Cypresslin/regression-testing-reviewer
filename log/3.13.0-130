@@ -1,0 +1,30 @@
+3.13.0-130.179 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - 3 failed (no fallocate support in kernels before 4.3.0), 14 killed by signal, 1 bad configuration
+  ubuntu_blktrace_smoke_test - (test case issue?) 
+  ubuntu_kvm_unit_tests - (retesting on onibi)
+
+Issue to note in arm64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  hwclock - failed to change time, issue seen before
+  libhugetlbfs - failed to build, bug 1707887
+  ubuntu_blktrace_smoke_test - (test case issue?) 
+  ubuntu_cts_kernel - lp1262692 failed, issue seen before 
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - (082 failed, need checking) 
+
+Issue to note in i386:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+  ubuntu_blktrace_smoke_test - (test case issue?) 
+
+Issue to note in ppc64le:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - 3 failed (no fallocate support in kernels before 4.3.0)
+  rtc - Update IRQs not supported
+  ubuntu_blktrace_smoke_test - test case issue?
+  ubuntu_cts_kernel - lp1262692 failed, issue seen before

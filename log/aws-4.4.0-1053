@@ -1,0 +1,10 @@
+Mark this as incomplete for a potential regression - Kernel panic with AWS 4.4.0-1053 / 4.4.0-1015 (Trusty) (bug 1758869)
+
+4.4.0-1053.62 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge), Killed by signal 1, bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_lxc - lxc-test-ubunut failed (Failed to start networking in ubuntu-cloud container), only spotted on t2.small, passed on the rest
+  ubuntu_zram_smoke_test - zram module not found (bug 1757937)

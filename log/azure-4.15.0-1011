@@ -1,0 +1,19 @@
+4.15.0-1011.11 - azure
+Regression test CMPL.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  monotonic_time - tsc failed on some instances, passed on the rest
+  ubuntu_docker_smoke_test - test case issue
+  ubuntu_kvm_smoke_test	- Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support, vmx_control will crash E4 nodes (bug 1747892)
+  ubuntu_ltp - test disabled on azure
+  ubuntu_lttng_smoke_test - failed on Basic_A1, Standard_A0 (bug 1765035) and B1s, passed on the rest
+  ubuntu_lxc - lxc-tests package is not available in Bionic (bug 1758255)
+  ubuntu_stress_smoke_test - sysfs caused kernel oopsed on some instances (bug 1757057)
+  ubuntu_unionmount_overlayfs_suite - Invalid cross-device link was not produced (bug 1727290)
+  ubuntu_zram_smoke_test - zram module missing (bug 1762756)
+
+Skipped / blacklisted:
+  * ubuntu_seccomp

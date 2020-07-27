@@ -1,0 +1,30 @@
+4.11.0-8.13 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  monotonic_time - passed on one node.
+  ubuntu_bpf - patch failed to apply, no regression
+  ubuntu_fan_smoke_test - temprorary Internet issue, passed after re-test
+  ubuntu_kvm_unit_tests - failed item seen before, no regression
+  ubuntu_lttng_smoke_test - Kernel tracer not available, bug 1699755
+  ubuntu_qrt_apparmor - failed after stackprofile test, bug 1661030
+  ubuntu_qrt_kernel_security - test_061_guard_page failed, test case issue, bug 1699751
+  ubuntu_seccomp - TRAP.handler failed, issue seen in 4.11.0-6, not regression
+  ubuntu_sysdig_smoke_test - need root permission bug 1700014
+  ubuntu_zfs_xfs_generic - broken package dependency for texlive, retested without it and passed
+  xfstests - broken package dependency for texlive, retested without it and failed with 044, 045, 046, 048 and 228
+
+Issue to note in arm64:
+  hwclock - failed to change time, issue seen before, no regression
+  libhugetlbfs - issue seen before, no regression
+  ubuntu_bpf - patch failed to apply, no regression
+  ubuntu_kernel_selftests - breakpoint failed to build, bug 1680507
+  ubuntu_lttng_smoke_test - bug 1699755
+  ubuntu_lxc - download issue, passed after re-test
+  ubuntu_qrt_apparmor - failed after running stackpofile test, bug 1661030
+  ubuntu_qrt_kernel_security - test_061_guard_page failed, test case issue, bug 1699751
+  ubuntu_zfs_xfs_generic - broken package dependency for texlive, retested without it, failed with 079 and 317, no regression
+
+Issue to note in i386:
+  libhugetlbfs - issue seen before, no regression

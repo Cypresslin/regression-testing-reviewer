@@ -1,0 +1,62 @@
+4.13.0-18.21 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  libhugetlbfs - failed 7 (Heap did not shrink, small_const is not hugepage ), killed by signal 7, bad config 1
+  monotonic_time - tsc failed on lodygin, bug 1732620
+  ubuntu_ecryptfs - directory-concurrent.sh.ext2 failed with "failed to fork child" on rumford only
+  ubuntu_fan_smoke_test -  fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_unit_tests - 6 failed on michael, 59 failed on lodygin, 25 failed on amaura
+  ubuntu_lxc - lxc-tests-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - timed out on micheal, passed on the rest
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  libhugetlbfs - failed 1 (Heap did not shrink), killed by signal 1, bad config 1
+  rtc - Update IRQs not supported
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_fan_smoke_test - passed after re-test
+  ubuntu_kernel_selftests - breakpoints failed to build, bug 1680507
+  ubuntu_kvm_smoke_test - looks like a HW issue (unsupported configuration: ACPI requires UEFI on this architecture)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_zfs_xfs_generic - test 079 (bug 1732370) failed
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 (Heap did not shrink, small_bss is not hugepage), killed by signal 4, bad config 1
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in ppc64le:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const is not hugepage), killed by signal 6
+  rtc - Update IRQs not supported
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepage, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - KVM not available, bug 1732162
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - Operation not supported, bug 1729510
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Leveraging the test result before the respin (4.13.0-18.21)
+The ubuntu_fan_smoke_test should pass with the path applied in the test suite.

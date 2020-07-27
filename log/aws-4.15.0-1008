@@ -1,0 +1,14 @@
+4.15.0-1008.8 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - failed to build on Bionic (bug 1707887)
+  ubuntu_docker_smoke_test - test case issue
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support
+  ubuntu_ltp - test disabled
+  ubuntu_lxc - lxc-tests package not available (bug 1758255)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Skipped / blacklisted:
+ * ubuntu_seccomp
+ * ubuntu_zram_smoke_test

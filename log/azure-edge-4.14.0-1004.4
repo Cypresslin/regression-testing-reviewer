@@ -1,0 +1,14 @@
+4.14.0-1004.4 - azure
+Regression test CMPL.
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on Standard_A0, passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 1, bad config 3, passed on the rest
+  monotonic_time - all three tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests	- vmx_contorls crashed (bug 1747892)
+  ubuntu_lttng_smoke_test - DKMS module issue, bug 1739591
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container, Failed creating ubuntu-cloud container due to too many open files), passed on the rest
+  ubuntu_unionmount_overlayfs_suite	- failed with rename-empty-dir, bug 1727290
+  ubuntu_zfs_smoke_test	- kernel-smoke-test-scrub failed on Standard_B1s only, passed on the rest
+
+Note: somehow the deployment task for ubuntu_unionmount_overlayfs_suite is aways failed on every node, this test was manually tested on E4v3

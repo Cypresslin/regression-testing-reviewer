@@ -1,0 +1,56 @@
+4.4.0-130.156 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 28 failed on amaura, 18 failed on chico, 21 failed on michael
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  xfstests - xfs generic/475 failed
+
+Issue to note in i386:
+  ubuntu_ltp_syscalls - fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  xfstests - ext4 generic/113 timed out
+
+4.4.0-130.156 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 28 failed on amaura, 21 failed on michael
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  xfstests - xfs generic/475 failed
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+
+Issue to note in i386:
+  ubuntu_ltp_syscalls - fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396) inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  xfstests - ext4 generic/113 timed out
+
+Issue to note in ppc64le (P8):
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_lxc - lxc-test-apparmor-mount failed, network issue
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 12 failed (nested kvm is not supported)
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_lxc - lxc-test-ubuntu(Failed to start networking in ubuntu-cloud container)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+

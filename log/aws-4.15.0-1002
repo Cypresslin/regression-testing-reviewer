@@ -1,0 +1,12 @@
+4.15.0-1002.2 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 7 failed, Killed by signal 7, bad config 1 (t2.small - 8 failed, Killed by signal 7, bad config 3)
+  ubuntu_kvm_unit_tests - test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lxc - lxc-tests package not available (bug 1758255)
+  ubuntu_qrt_apparmor - failed on c3.large, passed after re-test
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1758242), test_120_smep_works (bug 1758246)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zram_smoke_test - zram module not available (bug 1757937)

@@ -1,0 +1,17 @@
+3.13.0-135.184 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - missing git package, passed after re-test
+  ubuntu_kvm_unit_tests - 46 failed on amaura, 35 failed on archytas, 46 failed on pepe
+
+Issue to note in i386:
+  libhugetlbfs - missing git package, passed after re-test
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, realmode, tsc)
+
+Issue to note in ppc64le:
+  libhugetlbfs - missing git package, passed after re-test
+  rtc - Update IRQs not supported
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+
+Note for arm64, the testing node is out of order, arm64 tests were skipped.

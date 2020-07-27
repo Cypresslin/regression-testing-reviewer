@@ -1,0 +1,14 @@
+4.15.0-1008.8 - kvm
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_docker_smoke_test - Unable to start docker (bug 1763630)
+  ubuntu_fan_smoke_test - Unable to start docker (bug 1763630)
+  ubuntu_kvm_smoke_test - Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+  ubuntu_kvm_unit_tests - 
+  ubuntu_ltp - 
+  ubuntu_lttng_smoke_test - Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+  ubuntu_qrt_apparmor - mount test in test_regression_testsuite failed (bug 1765025)
+  ubuntu_qrt_kernel_security - test_078_SLAB_freelist_randomization (bug 1764975) test_095_kernel_symbols_missing_proc_modules (bug 1764980) test_181_config_vmap_stack (bug 1764985) test_182_config_hardened_usercopy (bug 1766777) test_190_config_kernel_fortify (bug 1766774)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)

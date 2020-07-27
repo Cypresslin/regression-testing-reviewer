@@ -1,0 +1,10 @@
+3.13.0-145.194~precise2 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - btrfs related tests failed, can be reproduced with 3.13.0-141.190~precise1, bug 1748395
+
+Issue to note in i386:
+  ubuntu_ecryptfs - btrfs related tests failed, can be reproduced with 3.13.0-141.190~precise1, bug 1748395
+
+Note that I'm using systems from the Cert lab for this cycle, 201307-13930 (i386) and 201308-14073 (amd64)

@@ -1,0 +1,51 @@
+4.15.0-24.26~16.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 27 failed on amaura, 10 failed on michael
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on X-Edge kernel (bug 1765673)
+  ubuntu_qrt_kernel_panic - setup failed on rumford, passed after re-test
+  ubuntu_stress_smoke_test - chroot test failed, issue to the stress-ng tool (bug 1777564)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - btrfs generic/176, xfs generic/476 timed out
+
+Issue to note in i386:
+  ubuntu_ltp_syscalls - fcntl36 failed with X/X-LTS/X-HWE/X-EDGE i386 kernel (bug 1774396) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - trouble writing out superblocks
+
+4.15.0-24.26~16.04.1 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 27 failed on amaura, 10 failed on michael
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on X-Edge kernel (bug 1765673)
+  ubuntu_stress_smoke_test - chroot test failed, issue to the stress-ng tool (bug 1777564)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - xfs generic/475 timed out on michael, btrfs generic/176 timed out on rizzo 
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-ipi on ms10-34-mcdivittB0-kernel pmu on starmie (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_ltp_syscalls -  inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on X-Edge kernel (bug 1765673)
+  ubuntu_stress_smoke_test - chroot test failed, issue to the stress-ng tool (bug 1777564)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in i386:
+  ubuntu_ltp_syscalls - fcntl36 failed with X/X-LTS/X-HWE/X-EDGE i386 kernel (bug 1774396) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on X-Edge kernel (bug 1765673)
+  ubuntu_stress_smoke_test - chroot test failed, issue to the stress-ng tool (bug 1777564)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - bad superblock on /dev/sdb1
+
+Issue to note in ppc64le (P8):
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1755118)
+  ubuntu_kvm_unit_tests - sprs failed (bug 1723904)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on X-Edge kernel (bug 1765673)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)

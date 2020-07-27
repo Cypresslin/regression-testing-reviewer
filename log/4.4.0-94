@@ -1,0 +1,56 @@
+4.4.0-94.117 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - pku, svm, hyperv_clock failed
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+
+Issue to note in arm64:
+  hwclock - test case issue
+  rtc - Failed on starmie - Update IRQs not supported.
+  ubuntu_kvm_unit_tests - failed on starmie only, bug 1715611
+  ubuntu_zfs_xfs_generic - failed with test 079
+
+Issue to note in i386:
+  monotonic_time - gtod failed on fozzie
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_ecryptfs - directory-concurrent.sh.ext3 and file-concurrent.sh.ext3 passed after re-test
+  ubuntu_kvm_unit_test - spapr_hcall failed, bug 1712803
+  xfstests - btrfs, xfs failed
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 10 failed, 7 killed by signal, 1 bad configuration
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed
+  ubuntu_seccomp - failed to build, bug 1715581
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 10 failed, 7 killed by signal, 1 bad configuration
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed
+  ubuntu_seccomp - failed to build, bug 1715581
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, issue seen before, not regression
+  libhugetlbfs - IOError: [Errno 524] Unknown error 524, issue seen before
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  ubuntu_seccomp - failed to build, bug 1715581
+
+4.4.0-94.117 - lowlatency
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  monotonic_time - gtod failed only on fozzie
+  ubuntu_kvm_unit_tests - smap, pku, svm, hyperv_clock failed, issue seen before
+
+Issue to note in i386:
+  monotonic_time - gtod failed only on onza

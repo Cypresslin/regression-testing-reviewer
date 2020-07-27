@@ -1,0 +1,44 @@
+4.13.0-45.50 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  libhugetlbfs - failed 7 killed by signal 7 bad config 1
+  ubuntu_bpf - test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - 16 failed on gummo, 11 failed on michael, 23 failed on pepe
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - failed 1 killed by signal 1 bad config 1
+  ubuntu_bpf - failed to build on ARM64 (bug 1675395)
+  ubuntu_docker_smoke_test - test case issue (bug 1775574)
+  ubuntu_kvm_smoke_test - Unable to create KVM with uvtool on arm64 system (bug 1749427)
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 killed by signal 4 bad config 1
+  ubuntu_bpf - test_verifier failed on Artful i386 (bug 1755101)
+  ubuntu_kvm_unit_tests - 28 failed on pepe
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)
+  ubuntu_lxc - PASSED after retest
+
+Issue to note in ppc64le:
+  libhugetlbfs - failed 7 killed by signal 6
+  ubuntu_bpf - failed to build on ppc64le (bug 1750793)
+  ubuntu_kvm_smoke_test - unable to start kvm, uvtool template issue (bug 1755118)
+  ubuntu_kvm_unit_tests - sprs hang (bug 1740017)
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)
+  ubuntu_stress_smoke_test - firewall issue on entei, passed on modoc
+
+Issue to note in s390x (zKVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_unit_tests - Nested virtualization with KVM is not supported on s390x
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_smoke_test - uvtool-libvirt needs arch specific template (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed (0 tests)
+  ubuntu_ltp_syscalls - inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387) fanotify09 failed with A/T kernel (bug 1775153)

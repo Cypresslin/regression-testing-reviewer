@@ -1,0 +1,38 @@
+4.13.0-36.40~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on onibi
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael (apic, vmx, vmx_interrupt, vmx_control), 21 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container) on daedalus
+  ubuntu_stress_smoke_test - enosys failed on gonzo, bug 1750787, issue can be reproduced with older kernel, not a regression 
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  ubuntu_kernel_selftests - breakpoint test failed to fetch file on starmie, passed after re-test
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338 uvtool issue, bug 1729854
+  ubuntu_kvm_unit_tests - pmu (bug 1751000), gicv2-ipi, gicv2-active failed on starmie, pmu (bug 1751000) failed on ms10-34-mcdivittB0-kernel 
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in ppc64le:
+  ubuntu_ecryptfs - directory-concurrent.sh.btrfs failed
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - sprs failed (bug 1723904), emulator failed (bug 1723914)
+ xfstests - timed out on btrfs/176 
+
+4.13.0-36.40~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on micahel (apic, vmx, vmx_interrupt, vmx_controls), 20 failed on pepe
+  xfstests - btrfs generic/166 timed out on rizzo, bug 1731455, xfs test timed out on michael
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests -  14 failed on pepe
+  xfstests - xfs generic/308 timed out, bug 1738152
+

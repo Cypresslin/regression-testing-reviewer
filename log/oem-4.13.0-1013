@@ -1,0 +1,11 @@
+201606-22459 - Fail 1 (tp-smapi dkms issue*1)
+201507-18697 - Fail 1 (tp-smapi dkms issue*1)
+201507-18661 - Fail 7 (tp-smapi dkms issue*1, BT/WIFI fail due to unstable HW)
+201505-18339 - Fail 2 (tp-smapi dkms issue*1, no SD card reader)
+201505-18323 - Fail 2 (tp-smapi dkms issue*1, meminfo*2)
+201503-16977 - Fail 2 (tp-smapi dkms issue*1, no SD card reader)
+201503-16969 - Fail 2 (tp-smapi dkms issue*1, meminfo*2)
+
+Note:
+  1. tp-smapi build issue was triggered by the accerelometer test in Checkbox, this module is not required on non-Lenovo system.
+  2. memory detection shows different result

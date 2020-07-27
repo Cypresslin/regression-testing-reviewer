@@ -1,0 +1,41 @@
+4.13.0-22.25 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - failed 7 (Heap did not shrink, small_const is not hugepage), killed by signal 7, bad config 1
+  ubuntu_ecryptfs - directory-concurrent.sh.ext2 failed on rumford, bug 1741437
+  ubuntu_kvm_unit_tests - 22 failed on amaura, 22 failed on michael
+  xfstests - No space left on disk
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - failed 1 (Heap did not shrink), killed by signal 1, bad config 1
+  ubuntu_kernel_selftests - breakpoint test failed to build, bug 1680507
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 (Heap did not shrink, small_bss is not hugepage), killed by signal 4, bad config 1
+  xfstests - No space left on disk
+
+Issue to note in ppc64le:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const is not hugepage), killed by signal 6
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  xfstests - no space left on device
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepage, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - Test failed to build, bug 1689240
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - Operation not supported, bug 1729510
+  scrashme - Test failed to build, bug 1689240
+

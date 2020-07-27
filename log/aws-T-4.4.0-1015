@@ -1,0 +1,9 @@
+Mark this as incomplete for a potential regression - Kernel panic with AWS 4.4.0-1053 / 4.4.0-1015 (Trusty) (bug 1758869)
+
+4.4.0-1015.15 - aws
+Regression test CMPL.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kernel_selftests - failed to build
+  ubuntu_kvm_unit_tests - test disabled

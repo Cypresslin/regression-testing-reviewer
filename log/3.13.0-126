@@ -1,0 +1,49 @@
+3.13.0-126.175 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+  ubuntu_kvm_unit_tests - ioapic, smap, pku, svm, hyperv_clock failed, issue seen before
+
+Issue to note in arm64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  hwclock - failed to change time, issue seen before
+  libhugetlbfs - failed to build, bug 1707887
+  ubuntu_cts_kernel - lp1262692 failed, issue seen before
+  ubuntu_qrt_apparmor - failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060, 072, 075, 078, 082, 140 issue seen before bug 1630000
+
+Issue to note in i386:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+
+Issue to note in ppc64le: (retesting them all)
+  aio_dio_bugs - 
+  aiostress -
+  ebizzy -
+  fs_mark -
+  fsx -
+  hwclock -
+  iperf -
+  ipv6connect -
+  libhugetlbfs -
+  rmaptest -
+  rtc -
+  scrashme -
+  signaltest -
+  synctest -
+  ubuntu_blktrace_smoke_test -
+  ubuntu_cts_kernel -
+  ubuntu_ecryptfs -
+  ubuntu_kvm_unit_tests -
+  ubuntu_leap_seconds -
+  ubuntu_lxc -
+  ubuntu_qrt_apparmor -
+  ubuntu_qrt_kernel_aslr_collisions -
+  ubuntu_qrt_kernel_hardening -
+  ubuntu_qrt_kernel_panic -
+  ubuntu_qrt_kernel_security -
+  ubuntu_squashfs_smoke_test -
+

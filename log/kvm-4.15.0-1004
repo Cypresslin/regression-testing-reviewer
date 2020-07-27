@@ -1,0 +1,19 @@
+4.15.0-1004.4 - kvm
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - Failed to build the test (bug 1765279)
+  ubuntu_blktrace_smoke_test - ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+  ubuntu_docker_smoke_test - Unable to start docker (bug 1763630)
+  ubuntu_fan_smoke_test - Unable to start docker (bug 1763630)
+  ubuntu_kvm_smoke_test - Unable to start KVM with 4.15 KVM kernel (bug 1765005)
+  ubuntu_kvm_unit_tests - 9 failed on groucho (apic-split, apic, eventinj, vmware_backdoors, port80, pcid, hyperv_synic, hyperv_stimer, hyperv_clock)
+  ubuntu_ltp - ar failed (bug 1765331), lsmod01 failed (bug 1765327)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+  ubuntu_lxc - lxc-tests package is not available in Bionic (bug 1758255)
+  ubuntu_qrt_apparmor - mount test in test_regression_testsuite failed with 4.15 kvm (bug 1765025)
+  ubuntu_qrt_kernel_security - test_074_config_security_default_mmap_min_addr (bug 1760650), test_076_config_security_acl_ext4 (bug 1760652), test_077_config_security_ipsec (bug 1760653), test_078_SLAB_freelist_randomization (bug 1764975), test_095_kernel_symbols_missing_proc_modules (bug 1764980), test_151_sysctl_disables_bpf_unpriv_userns (bug 1760656), test_160_setattr_CVE_2015_1350 (bug 1760657), test_181_config_vmap_stack (bug 1764985)
+  ubuntu_stress_smoke_test - af-alg failed with 4.4/4.15 KVM kernel (bug 1760637) dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+  ubuntu_sysdig_smoke_test - Failed to run ubuntu_sysdig_smoke_test on B-KVM kernel (bug 1764693)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+

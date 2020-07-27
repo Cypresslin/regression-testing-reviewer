@@ -1,0 +1,23 @@
+3.13.0-142.191 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 40 failed on amaura, 39 failed on pepe
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - noresv-preserve-resv-page failed (bug 1747823), chunk-overcommit failed (bug 1747828), shmoverride_linked timed out (bug 1739560)
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021 (bug 1747847), 022 (bug 1747847), 050 (bug 1684776), 060 (bug 1712038), 072 (bug 1747850, bug 1747852), 075 (bug 1712007), 082 (bug 1747853), 140 (bug 1747855) failed
+
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 15 failed on pepe (vmexit*, msr, realmode, syscall, tsc, hyperv_clock)
+
+Issue to note in ppc64le:
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+

@@ -1,0 +1,45 @@
+4.13.0-11.12 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  libhugetlbfs - failed 1 (Heap did not shrink, bug 1717897), killed by signal 15, bad config 1
+  monotonic_time - gtod failed (tsc failed on lodygin)
+  ubuntu_ecryptfs - directory-concurrent.sh failed with "failed to fork child" on michael
+  ubuntu_ltp - failed to run configure
+  ubuntu_qrt_kernel_hardening - git clone issue on michael, passed on the other nodes
+  ubuntu_sysdig_smoke_test - failed on lodygin only, bug 1717884
+  ubuntu_unionmount_overlayfs_suite - timed out on michael but passed on the other nodes
+  ubuntu_zfs_xfs_generic - test 192 failed on daedalus, passed on the other nodes
+  xfstests - btrfs timed out, xfs failed
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603, or a bug to test case
+  libhugetlbfs - failed 6 (small_const is not hugepage, Heap did not shrink, bug 1717897), killed by signal 7, bad config 1
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file
+  ubuntu_kernel_selftests - breakpoint test failed to build, bug 1680507
+  ubuntu_lttng_smoke_test - 4 passed 4 failed (Kernel tracer not available) 
+  ubuntu_qrt_apparmor - test_libapparmor_testsuite and test_libapparmor_testsuite3 failed to build
+  ubuntu_qrt_kernel_security - test_072_strict_devmem failed (/dev/mem unreadable for kernel memory)
+  ubuntu_stress_smoke_test - unable to clone stress-ng, firewall issue
+  ubuntu_zfs_xfs_generic - test 079, 317 failed
+
+Issue to note in i386:
+  libhugetlbfs - failed 9 (Heap did not shrink, bug 1717897), killed by signal 10, bad config 1
+
+Issue to note in ppc64le:
+  xfstests - btrfs timed out, xfs failed
+
+Issue to note in s390x (Ubuntu on LPAR):
+  None
+
+Issue to note in s390x (zKVM):
+  ubuntu_fan_smoke_test - fanatic docker test: FAILED, unable to fetch file
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - IOError: [Errno 95] Operation not supported
+  scrashme - failed to build, bug 168924
+  ubuntu_fan_smoke_test - fanatic docker test: FAILED, unable to fetch file
+

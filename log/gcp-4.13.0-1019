@@ -1,0 +1,12 @@
+4.13.0-1019.23 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  libhugetlbfs - 1 failed , 1 killed by signal, 3 bad config
+  ubuntu_kvm_unit_tests - failed due to no KVM support
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test

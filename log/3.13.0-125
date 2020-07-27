@@ -1,0 +1,22 @@
+3.13.0-125.174 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+  ubuntu_kvm_unit_tests - ioapic, smap, pku, svm, hyperv_clock failed, issue seen before
+  ubuntu_qrt_kernel_security - test_078 failed, passed after re-test, seems like a test case issue, bug 1704062
+
+Issue to note in arm64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  hwclock - failed to change time, issue seen before
+  libhugetlbfs - failed to build
+  ubuntu_cts_kernel - lp1262692 failed, issue seen before
+  ubuntu_qrt_apparmor - failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060, 072, 075, 078, 082, 140 issue seen before bug 1630000
+
+Issue to note in i386:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+

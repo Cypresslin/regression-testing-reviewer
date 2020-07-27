@@ -1,0 +1,23 @@
+4.4.0-104.127~14.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 31 failed on amaura, 29 failed on pepe
+
+Issue to note in i386:
+  ubuntu_docker_smoke_test - test case issue, should be tested with i386 docker image
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests -
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported on modoc
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_docker_smoke_test - test should be skipped, docker.io is not available on Trusty
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+  ubuntu_kvm_unit_tests -
+  ubuntu_qrt_kernel_aslr_collisions - passed after re-test
+  ubuntu_qrt_kernel_security - passed after re-test
+

@@ -1,0 +1,56 @@
+4.15.0-13.14~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on daedalus, passed on the first run
+  rtc - failed on onibi, passed on the first run
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael, 20 failed on pepe
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - btrfs generic/176, xfs generic/476 timed out
+
+Issue to note in i386:
+  monotonic_time - gtod failed on onibi, passed on the first run
+  ubuntu_kvm_unit_tests - 27 failed on pepe
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+
+4.15.0-13.14~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on rumford, passed on the first run
+  ubuntu_kvm_unit_tests - 24 faild on amaura, 14 failed on daedalus, 4 failed on michael, 21 failed on pepe
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - failed on amaura, passed after retest
+  xfstests - xfs generic/475 timed out on michael, btrfs generic/176 timed out on rizzo
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf_jit - unable to insert test_bpf module (bug 1759775)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on starmie (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - 079 failed on starmie, passed after re-test
+  xfstests - btrfs generic/176 timed out
+
+Issue to note in i386:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - 27 failed on pepe
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_lxc - lxc-test-ubuntu failed on pepe, passed after retest
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+
+Issue to note in ppc64le:
+  ubuntu_bpf_jit - unable to insert test_bpf module (bug 1759775)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1755118)
+  ubuntu_kvm_unit_tests - emulator failed (bug 1723914) sprs failed (bug 1723904)
+  ubuntu_lttng_smoke_test - lttng module build issue (bug 1756240)
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - xfs generic/305 timed out
+

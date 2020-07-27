@@ -1,0 +1,19 @@
+4.8.0-52.55~16.04.1 - generic
+Regression test CMPL, looking good.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on hainzel, passed after retest.
+  ubuntu_kvm_unit_tests - failed to start on hainzel, secchi. smap, pku, svm and hyperv_clock failed, issue seen before.
+  ubuntu_lxc - failed with amd64-lowlatency/generic on hainzel, generic on rumford (container failed to start), re-tested and passed.
+  xfstests - partition sdb being used on rumford for xfs, btrfs/010 output mismatch, first test on this kernel but issue can be seen in 4.8.0-46.49, no regression.
+
+Issue to note in arm64:
+  hwclock - failed on ms10-35-mcdivittB0-kernel, issue seen before, works on wright-kernel
+  rtc - failed on wright-kernel, RTC_AIE_ON ioctl: Invalid argument, works on another node.
+  ubuntu_kvm_unit_tests - all passed on ms10-35-mcdivittB0-kernel, but failed on wright-kernel, needs investigatation.
+  ubuntu_qrt_apparmor - sysctl read function not implemented, issue seen before.
+  ubuntu_zfs_xfs_generic - issue seen before in 4.8.0-46.49~16.04.1, test 079 failed with acl: Function not implemented, 317 failed with output mismatch.
+
+Issue to note in i386:
+  ubuntu_lxc - failed with i386-lowlatency on pepe (container failed to start), re-tested and passed.

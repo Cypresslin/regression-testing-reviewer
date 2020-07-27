@@ -1,0 +1,74 @@
+4.4.0-102.125 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on rumford
+  ubuntu_kvm_unit_tests - 20 failed on michael, 30 failed on pepe, 31 failed on amaura
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - failed on rizzo and michael, both manually tested and passed
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on wright
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tsc, taskswitch2)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  xfstests - xfs eat up all free space, bug 1720343
+
+Issue to note in ppc64le:
+  hwclock - passed after re-test
+  rtc - Update IRQs not supported.
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - test timed out, passed after re-test
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_kvm_unit_tests - selftest-setup and intercept failed, bug 1726225
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - IOError: [Errno 524] Unknown error 524, bug 1729510
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+
+4.4.0-102.125 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on rumford
+  1ubuntu_kvm_unit_tests - 20 failed on michael, 31 failed on amaura, 30 failed on pepe
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  ubuntu_unionmount_overlayfs_suite - failed on rizzo and michael, both manually tested and passed
+  ubuntu_zfs_xfs_generic - 42 failed on micahel, passed after re-test
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tst, taskswitch2)
+  ubuntu_qrt_apparmor - apparmor parser issue, bug 1734038
+  xfstests - xfs eat up all free space, bug 1720343

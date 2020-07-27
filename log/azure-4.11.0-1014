@@ -1,0 +1,16 @@
+4.11.0-1014.14 - azure
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (azure):
+  ebizzy - failed on two instances, passed on the rest
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 15, bad configuration 3
+  monotonic_time - all three tests (or just tsc test) failed on some instances, passed on the rest
+  ubuntu_kvm_unit_tests	- test disabled
+  ubuntu_ltp - test disabled
+  ubuntu_lttng_smoke_test - bug 1727251
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  ubuntu_qrt_apparmor - failed only on one node, passed on the rest
+  ubuntu_qrt_kernel_aslr_collisions	- failed only on one node, passed on the rest
+  ubuntu_sysdig_smoke_test - bug 1727275
+  ubuntu_unionmount_overlayfs_suite	- bug 1727290

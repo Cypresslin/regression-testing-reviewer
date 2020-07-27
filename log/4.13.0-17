@@ -1,0 +1,49 @@
+4.13.0-17.20 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  libhugetlbfs - failed 7 (Heap did not shrink, small_const is not hugepage), killed by signal 7, bad config 1
+  monotonic_time - tsc failed on lodygin, bug 1732620
+  ubuntu_ecryptfs -	directory-concurrent.sh.ext2 failed with "failed to fork child" on michael only
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_unit_tests - 6 failed on michael, 59 failed on lodygin, 25 failed on amaura
+
+Issue to note in arm64:
+  libhugetlbfs - failed 1 (Heap did not shrink), killed by signal 1, bad config 1
+  rtc - Update IRQs not supported
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_stress_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_zfs_xfs_generic - test 079 (bug 1732370), 317 failed
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 (Heap did not shrink, small_bss is not hugepage), killed by signal 4, bad config 1
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+
+Issue to note in ppc64le:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const is not hugepage), killed by signal 6
+  rtc - Update IRQs not supported
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepages, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - failed to build bug 1689240
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - failed 11 (Address is not hugepage, Heap not on hugepage, small_const/small_data is not hugepage), killed by signal 7, bad config 1
+  scrashme - failed to build bug 1689240
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - IOError: [Errno 95] Operation not supported, bug 1729510
+  scrashme - failed to build bug 1689240
+  ubuntu_fan_smoke_test - fanatic docker test failed, unable to fetch file (systemd issue)
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016

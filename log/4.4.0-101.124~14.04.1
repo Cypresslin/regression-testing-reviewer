@@ -1,0 +1,31 @@
+4.4.0-101.124~14.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_docker_smoke_test - test case issue, systemctl not available in Trusty
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 31 failed on amaura, 50 failed on secchi, 30 failed on pepe, 20 failed on michael
+  ubuntu_qrt_apparmor - setup test failed on onibi, passed after retest
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on node wright
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_docker_smoke_test - test case issue, systemctl not available in Trusty
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 050 (bug 1684776) failed
+
+Issue to note in i386:
+  ubuntu_docker_smoke_test - test case issue, systemctl not available in Trusty
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tsc, taskswitch2)
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_docker_smoke_test - test case issue, systemctl not available in Trusty
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+

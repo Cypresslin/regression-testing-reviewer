@@ -1,0 +1,21 @@
+3.13.0-133.182 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 12 failed on archytas, 41 failed on amaura, 41 failed on onibi
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - failed to build, bug 1707887
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060, 072, 075, 082, 140 failed, issue seen before, bug 1630000
+
+Issue to note in i386:
+  None
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+

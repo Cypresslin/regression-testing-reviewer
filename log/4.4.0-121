@@ -1,0 +1,60 @@
+4.4.0-121.145 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on rumford 
+  ubuntu_bpf_jit - Unable to insert test_bpf module on Xenial (bug 1765698) 
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 18 failed on harpo, 20 failed on michael, 27 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container)
+  xfstests - xfs generic/475 failed
+
+Issue to note in i386:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - failed to build (bug 1765366)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+4.4.0-121.145 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_bpf_jit - Unable to insert test_bpf module on Xenial (bug 1765698)
+  ubuntu_kvm_unit_tests - 29 failed on amaura, 20 failed on michael, 28 failed on pepe
+  xfstests - xfs generic/475 failed
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - failed to build (bug 1765366)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf_jit - Unable to insert test_bpf module on Xenial (bug 1765698)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf_jit - Unable to insert test_bpf module on Xenial (bug 1765698)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 11 failed (nested kvm is not supported)
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container)
+  ubuntu_qrt_apparmor - passed after re-test
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf_jit - Unable to insert test_bpf module on Xenial (bug 1765698)
+  ubuntu_ecryptfs - passed after re-test
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container)
+
+MISSING RESULT FROM POWER8 - testing node out-of-order

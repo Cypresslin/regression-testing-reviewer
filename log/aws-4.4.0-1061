@@ -1,0 +1,13 @@
+4.4.0-1061.70 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (brk_near_huge), Killed by signal 1, bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped due to no KVM support
+  ubuntu_lxc - lxc-test-ubunut failed (Failed to start networking in ubuntu-cloud container), failed on c3.large, c5.large and m4.large this time, passed on the others
+
+Skipped / blacklisted:
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zram_smoke_test

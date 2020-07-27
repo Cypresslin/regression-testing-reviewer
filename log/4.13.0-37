@@ -1,0 +1,38 @@
+4.13.0-37.42 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - unable to change time back to 19th centry on lodygin (bug 1714229)
+  libhugetlbfs - failed 7 (Heap did not shrink, small_const is not hugepage), killed by signal 7, bad config 1
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - 22 failed on amaura, 15 failed on daedalus, 3 failed on lodygin, 3 failed on michael, 21 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container) failed on daedalus and michael
+  ubuntu_unionmount_overlayfs_suite - timed out on michael, passed after retest
+  xfstests - timed out on ext4 generic/430 test with repo from upstream
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - failed 1 killed by signal 1 bad config 1
+  ubuntu_bpf - failed to build on ARM64 (bug 1675395)
+  ubuntu_kernel_selftests - breakpoint test failed to build (bug 1680507)
+  ubuntu_zfs_xfs_generic - failed with test 079 (bug 1732370)
+
+Issue to note in i386:
+  libhugetlbfs - failed 4 killed by signal 4 bad config 1
+  ubuntu_bpf - test_verifier failed on Artful i386 (bug 1755101) test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+
+Issue to note in ppc64le:
+  libhugetlbfs - failed 7 killed by signal 6
+  ubuntu_kvm_smoke_test - uvtool isseu (bug 1755118)
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_smoke_test - uvtool-libvirt needs arch specific template (bug 1729854)
+
+Note: s390x zKVM was not tested in this cycle, as the DNS server (jiufeng) is down.
+

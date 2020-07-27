@@ -1,0 +1,77 @@
+4.15.0-26.28 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_kvm_unit_tests - 27 failed on amaura, 16 failed on groucho, 4 failed on lodygin, 11 failed on michael
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_bpf - test_maps failed to build on arm64 (bug 1779119)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on ms10-34-mcdivittB0-kernel
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_qrt_apparmor - RETESTING (potential regression)   
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - RETESTING   
+
+Issue to note in ppc64le (P9):
+  hwclock - 
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_bpf - test_maps failed to build on ppc64le (bug 1750793)
+  ubuntu_ecryptfs - passed after re-test
+  ubuntu_kvm_unit_tests - sprs hang, bug 1740017
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - passed after re-test
+
+Issue to note in s390x (Ubuntu on LPAR):
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zKVM):
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_kvm_unit_tests - No KVM support on zKVM
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zVM):
+  iperf - iperf test server needs to be changed (bug 1780395)
+  ipv6connect - ipv6connect test needs to be fixed (bug 1781112)
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-usernic.in failed on Bionic (bug 1775809)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Note that we're missing power8 results in this cycle.
+It was suffering from bug 1773162, the fix has landed last cycle, but we have revert the kernel so it's still there.

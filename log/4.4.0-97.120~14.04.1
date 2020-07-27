@@ -1,0 +1,25 @@
+4.4.0-97.120~14.04.1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_unit_tests - 12 failed on archytas, 17 failed on michael, 11 failed on daedalus, 27 failed on onza, 28 failed on amaura
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603, or a bug to test case
+  libhugetlbfs - failed to build (bug 1707887)
+  rtc - Update IRQs not supported on node starmie
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 050 (bug 1684776) failed
+
+Issue to note in i386:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788), trunc-file.sh.btrfs (bug 1684789)
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+
+

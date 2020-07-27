@@ -1,0 +1,30 @@
+4.4.0-132.158~14.04.1 - generic
+Regression test CMPL, RTB.
+
+36 / 38 tests were run, missing: ubuntu_ramfs_stress, ubuntu_vfat_stress
+Issue to note in amd64:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty (bug 1732883)
+  ubuntu_kvm_unit_tests - 28 failed on amaura
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_qrt_kernel_security - passed in 4.4.0-133
+
+31 / 32 tests were run, missing: ubuntu_quota_smoke_test
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2 (bug 1715376)
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build (bug 1699987)
+  ubuntu_qrt_kernel_security - 050 failed (bug 1684776)
+  ubuntu_zram_smoke_test - test gets killed (bug 1787076)
+
+31 / 34 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_lxc
+Issue to note in i386:
+  ubuntu_ecryptfs - extend-file-random.sh.btrfs (bug 1684788) trunc-file.sh.btrfs (bug 1684789)
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty (bug 1732883)
+  ubuntu_ltp_syscalls - inotify07 failed with X/X-LTS/A kernel (bug 1774387) inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 timeouted (bug 1775153)
+  ubuntu_qrt_kernel_security - passed in 4.4.0-133
+
+Note the power8 node is down. No ppc64el result this cycle.

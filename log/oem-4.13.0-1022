@@ -1,0 +1,9 @@
+201507-18661 - Fail 3 (BT/WIFI fail due to unstable HW)
+201505-18339 - Fail 1 (no SD card reader)
+201505-18323 - Fail 2 (meminfo*1, BT failure passed after re-test)
+201503-16977 - Fail 1 (no SD card reader)
+201503-16969 - Fail 1 (meminfo*1)
+
+Note:
+  1. memory detection shows different result
+

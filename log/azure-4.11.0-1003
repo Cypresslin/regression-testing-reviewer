@@ -1,0 +1,7 @@
+4.11.0-1003.3 - azure
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - brk_near_huge failed, bug 1653597
+  ubuntu_qrt_apparmor - longpath test failed with Permission denied, issue found in 4.11.0-1002.2, not regression, bug 1704378

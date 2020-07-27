@@ -1,0 +1,70 @@
+4.4.0-100.123 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - failed on rumford, passed after re-test
+  monotonic_time - gtod failed on onibi
+  ubuntu_kvm_unit_tests - 20 failed on michael, 22 failed on archytas, 31 failed on amaura, 30 failed on pepe, 50 failed on secchi
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  ubuntu_zfs_xfs_generic - failed on pepe, passed after re-test
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on wright
+  ubuntu_docker_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_fan_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed
+  ubuntu_lxc - failed on starmie, passed after re-test
+  ubuntu_stress_smoke_test - Failed to fetch file, looks like a firewall issue
+  ubuntu_zfs_xfs_generic - failed with test 079
+
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - passed after retest
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tsc, taskswitch2)
+  xfstests - onibi does not have a scratch drive, task handed to fozzie
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed  (bug 1723904), emulator failed (bug 1723914)
+  xfstests - btrfs test timedout
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed, 7 killed by signal, 1 bad configuration (1 extra failure with newly update repo in this cycle)
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container), lxc-test-unpriv
+  ubuntu_qrt_kernel_security - out-of-space, passed after retest
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - 11 failed, 7 killed by signal, 1 bad configuration (1 extra failure with newly update repo in this cycle)
+  scrashme - failed to build, bug 1689240
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_kvm_unit_tests - selftest-setup and intercept failed, bug 1726225
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container), lxc-test-unpriv
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - IOError: [Errno 524] Unknown error 524, issue seen before
+  scrashme - failed to build, bug 168924
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed (28 failed)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_lxc - lxc-test-ubuntu (Failed to start networking in ubuntu-cloud container), lxc-test-unpriv
+
+4.4.0-100.123 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on fozzie, onibi, rumford
+  ubuntu_kvm_unit_tests - 20 failed on michael, 22 failed on archytas, 32 failed on amaura, 30 failed on pepe, 50 failed on secchi
+  ubuntu_lxc - temporary network issue on michael, passed on the rest
+  ubuntu_zfs_xfs_generic - test 192 failed on pepe only, passed on the rest
+
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - passed after re-test
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, tst, taskswitch2)
+  xfstests -  onibi does not have a scratch drive, task handed to fozzie

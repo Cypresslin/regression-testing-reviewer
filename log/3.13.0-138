@@ -1,0 +1,25 @@
+3.13.0-138.187 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 43 failed on pepe, 44 failed on amaura
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - timed out on shmoverride_linked test, can be reproduced on 3.13.0-137, not a regression, bug 1739560
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+  ubuntu_kvm_unit_tests - failed with missing git package, passed after re-test
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060, 072, 075, 082, 140 failed
+
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 15 failed on pepe (vmexit*, msr, realmode, syscall, tsc, hyperv_clock), the vmexit releated failures are new, this is caused by the change in our test tool repo, we switched from archive tarball to upstream repo recently, so this could be taken as a new baseline
+
+Issue to note in ppc64le:
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+  ubuntu_kvm_unit_tests - failed with missing git package, passed after re-test
+  ubuntu_qrt_apparmor - failed with dpkg issue, passed after re-test

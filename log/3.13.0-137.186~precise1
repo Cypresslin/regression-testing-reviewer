@@ -1,0 +1,11 @@
+3.13.0-137.186~precise1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_docker_smoke_test - docker.io package is not availble for Precise, test should be skipped
+  ubuntu_kvm_smoke_test - uvtool package not availble for Precise
+
+Issue to note in i386:
+  ubuntu_docker_smoke_test - docker.io package is not availble for Precise, test should be skipped
+  ubuntu_kvm_smoke_test - uvtool package not availble for Precise
+

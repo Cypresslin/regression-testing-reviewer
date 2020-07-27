@@ -1,0 +1,22 @@
+4.8.0-57.62~16.04.1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - test case issue, not regression
+  libhugetlbfs - stack_grow_into_huge passed after re-test on rumford
+  monotonic_time - gtod failed on secchi
+  ubuntu_kvm_unit_tests - smap, pku, svm and hyperv_clock failed, not regression
+  ubuntu_lxc - failed to start networking, not regression
+  xfstests - failed with btrfs, xfs, not regression
+
+Issue to note in arm64:
+  hwclock - failed to change time
+  ubuntu_qrt_apparmor - sysctl read failed - Function not implemented
+  ubuntu_zfs_xfs_generic - 079 failed, not regression
+
+Issue to note in i386:
+  aio_dio_bugs - test case issue, not regression
+  libhugetlbfs - stack_grow_into_huge passed after re-test
+  monotonic_time - gtod failed on fozzie, not regression
+

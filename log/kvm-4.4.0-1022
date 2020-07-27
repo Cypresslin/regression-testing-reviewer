@@ -1,0 +1,18 @@
+4.4.0-1022.27 - kvm
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs -  failed 1 killed by signal 1 bad config 3
+  ubuntu_blktrace_smoke_test - ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4 X-kvm kernel (bug 1763323)
+  ubuntu_kvm_smoke_test - manually tested and passed
+  ubuntu_kvm_unit_tests - 19 failed on harpo
+  ubuntu_lttng_smoke_test - Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+  ubuntu_lxc - python3 API failed (bug 1764618)
+  ubuntu_qrt_apparmor - longpath test failed with permission denied (bug 1768784)
+  ubuntu_qrt_kernel_security - test_072_config_debug_rodata (bug 1760643) test_095_kernel_symbols_missing_proc_modules (bug 1769054)
+  ubuntu_stress_smoke_test - af-alg failed with 4.4/4.15 KVM kernel (bug 1760637) dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)
+
+Switiching this task to Incomplete due to the error reported by the ubuntu_qrt_apparmor test,  bug 1768784, which is a potential regression.
+

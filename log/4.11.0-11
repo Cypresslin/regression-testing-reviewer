@@ -1,0 +1,30 @@
+4.11.0-11.16 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, not a regression
+  monotonic_time - failed on lodygin only
+  ubuntu_blktrace_smoke_test - failed on lodygin only
+  ubuntu_bpf - patch failed to apply, test case issue
+  ubuntu_cts_kernel - perf tool issue, bug 1704699
+  ubuntu_kernel_selftests - memfd / net failed, test case issue
+  ubuntu_kvm_unit_tests - pku, svm failed
+  ubuntu_lttng_smoke_test - tracer not available, bug 1704720
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  ubuntu_seccomp - TRAP.handler failed
+  ubuntu_unionmount_overlayfs_suite - failed on michael but passed on archytas
+  xfstests - btrfs, xfs failed, not a regression
+
+Issue to note in arm64:
+  hwclock - failed to change time
+  libhugetlbfs - failed 5, killed by signal 7, bad config 1
+  ubuntu_bpf - patch failed to apply
+  ubuntu_cts_kernel - perf tool issue, bug 1704699
+  ubuntu_kernel_selftests - bug 1680507, memfd / net failed, test case issue
+  ubuntu_lttng_smoke_test - tracer not available, bug 1704720
+  ubuntu_zfs_xfs_generic - test 079, 317 failed
+
+Issue to note in i386:
+  libhugetlbfs - failed 8, killed by signal 10, bad config 1
+  ubuntu_lttng_smoke_test - tracer not available, bug 1704720

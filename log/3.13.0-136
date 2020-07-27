@@ -1,0 +1,19 @@
+3.13.0-136.185 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_docker_smoke_test - test case issue, passed with patch applied
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue, bug 1732883
+  ubuntu_kvm_unit_tests - 46 failed on amaura, 46 failed on pepe
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 5 failed on pepe (smap, hypercall, msr, realmode, tsc)
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported on modoc
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2, bug 1715376
+  ubuntu_docker_smoke_test - docker.io package not available on Trusty for ppc64le
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+
+Leveraging the test result before the respin (3.13.0-136.185)
+Note for arm64, the testing node is out of order, arm64 tests were skipped.

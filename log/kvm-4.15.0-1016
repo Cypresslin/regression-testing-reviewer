@@ -1,0 +1,17 @@
+4.15.0-1016.16 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_blktrace_smoke_test - ubuntu_blktrace_smoke_test failed with 4.4 / 4.15 kvm kernel (bug 1760636)
+  ubuntu_fan_smoke_test - ubuntu_fan_smoke_test failed on 4.4/4.15 kvm kernel (bug 1763323)
+  ubuntu_kvm_unit_tests - 16 failed on chico
+  ubuntu_ltp - ar test failed with 4.15 KVM (bug 1765331)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lttng_smoke_test - Unable to build lttng module on 4.4/4.15 KVM kernel (bug 1760647)
+  ubuntu_qrt_kernel_security - config_hardened_usercopy (bug 1766777) config_debug_wx (bug 1782721)
+  ubuntu_quota_smoke_test - should be disabled for KVM kernel (needs to be discussed)
+  ubuntu_stress_smoke_test - af-alg failed with 4.4/4.15 KVM kernel (bug 1760637) dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
+  ubuntu_sysdig_smoke_test - Unable to insert sysdig_probe module on B-KVM kernel (bug 1766565)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zram_smoke_test - zram module not found (bug 1766823)
+

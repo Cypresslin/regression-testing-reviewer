@@ -1,0 +1,35 @@
+4.13.0-22.25~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on onibi
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 23 failed on michael, 24 failed on pepe
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854 uvtool issue, bug 1732338
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed on starmie, pmu failed on ms10-34-mcdivittB0-kernel
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  monotonic_time - gtod failed on onibi
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, smap, msr, tsc) the vmexit releated failures are new, this is caused by the change in our test tool repo, we switched from archive tarball to upstream repo recently, so this could be taken as a new baseline
+  ubuntu_lxc - lxc-test-ubuntu (Failed creating ubuntu-cloud container)
+
+Issue to note in ppc64le:
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+  xfstests - btrfs generic/176 timed out
+
+4.13.0-22.25~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on onibi and rumford
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 23 failed on michael, 24 failed on pepe
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, smap, msr, tsc) the vmexit releated failures are new, this is caused by the change in our test tool repo, we switched from archive tarball to upstream repo recently, so this could be taken as a new baseline
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+

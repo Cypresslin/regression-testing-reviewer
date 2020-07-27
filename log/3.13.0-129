@@ -1,0 +1,34 @@
+3.13.0-129.178 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+  ubuntu_kvm_unit_tests - ioapic, smap, pku, svm, hyperv_clock and realmode (only on onibi) failed, issue seen before
+
+Issue to note in arm64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  hwclock - failed to change time, issue seen before
+  libhugetlbfs - failed to build, bug 1707887
+  ubuntu_cts_kernel - lp1262692 failed, issue seen before
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build, bug 1699987
+  ubuntu_qrt_kernel_security - 021, 022, 050, 060,  072, 075, 140 failed, issue seen before bug 1630000 (082 skipped)
+
+Issue to note in i386:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+  libhugetlbfs - FAIL no fallocate support in kernels before 4.3.0
+
+Issue to note in ppc64le:
+  ubuntu_blktrace_smoke_test - grub-ieee1275 issue, bug 1641567
+  ubuntu_cts_kernel - grub-ieee1275 issue, bug 1641567
+  ubuntu_kvm_unit_tests - grub-ieee1275 issue, bug 1641567
+  ubuntu_leap_seconds - grub-ieee1275 issue, bug 1641567
+  ubuntu_lxc - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_apparmor - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_aslr_collisions - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_hardening - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_panic - grub-ieee1275 issue, bug 1641567
+  ubuntu_qrt_kernel_security - grub-ieee1275 issue, bug 1641567
+  ubuntu_squashfs_smoke_test - grub-ieee1275 issue, bug 1641567
+

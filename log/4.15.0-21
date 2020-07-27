@@ -1,0 +1,75 @@
+4.15.0-21.22 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - 
+  ubuntu_fan_smoke_test - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_ltp - 
+  ubuntu_lxc - 
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - 
+  ubuntu_docker_smoke_test - 
+  ubuntu_ecryptfs - 
+  ubuntu_kvm_smoke_test - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - 
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - 
+
+Issue to note in ppc64le:
+  hwclock - 
+  libhugetlbfs - 
+  ubuntu_bpf - failed to build on ppc64le (bug 1750793)
+  ubuntu_fan_smoke_test - 
+  ubuntu_kvm_smoke_test - 
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_lxc - 
+  ubuntu_qrt_apparmor - 
+  ubuntu_stress_smoke_test - 
+  ubuntu_unionmount_overlayfs_suite - 
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - 
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_fan_smoke_test - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - lttng_probe_writeback is tainted (bug 1751213)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - 
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - 
+  ubuntu_ecryptfs - 
+  ubuntu_fan_smoke_test - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - 
+  ubuntu_unionmount_overlayfs_suite - 
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - 
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_fan_smoke_test - 
+  ubuntu_kvm_smoke_test - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - lttng_probe_writeback is tainted (bug 1751213)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+

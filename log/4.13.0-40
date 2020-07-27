@@ -1,0 +1,41 @@
+4.13.0-40.45 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - failed 7 killed by signal 7 bad config 1
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - test_maps failed (bug 1750724)
+  ubuntu_kvm_unit_tests - 25 failed on amaura, 3 failed on lodygin, 16 failed on groucho, 9 failed on michael, 23 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - failed 1 killed by signal 1 bad config 1
+  ubuntu_bpf - failed to build on ARM64 (bug 1675395)
+  ubuntu_kvm_smoke_test - Unable to create KVM with uvtool on arm64 system (bug 1749427)
+  ubuntu_qrt_kernel_security - test case issue (bug 1768496)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in ppc64le:
+  libhugetlbfs - failed 7 killed by signal 6
+  ubuntu_bpf - failed to build on ppc64le (bug 1750793)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1452016)
+  ubuntu_kvm_unit_tests - sprs hang (bug 1740017)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_unit_tests - Nested virtualization with KVM is not supported on s390x
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_kvm_smoke_test - uvtool-libvirt needs arch specific template (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed (0 tests)
+
+MISSING i386 result in this cycle: curtin bug 1768709

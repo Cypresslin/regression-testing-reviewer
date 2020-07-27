@@ -1,0 +1,13 @@
+3.2.0-133.179 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_qrt_apparmor - recaching test failed, passed after retest
+
+Issue to note in i386:
+  ubuntu_qrt_apparmor - recaching test failed, passed after retest
+  ubuntu_qrt_kernel_security - test_021_aslr_dapper_libs passed (bug 1717856), test_022_aslr_hardy_vdso failed on this system, not a regression as it can be reproduced with 3.2.0-131, bug 1747630
+
+Note that I'm using systems from the Cert lab for this cycle, 201307-13930 (i386) and 201308-14073 (amd64)
+

@@ -1,0 +1,57 @@
+4.4.0-128.154 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 21 failed on michael, 28 failed on pepe, 18 failed on zeppo
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595) inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387)
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396) inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387)
+
+4.4.0-128.154 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - 21 failed on michael, 28 failed on pepe
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595) inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_docker_smoke_test - test case issue (bug 1775574)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - pmu on ms10-34-mcdivittB0-kernel (bug 1751000) gicv2-ipi and gicv2-active on starmie
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396) getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595) inotify07 and inotify08 test failed with X/X-LTS/A kernel (bug 1774387)
+
+Issue to note in ppc64le:
+  ubuntu_ecryptfs - file-concurrent.sh.btrfs failed on modoc, passed on entei
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool, bug 1755118
+  ubuntu_stress_smoke_test - failed on entei, firewall issue
+  ubuntu_zfs_xfs_generic - 42 test timed out on entei, all passed on modoc
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595) inotify07 and inotify08 test failed with X-LTS/A kernel (bug 1774387)
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - 11 failed (nested kvm is not supported)
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - invalidate-failure failed (bug 1730895) subblock-eof-read failed (bug 1768430) extend-stat failed (bug 1768435)
+  libhugetlbfs - failed 11 killed by signal 7 bad config 1
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf_jit - unable to insert test_bpf on Xenial s390x (bug 1768452)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey (2 tests)
+  ubuntu_lxc - lxc-test-ubuntu (Failed creating ubuntu-cloud container)
+

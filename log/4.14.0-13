@@ -1,0 +1,28 @@
+4.14.0-13.15 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const/small_data is not hugepage), 7 killed by signal, 1 bad config
+  ubuntu_kernel_selftests - memfd failed with pkg not found, passed with patch applied
+  ubuntu_qrt_apparmor - 
+  ubuntu_sysdig_smoke_test - failed on rumford, passed with manual test
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  libhugetlbfs - 1 failed (Heap did not shrink), 1 killed by signal, 1 bad config
+  ubuntu_kernel_selftests - breakpoint test failed to build, bug 1680507, memfd failed with pkg not found, passed with patch applied
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1452016
+  ubuntu_qrt_apparmor - 
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  libhugetlbfs - 4 failed (Heap did not shrink, small_bss is not hugepage), 4 killed by signal, 1 bad config
+  ubuntu_kernel_selftests - memfd failed with pkg not found, passed with patch applied
+  ubuntu_qrt_apparmor - 
+
+Issue to note in ppc64le:
+  libhugetlbfs - 7 failed (Heap did not shrink, small_const/small_data is not hugepage), killed by signal 6
+  ubuntu_kernel_selftests - memfd failed with pkg not found, passed with patch applied
+  ubuntu_qrt_apparmor - 
+

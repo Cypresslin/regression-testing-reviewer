@@ -1,0 +1,43 @@
+4.13.0-37.42~16.04.1 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod failed on onibi
+  rtc - failed on daedalus only, passed after retest
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael (apic, vmx, vmx_interrupt, vmx_control), 21 failed on pepe
+  ubuntu_unionmount_overlayfs_suite - timed out on rizzo and michael, passed on daedalus
+  xfstests - xfs/438 timed out, btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests -  pmu on ms10-34-mcdivittB0-kernel (bug 1751000) pmu on starmie (bug 1751000) gicv2-ipi and gicv2-active on starmie
+  ubuntu_zfs_xfs_generic - failed with test 079 (bug 1732370)
+
+Issue to note in i386:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+  xfstests - xfs generic/308 timed out, bug 1738152
+
+Issue to note in ppc64le:
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1755118)
+  ubuntu_kvm_unit_tests - emulator failed (bug 1723914) sprs failed (bug 1723904)
+  xfstests - timed out on btrfs/176
+
+4.13.0-37.42~16.04.1 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time - gtod tend to fail on onibi
+  ubuntu_kvm_unit_tests - 24 failed on amaura, 14 failed on daedalus, 4 failed on michael (apic, vmx, vmx_interrupt, vmx_controls), 20 failed on pepe
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  ubuntu_unionmount_overlayfs_suite - timed out on rizzo only, passed on the others
+  ubuntu_zfs_fstest - failed on gonzo only, passed on the others
+  ubuntu_zfs_xfs_generic - some tests timed out on daedalus only, passed on the others
+  xfstests - timedout on xfs/436 xfs/476
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - 14 failed on pepe (vmexit*, msr, syscall, tsc, hyperv_clock)
+  ubuntu_lxc - lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
+  xfstests - timedout on xfs generic/308
+

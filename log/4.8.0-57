@@ -1,0 +1,43 @@
+4.8.0-57.62 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - test case issue, passed after re-test
+  monotonic_time - gtod failed on fozzie only
+  ubuntu_kvm_unit_tests -  apic-split, smap pku, svm, hyperv_clock failed, issue seen before, no regression
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container, not regression
+  xfstests - failed with btrfs, xfs, issue seen before
+
+Issue to note in arm64:
+  hwclock - failed to change time, not regression
+  ubuntu_qrt_apparmor - sysctl read failed - Function not implemented
+  ubuntu_zfs_xfs_generic - failed with 079, 317, issue seen before
+
+Issue to note in i386:
+  monotonic_time - gtid failed on fozzie only
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 11 failures, including one stack_grow_into_huge new failure, bug 1700123
+  scrashme - failed to build, bug 1689240
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_lxc - lxc-test-usernic failed, user in use
+  ubuntu_qrt_apparmor - sysctl read failed - Function not implemented
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - 11 failures, including one stack_grow_into_huge new failure, bug 1700123
+  scrashme - failed to build, bug 1689240
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_lxc - usernic-user in use, and too many opened filed, not regression
+  ubuntu_qrt_apparmor - sysctl read failed - Function not implemented
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, issue seen before
+  libhugetlbfs - Operation not supported
+  scrashme - failed to build, bug 1689240
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_lxc - Failed to start networking, not regression
+  ubuntu_qrt_apparmor - sysctl read failed - Function not implemented
+

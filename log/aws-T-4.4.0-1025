@@ -1,0 +1,22 @@
+4.4.0-1025.26 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped, KVM not supported
+  ubuntu_quota_smoke_test - should be disable for AWS (bug 1777813)
+
+Skipped / blacklisted:
+ * ubuntu_aufs_smoke_test
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_loop_smoke_test
+ * ubuntu_ltp
+ * ubuntu_ltp_syscalls
+ * ubuntu_lttng_smoke_test
+ * ubuntu_nbd_smoke_test
+ * ubuntu_stress_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_unionmount_overlayfs_suite
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test

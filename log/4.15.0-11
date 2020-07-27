@@ -1,0 +1,61 @@
+4.15.0-11.12 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080 (bug 1714229)
+  libhugetlbfs - 
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - 
+  ubuntu_bpf_jit - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_ltp - 
+  ubuntu_lxc - 
+  ubuntu_qrt_apparmor - 
+  ubuntu_qrt_kernel_security - 
+  ubuntu_unionmount_overlayfs_suite - 
+  ubuntu_zfs_xfs_generic - 
+  xfstests - 
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - 
+  ubuntu_bpf - 
+  ubuntu_kernel_selftests - breakpoint test failed to build (bug 1680507)
+  ubuntu_kvm_unit_tests - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - 
+  ubuntu_unionmount_overlayfs_suite - 
+  ubuntu_zfs_xfs_generic - 
+
+Issue to note in ppc64le:
+  libhugetlbfs - 
+  ubuntu_bpf - failed to build on ppc64le (bug 1750793)
+  ubuntu_kvm_unit_tests - sprs timed out (bug 1740017)
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202) test_072_config_security_apparmor (bug 1751207)
+  ubuntu_zfs_xfs_generic - 
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - 
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - 
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - unable to build the test, not a kernel issue, bug 1753987
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22 (bug 1730895)
+  libhugetlbfs - 
+  scrashme - Test failed to build (bug 1689240)
+  ubuntu_bpf - failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - 
+  ubuntu_lxc - 
+  ubuntu_qrt_kernel_security - test_095_kernel_symbols_missing (bug 1751202) test_072_config_security_apparmor (bug 1751207) lttng_probe_writeback is tainted (bug 1751213)
+  ubuntu_sysdig_smoke_test - missing packages, passed after re-test
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - unable to build the test, not a kernel issue, bug 1753987
+
+Note that the s2lp6g004 cannot be tested due to the DNS server is out-of-order

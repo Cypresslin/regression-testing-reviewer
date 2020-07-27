@@ -1,0 +1,10 @@
+3.13.0-131.180~precise1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+
+Issue to note in i386:
+  ubuntu_blktrace_smoke_test - passed after applying patch from cking
+

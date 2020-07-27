@@ -1,0 +1,25 @@
+3.13.0-154.204 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty(bug 1732883)
+  ubuntu_kvm_unit_tests - 40 failed on amaura, 26 failed on groucho
+  ubuntu_ltp_syscalls - mkfs.vfat works only on the first run (bug 1785198) fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fanotify06 failed with T kernel (bug 1775378) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 failed with T/X/A/B kernel (bug 1775153) openat03 failed (bug 1785207) request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370) shmctl05 failed (bug 1785209)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - noresv-preserve-resv-page failed (bug 1747823) chunk-overcommit failed (bug 1747828)
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2 (bug 1715376)
+  ubuntu_kvm_smoke_test - getlogin will fail to open /proc/self/loginuid (bug 1770245)
+  ubuntu_ltp_syscalls - mkfs.vfat works only on the first run (bug 1785198) fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build (bug 1699987)
+  ubuntu_qrt_kernel_security - DEBUG_RODAGTA is needed (bug 1747850) CC_STACKPROTECTOR is needed (bug 1712007) HAVE_CC_STACKPROTECTOR is needed (bug 1786436) test 021, 022 (bug 1747847) test 050 (bug 1684776)
+
+31 / 34 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_lxc
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty(bug 1732883)
+  ubuntu_ltp_syscalls - mkfs.vfat works only on the first run (bug 1785198) fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fanotify07/fanotify08 test timeouted (bug 1775165) fanotify09 failed with T/X/A/B kernel (bug 1775153) openat03 failed (bug 1785207) request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
+
+Note: missing ppc64le test results, testing node broken.
+Note: missing partial test results for i386, testign node not available.
+Note: ubuntu_ltp_syscalls will get terminated on ARM64, result must be reviewed manually on jenkins and it's incomplete

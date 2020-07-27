@@ -1,0 +1,29 @@
+3.13.0-151.201 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty(bug 1732883)
+  ubuntu_kvm_unit_tests - 39 failed on pepe
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fanotify06 failed with T kernel (bug 1775378) fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165) fanotify09 failed with A/T kernel (bug 1775153) request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  libhugetlbfs - noresv-preserve-resv-page failed (bug 1747823) chunk-overcommit failed (bug 1747828)
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2 (bug 1715376)
+  ubuntu_kvm_smoke_test - getlogin will fail to open /proc/self/loginuid (bug 1770245)
+  ubuntu_qrt_apparmor - test_old_trusty_regression_testsuite failed to build (bug 1699987)
+  ubuntu_qrt_kernel_security - test 021, 022 (bug 1747847) test 050 (bug 1684776) test 072 (bug 1747850) test 075 (bug 1712007) test 82 (bug 1747853)
+  ubuntu_ltp_syscalls - (not tested in this cycle)
+
+Issue to note in i386:
+  ubuntu_kvm_smoke_test - uvt-kvm wait issue on Trusty(bug 1732883)
+  ubuntu_kvm_unit_tests - 25 failed on pepe
+  ubuntu_ltp_syscalls - fcntl35 / fcntl35_64 in LTP syscall test failed with T/X/X-LTS kernel (bug 1774394) fanotify06 failed with T kernel (bug 1775378) fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165) fanotify09 failed with A/T kernel (bug 1775153) request_key03 in LTP syscall test cause kernel oops with T kernel (bug 1775370)
+
+Issue to note in ppc64le:
+  ubuntu_cts_kernel - lp1262692 failed, bug for iproute2 (bug 1715376)
+  ubuntu_kvm_smoke_test - no supported architecture for 'hvm' (bug 1752550)
+  ubuntu_ltp_syscalls - fanotify07/fanotify08 in LTP syscall test generates kernel trace with T kernel (bug 1775165) fanotify09 failed with A/T kernel (bug 1775153)
+  ubuntu_lxc - no Trusty ppc64le cloud image (bug 1774345)
+
+Note: add_key tests in ubuntu_ltp_syscalls were disabled due to bug 1775316

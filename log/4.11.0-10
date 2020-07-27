@@ -1,0 +1,29 @@
+4.11.0-10.15 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - test case issue, passed after re-test
+  monotonic_time - gtod failed on node fozzie only
+  ubuntu_bpf - patch failed to apply
+  ubuntu_cts_kernel - lp1153769 failed
+  ubuntu_lttng_smoke_test - Kernel tracer not available bug 1699755
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  ubuntu_seccomp - TRAP.handler: Test terminated unexpectedly by signal 11
+
+Issue to note in arm64:
+  aio_dio_bugs - 
+  hwclock - 
+  libhugetlbfs - 
+  rtc - 
+  ubuntu_bpf - 
+  ubuntu_cts_kernel - 
+  ubuntu_kernel_selftests -
+  ubuntu_lttng_smoke_test -
+  ubuntu_zfs_xfs_generic -
+
+Issue to note in i386:
+  aio_dio_bugs -
+  libhugetlbfs -
+  ubuntu_lttng_smoke_test -
+

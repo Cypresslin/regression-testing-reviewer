@@ -1,0 +1,7 @@
+4.11.0-1005.5 - azure
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - brk_near_huge failed, bug 1653597
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container, too many open files.

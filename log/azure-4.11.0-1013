@@ -1,0 +1,8 @@
+4.11.0-1013.13 - azure
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in x86_64 (azure):
+  libhugetlbfs - 1 failed (brk_near_huge, bug 1653597), Killed by signal 15, bad configuration 3
+  ubuntu_kvm_unit_tests - 11 failed (ioapic, vmexit_vmcall, access, hypercall, realmode, sieve, syscall, svm, kvmclock_test, pcid, hyperv_clock)
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container

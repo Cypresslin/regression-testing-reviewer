@@ -1,0 +1,11 @@
+3.13.0-135.184~precise1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  ubuntu_qrt_kernel_security - dpkg issue, passed after re-test
+
+Issue to note in i386:
+  None
+
+

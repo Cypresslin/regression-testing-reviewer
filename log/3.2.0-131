@@ -1,0 +1,10 @@
+3.2.0-131.177 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  None
+
+Issue to note in i386:
+  ubuntu_qrt_kernel_security - test_021_aslr_dapper_libs failed, issue seen before in 3.2.0, bug 1717856
+

@@ -1,0 +1,12 @@
+linux-oem: 4.13.0-1025.28
+
+201507-18697 - Fail 2 (dkms issue*2, network_resume_time_auto*3)
+201505-18339 - Fail 2 (no SD card reader, dkms issue*2)
+201503-16977 - Fail 2 (no SD card reader, dkms issue*2)
+201503-16969 - Fail 2 (meminfo*1, dkms issue*2)
+
+Note:
+  1. memory detection shows different result
+  2. module tp-smapi was not build for this kernel, however this is a module for Lenovo system, it's fine to see this on a non-lenovo system.
+  3. The network resume time after suspend tooks longer as expected, it's okay as this has passed on the other systems.
+  201606-22459 HW unstable, skipped in this cycle.

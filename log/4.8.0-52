@@ -1,0 +1,42 @@
+Issue to note in amd64:
+  monotonic_time - gtod only failed on fozzie
+  ubuntu_32_on_64 - dpkg issue on amaura does not exist after re-test
+  ubuntu_kvm_unit_tests -  dpkg issue on amaura does not exist after re-test. apic-split, smap pku, svm, hyperv_clock failed, issue seen before, no regression
+  ubuntu_leap_seconds - dpkg issue on amaura does not exist after re-test
+  ubuntu_lxc - dpkg issue on amaura does not exist after re-test, failed to start networking in ubuntu-cloud container on secchi, issue seen before.
+  xfstests - partition sdb being used on rumford for xfs, btrfs/010 output mismatch, issue seen in 4.8.0-46.49, no regression
+
+Issue to note in arm64:
+  hwclock - failed to change time on ms10-35-mcdivittB0-kernel, issue seen before.
+  rtc - failed on wright-kernel, RTC_AIE_ON ioctl: Invalid argument, works on another node
+  ubuntu_kvm_unit_tests - all passed on ms10-35-mcdivittB0-kernel, but failed on wright-kernel, needs investigatation.
+  ubuntu_qrt_apparmor - sysctl read function not implemented, issue seen before.
+  ubuntu_zfs_xfs_generic - issue seen before in 4.8.0-47.50, test 079 failed with acl: Function not implemented, 317 failed with output mismatch.
+
+Issue to note in i386:
+  monotonic_time - gtod failed, issue seen before.
+  ubuntu_lxc - failed to start networking in ubuntu-cloud container on secchi, issue seen before.
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - issue seen before
+  libhugetlbfs - 10 failed test cases, issue seen before
+  scrashme - failed to build (bug 1689240)
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_qrt_apparmor - sysctl read function not implemented, issue seen before.
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - issue seen before
+  libhugetlbfs - 10 failed test cases, issue seen before
+  scrashme - failed to build (bug 1689240)
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_lxc - lxc-test-device-add-remove: failed to create container, failed to start networking in ubuntu-cloud container
+  ubuntu_qrt_apparmor - sysctl read function not implemented, issue seen before.
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - issue seen before
+  libhugetlbfs - IOError: [Errno 95] Operation not supported, issue seen before(4.8.0-42.45)
+  scrashme -  failed to build (bug 1689240)
+  ubuntu_ecryptfs - miscdev-bad-count.sh.xfs ~ namelen.sh failed, issue seen before
+  ubuntu_lttng_smoke_test - kernel tracer not available (bug 1677126)
+  ubuntu_qrt_apparmor - sysctl read function not implemented, issue seen before.
+  ubuntu_qrt_kernel_security - header package not installed, re-tested and passed

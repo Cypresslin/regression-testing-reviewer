@@ -1,0 +1,29 @@
+4.15.0-17.18 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279) 
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_bpf - 
+  ubuntu_fan_smoke_test - RETEST on lodygin
+  ubuntu_kvm_unit_tests - 25 failed on amaura, 16 failed on chico, 3 failed on lodygin, 9 failed on michael, 21 failed on pepe 
+  ubuntu_lxc - 
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  ubuntu_zfs_xfs_generic - RETESTING on lodygin 
+  xfstests - timed out on ext4 generic/430 test (bug 1755999) 
+
+Issue to note in arm64:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279) 
+  ubuntu_bpf - 
+  ubuntu_ecryptfs - RETESTING
+  ubuntu_kvm_smoke_test - 
+  ubuntu_lxc - 
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - 
+
+Issue to note in i386:
+  libhugetlbfs - Unable to build libghugetlbfs test on 4.15 Bionic (bug 1765279)
+  ubuntu_bpf - 
+  ubuntu_kvm_unit_tests - 
+  ubuntu_lxc - 
+

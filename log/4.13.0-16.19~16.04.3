@@ -1,0 +1,48 @@
+4.13.0-16.19~16.04.3 - lowlatency
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  monotonic_time - tsc failed on lodygin, gtod failed on fozzie
+  ubuntu_kvm_unit_tests - 5 failed on michael, 24 failed on amaura, 57 failed on lodygin, 6 failed on archytas
+  ubuntu_lttng_smoke_test - dkms build issue, bug 1727251
+  ubuntu_lxc - failed to fetch GPG key, passed on the first run
+  ubuntu_zfs_xfs_generic - failed on gonzo, re-tested and passed
+  xfstests - btrfs timed out, bug 1718925
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - smap, hypercall, msr, tsc failed on onibi
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  xfstests - btrfs timed out, bug 1718925
+
+4.13.0-16.19~16.04.3 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  hwclock - lodygin will have time changed to 2080, bug 1714229
+  monotonic_time - tsc failed on lodygin
+  ubuntu_kvm_unit_tests - 6 failed on michael, 25 failed on amaura, 58 failed on lodygin, 7 failed on archytas
+  ubuntu_lttng_smoke_test - dkms build issue, bug 1727251
+  ubuntu_lxc - Failed to start networking in ubuntu-cloud container
+  xfstests - btrfs timed out, bug 1718925
+
+Issue to note in arm64:
+  rtc - Update IRQs not supported on starmie
+  ubuntu_kvm_unit_tests - pmu, gicv2-ipi, gicv2-active failed on starmie
+  ubuntu_lttng_smoke_test - dkms build issue, bug 1727251
+  ubuntu_lxc - failed to fetch GPG key, passed on the first run
+  ubuntu_zfs_xfs_generic - test 079 failed
+
+Issue to note in i386:
+  monotonic_time - gtod failed on fozzie
+  ubuntu_kvm_unit_tests - 4 failed on onibi (smap, hypercall, msr, tsc)
+  ubuntu_lttng_smoke_test - dkms build issue, bug 1727251
+  ubuntu_lxc - passed after re-test
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported.
+  ubuntu_kvm_unit_tests - spapr_hcall failed (bug 1712803), sprs failed (bug 1723904), emulator failed (bug 1723914)
+  ubuntu_lttng_smoke_test - dkms build issue, bug 1727251
+  ubuntu_lxc - failed to fetch GPG key, passed on the first run

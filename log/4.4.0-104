@@ -1,0 +1,64 @@
+4.4.0-104.127 - generic
+Regression test CMPL.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests -
+  ubuntu_unionmount_overlayfs_suite - 
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in arm64:
+  hwclock - issue for HP m400, bug 1716603
+  rtc - Update IRQs not supported on wright
+  ubuntu_docker_smoke_test -
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1732338
+  ubuntu_kvm_unit_tests -
+  ubuntu_zfs_xfs_generic - failed with test 079, bug 1732370
+
+Issue to note in i386:
+  None
+
+Issue to note in ppc64le:
+  rtc - Update IRQs not supported on modoc
+  ubuntu_ecryptfs -
+  ubuntu_kvm_smoke_test -
+  ubuntu_kvm_unit_tests -
+  ubuntu_unionmount_overlayfs_suite -
+  xfstests -
+
+Issue to note in s390x (Ubuntu on LPAR):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs -
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_ecryptfs -
+  ubuntu_lxc -
+
+Issue to note in s390x (zKVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs -
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_ecryptfs -
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854
+  ubuntu_kvm_unit_tests -
+
+Issue to note in s390x (zVM):
+  aio_dio_bugs - event res -22, bug 1730895
+  libhugetlbfs - Unknown error 524, bug 1729510
+  scrashme - Test failed to build, bug 1689240
+  ubuntu_ecryptfs -
+  ubuntu_kvm_smoke_test - uvtool issue, bug 1729854
+  ubuntu_lxc -
+
+4.4.0-104.127 - lowlatency
+Regression test CMPL.
+
+Issue to note in amd64:
+  monotonic_time -
+  ubuntu_kernel_selftests - RETESTING ON MICHAEL   
+  ubuntu_kvm_unit_tests -
+  ubuntu_unionmount_overlayfs_suite - RETESTING
+  xfstests - btrfs generic/166 timed out, bug 1731455
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests -
+  xfstests - xfs generic/308 timed out, bug 1738152 
+

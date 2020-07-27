@@ -1,0 +1,11 @@
+3.13.0-129.178~precise1 - generic
+Regression test CMPL.
+http://kernel.ubuntu.com/testing/tracker-index.html
+
+Issue to note in amd64:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+
+Issue to note in i386:
+  aio_dio_bugs - aio-cve-2016-10044 failed, expected result
+
+ARM64 / ppc64el cannot be tested, no Precise image on MaaS.

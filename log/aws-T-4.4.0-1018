@@ -1,0 +1,22 @@
+4.4.0-1018.18 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  libhugetlbfs - 1 failed (alloc-instantiate-race shared), bad config 3, only spotted on t2.small, passed on the rest
+  ubuntu_kvm_unit_tests - test skipped, KVM not supported
+  ubuntu_qrt_apparmor - longpath test failed with permission denied (bug 1768784)
+
+Skipped / blacklisted:
+ * ubuntu_aufs_smoke_test
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_loop_smoke_test
+ * ubuntu_ltp
+ * ubuntu_lttng_smoke_test
+ * ubuntu_stress_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_unionmount_overlayfs_suite
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test
+
+Switching this task to Incomplete due to the error reported by the ubuntu_qrt_apparmor test,  bug 1768784, which is a potential regression.

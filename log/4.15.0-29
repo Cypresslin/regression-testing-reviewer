@@ -1,0 +1,58 @@
+4.15.0-29.31 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  monotonic_time - lodygin constantly failed with tsc test (bug 1732620)
+  ubuntu_kvm_unit_tests - 28 failed on amaura, 16 failed on harpo, 4 failed on lodygin, 11 failed on michael
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_bpf - test_maps failed to build on arm64 (bug 1779119)
+  ubuntu_kvm_smoke_test - Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+  ubuntu_kvm_unit_tests - gicv3-ipi and gicv3-active failed on ms10-34-mcdivittB0-kernel
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - Firewall issue
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - timed out on ext4 generic/430 test (bug 1755999)
+
+Issue to note in i386:
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_qrt_apparmor - tested manually on onza and passed
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+  xfstests - bad superblock on /dev/sdb2, need to check HW status
+
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
+  ubuntu_bpf - test_maps failed to build on ppc64le (bug 1750793)
+  ubuntu_kvm_unit_tests - sprs hang, bug 1740017
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zKVM):
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_kvm_unit_tests - No KVM support on zKVM
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - deb-src issue (bug 1782750)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_maps failed to build on s390x (bug 1711299)
+  ubuntu_bpf_jit - ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp_syscalls - inotify08 failed with X/X-LTS/X-HWE/A/B kernel (bug 1775784)
+  ubuntu_lxc - deb-src issue (bug 1782750)
+  ubuntu_unionmount_overlayfs_suite - File unexpectedly on union layer (bug 1751243)
+
+Note that we're missing power8 result in this cycle.
+Also ARM64 node wright is down as well.
