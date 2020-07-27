@@ -1504,6 +1504,14 @@ eoan:
                     seccomp build issue (bug 1849844)
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
+        starmie-kernel:
+            net:
+                "FAIL: ipv6 addrlabel":
+                    rtnetlink.sh in net (bug 1812978)
+                "FAIL: macsec":
+                    rtnetlink.sh in net (bug 1812978)
+                "FAIL: ipsec":
+                    rtnetlink.sh in net (bug 1812978)
     ubuntu_kvm_unit_tests:
         rizzo:
             apic:

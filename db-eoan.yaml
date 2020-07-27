@@ -105,12 +105,6 @@ ubuntu_fan_smoke_test:
 ubuntu_kernel_selftests:
     starmie-kernel: &kernel-selftests-arm64
         net:
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: macsec":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: ipsec":
-                rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
             "selftests: net: xfrm_policy.sh # TIMEOUT":
@@ -209,8 +203,6 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_dualstack [FAIL]":
                 reuseport_dualstack in net (bug 1812843)
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
             "msg_zerocopy.sh [FAIL]":
                 msg_zerocopy in net (bug 1812620)
             "./psock_snd: recv: Resource temporarily unavailable":

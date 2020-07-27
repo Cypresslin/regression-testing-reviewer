@@ -132,8 +132,6 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_dualstack [FAIL]":
                 reuseport_dualstack in net (bug 1812843)
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
             "msg_zerocopy.sh [FAIL]":
                 msg_zerocopy in net (bug 1812620)
             "./psock_snd: recv: Resource temporarily unavailable":

@@ -83,12 +83,6 @@ ubuntu_kernel_selftests:
                 ip_defrag in net (bug 1826848)
     starmie-kernel: &kernel-selftests-arm64
         net:
-            "FAIL: ipv6 addrlabel":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: macsec":
-                rtnetlink.sh in net (bug 1812978)
-            "FAIL: ipsec":
-                rtnetlink.sh in net (bug 1812978)
             "./psock_snd: recv: Resource temporarily unavailable":
                 psock_snd in net (bug 1812618)
         ftrace:
