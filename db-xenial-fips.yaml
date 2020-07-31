@@ -189,19 +189,6 @@ ubuntu_seccomp:
         <<: *ubuntu_seccomp
     s2lp6g003:
         <<: *ubuntu_seccomp
-ubuntu_unionmount_ovlfs:
-    rizzo: &ovlfs
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on lower fs":
-                failed with the latest code in upstream (bug 1854298)
-    vought:
-        <<: *ovlfs
-    modoc:
-        <<: *ovlfs
-    s2lp6g001:
-        <<: *ovlfs
-    s2lp6g002:
-        <<: *ovlfs
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
         btrfs: &xfstest-no-sdb

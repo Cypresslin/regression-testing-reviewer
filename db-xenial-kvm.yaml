@@ -123,13 +123,6 @@ ubuntu_lxc:
         exercise:
              "set(container.get_interfaces()) == set(('lo', 'eth0')))":
                  python-API test (bug 1764618)
-ubuntu_unionmount_ovlfs:
-    automation-vm4: &ubuntu_unionmount_ovlfs
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on lower fs":
-                failed with the latest code in upstream (bug 1854298)
-    gummo:
-        <<: *ubuntu_unionmount_ovlfs
 ubuntu_xfstests_btrfs:
     automation-vm1:
         btrfs: &xfstest-no-sdb

@@ -138,6 +138,11 @@ trusty-hwe:
             setup:
                 "'__NR_seccomp' undeclared ":
                     failed to compile (bug 1849246)
+    ubuntu_unionmount_ovlfs:
+        rizzo: &ovlfs
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on lower fs":
+                    failed with the latest code in upstream (bug 1854298)
 xenial:
     aio_dio_bugs:
         kernel01:
@@ -263,6 +268,11 @@ xenial:
             seccomp:
                 "ERROR 36-sim":
                     36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
+    ubuntu_unionmount_ovlfs:
+        automation-vm4: &ubuntu_unionmount_ovlfs
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on lower fs":
+                    failed with the latest code in upstream (bug 1854298)
     ubuntu_zfs_xfs_generic:
         starmie-kernel: &1732370-x
             079:
@@ -409,6 +419,11 @@ xenial-fips:
                     add_key05 (bug 1869644)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+    ubuntu_unionmount_ovlfs:
+        rizzo: &ovlfs
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on lower fs":
+                    failed with the latest code in upstream (bug 1854298)
 xenial-kvm:
     ubuntu_blktrace_smoke_test:
         chico: &blktrace-smoke-test-x-kvm
@@ -495,6 +510,11 @@ xenial-kvm:
                     dccp failed with 4.4/4.15 KVM kernel (bug 1760638)
                 "dnotify FAILED":
                     dnotify failed on KVM kernels (bug 1782723)
+    ubuntu_unionmount_ovlfs:
+        automation-vm4: &ubuntu_unionmount_ovlfs
+            overlayfs:
+                "/mnt/a/foo100: File unexpectedly on lower fs":
+                    failed with the latest code in upstream (bug 1854298)
     ubuntu_zram_smoke_test:
         chico: &1766823
             zram-smoke-test:

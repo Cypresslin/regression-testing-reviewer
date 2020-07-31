@@ -229,25 +229,6 @@ ubuntu_lxc:
                 lxc-test-ubuntu failed (Failed to start networking in ubuntu-cloud container)
     s2lp6g001:
         <<: *exercise
-ubuntu_unionmount_ovlfs:
-    automation-vm4: &ubuntu_unionmount_ovlfs
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on lower fs":
-                failed with the latest code in upstream (bug 1854298)
-    rizzo:
-        <<: *ubuntu_unionmount_ovlfs
-    fozzie:
-        <<: *ubuntu_unionmount_ovlfs
-    ms10-34-mcdivittB0-kernel:
-        <<: *ubuntu_unionmount_ovlfs
-    modoc:
-        <<: *ubuntu_unionmount_ovlfs
-    s2lp6g001:
-        <<: *ubuntu_unionmount_ovlfs
-    s2lp3:
-        <<: *ubuntu_unionmount_ovlfs
-    kernel01:
-        <<: *ubuntu_unionmount_ovlfs
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
         btrfs:

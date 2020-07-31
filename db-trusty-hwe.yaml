@@ -103,10 +103,3 @@ ubuntu_seccomp:
                 FAILURE bpf_sim resulted in ALLOW (bug 1866041)
             "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
                 FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-ubuntu_unionmount_ovlfs:
-    rizzo: &ovlfs
-        overlayfs:
-            "/mnt/a/foo100: File unexpectedly on lower fs":
-                failed with the latest code in upstream (bug 1854298)
-    fozzie:
-        <<: *ovlfs
