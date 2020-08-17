@@ -1,0 +1,27 @@
+5.3.0-1033.35 - aws
+Regression test CMPL, RTB.
+
+Issue to note in arm64 (aws):
+  ubuntu_bpf - valid read map access into a read-only array failed on ARM64 in test_verifier (bug 1845870)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) msg_zerocopy in net (bug 1812620) memory-hotplug not executable (bug 1891003)
+  ubuntu_ltp - proc01 (bug 1829849) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) clock_settime03 (bug 1891013)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test
+
+Issue to note in x86_64 (aws):
+  ubuntu_bpf - test_maps faile with sockmap unexpected timeout on x5n.xlarge only
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) test_blackhole_dev in net (bug 1851619) ip_defrag.sh in net (bug 1826848) msg_zerocopy in net (bug 1812620) psock_snd.sh (bug 1884234)
+  ubuntu_kvm_unit_tests - realmode (bug 1850653) vmx (bug 1821394) vmx_apicv_test (bug 1827866) failed on bare-metal nodes
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) on t2.small cpuhotplug03 (bug 1836167) mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 on c5n.xlarge (bug 1887742)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 on some nodes (bug 1783881) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

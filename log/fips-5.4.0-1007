@@ -1,0 +1,10 @@
+5.4.0-1007.8 - fips
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify10 case 16 (bug 1882717) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - Failed on 5.3 (bug 1844493)
+  ubuntu_xfstests_btrfs - btrfs/136 (bug 1878347) btrfs/139 (bug 1878349) btrfs/153 (bug 1848409) btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) generic/001 (bug 1878356)
+  ubuntu_xfstests_ext4 - generic/001 (bug 1878356) generic/228 (bug 1846308) generic/394 (bug 1846306) generic/397 (bug 1846305) generic/398 (bug 1846304) generic/399 (bug 1846303) generic/419 (bug 1846302) generic/429 (bug 1846301) generic/435 (bug 1846298) generic/440 (bug 1846297)
+  ubuntu_xfstests_xfs - generic/001 (bug 1878356) generic/228 (bug 1846308)

@@ -1,0 +1,13 @@
+5.3.0-1035.36 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - cpu-hotplug on some instances (bug 1814232) test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd.sh in net (bug 1884234)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) ept (bug 1824228) vmx (bug 1821394)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) getrusage04 on some instances (bug 1841425)
+  ubuntu_lttng_smoke_test - failed to build DKMS on Standard_B1ms, passed on the rest
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+  * libhugetlbfs

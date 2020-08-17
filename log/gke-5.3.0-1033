@@ -1,0 +1,13 @@
+5.3.0-1033 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_fan_smoke_test	- enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests	- scheduler and spdy (bug 1824136)
+  ubunut_kernel_selftests - cpu-hotplug fail with 1 cpu (bug 1812149) net test not tested (bug 1812620) nsleep-lat from timers (bug 1884884)
+  ubuntu_ltp - test timeout
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - failed with 5.3 kernel (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

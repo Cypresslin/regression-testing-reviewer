@@ -1,0 +1,11 @@
+5.0.0-1066.71 - oem-osp1
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - net test timeout on 5.0 (bug 1888381) raw_skew test in timers bail out (bug 1882511) Register/unregister many kprobe events in ftrace (bug 1866972)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
