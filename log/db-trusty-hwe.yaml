@@ -1,0 +1,82 @@
+# 4.4 Trusty LTS
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_kvm_smoke_test:
+    pepe:
+        kvm_smoke_test:
+            "timed out waiting for dnsmasq lease":
+                timed out waiting for dnsmasq lease (bug 1802056)
+ubuntu_kvm_unit_tests:
+    onza:
+        setup:
+            "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
+                unable to build on X/T i386 (bug 1798007)
+    rizzo:
+        apic:
+            "FAIL apic":
+                apic (bug 1748103)
+        debug:
+            "FAIL debug":
+                debug (bug 1821906)
+        umip:
+            "FAIL umip":
+                umip should be skipped (bug 1821905)
+        vmx:
+            "FAIL vmx (timeout; duration=90s)":
+                vmx (bug 1821394)
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area (65 tests, 33 unexpected failures)":
+                vmx_host_state_area (bug 1866585)
+        vmx_intr_window_test:
+            "FAIL vmx_intr_window_test (timeout; duration=30)":
+                vmx_intr_window_test (bug 1866586)
+        vmx_nm_test:
+            "FAIL vmx_nm_test (timeout; duration=30)":
+                vmx_nm_test (bug 1866587)
+        vmx_nmi_window_test:
+            "FAIL vmx_nmi_window_test (timeout; duration=30)":
+                vmx_nmi_window_test (bug 1866588)
+        vmx_pending_event_test:
+            "FAIL: x86/vmx_tests.c:":
+                vmx_pending_event_test (bug 1866591)
+ubuntu_ltp_syscalls:
+    amaura: &syscalls-x86
+        syscalls: &syscalls-all
+            "BROK: Failed to open file":
+                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+            "failed: EROFS":
+                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+            "fanotify06.c:220: FAIL: group 3 got event":
+                fanotify06 (bug 1833028)
+            "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+                fanotify10 (bug 1802454)
+            "openat03.c:223: file mode read 0, but expected 7777":
+                openat03 (bug 1798027)
+            "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
+                prctl07 (bug 1839064)
+            "Blacklisted test cases: fanotify07":
+                fanotify07 won't fix (bug 1775165)
+    pepe:
+        <<: *syscalls-x86
+ubuntu_lxc:
+    rizzo: &lxc
+         exercise:
+             "set(container.get_interfaces()) == set(('lo', 'eth0')))":
+                 python-API test (bug 1764618)
+    fozzie:
+        <<: *lxc
+ubuntu_qrt_kernel_security:
+    onza:
+        test-kernel-security.py:
+            "FAIL: test_ulimit_stack_small":
+                test_ulimit_stack_small not stable on i386 (bug 1816467)
