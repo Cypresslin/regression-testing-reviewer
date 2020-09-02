@@ -517,15 +517,6 @@ ubuntu_lxc:
                 failed to fetch GPG key
     hotdog-kernel:
         <<: *lxc-arm64
-ubuntu_qrt_apparmor :
-    s2lp4: &apparmor-s390x
-        test-apparmor.py:
-            "Error: syscall_setscheduler failed.":
-                test_regression_testsuite failed with Can't set SCHED_RR Operation not permitted (bug 1876697)
-    kernel04:
-        <<: *apparmor-s390x
-    s2lp6g003:
-        <<: *apparmor-s390x
 ubuntu_seccomp:
     s2lp4: &ubuntu_seccomp
         seccomp:

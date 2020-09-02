@@ -55,6 +55,8 @@ ubuntu_kernel_selftests:
         user:
             "user: module test_user_copy is not found [SKIP]":
                 skip return code treated as failure on X (bug 1851486)
+    larry:
+        <<: *kernel_selftests
     zeppo:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
@@ -119,16 +121,21 @@ ubuntu_lxc:
         exercise:
             "ERROR: Unable to fetch GPG key from keyserver":
                 Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
-    moe:
+    moe: &lxc-kvm
         exercise:
              "set(container.get_interfaces()) == set(('lo', 'eth0')))":
                  python-API test (bug 1764618)
+    larry:
+        <<: *lxc-kvm
 ubuntu_xfstests_btrfs:
     automation-vm1:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 no scratch drive for the test
     moe:
+        btrfs:
+            <<: *xfstest-no-sdb
+    larry:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
@@ -138,10 +145,16 @@ ubuntu_xfstests_ext4:
     larry:
         ext4:
             <<: *xfstest-no-sdb
+    harpo:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm3:
         xfs:
             <<: *xfstest-no-sdb
     harpo:
+        xfs:
+            <<: *xfstest-no-sdb
+    zeppo:
         xfs:
             <<: *xfstest-no-sdb

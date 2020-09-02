@@ -77,10 +77,6 @@ ubuntu_kvm_smoke_test:
         <<: *1729854
     kernel01:
         <<: *1729854
-    pepe:
-        kvm_smoke_test:
-            "timed out waiting for dnsmasq lease":
-                timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     rizzo:
         apic:
@@ -182,8 +178,6 @@ ubuntu_ltp_syscalls:
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
-                sched_rr_get_interval01 (bug 1886890)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -204,15 +198,15 @@ ubuntu_ltp_syscalls:
             <<: *syscalls
             "BROK: Test killed by SIGFPE!":
                 clock_gettime04 (bug 1887459)
-            "FAIL: timer_delete() failed!: EINVAL":
-                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
+            "ioctl_loop05.c:63: BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                ioctl_loop05 on s390x (bug 1887114)
     s2lp3:
         syscalls:
             <<: *syscalls
             "BROK: Test killed by SIGFPE!":
                 clock_gettime04 (bug 1887459)
-            "FAIL: timer_delete() failed!: EINVAL":
-                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
+            "ioctl_loop05.c:63: BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                ioctl_loop05 on s390x (bug 1887114)
     s2lp6g001:
         syscalls:
             <<: *syscalls

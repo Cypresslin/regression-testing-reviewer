@@ -18,9 +18,12 @@ ubuntu_bpf:
                 timeout on lagalla (bug 1874029)
 ubuntu_kernel_selftests:
     amaura: &kernel_selftests
-        mm: &ltp-mm
-            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
-                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
+        net:
+            "psock_snd.sh [FAIL]":
+                psock_snd.sh in net (bug 1884234)
+        timers:
+            "Bail out!":
+                raw_skew test in timers bail out (bug 1882511)
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
@@ -40,6 +43,9 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)

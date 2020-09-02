@@ -11,18 +11,6 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_ecryptfs:
-    onibi: &ecryptfs
-        extend-file-random.sh.btrfs:
-            "size should be > 0":
-                extend-file-random.sh.btrfs (bug 1684788)
-        trunc-file.sh.btrfs:
-            "size should be > 0":
-                trunc-file.sh.btrfs (bug 1684789)
-    onza:
-        <<: *ecryptfs
-    pepe:
-        <<: *ecryptfs
 ubuntu_kvm_smoke_test:
     pepe:
         kvm_smoke_test:
@@ -78,8 +66,6 @@ ubuntu_ltp_syscalls:
                 prctl07 (bug 1839064)
             "Blacklisted test cases: fanotify07":
                 fanotify07 won't fix (bug 1775165)
-            "add_key05.c:124: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                add_key05 (bug 1869644)
     pepe:
         <<: *syscalls-x86
 ubuntu_lxc:
@@ -94,12 +80,3 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "FAIL: test_ulimit_stack_small":
                 test_ulimit_stack_small not stable on i386 (bug 1816467)
-ubuntu_seccomp:
-    fozzie:
-        seccomp:
-            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
-            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
-                FAILURE bpf_sim resulted in ALLOW (bug 1866041)

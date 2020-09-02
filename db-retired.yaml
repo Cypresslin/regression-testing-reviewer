@@ -71,6 +71,14 @@ trusty-hwe:
             aa9ddcd4b5557102fa25695c11904f249b4dec49:
                 "BUG btrfs_extent_map":
                     btrfs module removal after failed fallocate attempt (bug 1822579)
+    ubuntu_ecryptfs:
+        onibi: &ecryptfs
+            extend-file-random.sh.btrfs:
+                "size should be > 0":
+                    extend-file-random.sh.btrfs (bug 1684788)
+            trunc-file.sh.btrfs:
+                "size should be > 0":
+                    trunc-file.sh.btrfs (bug 1684789)
     ubuntu_kvm_unit_tests:
         pepe:
             all:
@@ -101,6 +109,8 @@ trusty-hwe:
                     open14 (bug 1798061)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+                "add_key05.c:124: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
         ms10-35-mcdivittB0-kernel:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -138,6 +148,14 @@ trusty-hwe:
             setup:
                 "'__NR_seccomp' undeclared ":
                     failed to compile (bug 1849246)
+        fozzie:
+            seccomp:
+                "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+                "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                    FAILURE bpf_sim resulted in ALLOW (bug 1866041)
     ubuntu_unionmount_ovlfs:
         rizzo: &ovlfs
             overlayfs:
@@ -201,6 +219,11 @@ xenial:
             all:
                 "FAIL emulator":
                     emulator failed (bug 1723914)
+    ubuntu_kvm_smoke_test:
+        pepe:
+            kvm_smoke_test:
+                "timed out waiting for dnsmasq lease":
+                    timed out waiting for dnsmasq lease (bug 1802056)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:
@@ -238,6 +261,8 @@ xenial:
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
                 "killed by signal SIGSEGV":
                     pivot_root01 (bug 1852966)
+                "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                    sched_rr_get_interval01 (bug 1886890)
         s2lp3:
             syscalls:
                 <<: *syscalls-x
@@ -255,6 +280,8 @@ xenial:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+                "FAIL: timer_delete() failed!: EINVAL":
+                    timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
     ubuntu_seccomp:
         fozzie:
             seccomp:
@@ -1609,6 +1636,11 @@ focal:
             powerpc:
                 "dscr_sysfs_test # TIMEOUT":
                     dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
+    ubuntu_qrt_apparmor :
+        s2lp4:
+            test-apparmor.py:
+                "Error: syscall_setscheduler failed.":
+                    test_regression_testsuite failed with Can't set SCHED_RR Operation not permitted (bug 1876697)
 focal-kvm:
     ubuntu_ltp_syscalls:
         rizzo:
