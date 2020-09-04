@@ -39,6 +39,13 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_boot:
+    s2lp3: &boot-s390x
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 4097":
+                kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+    kernel02:
+        <<: *boot-s390x
 ubuntu_bpf:
     amaura: &ubuntu_bpf
         test_maps: &bpf-test-map
@@ -116,6 +123,10 @@ ubuntu_kernel_selftests:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
+    hotdog-kernel: &kselftest-arm64
+        memory-hotplug:
+            "mem-on-off-test.sh: Permission denied":
+                memory-hotplug not executable on arm64 (bug 1892816)
     starmie-kernel:
         ftrace:
             "test for function traceon/off triggers	[FAIL]":
@@ -144,17 +155,26 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1812638)
             "reuseport_bpf_cpu [FAIL]":
                 reuseport_bpf_cpu n net (bug 1872652)
-        seccomp:
-            "TRACE_syscall.ptrace_syscall_errno: Test failed at step":
-                TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
-            "TRACE_syscall.ptrace_syscall_faked: Test failed at step":
-                TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
-        ftrace:
-            "test for function traceon/off triggers [FAIL]":
-                traceon/off triggers in ftace (bug 1837040)
-    baltar:
-        <<: *kernel-selftests-p8
         powerpc:
+            "Parent DSCR 1 was not inherited over exec (kernel value)":
+                dscr_inherit_exec_test (bug 1888332)
+            "Check DSCR TM context switch:  FAIL":
+                tm-resched-dscr (bug 1888334)
+            "failure: ptrace_tar":
+                ptrace-tar (bug 1888339)
+    baltar:
+        net:
+            "reuseport_bpf_numa [FAIL]":
+                reuseport_bpf_numa in net (bug 1812638)
+            "reuseport_bpf_cpu [FAIL]":
+                reuseport_bpf_cpu n net (bug 1872652)
+        powerpc:
+            "Parent DSCR 1 was not inherited over exec (kernel value)":
+                dscr_inherit_exec_test (bug 1888332)
+            "Check DSCR TM context switch:  FAIL":
+                tm-resched-dscr (bug 1888334)
+            "failure: ptrace_tar":
+                ptrace-tar (bug 1888339)
             "selftests:  subpage_prot [FAIL]":
                 subpage_prot in powerpc/mm (bug 1813140)
             "dscr_sysfs_test [FAIL]":
@@ -431,7 +451,7 @@ ubuntu_ltp:
         cpuhotplug: &ltp-cpuhotplug
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)
-            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
             "cpuhotplug04 1 TFAIL: Could not offline cpu0":
                 cpuhotplug04 (bug 1836169)
@@ -458,6 +478,11 @@ ubuntu_ltp:
         cve:
             "BROK: Kernel is already tainted: 12800":
                 cve-2017-1000380 failed as kernel already tainted
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             "zram01 1 TBROK: test killed, timeout! If you are running on slow machine, try exporting LTP_TIMEOUT_MUL > 1":
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
@@ -510,6 +535,13 @@ ubuntu_ltp:
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
     modoc:
@@ -521,10 +553,18 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "cpuset_funcs.sh: arithmetic expression: expecting EOF:":
                 cpuset_base_ops cpuset_exclusive cpuset_hierarchy cpuset_hotplug cpuset_inherit cpuset_load_balance cpuset_memory cpuset_memory_pressure cpuset_memory_spread cpuset_sched_domains cpuset_syscall in controller (bug 1836188)
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         crypto:
             <<: *ltp-crypto
+            "FAIL: fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
     amaura:
@@ -590,6 +630,10 @@ ubuntu_ltp_syscalls:
     pepe:
         syscalls:
             <<: *syscalls
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
+                futex_wake04 on i386 (bug 1892165)
     baltar: &syscalls-ppc
         syscalls:
             <<: *syscalls
@@ -597,6 +641,10 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     entei:
         <<: *syscalls-ppc
     modoc:
@@ -610,23 +658,35 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
-            "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
-                ioctl_loop05 on s390x (bug 1879236)
+            "FAIL: CLOCK_MONOTONIC_COARSE: Difference between successive readings greater than 5 ms":
+                clock_gettime04 (bug 1892181)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     s2lp6g002:
         <<: *syscalls-s390x
     s2lp6g003:
         <<: *syscalls-s390x
     s2lp3:
         <<: *syscalls-s390x
-    appleton-kernel: &syscalls-arm64
-        syscalls:
+    appleton-kernel:
+        syscalls: &syscalls-arm64
             <<: *syscalls
             "move_pages12.c:95: FAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     hotdog-kernel:
-        <<: *syscalls-arm64
+        syscalls:
+            <<: *syscalls-arm64
     wright-kernel:
-        <<: *syscalls-arm64
+        syscalls:
+            <<: *syscalls-arm64
+    starmie-kernel:
+        syscalls:
+            <<: *syscalls-arm64
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+
 ubuntu_lxc:
     kernel02:
         exercise:

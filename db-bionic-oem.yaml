@@ -100,6 +100,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls:
+            "FAIL: clock_nanosleep() slept for too long":
+                clock_nanosleep02 (bug 1872388)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":

@@ -79,6 +79,11 @@ trusty-hwe:
             trunc-file.sh.btrfs:
                 "size should be > 0":
                     trunc-file.sh.btrfs (bug 1684789)
+    ubuntu_kvm_smoke_test:
+        pepe:
+            kvm_smoke_test:
+                "timed out waiting for dnsmasq lease":
+                    timed out waiting for dnsmasq lease (bug 1802056)
     ubuntu_kvm_unit_tests:
         pepe:
             all:
@@ -109,11 +114,6 @@ trusty-hwe:
                     open14 (bug 1798061)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
-                "add_key05.c:124: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
-                    add_key05 (bug 1869644)
-        ms10-35-mcdivittB0-kernel:
-            syscalls:
-                <<: *syscalls-t-hwe
         onibi:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -121,6 +121,12 @@ trusty-hwe:
                     fcntl35 / fcntl35_64 in LTP syscall test failed with X-LTS kernel (bug 1774394)
                 "fcntl36.c:205: FAIL: Unexpected data offset":
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
+                "add_key05.c:124: FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
+                "BROK: Failed to open file":
+                    fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
+                "failed: EROFS":
+                    fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
         modoc: &lxc-non-x86
             exercise:
                 "There is no download available":
@@ -219,11 +225,6 @@ xenial:
             all:
                 "FAIL emulator":
                     emulator failed (bug 1723914)
-    ubuntu_kvm_smoke_test:
-        pepe:
-            kvm_smoke_test:
-                "timed out waiting for dnsmasq lease":
-                    timed out waiting for dnsmasq lease (bug 1802056)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:
@@ -261,8 +262,6 @@ xenial:
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
                 "killed by signal SIGSEGV":
                     pivot_root01 (bug 1852966)
-                "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
-                    sched_rr_get_interval01 (bug 1886890)
         s2lp3:
             syscalls:
                 <<: *syscalls-x
@@ -280,8 +279,8 @@ xenial:
                     fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842314)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
-                "FAIL: timer_delete() failed!: EINVAL":
-                    timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
+                "BROK: Test killed by SIGFPE!":
+                    clock_gettime04 (bug 1887459)
     ubuntu_seccomp:
         fozzie:
             seccomp:
@@ -318,15 +317,37 @@ xenial-hwe:
             net:
                 "make: *** [all] Error 2":
                     net test failed to build (bug 1813883)
+                "run_netsocktests [FAIL]":
+                    run_netsocktests in net (bug 1842023)
+                "reuseport_bpf_numa [FAIL]":
+                    reuseport_bpf_numa in net (bug 1812638)
         modoc:
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
                 "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                     TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+                "FAIL ] TRACE_syscall.ptrace_syscall_errno":
+                    TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
+                "FAIL ] TRACE_syscall.ptrace_syscall_faked":
+                    TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
+    ubuntu_kvm_smoke_test:
+        pepe:
+            kvm_smoke_test:
+                "timed out waiting for dnsmasq":
+                    Unable to start KVM, timed out waiting for dnsmasq lease (bug 1802056)
+    ubuntu_kvm_unit_tests:
+        modoc:
+            all:
+                "FAIL emulator":
+                    emulator failed (bug 1723914)
+                "FAIL sprs":
+                    sprs failed (bug 1723904)
     ubuntu_ltp_syscalls:
         onibi:
             syscalls:
+                "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
+                    add_key05 (bug 1869644)
                 "failed: ENOPROTOOPT":
                     connect02 (bug 1874014)
                 "failed: EROFS":
@@ -723,6 +744,8 @@ bionic:
             ftrace:
                 "Kprobe event argument syntax       [FAIL]":
                     Kprobe event argument syntax in ftrace (bug 1812809)
+                "test for function traceon/off triggers [FAIL]":
+                    traceon/off triggers in ftace (bug 1837040)
             powerpc:
                 "selftests: ptrace-tm-spd-gpr [FAIL]":
                     ptrace-tm-spd-gpr in powerpc (bug 1812805)
@@ -733,6 +756,10 @@ bionic:
                     global.get_metadata in seccomp (bug 1811057)
                 "FAIL ] TRACE_syscall.ptrace_syscall_dropped":
                     TRACE_syscall.ptrace_syscall_dropped in seccomp (bug 1812796)
+                "TRACE_syscall.ptrace_syscall_errno: Test failed at step":
+                    TRACE_syscall.ptrace_syscall_errno in seccomp (bug 1829359)
+                "TRACE_syscall.ptrace_syscall_faked: Test failed at step":
+                    TRACE_syscall.ptrace_syscall_faked in seccomp (bug 1829363)
         baltar:
             powerpc:
                 "selftests:  cp_abort [FAIL]":
@@ -858,6 +885,8 @@ bionic:
                     timer_create01 (bug 1838961)
                 "FAIL: end of file reached":
                     acct02 (bug 1839836)
+                "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                    ioctl_loop05 on s390x (bug 1879236)
     ubuntu_lxc:
         amaura: &exercise-b
             setup:
@@ -1072,6 +1101,8 @@ bionic-kvm:
                     fanotify09 case 2 (bug 1804594)
                 "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                     fanotify10 (bug 1802454)
+                "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                    sched_rr_get_interval01 (bug 1886890)
     ubuntu_lttng_smoke_test:
         chico: &1760647-b-kvm
             lttng-smoke-test:
@@ -1604,6 +1635,24 @@ eoan-kvm:
                 "FAIL: group 0 got event: mask 1020 (expected 1000)":
                     fanotify10 case 16 (bug 1882717)
 focal:
+    ubuntu_bpf:
+        rizzo: &bpf
+            test_maps:
+                "Failed to load SK_SKB verdict prog":
+                    Failed to load SK_SKB verdict prog (bug 1845860)
+        s2lp4:
+            test_maps:
+                "Failed to load SK_SKB parse prog":
+                    test_maps faile to load SK_SKB (bug 1845643)
+        hotdog-kernel:
+            test_maps:
+                "Failed sockmap unexpected timeout":
+                    Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+    ubuntu_bpf_jit:
+        s2lp4: &bpf-jit-s390x
+            ubuntu-bjf-jit:
+                "Module test_bpf load failure":
+                    confusing result in D on s390x KVM (bug 1827845)
     ubuntu_ltp:
         amaura:
             cve:
@@ -1612,6 +1661,9 @@ focal:
             kernel_misc:
                 "Failed test cases : tpci":
                     tpci (bug 1868707)
+            mm:
+                "vma05 1 TFAIL: [vsyscall] reporting wrong":
+                    vma05 (bug 1845863)
         modoc:
             fs:
                 "BROK: fs_fill.c:100: mkdir(mntpoint/thread1,0700) failed: EROFS (30)":
@@ -1627,20 +1679,36 @@ focal:
                     connect02 (bug 1874014)
                 "FAIL: group 1 got event: mask 10":
                     fanotify09 case 3 (bug 1876684)
+                "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                    fanotify10 case 16 (bug 1882717)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
+            ftrace:
+                "Test wakeup tracer [FAIL]":
+                    Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+                "Test wakeup RT tracer  [FAIL]":
+                    Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+        starmie-kernel:
+            ftrace:
+                "Test wakeup tracer [FAIL]":
+                    Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+                "Test wakeup RT tracer  [FAIL]":
+                    Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
         baltar:
             powerpc:
                 "dscr_sysfs_test # TIMEOUT":
                     dscr_sysfs_test timeout in powerpc for P9 (bug 1813136)
-    ubuntu_qrt_apparmor :
-        s2lp4:
-            test-apparmor.py:
-                "Error: syscall_setscheduler failed.":
-                    test_regression_testsuite failed with Can't set SCHED_RR Operation not permitted (bug 1876697)
+        s2lp3:
+            ftrace:
+                "Register/unregister many kprobe events [FAIL]":
+                    Register/unregister many kprobe events in ftrace (bug 1866972)
+                "Kprobe event auto/manual naming    [FAIL]":
+                    Kprobe event auto/manual naming in ftrace (bug 1869143)
+                "Kprobe event user-memory access    [UNRESOLVED]":
+                    Kprobe event user-memory access in ftrace (bug 1869227)
 focal-kvm:
     ubuntu_ltp_syscalls:
         rizzo:
@@ -1682,3 +1750,5 @@ focal-fips:
             syscalls:
                 "FAIL: group 1 got event: mask 10":
                     fanotify09 case 3 (bug 1876684)
+                "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                    fanotify10 case 16 (bug 1882717)

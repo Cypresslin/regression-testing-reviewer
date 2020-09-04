@@ -30,17 +30,30 @@ hwclock:
                 issue for HP m400 (bug 1716603)
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock-moonshot
+ubuntu_boot:
+    ms10-34-mcdivittB0-kernel: &boot-moonshots
+        log_check:
+            "WARNING: x1-x3 nonzero in violation of boot protocol:":
+                kernel warning message on boot with Moonshot nodes (bug 1888218)
+    ms10-35-mcdivittB0-kernel:
+        <<: *boot-moonshots
+    s2lp4: &boot-s390x
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 4097":
+                kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+    kernel04:
+        <<: *boot-s390x
 ubuntu_bpf:
-    rizzo: &bpf
-        test_maps:
-            "Failed to load SK_SKB verdict prog":
-                Failed to load SK_SKB verdict prog (bug 1845860)
-    fozzie:
-        <<: *bpf
-    starmie-kernel: &bpf-arm64
+    lagalla:
         test_maps:
             "Failed sockmap unexpected timeout":
-                Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+                timeout on lagalla (bug 1874029)
+    starmie-kernel: &bpf-arm64
+        test_verifier:
+            "#13/p valid read map access into a read-only array 2 FAIL":
+                test_verifier failed for valid read map access into a read-only array (bug 1874387)
+    hotdog-kernel:
+        <<: *bpf-arm64
     ms10-34-mcdivittB0-kernel:
         <<: *bpf-arm64
     s2lp6g003: &bpf-s390x
@@ -50,21 +63,18 @@ ubuntu_bpf:
         test_maps:
             "Failed to load SK_SKB parse prog":
                 test_maps faile to load SK_SKB (bug 1845643)
-    hotdog-kernel:
-        test_verifier:
-            "#13/p valid read map access into a read-only array 2 FAIL":
-                test_verifier failed for valid read map access into a read-only array (bug 1874387)
-ubuntu_bpf_jit:
-    s2lp6g001: &bpf-jit-s390x
-        ubuntu-bjf-jit:
-            "Module test_bpf load failure":
-                confusing result in D on s390x KVM (bug 1827845)
-    s2lp4:
-        <<: *bpf-jit-s390x
-    s2lp6g003:
-        <<: *bpf-jit-s390x
     kernel04:
-        <<: *bpf-jit-s390x
+        test_verifier:
+            "#592/p ld_abs: vlan + abs, test 1 FAIL":
+                5 tests failed in test_verifier (bug 1893035)
+            "#594/p ld_abs: jump around ld_abs FAIL":
+                5 tests failed in test_verifier (bug 1893035)
+            "#599/p ld_dw: xor semi-random 64 bit imms, test 5 FAIL":
+                5 tests failed in test_verifier (bug 1893035)
+            "#774/p scale: scale test 1 FAIL":
+                5 tests failed in test_verifier (bug 1893035)
+            "#775/p scale: scale test 2 FAIL":
+                5 tests failed in test_verifier (bug 1893035)
 ubuntu_fan_smoke_test:
     modoc: &ubuntu_fan_smoke_test
         fan-smoke-test:
@@ -77,40 +87,37 @@ ubuntu_fan_smoke_test:
             "docker still configured":
                 docker still configured (bug 1879299)
 ubuntu_kernel_selftests:
+    rizzo:
+        net: &kselftests-net
+            "ip_defrag.sh # exit=255":
+                ip_defrag needs module to be loaded in net (bug 1892070)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh in net (bug 1892213)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
+    gonzo:
+        net:
+            <<: *kselftests-net
     starmie-kernel: &kernel-selftests-arm64
-        ftrace:
-            "Test wakeup tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
-            "Test wakeup RT tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+        memory-hotplug:
+            "Warning: file mem-on-off-test.sh is not executable, correct this.":
+                memory-hotplug not executable on arm64 (bug 1892816)
+        net:
+            <<: *kselftests-net
     ms10-34-mcdivittB0-kernel:
+        <<: *kernel-selftests-arm64
         cpu-hotplug:
             "unexpected fail":
                 cpu-hotplug failed on moonshot (bug 1809701)
-        <<: *kernel-selftests-arm64
     hotdog-kernel:
         <<: *kernel-selftests-arm64
-    rizzo: &kernel-selftests
-        net:
-            "ip_defrag.sh # exit=1":
-                ip_defrag in net (bug 1826848)
-        ftrace:
-            "Test wakeup tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
-            "Test wakeup RT tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
-    naumann:
-        <<: *kernel-selftests
-    gonzo:
-        <<: *kernel-selftests
-    fozzie:
-        <<: *kernel-selftests
     modoc:
         net:
             "reuseport_bpf_cpu # exit=1":
                 reuseport_bpf_cpu in net (bug 1872652)
             "reuseport_bpf_numa # exit=1":
-                reuseport_bpf_numa in net (bug 1812638)
+                reuseport_bpf_numa in net (bug 1867570)
             "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
                 pmtu.sh in net (bug 1881643)
             "selftests: net: ip_defrag.sh [FAIL]":
@@ -228,13 +235,13 @@ ubuntu_kvm_unit_tests:
             "FAIL spapr_hcall":
                 spapr_hcall on P8 (bug 1862953)
 ubuntu_ltp:
-    amaura:
+    amaura: &ltp-all
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
-            "vma05 1 TFAIL: [vsyscall] reporting wrong":
-                vma05 (bug 1845863)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -262,9 +269,15 @@ ubuntu_ltp:
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
+    lagalla:
+        <<: *ltp-all
     appleton-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         commands:
@@ -280,6 +293,13 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
             "zram01 1 TBROK: test killed, timeout!":
@@ -287,6 +307,8 @@ ubuntu_ltp:
     hotdog-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         commands:
@@ -309,30 +331,23 @@ ubuntu_ltp:
     ms10-35-mcdivittB0-kernel:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         commands:
             <<: *ltp-commands
-        cpuhotplug:
-            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
-                cpuhotplug02 (bug 1836166)
-            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
-                cpuhotplug04 (bug 1836169)
-            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
-                cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
         kernel_misc:
             <<: *ltp-misc
-            "zram01 1 TBROK: test killed, timeout!":
-                zram01 / zram02 / zram03 timeout (bug 1854706)
     baltar:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -358,8 +373,13 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         crypto:
             <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
             "cpufreq_boost 1 TBROK":
@@ -369,6 +389,8 @@ ubuntu_ltp:
             <<: *ltp-fs
             "tst_test.c:1287: BROK: Test killed! (timeout?)":
                 fs_fill timeout with btrfs (bug 1878763)
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
@@ -396,13 +418,20 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         crypto:
             <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
     s2lp4:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "cpuset_inherit 3 TFAIL: cpus: Test result":
@@ -419,6 +448,8 @@ ubuntu_ltp:
     kernel04:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh":
@@ -457,27 +488,52 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 0 got event: mask 1020 (expected 1000)":
-                fanotify10 case 16 (bug 1882717)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     hotdog-kernel:
         syscalls:
             <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     modoc:
         syscalls:
             <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     baltar:
         syscalls:
             <<: *syscalls-all
-    s2lp4: &syscall-s390x
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    kernel04: &syscall-s390x
         syscalls:
+            <<: *syscalls-all
             "msgstress03    1  TFAIL":
                 msgstress03 (bug 1797341)
-            <<: *syscalls-all
-    kernel04:
-        <<: *syscall-s390x
+            "msgstress04    1  TFAIL":
+                msgstress04 (bug 1797348)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    s2lp3:
+        syscalls:
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     s2lp6g003:
         <<: *syscall-s390x
     s2lp6g001:
@@ -536,7 +592,7 @@ ubuntu_sysdig_smoke_test:
     onibi: &sysdig_smoke
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                Failed on 5.3 (bug 1844493)
+                Failed on 5.4 (bug 1844493)
     baltar:
         <<: *sysdig_smoke
     modoc:

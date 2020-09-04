@@ -141,6 +141,8 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
+            "unexpected error adding 'asymmetric' key: EINVAL (22)":
+                keyctl05 (bug 1892444)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
@@ -153,6 +155,8 @@ ubuntu_ltp_syscalls:
         syscalls:
             ") failed: ENOSPC":
                 fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+            "unexpected error adding 'asymmetric' key: EINVAL (22)":
+                keyctl05 (bug 1892444)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "Blacklisted test cases: fanotify07":

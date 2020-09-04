@@ -31,6 +31,13 @@ libhugetlbfs:
         <<: *libhugetlbfs
     s2lp6g001:
         <<: *libhugetlbfs
+ubuntu_boot:
+    ms10-34-mcdivittB0-kernel: &boot-moonshots
+        log_check:
+            "WARNING: x1-x3 nonzero in violation of boot protocol:":
+                kernel warning message on boot with Moonshot nodes (bug 1888218)
+    ms10-35-mcdivittB0-kernel:
+        <<: *boot-moonshots
 ubuntu_bpf_jit:
     s2lp3: &ubuntu_bpf_jit
         ubuntu-bjf-jit:
@@ -77,6 +84,10 @@ ubuntu_kvm_smoke_test:
         <<: *1729854
     kernel01:
         <<: *1729854
+    pepe:
+        kvm_smoke_test:
+            "timed out waiting for dnsmasq lease":
+                timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     rizzo:
         apic:
@@ -178,6 +189,8 @@ ubuntu_ltp_syscalls:
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                sched_rr_get_interval01 (bug 1886890)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -187,6 +200,8 @@ ubuntu_ltp_syscalls:
     entei: &syscalls-p8
         syscalls:
             <<: *syscalls
+            "BROK: timer_create() failed: EOPNOTSUPP (95)":
+                clock_gettime03 (bug 1891013)
             "btrfs, 0, (nil)) failed: ENOSPC":
                 copy_file_range01, fallocate04, fanotify13, fanotify14, fanotify15, fanotify16, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fspick01, fspick02, fsync01, fsync04, lremovexattr01, msync04, open_tree01, open_tree02, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01 (bug 1842270)
             "FAIL: madvise failed: EIO":
@@ -196,17 +211,21 @@ ubuntu_ltp_syscalls:
     kernel01:
         syscalls:
             <<: *syscalls
-            "BROK: Test killed by SIGFPE!":
-                clock_gettime04 (bug 1887459)
-            "ioctl_loop05.c:63: BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
-                ioctl_loop05 on s390x (bug 1887114)
+            "BROK: timer_create() failed: EOPNOTSUPP (95)":
+                clock_gettime03 (bug 1891013)
+            "FAIL: timer_delete() failed!: EINVAL":
+                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
+            "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                ioctl_loop05 (bug 1887114)
     s2lp3:
         syscalls:
             <<: *syscalls
-            "BROK: Test killed by SIGFPE!":
-                clock_gettime04 (bug 1887459)
-            "ioctl_loop05.c:63: BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
-                ioctl_loop05 on s390x (bug 1887114)
+            "BROK: timer_create() failed: EOPNOTSUPP (95)":
+                clock_gettime03 (bug 1891013)
+            "FAIL: timer_delete() failed!: EINVAL":
+                timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
+            "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+                ioctl_loop05 (bug 1887114)
     s2lp6g001:
         syscalls:
             <<: *syscalls

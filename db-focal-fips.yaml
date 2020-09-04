@@ -18,11 +18,14 @@ ubuntu_bpf:
                 timeout on lagalla (bug 1874029)
 ubuntu_kernel_selftests:
     rizzo:
-        ftrace:
-            "Test wakeup tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
-            "Test wakeup RT tracer	[FAIL]":
-                Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+        net:
+            "ip_defrag.sh # exit=255":
+                ip_defrag in net (bug 1826848)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh failed in net (bug 1884234)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -53,6 +56,8 @@ ubuntu_ltp:
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
     s2lp6g001:
         fs:
             <<: *ltp-fs
@@ -79,15 +84,15 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 0 got event: mask 1020 (expected 1000)":
-                fanotify10 case 16 (bug 1882717)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
+            "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
+                keyctl05 failed with FIPS mode on (bug 1892444)
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig_smoke
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                Failed on 5.3 (bug 1844493)
+                Failed on 5.4 (bug 1844493)
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:

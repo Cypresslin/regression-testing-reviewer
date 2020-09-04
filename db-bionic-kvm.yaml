@@ -27,6 +27,8 @@ ubuntu_kernel_selftests:
                 RTNETLINK in net (bug 1812194)
     gummo:
         <<: *ubuntu_kernel_selftests
+    zeppo:
+        <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
     automation-vm1:
         apic:
@@ -90,9 +92,9 @@ ubuntu_ltp:
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
             "/opt/ltp/testcases/bin/cgroup_fj_stress.sh: Cannot fork":
-                cgroup_fj_stress_blkio_10_3_each, cgroup_fj_stress_blkio_2_9_each, cgroup_fj_stress_cpu_10_3_each, cgroup_fj_stress_cpu_2_9_each, cgroup_fj_stress_cpuacct_10_3_each, cgroup_fj_stress_cpuacct_2_9_each, cgroup_fj_stress_cpuset_10_3_each, cgroup_fj_stress_cpuset_2_9_each, cgroup_fj_stress_devices_10_3_each, cgroup_fj_stress_devices_2_9_each, cgroup_fj_stress_freezer_10_3_each, cgroup_fj_stress_freezer_2_9_each, cgroup_fj_stress_hugetlb_10_3_each, cgroup_fj_stress_hugetlb_2_9_each, cgroup_fj_stress_memory_10_3_each, cgroup_fj_stress_memory_2_9_each, cgroup_fj_stress_net_cls_10_3_each, cgroup_fj_stress_net_cls_2_9_each, cgroup_fj_stress_net_prio_10_3_each, cgroup_fj_stress_net_prio_2_9_each, cgroup_fj_stress_perf_event_10_3_each, cgroup_fj_stress_perf_event_2_9_each (bug 1848473) 
+                cgroup_fj_stress_blkio_10_3_each, cgroup_fj_stress_blkio_2_9_each, cgroup_fj_stress_cpu_10_3_each, cgroup_fj_stress_cpu_2_9_each, cgroup_fj_stress_cpuacct_10_3_each, cgroup_fj_stress_cpuacct_2_9_each, cgroup_fj_stress_cpuset_10_3_each, cgroup_fj_stress_cpuset_2_9_each, cgroup_fj_stress_devices_10_3_each, cgroup_fj_stress_devices_2_9_each, cgroup_fj_stress_freezer_10_3_each, cgroup_fj_stress_freezer_2_9_each, cgroup_fj_stress_hugetlb_10_3_each, cgroup_fj_stress_hugetlb_2_9_each, cgroup_fj_stress_memory_10_3_each, cgroup_fj_stress_memory_2_9_each, cgroup_fj_stress_net_cls_10_3_each, cgroup_fj_stress_net_cls_2_9_each, cgroup_fj_stress_net_prio_10_3_each, cgroup_fj_stress_net_prio_2_9_each, cgroup_fj_stress_perf_event_10_3_each, cgroup_fj_stress_perf_event_2_9_each (bug 1848473)
         net.ipv6_lib:
-            "getaddrinfo_01 2 TFAIL":
+            "doesn't match hostname":
                 getaddrinfo_01 (bug 1829995)
         cve:
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
@@ -109,6 +111,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     automation-vm5: &syscalls
         syscalls:
+            "timer_create() failed: EOPNOTSUPP (95)":
+                clock_settime03 (bug 1891013)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL":
@@ -121,11 +125,11 @@ ubuntu_ltp_syscalls:
                 futex_cmp_requeue01 (bug 1874016)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
-            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
-                sched_rr_get_interval01 (bug 1886890)
-    zeppo:
-        <<: *syscalls
     gummo:
+        <<: *syscalls
+    harpo:
+        <<: *syscalls
+    zeppo:
         <<: *syscalls
 ubuntu_lxc:
     automation-vm1:
@@ -137,6 +141,9 @@ ubuntu_xfstests_btrfs:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 No scratch drive available for the test
+    gummo:
+        btrfs:
+            <<: *xfstest-no-sdb
     larry:
         btrfs:
             <<: *xfstest-no-sdb
@@ -151,12 +158,18 @@ ubuntu_xfstests_ext4:
     gummo:
         ext4:
             <<: *xfstest-no-sdb
+    zeppo:
+        ext4:
+            <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
     automation-vm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
     gummo:
+        xfs:
+            <<: *xfstest-no-sdb
+    larry:
         xfs:
             <<: *xfstest-no-sdb
     moe:

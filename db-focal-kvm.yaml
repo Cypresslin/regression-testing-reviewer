@@ -129,6 +129,8 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
     gummo:
         <<: *ubuntu_ltp_syscalls
     harpo:

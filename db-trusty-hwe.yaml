@@ -11,11 +11,6 @@
 #       "errmsg2":
 #         reason
 #
-ubuntu_kvm_smoke_test:
-    pepe:
-        kvm_smoke_test:
-            "timed out waiting for dnsmasq lease":
-                timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
     onza:
         setup:
@@ -52,10 +47,6 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all
-            "BROK: Failed to open file":
-                fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
-            "failed: EROFS":
-                fallocate04, fallocate05, fdatasync03, fremovexattr01, fremovexattr02, fsync01, fsync04, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "fanotify06.c:220: FAIL: group 3 got event":
                 fanotify06 (bug 1833028)
             "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
@@ -67,7 +58,12 @@ ubuntu_ltp_syscalls:
             "Blacklisted test cases: fanotify07":
                 fanotify07 won't fix (bug 1775165)
     pepe:
-        <<: *syscalls-x86
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
+                futex_wake04 on i386 (bug 1892165)
 ubuntu_lxc:
     rizzo: &lxc
          exercise:

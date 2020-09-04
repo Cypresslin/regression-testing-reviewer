@@ -42,7 +42,10 @@ ubuntu_kernel_selftests:
             "net: fib_nexthop_multiprefix.sh # exit=1":
                 fib_nexthop_multiprefix.sh (bug 1880648)
             "psock_snd.sh # exit=1":
-                 psock_snd.sh failed in net (bug 1884234)
+                psock_snd.sh failed in net (bug 1884234)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
         ftrace:
             "Kprobe event parser error log check	[FAIL]":
                 Kprobe event parser error log check in ftrace (bug 1879345)
@@ -58,9 +61,6 @@ ubuntu_ltp:
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm: &ltp-mm
-            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
-                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -88,6 +88,8 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:

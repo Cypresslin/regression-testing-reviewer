@@ -20,11 +20,19 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
+    hotdog-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed due to 0.x sec differences / time out waiting for time change (bug 1802233)
     ms10-34-mcdivittB0-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
 ubuntu_bpf:
+    lagalla:
+        test_maps:
+            "Failed sockmap unexpected timeout":
+                timeout on lagalla (bug 1874029)
     fozzie:
         test_maps:
             "FAIL:failed to create hashmap err: Cannot allocate memory":
@@ -50,13 +58,17 @@ ubuntu_cts_kernel:
     rizzo:
         <<: *cts_kernel_flaky
 ubuntu_kernel_selftests:
-    gonzo:
+    gonzo: &kselftests
         net: &net-kselftests
             "pmtu.sh # exit=1":
                 pmtu.sh failed without error message in net (bug 1887661)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh in net (bug 1892213)
+        timers: &timers-kselftests
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
     rizzo:
-        net:
-            <<: *net-kselftests
+        <<: *kselftests
     fozzie:
         net:
             <<: *net-kselftests

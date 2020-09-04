@@ -173,6 +173,8 @@ ubuntu_ltp_syscalls:
                 fanotify09 case 3 (bug 1876684)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
+            "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
+                keyctl05 failed with FIPS mode on (bug 1892444)
     secchi:
         <<: *syscalls-amd64
     s2lp6g002:
