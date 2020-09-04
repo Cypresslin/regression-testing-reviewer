@@ -1,0 +1,12 @@
+5.6.0-1023.23 - oem
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029) range bound deduction test failed in test_verifier (bug 1887487)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) ip_defrag in net (bug 1826848) psock_snd.sh failed in net (bug 1884234) l2tp.sh in net not executable (bug 1880631) fib_nexthop_multiprefix.sh (bug 1880648) icmp_redirect.sh (bug 1880645) raw_skew test in timers bail out (bug 1882511) Kprobe event parser error log check in ftrace (bug 1879345)
+  ubuntu_ltp - proc01 (bug 1829849) fs_fill for btrfs on amaura (bug 1878877) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_qrt_kernel_security - test_310_config_security_perf_events_restrict (bug 1879339) test_350_retpolined_modules (bug 1879341)
+  ubuntu_sysdig_smoke_test - sysdig module build failed on F-OEM-5.6 (bug 1879336)
+

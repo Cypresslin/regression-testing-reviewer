@@ -1,0 +1,83 @@
+Marked as Incomplete for ubuntu_kvm_unit_tests failure - hyperv_connections / hyperv_stimer / hyperv_synic (bug 1892855) and powerpc failure on P8 dscr_inherit_exec_test (bug 1888332) tm-resched-dscr (bug 1888334) ptrace-tar (bug 1888339)
+
+4.15.0-114.115 - lowlatency
+Regression test CMPL, RTB.
+
+59 / 60 tests were run, missing: ubuntu_xfstests_btrfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578) test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - msr on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235) hyperv_connections / hyperv_stimer / hyperv_synic (bug 1892855)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) utimensat01 mkdir failure on non-amd64 (bug 1892812) futex_wake04 on i386 (bug 1892165) kill11 (bug 1865965)
+
+4.15.0-114.115 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/186 (bug 1869660)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - failed on node wright-kernel, passed on the other node
+  ubuntu_kernel_selftests - memory-hotplug on arm64 (bug 1892816)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) cpuhotplug04 (bug 1836169) af_alg07 / cve-2019-8912 (bug 1892860) zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) utimensat01 mkdir failure on non-amd64 (bug 1892812) clock_settime03 (bug 1891013) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch GPG key
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - Some test in test_verifier failed on i386 Bionic (bug 1788578) test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - msr on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235) hyperv_connections / hyperv_stimer / hyperv_synic (bug 1892855)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) utimensat01 mkdir failure on non-amd64 (bug 1892812) futex_wake04 on i386 (bug 1892165) kill11 (bug 1865965)
+
+52 / 56 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu n net (bug 1872652) reuseport_bpf_numa in net (bug 1812638) dscr_inherit_exec_test (bug 1888332) tm-resched-dscr (bug 1888334) ptrace-tar (bug 1888339)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - clock_settime03 (bug 1891013) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) utimensat01 mkdir failure on non-amd64 (bug 1892812) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1812638) dscr_sysfs_test in powerpc on P9 (bug 1880833) subpage_prot in powerpc/mm (bug 1813140)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - clock_settime03 (bug 1891013) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) utimensat01 mkdir failure on non-amd64 (bug 1892812) kill11 (bug 1865965)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - clock_gettime04 (bug 1892181) clock_settime03 (bug 1891013) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - clock_gettime04 (bug 1892181) clock_settime03 (bug 1891013) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
+
+ * Missing s390x KVM because of the maas issue

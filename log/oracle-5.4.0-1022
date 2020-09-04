@@ -1,0 +1,14 @@
+5.4.0-1022.22 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) psock_snd.sh in net (bug 1892213)
+  ubunut_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493) on VM.Standard2.1
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+ * Instance BM.Standard2.52 and VM.DenseIO2.8 were not tested

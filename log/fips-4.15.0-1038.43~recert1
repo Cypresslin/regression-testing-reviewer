@@ -1,0 +1,17 @@
+Marked as Incomplete for ubuntu_qrt_apparmor failure (bug 1891664, looks
+like a test case issue) and the keyctl05 failure in ubuntu_ltp_syscalls
+(bug 1892444)
+
+4.15.0-1038.43~recert1 - fips
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  fips_test - failed with FIPS mode on (bug 1891690)
+  ubuntu_bpf - test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) keyctl05 failed with FIPS mode on (bug 1892444) kill11 (bug 1865965)
+  ubuntu_qrt_apparmor - failed with libgcrypt20 (bug 1891664)
+  ubuntu_xfstests_btrfs - btrfs/172 (bug 1848417) btrfs/182 (bug 1848418) btrfs/186 (bug 1869660) btrfs/187 (bug 1848421) btrfs/193 (bug 1848422) generic/089 (bug 1869657) generic/102 (bug 1869656) generic/228 (bug 1846308)
+  ubuntu_xfstests_ext4 - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)
+  ubuntu_xfstests_xfs - generic/228 (bug 1846308) generic/394 (bug 1846306) timed out on ext4 generic/430 test (bug 1755999)

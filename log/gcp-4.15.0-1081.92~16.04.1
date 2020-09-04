@@ -1,9 +1,10 @@
-4.15.0-1080.90~16.04.1 - gcp
+4.15.0-1081.92~16.04.1 - gcp
 Regression test CMPL, RTB.
 
 Issue to note in gcp:
   ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
   ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965) quotactl04 (bug 1854153) statx05 (bug 1798524)
+  ubuntu_lxc - Unable to fetch GPG key for lxc-test-autostart on n1-highcpu-32 and n1-highmem-8, python3-api on n1-highmem-8
 
 Skipped / blacklisted:
  * ubuntu_bpf
