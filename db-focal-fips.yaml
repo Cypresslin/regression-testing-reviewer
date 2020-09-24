@@ -19,10 +19,10 @@ ubuntu_bpf:
 ubuntu_kernel_selftests:
     rizzo:
         net:
-            "ip_defrag.sh # exit=255":
-                ip_defrag in net (bug 1826848)
             "psock_snd.sh # exit=1":
                 psock_snd.sh failed in net (bug 1884234)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)

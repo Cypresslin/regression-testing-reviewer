@@ -12,7 +12,7 @@
 #         reason
 #
 ubuntu_kernel_selftests:
-    automation-vm4: &ubuntu_kernel_selftests
+    autovm4: &ubuntu_kernel_selftests
         net:
             "FAIL: cannot add dummy interface":
                 rtnetlink.sh in net (bug 1812194)
@@ -41,7 +41,7 @@ ubuntu_kernel_selftests:
     larry:
        <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
-    automation-vm1:
+    autovm1:
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
@@ -64,7 +64,7 @@ ubuntu_kvm_unit_tests:
             "FAIL vmx_vmcs_shadow_test (timeout":
                 vmx_vmcs_shadow_test timeout (bug 1874186)
 ubuntu_ltp:
-    automation-vm4: &ubuntu_ltp
+    autovm4: &ubuntu_ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
@@ -104,7 +104,7 @@ ubuntu_ltp:
     moe:
         <<: *ubuntu_ltp
 ubuntu_ltp_syscalls:
-    automation-vm5: &ubuntu_ltp_syscalls
+    autovm5: &ubuntu_ltp_syscalls
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
@@ -119,12 +119,12 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *ubuntu_ltp_syscalls
 ubuntu_lxc:
-    automation-vm1:
+    autovm1:
         exercise:
             "FAIL: lxc-tests: lxc-test-no-new-privs":
                 lxc-test-no-new-privs failed to fetch file (bug 1821152)
 ubuntu_sysdig_smoke_test:
-    automation-vm4: &ubuntu_sysdig_smoke_test
+    autovm4: &ubuntu_sysdig_smoke_test
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 failed to trace read / write (bug 1844493)
@@ -133,7 +133,7 @@ ubuntu_sysdig_smoke_test:
     larry:
         <<: *ubuntu_sysdig_smoke_test
 ubuntu_xfstests_btrfs:
-    automation-vm2:
+    autovm2:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
@@ -144,7 +144,7 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
-    automation-vm3:
+    autovm3:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
@@ -155,7 +155,7 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
-    automation-vm4:
+    autovm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test

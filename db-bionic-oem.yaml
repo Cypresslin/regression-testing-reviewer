@@ -38,6 +38,9 @@ ubuntu_cts_kernel:
                 test is a bit flaky (bug 1837536)
 ubuntu_kernel_selftests:
     rizzo:
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "Bail out!":
                 raw_skew test in timers bail out (bug 1882511)
@@ -108,6 +111,8 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:

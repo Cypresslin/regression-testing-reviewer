@@ -81,6 +81,9 @@ ubuntu_kernel_selftests:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
     rizzo:
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "Bail out!":
                 raw_skew test in timers bail out (bug 1882511)
@@ -131,8 +134,8 @@ ubuntu_kernel_selftests:
 ubuntu_kvm_smoke_test:
     onibi: &ubuntu_kvm_smoke_test
         kvm_smoke_test:
-            "qemu-img: Unable to initialize gcrypt":
-                failed to fetch KVM image (bug 1882518)
+            "libvirt: unsupported configuration":
+                failed with libvirt - unsupported configuration (bug 1896153)
     harpo:
         <<: *ubuntu_kvm_smoke_test
     baltar:
@@ -270,6 +273,8 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     baltar: &syscalls-ppc
         syscalls:
             <<: *syscalls

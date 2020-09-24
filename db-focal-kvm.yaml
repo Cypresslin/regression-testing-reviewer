@@ -12,7 +12,7 @@
 #         reason
 #
 ubuntu_kernel_selftests:
-    automation-vm4: &ubuntu_kernel_selftests
+    autovm4: &ubuntu_kernel_selftests
         net:
             "FAIL: cannot add dummy interface":
                 rtnetlink.sh in net (bug 1812194)
@@ -24,55 +24,22 @@ ubuntu_kernel_selftests:
                 fib-onlink-tests in net (bug 1812622)
             "selftests: net: pmtu.sh # exit=1":
                 pmtu.sh failed because some modules not found in net (bug 1870099)
-            "ip_defrag.sh # exit=255":
-                ip_defrag in net (bug 1826848)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh in net (bug 1892213)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: fib_rule_tests.sh # exit=2":
                 fib_rule_tests in net (bug 1812622)
-            "selftests: net: msg_zerocopy.sh # exit=1":
-                msg_zerocopy.sh in net (bug 1812620)
             "selftests: net: test_vxlan_under_vrf.sh # exit=2":
                 test_vxlan_under_vrf.sh (bug 1837348)
             "selftests: net: so_txtime.sh # exit=2":
                 so_txtime.sh in net (bug 1870106)
-        seccomp:
-            "seccomp_benchmark # TIMEOUT":
-                seccomp_benchmark timeout in seccomp (bug 1881576)
-        ftrace:
-            "Test trace_printk from module	[UNRESOLVED]":
-                Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)
-            "Meta-selftest	[UNRESOLVED]":
-                Meta-selftest UNRESOLVED in ftrace (bug 1869289)
     gummo:
        <<: *ubuntu_kernel_selftests
     zeppo:
        <<: *ubuntu_kernel_selftests
-ubuntu_kvm_unit_tests:
-    automation-vm1:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        apic-split:
-            "FAIL apic-split":
-                apic-split timeouted (bug 1821390)
-        memory:
-            "FAIL memory":
-                memory (bug 1831449)
-        realmode:
-            "FAIL realmode":
-                realmode failed (bug 1850653)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
-        vmx_apicv_test:
-            "FAIL vmx_apicv_test":
-                vmx_apicv_test (bug 1827866)
-        vmx_vmcs_shadow_test:
-            "FAIL vmx_vmcs_shadow_test (timeout":
-                vmx_vmcs_shadow_test timeout (bug 1874186)
 ubuntu_ltp:
-    automation-vm4: &ubuntu_ltp
+    autovm4: &ubuntu_ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
@@ -112,12 +79,16 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
+    autovm1:
+        <<: *ubuntu_ltp
     gummo:
         <<: *ubuntu_ltp
     larry:
         <<: *ubuntu_ltp
+    moe:
+        <<: *ubuntu_ltp
 ubuntu_ltp_syscalls:
-    automation-vm5: &ubuntu_ltp_syscalls
+    autovm5: &ubuntu_ltp_syscalls
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
@@ -131,21 +102,25 @@ ubuntu_ltp_syscalls:
                 ptrace08 (bug 1873781)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
+    autovm2:
+        <<: *ubuntu_ltp_syscalls
     gummo:
         <<: *ubuntu_ltp_syscalls
     harpo:
         <<: *ubuntu_ltp_syscalls
+    larry:
+        <<: *ubuntu_ltp_syscalls
     zeppo:
         <<: *ubuntu_ltp_syscalls
 ubuntu_lxc:
-    automation-vm1: &ubuntu_lxc
+    autovm1: &ubuntu_lxc
         exercise:
             "FAIL: lxc-tests: lxc-test-no-new-privs":
                 lxc-test-no-new-privs failed to fetch file (bug 1821152)
     gummo:
         <<: *ubuntu_lxc
 ubuntu_sysdig_smoke_test:
-    automation-vm4: &ubuntu_sysdig_smoke_test
+    autovm4: &ubuntu_sysdig_smoke_test
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 failed to trace read / write (bug 1844493)
@@ -156,10 +131,13 @@ ubuntu_sysdig_smoke_test:
     zeppo:
         <<: *ubuntu_sysdig_smoke_test
 ubuntu_xfstests_btrfs:
-    automation-vm2:
+    autovm2:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm3:
+        btrfs:
+            <<: *xfstest-no-sdb
     gummo:
         btrfs:
             <<: *xfstest-no-sdb
@@ -167,10 +145,13 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
-    automation-vm3:
+    autovm3:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm4:
+        ext4:
+            <<: *xfstest-no-sdb
     gummo:
         ext4:
             <<: *xfstest-no-sdb
@@ -181,10 +162,13 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
-    automation-vm4:
+    autovm4:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm1:
+        xfs:
+            <<: *xfstest-no-sdb
     gummo:
         xfs:
             <<: *xfstest-no-sdb

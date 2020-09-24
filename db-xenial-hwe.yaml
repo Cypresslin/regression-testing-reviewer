@@ -16,6 +16,11 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
+ubuntu_boot:
+    ms10-34-mcdivittB0-kernel:
+        log_check:
+            "WARNING: x1-x3 nonzero in violation of boot protocol:":
+                kernel warning message on boot with Moonshot nodes (bug 1888218)
 ubuntu_fan_smoke_test:
     modoc:
         fan-smoke-test:
@@ -136,16 +141,20 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls: &syscalls
-            "Invalid filesystem option set:  encrypt":
-                statx05 (bug 1798524)
-            "Invalid filesystem option set:  quota,project":
-                quotactl04 (bug 1854153)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 case 20 (bug 1895273)
+            "Invalid filesystem option set:  quota,project":
+                quotactl04 (bug 1854153)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
+            "Invalid filesystem option set:  encrypt":
+                statx05 (bug 1798524)
     entei: &syscalls-ppc
         syscalls:
             <<: *syscalls
@@ -174,6 +183,8 @@ ubuntu_ltp_syscalls:
     secchi:
         <<: *syscalls-amd64
     wright-kernel:
+        <<: *syscalls-amd64
+    starmie-kernel:
         <<: *syscalls-amd64
 ubuntu_qrt_kernel_security:
     onza:

@@ -13,19 +13,24 @@
 #
 ubuntu_bpf:
     lagalla:
-        test_maps:
+        test_maps: &bpf-test-maps
             "Failed sockmap unexpected timeout":
-                timeout on lagalla (bug 1874029)
+                timeout on some node (bug 1874029)
     rizzo:
-        test_verifier:
+        test_verifier: &bpf-test-verifier
             "#555/p jgt32: range bound deduction, reg op imm FAIL":
                 range bound deduction test failed in test_verifier (bug 1887487)
             "#556/p jgt32: range bound deduction, reg1 op reg2, reg1 unknown FAIL":
                 range bound deduction test failed in test_verifier (bug 1887487)
             "#557/p jle32: range bound deduction, reg1 op reg2, reg2 unknown FAIL":
                 range bound deduction test failed in test_verifier (bug 1887487)
+    glameow:
+        test_verifier:
+            <<: *bpf-test-verifier
+        test_maps:
+            <<: *bpf-test-maps
 ubuntu_kernel_selftests:
-    rizzo:
+    rizzo: &kselftests
         net:
             "selftests: net: xfrm_policy.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
@@ -51,16 +56,21 @@ ubuntu_kernel_selftests:
                 Kprobe event parser error log check in ftrace (bug 1879345)
             "ftrace - test for function traceon/off triggers	[FAIL]":
                 traceon/off triggers in ftrace (bug 1876687)
+    glameow:
+        <<: *kselftests
 ubuntu_kvm_unit_tests:
     rizzo:
         vmx_host_state_area:
             "FAIL vmx_host_state_area":
                 vmx_host_state_area (bug 1866585)
 ubuntu_ltp:
-    amaura:
+    amaura: &ltp
         fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
@@ -74,6 +84,9 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "memcg_stat_rss 7 TFAIL: rss is":
                 memcg_stat_rss (bug 1837035)
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 in cpuhotplug (bug 1836167)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
@@ -82,21 +95,30 @@ ubuntu_ltp:
         net.ipv6_lib: &ltp-net-ipv6-lib
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
+        cve:
+            "FAIL: fchownat() failed to fail":
+                af_alg07 and cve-2019-8912 (bug 1892860)
         crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
+            "FAIL: fchownat() failed to fail":
+                af_alg07 and cve-2019-8912 (bug 1892860)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
             "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
                 zram03 failed to close file (bug 1887742)
+    glameow:
+        <<: *ltp
 ubuntu_ltp_syscalls:
-    amaura: &syscalls-amd64
+    amaura: &ltp-syscalls
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+    glameow:
+        <<: *ltp-syscalls
 ubuntu_qrt_kernel_security:
     onibi:
         test-kernel-security.py: &qrt_kernel_security
@@ -111,11 +133,16 @@ ubuntu_qrt_kernel_security:
             <<: *qrt_kernel_security
             "FAIL: test_120_smep_works":
                 test_120_smep_works on kili (bug 1880659)
+    glameow:
+        test-kernel-security.py:
+            <<: *qrt_kernel_security
 ubuntu_sysdig_smoke_test:
-    onibi:
+    onibi: &sysdig
         sysdig-smoke-test:
             "Error! Bad return status for module build on kernel":
                 sysdig module build failed on F-OEM-5.6 (bug 1879336)
+    glameow:
+        <<: *sysdig
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:

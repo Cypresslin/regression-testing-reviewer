@@ -142,15 +142,17 @@ ubuntu_ltp_syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
-                keyctl05 (bug 1892444)
+                keyctl05 with FIPS mode on (bug 1892444)
             "fanotify06.c:220: FAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "FAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "BROK: Failed to open FILE 'mntpoint":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     entei: &syscalls-p8
         syscalls:
             ") failed: ENOSPC":

@@ -93,6 +93,8 @@ ubuntu_kernel_selftests:
                 ip_defrag needs module to be loaded in net (bug 1892070)
             "psock_snd.sh # exit=1":
                 psock_snd.sh in net (bug 1892213)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
@@ -122,12 +124,16 @@ ubuntu_kernel_selftests:
                 pmtu.sh in net (bug 1881643)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
     baltar:
         net:
             "reuseport_bpf_numa # exit=1":
                 reuseport_bpf_numa in net (bug 1867570)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         powerpc:
             "failure: dscr_sysfs_test":
                 dscr_sysfs_test in powerpc for P9 (bug 1880833)
@@ -155,6 +161,8 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "not ok 30 selftests: net: tcp_fastopen_backup_key.sh":
                 tcp_fastopen_backup_key.sh in net on s390x (bug 1869134)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
@@ -488,6 +496,8 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
+            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 case 20 (bug 1895273)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
@@ -530,10 +540,10 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
-    s2lp3:
-        syscalls:
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
+            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                fanotify10 case 20 (bug 1895273)
+    s2lp4:
+        <<: *syscall-s390x
     s2lp6g003:
         <<: *syscall-s390x
     s2lp6g001:

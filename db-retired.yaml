@@ -295,7 +295,7 @@ xenial:
                 "ERROR 36-sim":
                     36-sim-ipc_syscalls, 37-sim-ipc_syscalls_be failed on s390x / PowerPC (bug 1850904)
     ubuntu_unionmount_ovlfs:
-        automation-vm4: &ubuntu_unionmount_ovlfs
+        autovm4: &ubuntu_unionmount_ovlfs
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on lower fs":
                     failed with the latest code in upstream (bug 1854298)
@@ -481,7 +481,7 @@ xenial-kvm:
                 "FAILED (/sys/kernel/debug/tracing does not exist)":
                     ubuntu_blktrace_smoke_test failed with 4.4 Xenial kvm kernel (bug 1760636)
     ubuntu_kernel_selftests:
-        automation-vm5: &kernel_selftests
+        autovm5: &kernel_selftests
             net:
                 "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
                     psock_tpacket in net failed (bug 1812176)
@@ -559,7 +559,7 @@ xenial-kvm:
                 "dnotify FAILED":
                     dnotify failed on KVM kernels (bug 1782723)
     ubuntu_unionmount_ovlfs:
-        automation-vm4: &ubuntu_unionmount_ovlfs
+        autovm4: &ubuntu_unionmount_ovlfs
             overlayfs:
                 "/mnt/a/foo100: File unexpectedly on lower fs":
                     failed with the latest code in upstream (bug 1854298)
@@ -751,6 +751,12 @@ bionic:
                     ptrace-tm-spd-gpr in powerpc (bug 1812805)
                 " for symbol `' out of range":
                     ebb in powerpc (bug 1812805)
+                "Parent DSCR 1 was not inherited over exec (kernel value)":
+                    dscr_inherit_exec_test (bug 1888332)
+                "Check DSCR TM context switch:  FAIL":
+                    tm-resched-dscr (bug 1888334)
+                "failure: ptrace_tar":
+                    ptrace-tar (bug 1888339)
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
@@ -776,7 +782,19 @@ bionic:
                     alignment in powerpc (bug 1813118)
                 "selftests:  dscr_sysfs_test [FAIL]":
                     dscr_sysfs_test in powerpc/dscr (bug 1813136)
+                "failure: ptrace_tar":
+                    ptrace-tar (bug 1888339)
+                "Parent DSCR 1 was not inherited over exec (kernel value)":
+                    dscr_inherit_exec_test (bug 1888332)
+                "Check DSCR TM context switch:  FAIL":
+                    tm-resched-dscr (bug 1888334)
+            ftrace:
+                "Kprobe event argument syntax       [FAIL]":
+                    Kprobe event argument syntax in ftrace (bug 1812809)
         s2lp6g002:
+            net:
+                "reuseport_dualstack [FAIL]":
+                    reuseport_dualstack in net (bug 1812843)
             ftrace:
                 "function glob filters      [FAIL]":
                     ftrace (bug 1812836)
@@ -784,7 +802,19 @@ bionic:
                     ftrace (bug 1812836)
                 "test histogram trigger     [FAIL]":
                     ftrace (bug 1812836)
+            seccomp:
+                "FAIL ] TRACE_syscall.skip_after_RET_TRACE":
+                    TRACE_syscall.skip_after_RET_TRACE in seccomp (bug 1812824)
+                "FAIL ] TRACE_syscall.kill_after_RET_TRACE":
+                    TRACE_syscall.kill_after_RET_TRACE in seccomp (bug 1812824)
+                "FAIL ] TRACE_syscall.skip_after_ptrace":
+                    TRACE_syscall.skip_after_ptrace in seccomp (bug 1812824)
+                "FAIL ] TRACE_syscall.kill_after_ptrace":
+                    TRACE_syscall.kill_after_ptrace in seccomp (bug 1812824)
         fozzie:
+            net:
+                "reuseport_bpf_numa [FAIL]":
+                    reuseport_bpf_numa in net (bug 1812638)
             ftrace:
                 "Kprobe event string type argument  [FAIL]":
                     Kprobe event string type argument in ftrace (bug 1812645)
@@ -952,6 +982,12 @@ bionic:
                     failen with test 079 (bug 1732370)
         ms10-34-mcdivittB0-kernel:
             <<: *1732370-b
+bionic-ibm-gt:
+    ubuntu_kvm_smoke_test:
+        onibi:
+            kvm_smoke_test:
+                "qemu-img: Unable to initialize gcrypt":
+                    failed to fetch KVM image (bug 1882518)
 bionic-hwe:
     ubuntu_btrfs_kernel_fixes:
         amaura: &btrfs_kernel_fixes
@@ -1103,6 +1139,10 @@ bionic-kvm:
                     fanotify10 (bug 1802454)
                 "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
                     sched_rr_get_interval01 (bug 1886890)
+                "BROK: fork() failed: EAGAIN/EWOULDBLOCK (11)":
+                    futex_cmp_requeue01 (bug 1874016)
+                "timer_create() failed: EOPNOTSUPP (95)":
+                    clock_settime03 (bug 1891013)
     ubuntu_lttng_smoke_test:
         chico: &1760647-b-kvm
             lttng-smoke-test:
@@ -1375,6 +1415,9 @@ bionic-edge:
 bionic-fips:
     ubuntu_kernel_selftests:
         gonzo:
+            net:
+                "reuseport_bpf_numa [FAIL]":
+                    reuseport_bpf_numa in net (bug 1812638)
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
@@ -1605,7 +1648,7 @@ eoan:
                      failed to build on C/D (bug 1828391)
 eoan-kvm:
     ubuntu_kernel_selftests:
-        automation-vm4:
+        autovm4:
             seccomp:
                 "FAIL ] global.user_notification_basic":
                     global.user_notification_basic in seccomp (bug 1862588)
@@ -1617,14 +1660,14 @@ eoan-kvm:
                 "Meta-selftest  [UNRESOLVED]":
                     Meta-selftest UNRESOLVED in ftrace (bug 1869289)
     ubuntu_ltp:
-        automation-vm4:
+        autovm4:
             mm:
                 "Failed test cases : ksm02 ksm02_1 ksm03 ksm03_1 ksm04 ksm04_1":
                     ksm02 ksm02_1 ksm03 ksm03_1 ksm04 ksm04_1 failed on KVM kernels (bug 1886409)
                 "vma05 1 TFAIL: [vsyscall] reporting wrong":
                     vma05 (bug 1845863)
     ubuntu_ltp_syscalls:
-        automation-vm5:
+        autovm5:
             syscalls:
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
@@ -1710,6 +1753,44 @@ focal:
                 "Kprobe event user-memory access    [UNRESOLVED]":
                     Kprobe event user-memory access in ftrace (bug 1869227)
 focal-kvm:
+    ubuntu_kernel_selftests:
+        autovm4: &ubuntu_kernel_selftests
+            net:
+                "ip_defrag.sh # exit=255":
+                    ip_defrag in net (bug 1826848)
+                "selftests: net: msg_zerocopy.sh # exit=1":
+                    msg_zerocopy.sh in net (bug 1812620)
+            seccomp:
+                "seccomp_benchmark # TIMEOUT":
+                    seccomp_benchmark timeout in seccomp (bug 1881576)
+            ftrace:
+                "Test trace_printk from module  [UNRESOLVED]":
+                    Test trace_printk from module UNRESOLVED in ftrace (bug 1869347)
+                "Meta-selftest  [UNRESOLVED]":
+                    Meta-selftest UNRESOLVED in ftrace (bug 1869289)
+    ubuntu_kvm_unit_tests:
+        autovm1:
+            apic:
+                "FAIL apic":
+                    apic timeouted (bug 1748103)
+            apic-split:
+                "FAIL apic-split":
+                    apic-split timeouted (bug 1821390)
+            memory:
+                "FAIL memory":
+                    memory (bug 1831449)
+            realmode:
+                "FAIL realmode":
+                    realmode failed (bug 1850653)
+            vmx:
+                "FAIL vmx":
+                    vmx (bug 1821394)
+            vmx_apicv_test:
+                "FAIL vmx_apicv_test":
+                    vmx_apicv_test (bug 1827866)
+            vmx_vmcs_shadow_test:
+                "FAIL vmx_vmcs_shadow_test (timeout":
+                    vmx_vmcs_shadow_test timeout (bug 1874186)
     ubuntu_ltp_syscalls:
         rizzo:
             syscalls:
@@ -1745,6 +1826,11 @@ focal-oem:
                 "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
                     test_400_refcount_config (bug 1879339)
 focal-fips:
+    ubuntu_kernel_selftests:
+        rizzo:
+            net:
+                "ip_defrag.sh # exit=255":
+                    ip_defrag in net (bug 1826848)
     ubuntu_ltp_syscalls:
         amaura:
             syscalls:

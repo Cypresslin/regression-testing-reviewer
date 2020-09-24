@@ -119,15 +119,17 @@ ubuntu_fan_smoke_test:
     baltar:
         <<: *ubuntu_fan_smoke_test
 ubuntu_kernel_selftests:
-    vickers-armstrong:
-        net:
-            "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
     hotdog-kernel: &kselftest-arm64
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         memory-hotplug:
             "mem-on-off-test.sh: Permission denied":
                 memory-hotplug not executable on arm64 (bug 1892816)
     starmie-kernel:
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         ftrace:
             "test for function traceon/off triggers	[FAIL]":
                 traceon/off triggers in ftace (bug 1837040)
@@ -140,12 +142,15 @@ ubuntu_kernel_selftests:
                 function traceon/off triggers in ftace (bug 1837040)
     fozzie:
         net:
-            "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
     rizzo:
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "Bail out!":
                 raw_skew test in timers bail out (bug 1882511)
@@ -154,47 +159,27 @@ ubuntu_kernel_selftests:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
             "reuseport_bpf_cpu [FAIL]":
-                reuseport_bpf_cpu n net (bug 1872652)
+                reuseport_bpf_cpu in net (bug 1872652)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         powerpc:
-            "Parent DSCR 1 was not inherited over exec (kernel value)":
-                dscr_inherit_exec_test (bug 1888332)
-            "Check DSCR TM context switch:  FAIL":
-                tm-resched-dscr (bug 1888334)
-            "failure: ptrace_tar":
-                ptrace-tar (bug 1888339)
+            "failure: tm_unavailable_test":
+                tm-unavailable in powerpc (bug 1895506)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-            "reuseport_bpf_cpu [FAIL]":
-                reuseport_bpf_cpu n net (bug 1872652)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         powerpc:
-            "Parent DSCR 1 was not inherited over exec (kernel value)":
-                dscr_inherit_exec_test (bug 1888332)
-            "Check DSCR TM context switch:  FAIL":
-                tm-resched-dscr (bug 1888334)
-            "failure: ptrace_tar":
-                ptrace-tar (bug 1888339)
             "selftests:  subpage_prot [FAIL]":
                 subpage_prot in powerpc/mm (bug 1813140)
             "dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc on P9 (bug 1880833)
-        ftrace:
-            "Kprobe event argument syntax       [FAIL]":
-                Kprobe event argument syntax in ftrace (bug 1812809)
     s2lp6g002: &kernel-selftests-s390x
         net:
-            "reuseport_dualstack [FAIL]":
-                reuseport_dualstack in net (bug 1812843)
-        seccomp:
-            "FAIL ] TRACE_syscall.skip_after_RET_TRACE":
-                TRACE_syscall.skip_after_RET_TRACE in seccomp (bug 1812824)
-            "FAIL ] TRACE_syscall.kill_after_RET_TRACE":
-                TRACE_syscall.kill_after_RET_TRACE in seccomp (bug 1812824)
-            "FAIL ] TRACE_syscall.skip_after_ptrace":
-                TRACE_syscall.skip_after_ptrace in seccomp (bug 1812824)
-            "FAIL ] TRACE_syscall.kill_after_ptrace":
-                TRACE_syscall.kill_after_ptrace in seccomp (bug 1812824)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
     kernel02:
         <<: *kernel-selftests-s390x
     s2lp3:

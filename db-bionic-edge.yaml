@@ -64,6 +64,17 @@ ubuntu_kernel_selftests:
                 pmtu.sh failed without error message in net (bug 1887661)
             "psock_snd.sh # exit=1":
                 psock_snd.sh in net (bug 1892213)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+            "FAIL: ip6gretap":
+                ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448)
+            "FAIL: erspan":
+                ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448)
+            "FAIL: ip6erspan":
+                ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448)
+        seccomp:
+            "error: storage size of ‘md’ isn’t known":
+                seccomp_bpf failed to build (bug 1896420)
         timers: &timers-kselftests
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
@@ -178,6 +189,21 @@ ubuntu_ltp:
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
+    lagalla:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
     pepe:
         fs:
             <<: *ltp-fs

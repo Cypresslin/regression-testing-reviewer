@@ -12,7 +12,7 @@
 #         reason
 #
 ubuntu_ecryptfs:
-    automation-vm3: &ubuntu_ecryptfs
+    autovm3: &ubuntu_ecryptfs
         miscdev-bad-count.sh.ext2:
             "miscdev-bad-count	FAIL":
                 miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
@@ -48,7 +48,7 @@ ubuntu_ecryptfs:
     harpo:
         <<: *ubuntu_ecryptfs
 ubuntu_kernel_selftests:
-    automation-vm5: &kernel_selftests
+    autovm1: &kernel_selftests
         net:
             "test: TPACKET_V1 with PACKET_RX_RING open: No such file or directory":
                 psock_tpacket in net failed (bug 1812176)
@@ -57,12 +57,14 @@ ubuntu_kernel_selftests:
         user:
             "user: module test_user_copy is not found [SKIP]":
                 skip return code treated as failure on X (bug 1851486)
+    autovm5:
+        <<: *kernel_selftests
     moe:
         <<: *kernel_selftests
     zeppo:
         <<: *kernel_selftests
 ubuntu_kvm_unit_tests:
-    automation-vm2: &kvm_unit_tests
+    autovm2: &kvm_unit_tests
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
@@ -100,7 +102,7 @@ ubuntu_kvm_unit_tests:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
 ubuntu_ltp_syscalls:
-    automation-vm5: &syscalls
+    autovm2: &syscalls
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
@@ -116,15 +118,19 @@ ubuntu_ltp_syscalls:
                 ptrace08 (bug 1873781)
             "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
                 sched_rr_get_interval01 (bug 1886890)
+    autovm5:
+        <<: *syscalls
     larry:
         <<: *syscalls
     zeppo:
         <<: *syscalls
 ubuntu_lxc:
-    automation-vm1:
+    autovm1: &lxc-intel
         exercise:
             "ERROR: Unable to fetch GPG key from keyserver":
                 Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+    autovm3:
+        <<: *lxc-intel
     gummo: &lxc
         exercise:
              "set(container.get_interfaces()) == set(('lo', 'eth0')))":
@@ -132,10 +138,13 @@ ubuntu_lxc:
     moe:
         <<: *lxc
 ubuntu_xfstests_btrfs:
-    automation-vm1:
+    autovm1:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 no scratch drive for the test
+    autovm2:
+        btrfs:
+            <<: *xfstest-no-sdb
     larry:
         btrfs:
             <<: *xfstest-no-sdb
@@ -143,7 +152,10 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
-    automation-vm2:
+    autovm2:
+        ext4:
+            <<: *xfstest-no-sdb
+    autovm3:
         ext4:
             <<: *xfstest-no-sdb
     gummo:
@@ -153,7 +165,10 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
-    automation-vm3:
+    autovm3:
+        xfs:
+            <<: *xfstest-no-sdb
+    autovm4:
         xfs:
             <<: *xfstest-no-sdb
     harpo:

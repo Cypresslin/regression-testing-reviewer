@@ -66,13 +66,13 @@ ubuntu_btrfs_kernel_fixes:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
     fozzie:
-        net:
-            "reuseport_bpf_numa [FAIL]":
-                reuseport_bpf_numa in net (bug 1812638)
         ftrace:
             "Kprobe event string type argument	[FAIL]":
                 Kprobe event string type argument in ftrace (bug 1812645)
     rizzo:
+        net:
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "raw_skew [FAIL]":
                 raw_skew in timers bail out (bug 1882511)
@@ -175,6 +175,8 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
                 keyctl05 failed with FIPS mode on (bug 1892444)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     secchi:
         <<: *syscalls-amd64
     s2lp6g002:

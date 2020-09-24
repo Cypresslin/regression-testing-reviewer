@@ -38,6 +38,12 @@ ubuntu_boot:
                 kernel warning message on boot with Moonshot nodes (bug 1888218)
     ms10-35-mcdivittB0-kernel:
         <<: *boot-moonshots
+    s2lp3: &boot-s390x
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 4097":
+                kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+    kernel01:
+        <<: *boot-s390x
 ubuntu_bpf_jit:
     s2lp3: &ubuntu_bpf_jit
         ubuntu-bjf-jit:
@@ -232,6 +238,8 @@ ubuntu_ltp_syscalls:
     pepe:
         syscalls:
             <<: *syscalls
+            "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
+                futex_wake04 (bug 1892165)
     secchi:
         syscalls:
             <<: *syscalls

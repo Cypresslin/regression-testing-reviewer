@@ -12,14 +12,16 @@
 #         reason
 #
 ubuntu_bpf:
-    automation-vm2: &ubuntu_bpf
+    autovm1: &ubuntu_bpf
         test_maps:
             "Failed to create sockmap -1":
                 test_maps failed with sockmap creation (bug 1848004)
+    autovm2:
+        <<: *ubuntu_bpf
     larry:
         <<: *ubuntu_bpf
 ubuntu_kernel_selftests:
-    automation-vm4: &ubuntu_kernel_selftests
+    autovm4: &ubuntu_kernel_selftests
         net:
             "test_bpf: [FAIL]":
                 test_bpf in net (bug 1812189)
@@ -30,7 +32,7 @@ ubuntu_kernel_selftests:
     zeppo:
         <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
-    automation-vm1:
+    autovm1:
         apic:
             "FAIL apic (timeout":
                 apic timeouted (bug 1748103)
@@ -68,7 +70,7 @@ ubuntu_kvm_unit_tests:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
-    automation-vm4: &ltp
+    autovm1: &ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
@@ -104,15 +106,15 @@ ubuntu_ltp:
                 tpci (bug 1868707)
             "zram01 1 TBROK: test killed":
                 zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+    autovm4:
+        <<: *ltp
     gummo:
         <<: *ltp
     larry:
         <<: *ltp
 ubuntu_ltp_syscalls:
-    automation-vm5: &syscalls
+    autovm3: &syscalls
         syscalls:
-            "timer_create() failed: EOPNOTSUPP (95)":
-                clock_settime03 (bug 1891013)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL":
@@ -121,10 +123,14 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
                 ptrace08 (bug 1873781)
-            "BROK: fork() failed: EAGAIN/EWOULDBLOCK (11)":
-                futex_cmp_requeue01 (bug 1874016)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
+            "TBROK: F_NOTIFY failed errno = 22 : Invalid argument":
+                fcntl38 / fcntl38_64 (bug 1896624)
+    autovm5:
+        <<: *syscalls
     gummo:
         <<: *syscalls
     harpo:
@@ -132,15 +138,18 @@ ubuntu_ltp_syscalls:
     zeppo:
         <<: *syscalls
 ubuntu_lxc:
-    automation-vm1:
+    autovm1:
         exercise:
             "FAIL: lxc-tests: lxc-test-no-new-privs":
                 lxc-test-no-new-privs failed to fetch file (bug 1821152)
 ubuntu_xfstests_btrfs:
-    automation-vm2:
+    autovm2:
         btrfs: &xfstest-no-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 No scratch drive available for the test
+    autovm3:
+        btrfs:
+            <<: *xfstest-no-sdb
     gummo:
         btrfs:
             <<: *xfstest-no-sdb
@@ -148,10 +157,13 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
-    automation-vm3:
+    autovm3:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm4:
+        ext4:
+            <<: *xfstest-no-sdb
     harpo:
         ext4:
             <<: *xfstest-no-sdb
@@ -162,10 +174,13 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
-    automation-vm4:
+    autovm1:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm4:
+        xfs:
+            <<: *xfstest-no-sdb
     gummo:
         xfs:
             <<: *xfstest-no-sdb
