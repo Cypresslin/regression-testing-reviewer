@@ -1,0 +1,12 @@
+4.15.0-1096.106~16.04.1 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - cpu-hotplug on some instances (bug 1831543) rtnetlink.sh in net returning 1 for a skipped test (bug 1895258)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) memory (bug 1831449) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) failed on Standard_D16s_v3, Standard_D2_v3, Standard_D2s_v3, Standard_E2s_v3, Standard_F2s_v2, Standard_F32s_v2
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965) quotactl04 (bug 1854153) shmctl04 (bug 1895276) statx05 (bug 1798524) move_pages12 on some instance (bug 1831043)
+  ubuntu_lxc - lxc-test-apparmor-mount failed with Unable to fetch GPG key from keyserver
+
+Skipped / blacklisted:
+  * ubuntu_bpf
+  * ubuntu_ltp

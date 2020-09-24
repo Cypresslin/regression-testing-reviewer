@@ -1,0 +1,18 @@
+Marked as Incomplete for the seccomp_bpf build issue in kselftests (bug 1896420)
+
+5.4.0-1025.25~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - test_bpf failed with cloud kernels in net (bug 1812189) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) test_blackhole_dev in net (bug 1851619) pmtu.sh marked as failed (bug 1887661) psock_snd.sh in net (bug 1892213) seccomp_bpf in seccomp failed to build (bug 1896420) memory-hotplug timeout on BM.Standard2.52 (bug 1866846)
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) pmu (bug 1853797) port80 (bug 1845688) vmx (bug 1821394) vmx_apicv_test (bug 1827866) vmx_nm_test (bug 1872419)
+  ubunut_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707) zram03 on VM.DenseIO2.8 (bug 1887742)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1797341)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+* ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401) on some instances

@@ -1,0 +1,13 @@
+5.4.0-1025.25 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test - enable disable fan test failed with unknown underlay network format (bug 1840904)
+  ubuntu_k8s_unit_tests - testing (bug 1884036) vclib (bug 1855809) podautoscaler (bug 1855810) devicemanager (bug 1884037) container (bug 1855811) master (bug 1884038) storage (bug 1884041) envelope (bug 1884042) flag (bug 1855815) spdy (bug 1824136) naming (bug 1855816) proxy (bug 1884045)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) test_blackhole_dev in net (bug 1851619) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) psock_snd.sh (bug 1892213)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965) msgstress03 (bug 1797341) msgstress04 (bug 1797348)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

@@ -1,0 +1,15 @@
+4.15.0-1075.76 - kvm
+Regression test CMPL, RTB.
+
+54 / 55 tests were run, missing: ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed with sockmap creation (bug 1848004)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) RTNETLINK in net (bug 1812194)
+  ubuntu_ltp - proc01 (bug 1829849) hackbench01, hackbench02 (bug 1830675) netns_sysfs (bug 1830678) memcg_usage_in_bytes (bug 1829984) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) getaddrinfo_01 (bug 1829995) tpci (bug 1868707) zram01 / zram02 / zram03 failed on slow system (bug 1854706)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fcntl38 / fcntl38_64 (bug 1896624) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) msgstress04 (bug 1797348) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_xfstests_btrfs - No scratch drive available for the test
+  ubuntu_xfstests_ext4 - No scratch drive available for the test
+  ubuntu_xfstests_xfs - No scratch drive available for the test
+
+Note:
+* ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401)

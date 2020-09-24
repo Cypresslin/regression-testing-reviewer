@@ -1,0 +1,16 @@
+4.15.0-2009.10 - azure-fips
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap 'x:x' not in ESTABLISHED (bug 1839912)
+  ubuntu_kernel_selftests - cpu-hotplug on some instances (bug 1814232) raw_skew test in timers bail out on some instances (bug 1882511) kci_test_encap_fou() in rtnetlink.sh (bug 1891421)
+  ubuntu_kvm_unit_tests - vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on bare-metal nodes
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) rtc01 failed on some instances
+  ubuntu_ltp_syscalls - clock_gettime04 (bug 1887459) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) getrusage04 on Basic_A2 (bug 1841425) keyctl05 failed with FIPS mode on (bug 1892444) kill11 (bug 1865965) msgstress03 on some instances (bug 1783881) move_pages12 on some instances (bug 1831043) shmctl04 (bug 1895276)
+  ubuntu_lxc - Failed to fetch in lxc-test-no-new-privs on Standard_B1ms only
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+ * ubuntu_qrt_kernel_aslr_collisions can only be tested on Basic_A2 due to the name was too long (bug 1888500)

@@ -1,0 +1,57 @@
+4.4.0-190.220 - lowlatency
+Regression test CMPL, RTB.
+
+56 / 59 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+  ubuntu_lxc - Unable to fetch GPG key in lxc-test-apparmor-mount
+
+50 / 54 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) futex_wake04 (bug 1892165) kill11 (bug 1865965)
+  ubuntu_qrt_kernel_security - test_ulimit_stack_small not stable on i386 (bug 1816467)
+
+4.4.0-190.220 - generic
+Regression test CMPL, RTB.
+
+56 / 59 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - issue for HP m400 (bug 1716603)
+  ubuntu_boot - kernel warning message on boot with Moonshot nodes (bug 1888218)
+  ubuntu_kernel_selftests - cpu-hotplug failed on moonshot (bug 1809701)
+  ubuntu_kvm_smoke_test - unable to create KVM with uvtool (bug 1749427)
+  ubuntu_kvm_unit_tests - gicv2-mmio on X-ARM64 (bug 1828165) gicv2-mmio-3p (bug 1828027) gicv2-mmio-up (bug 1828026) pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+
+50 / 54 tests were run, missing: ubuntu_kvm_unit_tests, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) futex_wake04 (bug 1892165) kill11 (bug 1865965)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_btrfs_kernel_fixes - Unable to mount a btrfs filesystem smaller than 320M on Xenial P8 (bug 1879752)
+  ubuntu_ltp_syscalls - copy_file_range01, fallocate04, fanotify13, fanotify14, fanotify15, fanotify16, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsetxattr01, fspick01, fspick02, fsync01, fsync04, lremovexattr01, msync04, open_tree01, open_tree02, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, pwritev03, pwritev03_64, setxattr01, sync03, sync_file_range02, syncfs01 (bug 1842270) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) move_pages12 (bug 1831043) kill11 (bug 1865965)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop from ubuntu_bpf_jit will fail on X s390x (bug 1868243)
+  ubuntu_kernel_selftests - ld_abs+vlan_push/pop in test_bpf from net will fail on X s390x (bug 1868243)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) ioctl_loop05 (bug 1887114) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop from ubuntu_bpf_jit will fail on X s390x (bug 1868243)
+  ubuntu_kernel_selftests - ld_abs+vlan_push/pop in test_bpf from net will fail on X s390x (bug 1868243)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) ioctl_loop05 (bug 1887114) fanotify06 (bug 1833028) fanotify10 (bug 1802454) kill11 (bug 1865965)
+
