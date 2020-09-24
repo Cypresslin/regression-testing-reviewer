@@ -90,28 +90,31 @@ def analyze_that(link, testname, distro):
                 sub_head = sub_head.find_previous('a')
                 sub_test = sub_head.text
                 # check the sub-test-case name here
-                if sub_test in issues[testname][sut]:
-                    report = sub_head.get('href')
-                    target = baseurl + '/' + report
-                    # finally we can parse the real test report
-                    soup = utils.soup_generator(target)
-                    for item in soup.find_all('td', {'valign': 'top'}):
-                        # filter out the column number section
-                        if item.has_attr('width'):
-                            continue
-                        # check the error from all the message
-                        # tried to focus on stdout/stderr before, but some error will be in Traceback
-                        # tried to focus on message without stdout/stderr, but if the test times out this will not work
-                        text = item.get_text()
-                        for errmsg in issues[testname][sut][sub_test]:
-                            if errmsg in text:
-                                # don't append duplicated error message
-                                if issues[testname][sut][sub_test][errmsg] not in reason:
-                                    reason.append(issues[testname][sut][sub_test][errmsg])
-                                break
-                    if reason == []:
-                        unused[testname] = [sut, sub_test, errmsg]
-#                    The following check is not valid, sometime a same bug report will be used for different err msg
-#                    if len(set(reason)) != len(issues[testname][sut][sub_test]):
-#                        reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
+                try:
+                    if sub_test in issues[testname][sut]:
+                        report = sub_head.get('href')
+                        target = baseurl + '/' + report
+                        # finally we can parse the real test report
+                        soup = utils.soup_generator(target)
+                        for item in soup.find_all('td', {'valign': 'top'}):
+                            # filter out the column number section
+                            if item.has_attr('width'):
+                                continue
+                            # check the error from all the message
+                            # tried to focus on stdout/stderr before, but some error will be in Traceback
+                            # tried to focus on message without stdout/stderr, but if the test times out this will not work
+                            text = item.get_text()
+                            for errmsg in issues[testname][sut][sub_test]:
+                                if errmsg in text:
+                                    # don't append duplicated error message
+                                    if issues[testname][sut][sub_test][errmsg] not in reason:
+                                        reason.append(issues[testname][sut][sub_test][errmsg])
+                                    break
+                        if reason == []:
+                            unused[testname] = [sut, sub_test, errmsg]
+#                        The following check is not valid, sometime a same bug report will be used for different err msg
+#                        if len(set(reason)) != len(issues[testname][sut][sub_test]):
+#                            reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
+                except TypeError:
+                    print("Issue {} for {} is empty, malformated database?".format(testname, sut))
     return ' '.join(reason), unused
