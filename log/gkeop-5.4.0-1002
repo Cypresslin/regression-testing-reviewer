@@ -1,0 +1,16 @@
+Marked as Incomplete for the seccomp_bpf build issue in kselftests (bug 1896420)
+
+5.4.0-1002.2 - gkeop
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test	- enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - memory-hotplug on some instances (bug 1866846) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) pmtu.sh marked as failed (bug 1887661) psock_snd.sh in net (bug 1892213) seccomp_bpf in seccomp failed to build (bug 1896420)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ *  libhugetlbfs

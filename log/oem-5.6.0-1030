@@ -1,0 +1,10 @@
+5.6.0-1030.30 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - range bound deduction test failed in test_verifier (bug 1887487) timeout on some node (bug 1874029)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) psock_snd.sh failed in net (bug 1884234) l2tp.sh in net not executable (bug 1880631) fib_nexthop_multiprefix.sh (bug 1880648) icmp_redirect.sh (bug 1880645) Kprobe event parser error log check in ftrace (bug 1879345)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 in cpuhotplug (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 and cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_qrt_kernel_security - test_310_config_security_perf_events_restrict (bug 1879339) test_350_retpolined_modules (bug 1879341)
+  ubuntu_sysdig_smoke_test - sysdig module build failed on F-OEM-5.6 (bug 1879336)

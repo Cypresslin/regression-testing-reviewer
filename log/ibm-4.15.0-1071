@@ -1,0 +1,10 @@
+4.15.0-1071.78 - ibm-gt
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)

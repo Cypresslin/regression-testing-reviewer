@@ -1,0 +1,14 @@
+4.15.0-1055.59~16.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test timeout (bug 1872419) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) ioctl_sg01 on BM.Standard2.52 only (bug 1895281) kill11 (bug 1865965) move_pages12 on some instance (bug 1831043) quotactl04 (bug 1854153) shmctl04 (bug 1895276) statx05 (bug 1798524)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp
+
+Note:
+  * ubuntu_kvm_unit_tests will hang with vmx_nm_test (bug 1872401) on VM.DenseIO2.8

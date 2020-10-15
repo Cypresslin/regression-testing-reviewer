@@ -1,0 +1,14 @@
+4.15.0-1071.74 - gke
+Regression test CMPL, RTB.
+
+Issue to note in gke:
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap 'x:x' not in ESTABLISHED (bug 1839912)
+  ubuntu_fan_smoke_test - failed with unknown underlay network format (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - kci_test_encap_fou() in rtnetlink.sh (bug 1891421)
+  ubuntu_ltp - test suite timeout with the controller (bug 1839144)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) kill11 (bug 1865965) msgstress03 (bug 1797341) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+
+Skipped / blacklisted:
+ * libhugetlbfs

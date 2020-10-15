@@ -1,0 +1,15 @@
+4.4.0-1081.89 - kvm
+Regression test CMPL, RTB.
+
+53 / 54 tests were run, missing: ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  ubuntu_ecryptfs - miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) skip return code treated as failure on X (bug 1851486)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fcntl38 / fcntl38_64 (bug 1896624) fanotify06 (bug 1833028) fanotify10 (bug 1802454) mmap18 (bug 1897361) msgstress03 (bug 1797341) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lxc - Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
+
+Note:
+ * ubuntu_kvm_unit_tests crashed with vmx_nm_tests (bug 1872401)

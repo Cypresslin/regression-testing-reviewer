@@ -1,0 +1,78 @@
+5.4.0-49.53 - lowlatency
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) psock_snd.sh in net (bug 1892213) raw_skew test in timers bail out (bug 1882511)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_subgroup_charge (bug 1847982) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+5.4.0-49.53 - generic
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) psock_snd.sh in net (bug 1892213)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+50 / 54 tests were run, missing: ubuntu_btrfs_kernel_fixes, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - hwclock test failed due to 0.x sec differences (bug 1802233)
+  ubuntu_bpf - test_verifier failed for valid read map access into a read-only array (bug 1874387)
+  ubuntu_kernel_selftests - memory-hotplug not executable on arm64 (bug 1892816) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) psock_snd.sh in net (bug 1892213) nsleep-lat in timers bail out (bug 1884884)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+  ubuntu_lxc - failed to fetch GPG key
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu in net (bug 1872652) reuseport_bpf_numa in net (bug 1867570) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) pmtu.sh in net (bug 1881643) psock_snd.sh in net (bug 1892213) Change the ringbuffer size in ftrace (bug 1897762)
+  ubuntu_kvm_unit_tests - fail to build on PowerPC (bug 1879328)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_pressure (bug 1897748) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - reuseport_bpf_numa in net (bug 1867570) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) pmtu.sh in net (bug 1881643) psock_snd.sh in net (bug 1892213) dscr_sysfs_test in powerpc for P9 (bug 1880833) eeh-basic.sh timeout in powerpc (bug 1882503)
+  ubuntu_kvm_unit_tests - fail to build on PowerPC (bug 1879328)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_base_ops (bug 1830359) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_syscall (bug 1862908) cpuset_sched_domains (bug 1830361) cpuset_load_balance (bug 1830360) cpuset_hotplug (bug 1834006) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) kill11 (bug 1865965)
+  ubuntu_lttng_smoke_test - lttng module in -proposed (bug 1896781)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+51 / 52 tests were run, missing: ubuntu_bpf
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_fan_smoke_test - docker still configured (bug 1879299)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) ipsec_offload from rtnetlink.sh in net (bug 1893921) psock_snd in net (bug 1812618)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+Issue to note in s390x (zVM):
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_bpf - 5 tests failed in test_verifier (bug 1893035)
+  ubuntu_kernel_selftests - mem-on-off-test.sh in memory-hotplug failed (bug 1897764) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) ipsec_offload from rtnetlink.sh in net (bug 1893921) udpgso_bench.sh in net (bug 1897759) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) msgstress03 (bug 1797341) msgstress04 (bug 1797348) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+Note:
+  * missing ubuntu_bpf test result on Ubuntu LPAR due to OOM issue (bug 1856163)
+  * Missing s390x KVM because of the maas issue
