@@ -43,6 +43,8 @@ ubuntu_ecryptfs:
         lp-994247.sh.btrfs:
             "lp-994247 FAIL":
                 miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+    autovm4:
+        <<: *ubuntu_ecryptfs
     gummo:
         <<: *ubuntu_ecryptfs
     harpo:
@@ -106,18 +108,20 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "fanotify06.c:220: FAIL: group 8 got event":
+            "fanotify06.c:220: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "TFAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "TBROK: F_NOTIFY failed errno = 22 : Invalid argument":
+                fcntl38 / fcntl38_64 (bug 1896624)
+            "mmap18.c:167: TFAIL: Child: killed by SIGSEGV":
+                mmap18 (bug 1897361)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
-                fanotify10 (bug 1802454)
-            "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
-                ptrace08 (bug 1873781)
-            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
-                sched_rr_get_interval01 (bug 1886890)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
+    autovm3:
+        <<: *syscalls
     autovm5:
         <<: *syscalls
     larry:
@@ -130,6 +134,8 @@ ubuntu_lxc:
             "ERROR: Unable to fetch GPG key from keyserver":
                 Unable to fetch GPG key from keyserver. proxy issue for Intel Cloud (bug 1838966)
     autovm3:
+        <<: *lxc-intel
+    autovm4:
         <<: *lxc-intel
     gummo: &lxc
         exercise:
@@ -145,6 +151,9 @@ ubuntu_xfstests_btrfs:
     autovm2:
         btrfs:
             <<: *xfstest-no-sdb
+    autovm3:
+        btrfs:
+            <<: *xfstest-no-sdb
     larry:
         btrfs:
             <<: *xfstest-no-sdb
@@ -158,6 +167,9 @@ ubuntu_xfstests_ext4:
     autovm3:
         ext4:
             <<: *xfstest-no-sdb
+    autovm4:
+        ext4:
+            <<: *xfstest-no-sdb
     gummo:
         ext4:
             <<: *xfstest-no-sdb
@@ -165,6 +177,9 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
+    autovm2:
+        xfs:
+            <<: *xfstest-no-sdb
     autovm3:
         xfs:
             <<: *xfstest-no-sdb

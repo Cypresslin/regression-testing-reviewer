@@ -317,6 +317,15 @@ ubuntu_kvm_unit_tests:
             "FAIL vmexit_vmcall":
                 vmexit_vmcall on i386 (bug 1822235)
     fozzie: &kvm-unit-test-vmexit-i386
+        hyperv_connections:
+            "FAIL hyperv_connections (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
+        hyperv_stimer:
+            "FAIL hyperv_stimer (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
+        hyperv_synic:
+            "FAIL hyperv_synic (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
         msr:
             "FAIL msr":
                 msr on i386 (bug 1822235)
@@ -580,6 +589,8 @@ ubuntu_ltp:
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "memcg_failcnt 2 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_failcnt (bug 1845919)
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
@@ -603,6 +614,12 @@ ubuntu_ltp:
             <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+            "memcg_stat_rss 4 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_stat_rss (bug 1837035)
+            "memcg_move_charge_at_immigrate_test 5 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_move_charge_at_immigrate_test (bug 1837037)
         net.ipv6_lib:
             <<: *ltp-net
 ubuntu_ltp_syscalls:
@@ -612,19 +629,21 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     pepe:
         syscalls:
             <<: *syscalls
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
                 futex_wake04 on i386 (bug 1892165)
+            "BROK: preadv203":
+                preadv203 / preadv203_64 failed on B-i386 with ENOSPC (bug 1864425)
     baltar: &syscalls-ppc
         syscalls:
             <<: *syscalls
-            "move_pages12.c:95: FAIL: madvise failed: ENOMEM":
+            "move_pages12.c:95: TFAIL: madvise failed: ENOMEM":
                 move_pages12 (bug 1831043)
-            "move_pages12.c:95: FAIL: madvise failed: EIO ":
+            "move_pages12.c:95: TFAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
             "mkdir(test_dir,0700) failed: EEXIST (17)":
                 utimensat01 mkdir failure on non-amd64 (bug 1892812)
@@ -643,7 +662,7 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "FAIL: add_key call failed unexpectedly":
                 add_key01 (bug 1862878)
-            "FAIL: CLOCK_MONOTONIC_COARSE: Difference between successive readings greater than 5 ms":
+            "FAIL: CLOCK_REALTIME_COARSE: Difference between successive readings greater than 5 ms":
                 clock_gettime04 (bug 1892181)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
@@ -656,7 +675,7 @@ ubuntu_ltp_syscalls:
     appleton-kernel:
         syscalls: &syscalls-arm64
             <<: *syscalls
-            "move_pages12.c:95: FAIL: madvise failed: EIO ":
+            "move_pages12.c:95: TFAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
             "mkdir(test_dir,0700) failed: EEXIST (17)":
                 utimensat01 mkdir failure on non-amd64 (bug 1892812)

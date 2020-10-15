@@ -143,7 +143,7 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
                 keyctl05 with FIPS mode on (bug 1892444)
-            "fanotify06.c:220: FAIL: group 8 got event":
+            "fanotify06.c:220: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
@@ -155,11 +155,13 @@ ubuntu_ltp_syscalls:
                 shmctl04 (bug 1895276)
     entei: &syscalls-p8
         syscalls:
+            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                btrfs fill_fs test in fallocate06 (bug 1866323)
             ") failed: ENOSPC":
-                fallocate04, fallocate05, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, lremovexattr01, msync04, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
+                chdir01, fallocate04, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fspick01, fspick02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, fanotify16, lremovexattr01, msync04, open_tree01, open_tree02, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
                 keyctl05 (bug 1892444)
-            "fanotify06.c:220: FAIL: group 8 got event":
+            "fanotify06.c:220: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "Blacklisted test cases: fanotify07":
                 fanotify07 won't fix (bug 1775165)
@@ -167,6 +169,10 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "move_pages12.c:95: FAIL: madvise failed: EIO (5)":
                 move_pages12 (bug 1831043)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
+            "ioctl_sg01.c:116: TFAIL: Kernel memory leaked":
+                ioctl_sg01 on P8 (bug 1899441)
     modoc:
         <<: *syscalls-p8
     s2lp6g001:

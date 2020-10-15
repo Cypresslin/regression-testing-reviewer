@@ -12,10 +12,12 @@
 #         reason
 #
 ubuntu_kvm_unit_tests:
-    onza:
+    onza: &kvm_unit_tests_i386
         setup:
             "cc1plus: error: unrecognized command line option \"-Wno-frame-address\"":
                 unable to build on X/T i386 (bug 1798007)
+    fozzie:
+        <<: *kvm_unit_tests_i386
     rizzo:
         apic:
             "FAIL apic":

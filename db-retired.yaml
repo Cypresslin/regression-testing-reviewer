@@ -366,6 +366,8 @@ xenial-hwe:
                     fanotify09-2 (bug 1804594)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+                "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                    fanotify10 case 20 (bug 1895273)
         modoc:
             syscalls:
                 "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
@@ -505,6 +507,10 @@ xenial-kvm:
                     process_vm_writev02, process_vm_readv02, process_vm_readv03 (bug 1797331)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
      				add_key05 (bug 1869644)
+                "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
+                    ptrace08 (bug 1873781)
+                "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                    sched_rr_get_interval01 (bug 1886890)
     ubuntu_lttng_smoke_test:
         chico: &1760647-x-kvm
             lttng-smoke-test:
@@ -901,6 +907,10 @@ bionic:
                     timer_create01 (bug 1838961)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
+        pepe:
+            syscalls:
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
         s2lp6g001:
             syscalls:
                 "perf_event_open02.c:275: perf_event_open failed: errno=ENOENT(2)":
@@ -1715,6 +1725,9 @@ focal:
             fs:
                 "failed: EPERM (1)":
                     fs_fill (bug 1842266)
+            controller:
+                "cpuset_inherit 3 TFAIL: cpus: Test result":
+                    cpuset_inherit (bug 1849825)
     ubuntu_ltp_syscalls:
         amaura:
            syscalls:
@@ -1724,6 +1737,8 @@ focal:
                     fanotify09 case 3 (bug 1876684)
                 "FAIL: group 0 got event: mask 1020 (expected 1000)":
                     fanotify10 case 16 (bug 1882717)
+                "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
+                    fanotify9 case 20 (bug 1895273)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
@@ -1740,6 +1755,10 @@ focal:
                     Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
                 "Test wakeup RT tracer  [FAIL]":
                     Test wakeup tracer / Test wakeup RT tracer (bug 1873054)
+        modoc:
+            net:
+                "selftests: net: ip_defrag.sh [FAIL]":
+                    ip_defrag in net (bug 1826848)
         baltar:
             powerpc:
                 "dscr_sysfs_test # TIMEOUT":
@@ -1752,6 +1771,8 @@ focal:
                     Kprobe event auto/manual naming in ftrace (bug 1869143)
                 "Kprobe event user-memory access    [UNRESOLVED]":
                     Kprobe event user-memory access in ftrace (bug 1869227)
+                "not ok 30 selftests: net: tcp_fastopen_backup_key.sh":
+                    tcp_fastopen_backup_key.sh in net on s390x (bug 1869134)
 focal-kvm:
     ubuntu_kernel_selftests:
         autovm4: &ubuntu_kernel_selftests

@@ -84,8 +84,12 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "memcg_stat_rss 7 TFAIL: rss is":
                 memcg_stat_rss (bug 1837035)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_load_balance 1 TFAIL: load balance test failed.":
+                cpuset_load_balance (bug 1830360)
         cpuhotplug:
-            "TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 in cpuhotplug (bug 1836167)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":

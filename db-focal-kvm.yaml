@@ -39,7 +39,7 @@ ubuntu_kernel_selftests:
     zeppo:
        <<: *ubuntu_kernel_selftests
 ubuntu_ltp:
-    autovm4: &ubuntu_ltp
+    autovm1: &ubuntu_ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
@@ -79,7 +79,9 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
-    autovm1:
+    autovm3:
+        <<: *ubuntu_ltp
+    autovm4:
         <<: *ubuntu_ltp
     gummo:
         <<: *ubuntu_ltp
@@ -88,7 +90,7 @@ ubuntu_ltp:
     moe:
         <<: *ubuntu_ltp
 ubuntu_ltp_syscalls:
-    autovm5: &ubuntu_ltp_syscalls
+    autovm2: &ubuntu_ltp_syscalls
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
@@ -102,7 +104,11 @@ ubuntu_ltp_syscalls:
                 ptrace08 (bug 1873781)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
-    autovm2:
+            "TBROK: F_NOTIFY failed errno = 22 : Invalid argument":
+                fcntl38 / fcntl38_64 (bug 1896624)
+    autovm4:
+        <<: *ubuntu_ltp_syscalls
+    autovm5:
         <<: *ubuntu_ltp_syscalls
     gummo:
         <<: *ubuntu_ltp_syscalls
@@ -120,10 +126,12 @@ ubuntu_lxc:
     gummo:
         <<: *ubuntu_lxc
 ubuntu_sysdig_smoke_test:
-    autovm4: &ubuntu_sysdig_smoke_test
+    autovm3: &ubuntu_sysdig_smoke_test
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 failed to trace read / write (bug 1844493)
+    autovm4:
+        <<: *ubuntu_sysdig_smoke_test
     gummo:
         <<: *ubuntu_sysdig_smoke_test
     larry:
@@ -162,11 +170,11 @@ ubuntu_xfstests_ext4:
         ext4:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_xfs:
-    autovm4:
+    autovm1:
         xfs:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
-    autovm1:
+    autovm4:
         xfs:
             <<: *xfstest-no-sdb
     gummo:

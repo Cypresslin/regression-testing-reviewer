@@ -47,12 +47,26 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
+        commands: &ltp-commands
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
+        cve:
+            "BROK: unexpected error binding AF_ALG socket to hash algorithm 'md5': ELIBBAD":
+                af_alg01 / cve-2017-17805 on F-fips (bug 1897704)
+            "BROK: unexpected error binding AF_ALG socket to skcipher algorithm 'salsa20': ELIBBAD":
+                af_alg01 in crypto / cve-2017-17805 (bug 1897705)
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
+            "BROK: unexpected error binding AF_ALG socket to hash algorithm 'md5': ELIBBAD":
+                af_alg01 / cve-2017-17805 on F-fips (bug 1897704)
+            "BROK: unexpected error binding AF_ALG socket to skcipher algorithm 'salsa20': ELIBBAD":
+                af_alg01 in crypto / cve-2017-17805 (bug 1897705)
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)

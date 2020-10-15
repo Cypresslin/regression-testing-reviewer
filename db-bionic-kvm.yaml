@@ -21,12 +21,14 @@ ubuntu_bpf:
     larry:
         <<: *ubuntu_bpf
 ubuntu_kernel_selftests:
-    autovm4: &ubuntu_kernel_selftests
+    autovm2: &ubuntu_kernel_selftests
         net:
             "test_bpf: [FAIL]":
                 test_bpf in net (bug 1812189)
             "FAIL: cannot add dummy interface":
                 RTNETLINK in net (bug 1812194)
+    atuovm4:
+        <<: *ubuntu_kernel_selftests
     gummo:
         <<: *ubuntu_kernel_selftests
     zeppo:
@@ -86,7 +88,7 @@ ubuntu_ltp:
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
-                memcg_usage_in_bytes (bug 1829984)
+                memcg_max_usage_in_bytes_test (bug 1897560)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
@@ -150,6 +152,9 @@ ubuntu_xfstests_btrfs:
     autovm3:
         btrfs:
             <<: *xfstest-no-sdb
+    autovm4:
+        btrfs:
+            <<: *xfstest-no-sdb
     gummo:
         btrfs:
             <<: *xfstest-no-sdb
@@ -157,10 +162,13 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:
-    autovm3:
+    autovm2:
         ext4:
             "Error: Could not stat device /dev/sdb":
                No scratch drive available for the test
+    autovm3:
+        ext4:
+            <<: *xfstest-no-sdb
     autovm4:
         ext4:
             <<: *xfstest-no-sdb

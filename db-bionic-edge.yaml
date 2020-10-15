@@ -87,9 +87,15 @@ ubuntu_kernel_selftests:
             "Kprobe event user-memory access	[FAIL]":
                 Kprobe event user-memory access (bug 1878784)
     hotdog-kernel:
+        memory-hotplug:
+            "Warning: file mem-on-off-test.sh is not executable, correct this.":
+                memory-hotplug not executable on arm64 (bug 1892816)
         net:
             <<: *net-kselftests
     starmie-kernel:
+        memory-hotplug:
+            "Warning: file mem-on-off-test.sh is not executable, correct this.":
+                memory-hotplug not executable on arm64 (bug 1892816)
         net:
             <<: *net-kselftests
     modoc:
@@ -99,14 +105,25 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1812638)
             "./reuseport_bpf_cpu: failed to pin to cpu: Invalid argument":
                 reuseport_bpf_cpu in net (bug 1872652)
+        seccomp:
+            "error: storage size of ‘md’ isn’t known":
+                seccomp_bpf failed to build (bug 1896420)
         powerpc:
-            "eeh-basic.sh # TIMEOUT":
-                 eeh-basic.sh timeout in powerpc (bug 1882503)
+            "failure: tm_unavailable_test":
+                tm-unavailable in powerpc (bug 1895506)
+            "tm-trap # exit=1":
+                tm-trap in powerpc on P8 (bug 1897891)
+        ftrace:
+            "(instance)  Change the ringbuffer size [FAIL]":
+                Change the ringbuffer size in ftrace (bug 1897762)
     baltar:
         net:
             <<: *net-kselftests
             "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
                 reuseport_bpf_numa in net (bug 1812638)
+        seccomp:
+            "error: storage size of ‘md’ isn’t known":
+                seccomp_bpf failed to build (bug 1896420)
         powerpc:
             "failure: dscr_sysfs_test":
                 dscr_sysfs_test in powerpc for P9 (bug 1880833)
@@ -126,6 +143,15 @@ ubuntu_kvm_smoke_test:
                failed to start KVM with uvtool on P8 Bionic (bug 1798358)
 ubuntu_kvm_unit_tests:
     onza: &kvm-unit-i386
+        hyperv_connections:
+            "FAIL hyperv_connections (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
+        hyperv_stimer:
+            "FAIL hyperv_stimer (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
+        hyperv_synic:
+            "FAIL hyperv_synic (timeout":
+                hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855)
         vmexit_cpuid:
             "FAIL vmexit_cpuid":
                 vmexit* on i386 (bug 1822235)
@@ -214,7 +240,7 @@ ubuntu_ltp:
         net.ipv6_lib:
             <<: *ltp-net
         cve:
-            "cve-2015-3290.c:460: FAIL: corrupted NMI stack":
+            "cve-2015-3290.c:460: TFAIL: corrupted NMI stack":
                 cve-2015-3290 (bug 1837005)
         crypto:
             <<: *ltp-crypto
@@ -227,8 +253,20 @@ ubuntu_ltp:
             <<: *ltp-fs
             "BROK: fs_fill.c:":
                 fs_fill failed with ENOSPC in fs (bug 1878877)
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_load_balance 1 TFAIL: There is something wrong with test tasks":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_sched_domains 5 TFAIL: partition sched domains failed.":
+                cpuset_sched_domains (bug 1830361)
+            "memcg_stat_rss 4 TFAIL: Process":
+                memcg_stat_rss (bug 1837035)
+            "memcg_subgroup_charge 1 TFAIL: rss is":
+                memcg_subgroup_charge (bug 1847982)
         cpuhotplug:
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
                 cpuhotplug02 (bug 1836166)

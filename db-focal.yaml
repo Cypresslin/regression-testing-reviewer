@@ -107,6 +107,9 @@ ubuntu_kernel_selftests:
                 memory-hotplug not executable on arm64 (bug 1892816)
         net:
             <<: *kselftests-net
+        timers:
+           "nsleep-lat # exit=1":
+               nsleep-lat in timers bail out (bug 1884884)
     ms10-34-mcdivittB0-kernel:
         <<: *kernel-selftests-arm64
         cpu-hotplug:
@@ -122,18 +125,23 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1867570)
             "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
                 pmtu.sh in net (bug 1881643)
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
             "FAIL: can't add fou port 7777":
                 kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh in net (bug 1892213)
+        ftrace:
+            "(instance)  Change the ringbuffer size	[FAIL]":
+                Change the ringbuffer size in ftrace (bug 1897762)
     baltar:
         net:
             "reuseport_bpf_numa # exit=1":
                 reuseport_bpf_numa in net (bug 1867570)
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
             "FAIL: can't add fou port 7777":
                 kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh in net (bug 1892213)
+            "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
+                pmtu.sh in net (bug 1881643)
         powerpc:
             "failure: dscr_sysfs_test":
                 dscr_sysfs_test in powerpc for P9 (bug 1880833)
@@ -159,10 +167,10 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "not ok 30 selftests: net: tcp_fastopen_backup_key.sh":
-                tcp_fastopen_backup_key.sh in net on s390x (bug 1869134)
             "FAIL: can't add fou port 7777":
                 kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+            "FAIL: ipsec_offload incorrect driver data":
+                ipsec_offload from rtnetlink.sh in net (bug 1893921)
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
@@ -173,9 +181,18 @@ ubuntu_kernel_selftests:
     s2lp4:
         <<: *selftest-s390x
     kernel04:
-        <<: *selftest-s390x
-    s2lp6g001:
-        <<: *selftest-s390x
+        memory-hotplug:
+            "FAILED - unable to offline some memory blocks, device busy?":
+                mem-on-off-test.sh in memory-hotplug failed (bug 1897764)
+        net:
+            "udpgso_bench_tx: connect: Connection refused":
+                udpgso_bench.sh in net (bug 1897759)
+            "FAIL: can't add fou port 7777":
+                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+            "FAIL: ipsec_offload incorrect driver data":
+                ipsec_offload from rtnetlink.sh in net (bug 1893921)
+            "./psock_snd: recv: Resource temporarily unavailable":
+                psock_snd in net (bug 1812618)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -223,7 +240,10 @@ ubuntu_kvm_unit_tests:
         vmx_apicv_test:
             "FAIL vmx_apicv_test":
                 vmx_apicv_test (bug 1827866)
-    modoc:
+    modoc: &kvm-unit-ppc
+        setup:
+            "error: PHDR segment not covered by LOAD segment":
+                fail to build on PowerPC (bug 1879328)
         emulator:
             "FAIL emulator":
                 emulator on P8 (bug 1862951)
@@ -242,6 +262,8 @@ ubuntu_kvm_unit_tests:
         spapr_hcall:
             "FAIL spapr_hcall":
                 spapr_hcall on P8 (bug 1862953)
+    baltar:
+        <<: *kvm-unit-ppc
 ubuntu_ltp:
     amaura: &ltp-all
         fs: &ltp-fs
@@ -263,6 +285,8 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
+            "memcg_subgroup_charge 1 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_subgroup_charge (bug 1847982)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
@@ -381,6 +405,8 @@ ubuntu_ltp:
         cpuhotplug:
             "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
                 cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
         cve:
             "fchownat() failed to fail, kernel may be vulnerable":
                 af_alg07 / cve-2019-8912 (bug 1892860)
@@ -417,8 +443,12 @@ ubuntu_ltp:
                 cpuset_regression_test (bug 1862906)
             "cpuset_check_domains    1  TFAIL":
                 cpuset_sched_domains (bug 1830361)
-            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+            "cpuset_syscall 1 TFAIL: set /dev/cpuset/0/cupset.cpus as 0 fail":
                 cpuset_syscall (bug 1862908)
+            "cpuset_hotplug 1 TFAIL: root group's cpus isn't expected":
+                cpuset_hotplug (bug 1834006)
+            "cpuset_memory_pressure 5 TFAIL: set general group parameter failed.":
+                cpuset_memory_pressure (bug 1897748)
         commands:
             <<: *ltp-commands
         cpuhotplug:
@@ -442,8 +472,6 @@ ubuntu_ltp:
             <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
-            "cpuset_inherit 3 TFAIL: cpus: Test result":
-                cpuset_inherit (bug 1849825)
         commands:
             <<: *ltp-commands
         cpuhotplug:
@@ -462,8 +490,6 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
-            "cpuset_inherit 3 TFAIL: cpus: Test result":
-                cpuset_inherit (bug 1849825)
             "memcg_stat_rss 4 TBROK: timeouted":
                 memcg_stat_rss (bug 1837035)
         commands:
@@ -496,8 +522,6 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 case 20 (bug 1895273)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
@@ -540,8 +564,6 @@ ubuntu_ltp_syscalls:
                 msgstress04 (bug 1797348)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
-            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 case 20 (bug 1895273)
     s2lp4:
         <<: *syscall-s390x
     s2lp6g003:

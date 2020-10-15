@@ -95,10 +95,12 @@ ubuntu_kvm_unit_tests:
                 timer on ThunderX (bug 1828158)
     wright-kernel:
         <<: *kvm-unit-thunderx
-    onza:
+    onza: &kvm_unit_tests_i386
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
+    fozzie:
+        <<: *kvm_unit_tests_i386
     gonzo:
         apic:
             "FAIL apic":
@@ -147,8 +149,6 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
-            "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
-                fanotify10 case 20 (bug 1895273)
             "Invalid filesystem option set:  quota,project":
                 quotactl04 (bug 1854153)
             "FAIL: SHM_INFO haven't returned a valid index:":
