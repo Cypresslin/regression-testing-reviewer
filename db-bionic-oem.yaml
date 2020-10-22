@@ -72,13 +72,13 @@ ubuntu_kvm_unit_tests:
                 vmx_pending_event_test (bug 1866591)
 ubuntu_ltp:
     amaura:
-        fs:
+        fs: &ltp-fs
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        mm:
+        mm: &ltp-mm
             "BROK: Failed to close FILE '/tmp/cgroup_mem/cgroup.subtree_control":
                 ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742)
-        controllers:
+        controllers: &ltp-controllers
             "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
                 cpuacct_100_100 (bug 1829978)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
@@ -91,15 +91,30 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
-        net.ipv6_lib:
+        net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
-        crypto:
+        crypto: &ltp-crypto
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
                 crypto_user02 (bug 1837543)
-        kernel_misc:
+        kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+    lagalla:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        crypto:
+            <<: *ltp-crypto
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
 ubuntu_ltp_syscalls:
     amaura:
         syscalls:

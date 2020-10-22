@@ -175,6 +175,8 @@ ubuntu_ltp:
     lagalla:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         crypto:
@@ -188,6 +190,8 @@ ubuntu_ltp:
     larry:
         fs:
             <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
         crypto:

@@ -1,0 +1,670 @@
+# 5.8 Focal
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+aio_dio_bugs:
+    baltar: &aio-dio-ppc
+        aio-dio-invalidate-failure:
+            "open dio failed: 20":
+                aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+        aio-dio-extend-stat:
+            "failed to open test file file":
+                aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+    modoc:
+        <<: *aio-dio-ppc
+hwclock:
+    baltar: &hwclock-ppc
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+            "hwclock: Timed out waiting for time change.":
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+    modoc:
+        <<: *hwclock-ppc
+    hotdog-kernel:
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed due to 0.x sec differences (bug 1802233)
+    ms10-34-mcdivittB0-kernel: &hwclock-moonshot
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday.":
+                issue for HP m400 (bug 1716603)
+    ms10-35-mcdivittB0-kernel:
+        <<: *hwclock-moonshot
+ubuntu_boot:
+    ms10-34-mcdivittB0-kernel: &boot-moonshots
+        log_check:
+            "WARNING: x1-x3 nonzero in violation of boot protocol:":
+                kernel warning message on boot with Moonshot nodes (bug 1888218)
+    ms10-35-mcdivittB0-kernel:
+        <<: *boot-moonshots
+    s2lp4: &boot-s390x
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 4097":
+                kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+    kernel04:
+        <<: *boot-s390x
+ubuntu_bpf:
+    lagalla: &bpf
+        setup:
+            "libbpf: failed to open format: No such file or directory":
+                test failed to build (bug 1894964)
+    starmie-kernel:
+        <<: *bpf
+    hotdog-kernel:
+        <<: *bpf
+    ms10-34-mcdivittB0-kernel:
+        <<: *bpf
+    modoc:
+        setup:
+            "Error: failed to load BTF":
+                test failed to build (bug 1894964)
+    baltar:
+        setup:
+            "Error: failed to load BTF":
+                test failed to build (bug 1894964)
+    s2lp6g003:
+        <<: *bpf
+    kernel04:
+        <<: *bpf
+ubuntu_fan_smoke_test:
+    modoc: &ubuntu_fan_smoke_test
+        fan-smoke-test:
+            "Unable to locate package iputils-ping":
+                Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+    baltar:
+        <<: *ubuntu_fan_smoke_test
+    s2lp4:
+        fan-smoke-test:
+            "docker still configured":
+                docker still configured (bug 1879299)
+ubuntu_kernel_selftests:
+    rizzo:
+        net: &kselftests-net
+            "libbpf: failed to open format: No such file or directory":
+                net test failed to build (bug 1894964)
+    gonzo:
+        net:
+            <<: *kselftests-net
+    starmie-kernel: &kernel-selftests-arm64
+        memory-hotplug:
+            "Warning: file mem-on-off-test.sh is not executable, correct this.":
+                memory-hotplug not executable on arm64 (bug 1892816)
+        net:
+            <<: *kselftests-net
+        timers:
+           "nsleep-lat # exit=1":
+               nsleep-lat in timers bail out (bug 1884884)
+    ms10-34-mcdivittB0-kernel:
+        <<: *kernel-selftests-arm64
+        cpu-hotplug:
+            "unexpected fail":
+                cpu-hotplug failed on moonshot (bug 1809701)
+    hotdog-kernel:
+        <<: *kernel-selftests-arm64
+    modoc:
+        net:
+            "Error: failed to load BTF":
+                net test failed to build (bug 1894964)
+        powerpc:
+            "failure: tm_unavailable_test":
+                tm_unavailable_test (bug 1895506)
+            "failure: tm_trap_test":
+                tm-trap (bug 1897891)
+            "eeh-basic.sh # TIMEOUT":
+                eeh-basic.sh timeout (bug 1882503)
+        ftrace:
+            "(instance)  Change the ringbuffer size	[FAIL]":
+                Change the ringbuffer size in ftrace (bug 1897762)
+    baltar:
+        net:
+            "Error: failed to load BTF":
+                net test failed to build (bug 1894964)
+        powerpc:
+            "failure: dscr_sysfs_test":
+                dscr_sysfs_test in powerpc for P9 (bug 1880833)
+            "futex_bench # TIMEOUT":
+                futex_bench timeout in powerpc (bug 1864642)
+            "eeh-basic.sh # TIMEOUT":
+                 eeh-basic.sh timeout in powerpc (bug 1882503)
+    s2lp6g003: &selftest-s390x
+        net:
+            <<: *kselftests-net
+        ftrace:
+            "Register/unregister many kprobe events	[FAIL]":
+                Register/unregister many kprobe events in ftrace (bug 1866972)
+            "Kprobe event auto/manual naming	[FAIL]":
+                Kprobe event auto/manual naming in ftrace (bug 1869143)
+            "Kprobe event user-memory access	[UNRESOLVED]":
+                Kprobe event user-memory access in ftrace (bug 1869227)
+    s2lp4:
+        <<: *selftest-s390x
+    kernel04:
+        memory-hotplug:
+            "FAILED - unable to offline some memory blocks, device busy?":
+                mem-on-off-test.sh in memory-hotplug failed (bug 1897764)
+        net:
+            <<: *kselftests-net
+ubuntu_kvm_smoke_test:
+    ms10-35-mcdivittB0-kernel: &1765668
+        kvm_smoke_test:
+            "uvt-kvm: error: timed out waiting for dnsmasq lease for":
+                Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
+    wright-kernel:
+        <<: *1765668
+    modoc: &kvm-smoke-ppc
+        kvm_smoke_test:
+            "uvt-kvm: error: libvirt: internal error: qemu unexpectedly closed the monitor":
+               failed with qemu unexpectedly closed the monitor (bug 1862944)
+    entei:
+        <<: *kvm-smoke-ppc
+ubuntu_kvm_unit_tests:
+    ms10-34-mcdivittB0-kernel:
+        gicv2-mmio-3p:
+            "FAIL gicv2-mmio-3p":
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+        gicv2-mmio-up:
+            "FAIL gicv2-mmio-up":
+                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
+    kernel04:
+        skey:
+            "FAIL skey (2 tests)":
+                skey failed (bug 1778705)
+    s2lp6g003: &kvm-unit-s390x
+        setup:
+            "this systems does not have KVM extension support":
+                No KVM support on zKVM
+    gonzo:
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+    rizzo:
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+    fili:
+        realmode:
+            "FAIL realmode":
+                realmode failed (bug 1850653)
+        vmx:
+            "FAIL vmx":
+                vmx (bug 1821394)
+        vmx_apicv_test:
+            "FAIL vmx_apicv_test":
+                vmx_apicv_test (bug 1827866)
+    modoc: &kvm-unit-ppc
+        setup:
+            "error: PHDR segment not covered by LOAD segment":
+                fail to build on PowerPC (bug 1879328)
+        emulator:
+            "FAIL emulator":
+                emulator on P8 (bug 1862951)
+        rtas-get-time-of-day:
+            "FAIL rtas-get-time-of-day":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        rtas-get-time-of-day-base:
+            "FAIL rtas-get-time-of-day-base":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        rtas-set-time-of-day:
+            "FAIL rtas-set-time-of-day":
+                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
+        selftest-setup:
+            "FAIL selftest-setup":
+                selftest-setup on P8 (bug 1862955)
+        spapr_hcall:
+            "FAIL spapr_hcall":
+                spapr_hcall on P8 (bug 1862953)
+    baltar:
+        <<: *kvm-unit-ppc
+ubuntu_ltp:
+    amaura: &ltp-all
+        fs: &ltp-fs
+            "proc01      1  TFAIL":
+                proc01 (bug 1829849)
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
+        controllers: &ltp-controllers
+            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                cpuset_hotplug (bug 1834006)
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_stat_rss 7 TFAIL: rss is":
+                memcg_stat_rss (bug 1837035)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                memcg_use_hierarchy (bug 1829989)
+            "memcg_subgroup_charge 1 TBROK: timeouted on memory.usage_in_bytes":
+                memcg_subgroup_charge (bug 1847982)
+        commands: &ltp-commands
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+        net.ipv6_lib: &ltp-net
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
+        kernel_misc: &ltp-misc
+            "Failed test cases : tpci":
+                tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
+    lagalla:
+        <<: *ltp-all
+    appleton-kernel:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        kernel_misc:
+            <<: *ltp-misc
+            "zram01 1 TBROK: test killed, timeout!":
+                zram01 / zram02 / zram03 timeout (bug 1854706)
+    hotdog-kernel:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
+                cpuhotplug02 (bug 1836166)
+            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug03 (bug 1836167)
+            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
+                cpuhotplug04 (bug 1836169)
+            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
+                cpuhotplug06 (bug 1836170)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+            "zram01 1 TBROK: test killed, timeout!":
+                zram01 / zram02 / zram03 timeout (bug 1854706)
+    ms10-35-mcdivittB0-kernel:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
+    baltar:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
+                cpuset_syscall (bug 1862908)
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        kernel_misc:
+            <<: *ltp-misc
+            "cpufreq_boost 1 TBROK":
+                cpufreq_boost on P9 (bug 1842032)
+    modoc:
+        fs:
+            <<: *ltp-fs
+            "tst_test.c:1287: BROK: Test killed! (timeout?)":
+                fs_fill timeout with btrfs (bug 1878763)
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 1 TFAIL: set /dev/cpuset/0/cupset.cpus as 0 fail":
+                cpuset_syscall (bug 1862908)
+            "cpuset_hotplug 1 TFAIL: root group's cpus isn't expected":
+                cpuset_hotplug (bug 1834006)
+            "cpuset_memory_pressure 5 TFAIL: set general group parameter failed.":
+                cpuset_memory_pressure (bug 1897748)
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        kernel_misc:
+            <<: *ltp-misc
+    s2lp4:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    kernel04:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_stat_rss 4 TBROK: timeouted":
+                memcg_stat_rss (bug 1837035)
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            "getaddrinfo_01   12 TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        kernel_misc:
+            <<: *ltp-misc
+    s2lp6g001: &ltp-s390x-kvm
+        fs:
+            <<: *ltp-fs
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+        hugetlb:
+            "hugemmap05 hugemmap05_1 hugemmap05_2 hugemmap05_3 hugemmap06":
+                hugemmap05* / hugemmap06 (bug 1851606)
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            <<: *ltp-net
+    s2lp6g002:
+        <<: *ltp-s390x-kvm
+    s2lp6g003:
+        <<: *ltp-s390x-kvm
+ubuntu_ltp_syscalls:
+    amaura:
+        syscalls: &syscalls-all
+            "madvise06.c:161: TFAIL: Bug has been reproduced":
+                madvise06 (bug 1900714)
+    appleton-kernel:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    hotdog-kernel:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    ms10-35-mcdivittB0-kernel:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+    modoc:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    baltar:
+        syscalls:
+            <<: *syscalls-all
+            "mkdir(test_dir,0700) failed: EEXIST (17)":
+                utimensat01 mkdir failure on non-amd64 (bug 1892812)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    kernel04: &syscall-s390x
+        syscalls:
+            <<: *syscalls-all
+            "msgstress03    1  TFAIL":
+                msgstress03 (bug 1797341)
+            "msgstress04    1  TFAIL":
+                msgstress04 (bug 1797348)
+            "BROK: timer_create() failed: EOPNOTSUPP":
+                clock_settime03 (bug 1891013)
+    s2lp4:
+        <<: *syscall-s390x
+    s2lp6g003:
+        <<: *syscall-s390x
+    s2lp6g001:
+        <<: *syscall-s390x
+ubuntu_lttng_smoke_test:
+    onibi: &lttng
+        lttng-smoke-test:
+            "DKMS failed to install":
+                lttng-modules-dkms failed to build (bug 1900684)
+    baltar:
+        <<: *lttng
+    modoc:
+        <<: *lttng
+ubuntu_lxc:
+    kernel04:
+        exercise:
+            "FAIL: lxc-tests: lxc-test-api-reboot":
+                lxc-test-api-reboot failed (bug 1776381)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp4:
+        exercise:
+            "FAIL: lxc-tests: lxc-test-api-reboot":
+                lxc-test-api-reboot failed (bug 1776381)
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp6g003:
+        exercise:
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    s2lp6g001:
+        exercise:
+            "Container \"reboot\" is defined":
+                Container "reboot" is defined (bug 1788574)
+    baltar: &lxc
+        exercise:
+            "Failed to fetch http://ports.ubuntu.com/":
+                failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
+    entei:
+        <<: *lxc
+    modoc:
+        <<: *lxc
+    starmie-kernel: &lxc-arm64
+        exercise:
+            "ERROR: Unable to fetch GPG key from keyserver":
+                failed to fetch GPG key
+    hotdog-kernel:
+        <<: *lxc-arm64
+ubuntu_seccomp:
+    s2lp4: &ubuntu_seccomp
+        seccomp:
+            "Test 53-sim-binary_tree%%034-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%035-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+            "Test 53-sim-binary_tree%%036-00001 result:   FAILURE bpf_sim resulted in ALLOW":
+                FAILURE bpf_sim resulted in ALLOW (bug 1866041)
+    s2lp6g001:
+        <<: *ubuntu_seccomp
+    s2lp6g003:
+        <<: *ubuntu_seccomp
+    kernel04:
+        <<: *ubuntu_seccomp
+ubuntu_sysdig_smoke_test:
+    onibi: &sysdig_smoke
+        sysdig-smoke-test:
+            "some warnings being treated as errors":
+                sysdig dkms failed to build on F-5.8 (bug 1900685)
+    baltar:
+        <<: *sysdig_smoke
+    modoc:
+        <<: *sysdig_smoke
+    s2lp4:
+        <<: *sysdig_smoke
+    kernel04:
+        <<: *sysdig_smoke
+    s2lp6g001:
+        <<: *sysdig_smoke
+    s2lp6g002:
+        <<: *sysdig_smoke
+    s2lp6g003:
+        <<: *sysdig_smoke
+ubuntu_xfstests_btrfs:
+    bavor:
+        btrfs:
+            "btrfs/136	[failed":
+                btrfs/136 (bug 1878347)
+            "btrfs/139	- output mismatch":
+                btrfs/139 (bug 1878349)
+            "btrfs/153	- output mismatch":
+                btrfs/153 (bug 1848409)
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+ubuntu_xfstests_ext4:
+    bavor:
+        ext4:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/397	- output mismatch":
+                generic/397 (bug 1846305)
+            "generic/398	- output mismatch":
+                generic/398 (bug 1846304)
+            "generic/399	- output mismatch":
+                generic/399 (bug 1846303)
+            "generic/419	- output mismatch":
+                generic/419 (bug 1846302)
+            "generic/429	- output mismatch":
+                generic/429 (bug 1846301)
+            "generic/435	- output mismatch":
+                generic/435 (bug 1846298)
+            "generic/440	- output mismatch":
+                generic/440 (bug 1846297)
+    vought:
+        ext4:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394        - output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429        [not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    douglas:
+        xfs:
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test on Intel KVM nodes

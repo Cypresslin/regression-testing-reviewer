@@ -392,6 +392,21 @@ ubuntu_ltp:
                 zram02 (bug 1878896)
             "Failed test cases : tpci":
                 tpci (bug 1878389)
+    lagalla:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        crypto:
+            <<: *ltp-crypto
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
     naumann:
         fs:
             <<: *ltp-fs
