@@ -1,0 +1,12 @@
+5.8.0-1010.10 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kvm_unit_tests	- failed to build on Groovy (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuset_hotplug (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) cve-2018-1000204 (bug 1899413) crypto_user02 (bug 1837543) rtc01 on Standard_DS4_v2 (bug 1899416)
+  ubuntu_ltp_syscalls - kill11 (bug 1865965) msgstress03 on some instances (bug 1797341) msgstress04 on some instances (bug 1797348) epoll_wait02 on Basic_A2 (bug 1900672) getrusage04 on some instances (bug 1841425) clock_gettime04 failed on Basic_A2
+  ubuntu_lttng_smoke_test - failed on Standard-B1ms only
+  ubuntu_lxc - lxc-test-usernsexec (bug 1900662)
+
+Note:
+ * ftracetest in ubuntu_kernel_selftests and ubuntu_ftrace_smoke_test will crash Focal Azure instances (bug 1882669)

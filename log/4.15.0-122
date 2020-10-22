@@ -1,0 +1,55 @@
+4.15.0-122.124 - lowlatency
+Regression test CMPL, RTB.
+
+56 / 60 tests were run, missing: ubuntu_ltp_syscalls, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - proxy issue (bug 1900416)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) raw_skew test in timers bail out (bug 1882511)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+
+4.15.0-122.124 - generic
+Regression test CMPL, RTB.
+
+56 / 60 tests were run, missing: ubuntu_ltp_syscalls, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - proxy issue (bug 1900416)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) raw_skew test in timers bail out (bug 1882511)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  hwclock - hwclock test failed due to 0.x sec difference (bug 1802233)
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - memory-hotplug not executable on arm64 (bug 1892816) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lxc - failed to fetch GPG key
+
+53 / 56 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_fan_smoke_test - proxy issue (bug 1900416)
+  ubuntu_kernel_selftests - reuseport_bpf_cpu in net (bug 1872652) reuseport_bpf_numa in net (bug 1812638) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) tm-unavailable in powerpc (bug 1895506)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 (bug 1831043) shmctl04 (bug 1895276) kill11 (bug 1865965)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_failcnt (bug 1845919) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) memcg_usage_in_bytes (bug 1829984) cpuset_hotplug (bug 1834006) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381) Container "reboot" is defined (bug 1788574)
+
+51 / 52 tests were run, missing: ubuntu_boot
+Issue to note in s390x (zVM):
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_kernel_selftests - kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgstress03 (bug 1797341) shmctl04 (bug 1895276) kill11 (bug 1865965)
+  ubuntu_lxc - Container "reboot" is defined (bug 1788574)
