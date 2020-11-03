@@ -368,6 +368,8 @@ xenial-hwe:
                     add_key05 (bug 1869644)
                 "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                     fanotify10 case 20 (bug 1895273)
+                "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                    statx05 (bug 1798524)
         modoc:
             syscalls:
                 "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":
@@ -413,6 +415,8 @@ xenial-edge:
                     fcntl36 failed with X/X-LTS/X-HWE i386 kernel (bug 1774396)
                 "FAIL: execveat() returned unexpected errno: EINVAL":
                     execveat03 failed (bug 1786729)
+                "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
+                    statx05 (bug 1798524)
     ubuntu_lttng_smoke_test:
         chico: &1765673-x-edge
             lttng-smoke-test:

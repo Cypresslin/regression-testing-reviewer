@@ -153,8 +153,6 @@ ubuntu_ltp_syscalls:
                 quotactl04 (bug 1854153)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
-            "Invalid filesystem option set:  encrypt":
-                statx05 (bug 1798524)
     entei: &syscalls-ppc
         syscalls:
             <<: *syscalls

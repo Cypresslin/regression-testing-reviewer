@@ -99,8 +99,6 @@ ubuntu_ltp_syscalls:
                 fanotify09-2 (bug 1804594)
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
-                statx05 (bug 1798524)
             "sync_file_range02.c:56: FAIL":
                 sync_file_range02 (bug 1819116)
     modoc:
@@ -109,8 +107,6 @@ ubuntu_ltp_syscalls:
         syscalls:
             "inotify08.c:150: FAIL: didn't get event: mask=":
                 inotify08 (bug 1775784)
-            "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
-                statx05 (bug 1798524)
             "FAIL: first group got more than 2 events":
                 fanotify09-2 (bug 1804594)
             "sync_file_range02.c:56: FAIL":
