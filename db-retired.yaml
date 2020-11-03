@@ -394,6 +394,10 @@ xenial-hwe:
             <<: *1732370-x-hwe
 xenial-edge:
     ubuntu_kernel_selftests:
+        amaura:
+            net:
+                "make: *** [all] Error 2":
+                    net test failed to build (bug 1813883)
         modoc:
             seccomp:
                 "FAIL ] global.get_metadata":
@@ -417,6 +421,14 @@ xenial-edge:
                     execveat03 failed (bug 1786729)
                 "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                     statx05 (bug 1798524)
+                "sync_file_range02.c:56: FAIL":
+                    sync_file_range02 (bug 1819116)
+                "inotify08.c:150: FAIL: didn't get event: mask=":
+                    inotify08 (bug 1775784)
+                "fallocate05.c:78: BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
+                    fallocate05 (bug 1783880)
+                "FAIL: first group got more than 2 events":
+                    fanotify09-2 (bug 1804594)
     ubuntu_lttng_smoke_test:
         chico: &1765673-x-edge
             lttng-smoke-test:
@@ -434,6 +446,11 @@ xenial-edge:
             <<: *1765673-x-edge
         wright-kernel:
             <<: *1765673-x-edge
+    ubuntu_qrt_kernel_security:
+        modoc: &kernel-security-ppc
+            test-kernel-security.py:
+                "LOCK_DOWN_KERNEL option was expected to be set in the kernel":
+                    LOCK_DOWN_KERNEL (bug 1811981)
     ubuntu_sysdig_smoke_test:
         entei: &sysdig
             sysdig-smoke-test:
