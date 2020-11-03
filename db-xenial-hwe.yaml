@@ -155,6 +155,8 @@ ubuntu_ltp_syscalls:
                 quotactl04 (bug 1854153)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
     entei: &syscalls-ppc
         syscalls:
             <<: *syscalls

@@ -646,6 +646,8 @@ ubuntu_ltp_syscalls:
                 fanotify09 case 3 (bug 1876684)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
     pepe:
         syscalls:
             <<: *syscalls
