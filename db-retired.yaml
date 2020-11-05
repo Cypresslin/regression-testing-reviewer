@@ -370,6 +370,8 @@ xenial-hwe:
                     fanotify10 case 20 (bug 1895273)
                 "tst_mkfs.c:101: BROK: mkfs.ext4:1: statx05.c failed with 94":
                     statx05 (bug 1798524)
+                "Invalid filesystem option set:  quota,project":
+                    quotactl04 (bug 1854153)
         modoc:
             syscalls:
                 "bpf_prog01.c:86: FAIL: Failed to load program: EPERM (1)":

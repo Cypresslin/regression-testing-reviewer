@@ -151,8 +151,6 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
-            "Invalid filesystem option set:  quota,project":
-                quotactl04 (bug 1854153)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
