@@ -23,8 +23,10 @@ Author: Po-Hsu Lin <po-hsu.lin@canonical.com>
 #                   <strong> release title </strong>
 
 import argparse
+import json
 import re
 import sys
+import urllib
 import analyzer
 import utils
 
@@ -33,7 +35,7 @@ style_arch = {'align': 'center', 'colspan': '7', 'style': 'background: #e9e7e5;'
 style_kernel = {'align': 'left', 'colspan': '7', 'width': '150'}
 report = {}
 url_root = "http://10.246.72.4/test-results/"
-url = "http://10.246.72.4/test-results/tracker-index.html"
+url = "http://10.246.72.4/test-results/aggregate-sru-results.json"
 
 parser = argparse.ArgumentParser(description='Test report reviewer')
 parser.add_argument('--release', type=str, required=True,
@@ -83,76 +85,12 @@ unused_all = []
 
 if args.all:
     url = url_root
-
-soup = utils.soup_generator(url)
-# Jump to the correct strong tag, for release
-try:
-    head = soup.find("td", {"style": "background: #ffff99;"}).next_element
-except AttributeError:
-    print("Report seems to be empty, please try again later.")
-    sys.exit(1)
-# Jump to the table contains all SRU results
-head = soup.find("table", {"width": "100%", "style": "font-size: 0.9em"})
-
-# Compose data fetched from the result page
-# Get the available distro first, so we can make a quick check for the existence
+report = json.load(urllib.request.urlopen(url))
 target_distro = args.release.lower()
-for td in head.findChildren('td', {'style': 'background: #ffff99;'}):
-    # Releases
-    if td.findChild('strong'):
-        distro = td.findChild('strong').text
-        report[distro] = {}
 
-for distro in report:
-    if target_distro in distro:
-        target_distro = distro
-if target_distro == args.release.lower():
+if target_distro not in report.keys():
     print('Requested distro "{}" was not in the report: {}'.format(target_distro, report.keys()))
     sys.exit(1)
-'''
-# This is a stupid bug in the report, the relase name comes with a trailing whitespace
-# Can't just use the target_distro as key, it won't fit in the dict.
-found = False
-for distro in report:
-    if target_distro == distro.rstrip():
-        # replace the target_distro with the actual distro (buggy one) for future key search
-        target_distro = distro
-        found = True
-        break
-
-if not found:
-    print('Requested distro "{}" was not in the report: {}'.format(target_distro, report.keys()))
-    sys.exit(1)
-'''
-
-# Now compose the database only for the targeted release
-# The table next to the tr that contains the release name will be the target
-for data in head.find(string=target_distro).find_parent('tr').find_next('tbody').findChildren('tr'):
-    if data.findChild('td', style_kernel):
-        kernel = data.findChild('td', style_kernel).text
-        # kernel version prettifier
-        report[target_distro][kernel] = {}
-    elif data.findChild('td', style_arch):
-        arch = data.find_next('td', style_arch).text.rstrip()
-        report[target_distro][kernel][arch] = {}
-    elif data.findChildren('td', {'align': 'left'}):
-        # result structure: test case / passed / failed, separate by td
-        for result in data.findChildren('td', {'align': 'left'}):
-            ptr = result.next_element
-            testcase = ptr.text
-            ptr = ptr.find_next().next_element
-            passed = int(ptr.text)
-            ptr = ptr.find_next().next_element
-            failed = int(ptr.text)
-            # replace special characters in hyperlink with %-format string
-            detail = ptr.get('href').replace(' ', '%20')
-            detail = detail.replace('(', '%28')
-            detail = detail.replace(')', '%29')
-            report[target_distro][kernel][arch][testcase] = {'pass': passed,
-                                                             'fail': failed,
-                                                             'link': detail}
-    #else:
-        # All trash, do nothing
 
 # Print result here
 fn = args.release.lower() + (args.flag if args.flag else '')
@@ -180,26 +118,27 @@ for kernel in report[target_distro]:
     print(kernel)
     print('Regression test CMPL, RTB.')
     print()
-    for arch in sorted(report[target_distro][kernel]):
+    for arch in sorted(report[target_distro][kernel]['suites-results']):
         # Validate the test case number here
-        analyzer.testsuite_validator(fn, arch.split()[0], report[target_distro][kernel][arch])
+        analyzer.testsuite_validator(fn, arch.split()[0], report[target_distro][kernel]['suites-results'][arch])
 
         # Analyze each failure here
         print('Issue to note in {}:'.format(arch))
         detail = []
         highlighted = False
-        for testcase in sorted(report[target_distro][kernel][arch]):
-            if report[target_distro][kernel][arch][testcase]['fail'] > 0:
+        for testcase in sorted(report[target_distro][kernel]['suites-results'][arch]):
+            if report[target_distro][kernel]['suites-results'][arch][testcase]['totals'][1] > 0:
                 highlighted = True
                 reason = ''
                 # Call the advanced test result analyzer here
                 if not args.template_only:
-                    reason, unused = analyzer.analyze_that(url_root + report[target_distro][kernel][arch][testcase]['link'], testcase, fn)
+                    link = report[target_distro][kernel]['suites-results'][arch][testcase]['link'].replace("index.html", "suite-results.json")
+                    reason, unused = analyzer.analyze_that(url_root + link, testcase, fn)
                     if unused != {}:
                         unused_all.append(unused)
                 print('  {} - {}'.format(testcase, reason))
                 # advanced test result analyzer
-                detail.append(report[target_distro][kernel][arch][testcase]['link'])
+                detail.append(report[target_distro][kernel]['suites-results'][arch][testcase]['link'])
         if not highlighted:
             print("  None")
         elif args.link:
