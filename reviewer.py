@@ -127,7 +127,9 @@ for kernel in report[target_distro]:
         detail = []
         highlighted = False
         for testcase in sorted(report[target_distro][kernel]['suites-results'][arch]):
+            # FIXME: this part does not consider the test passed after re-run
             if report[target_distro][kernel]['suites-results'][arch][testcase]['totals'][1] > 0:
+                # FIXME: if there are duplicated nodes, ignore the older one (or the test with bad result)
                 highlighted = True
                 reason = ''
                 # Call the advanced test result analyzer here
