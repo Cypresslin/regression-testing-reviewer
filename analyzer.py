@@ -1,5 +1,7 @@
 import os
+import json
 import yaml
+import urllib
 import utils
 
 # format:
@@ -61,60 +63,34 @@ def analyze_that(link, testname, distro):
     if testname not in issues:
         return '', unused
 
-    soup_summary = utils.soup_generator(link)
+    summary = json.load(urllib.request.urlopen(link))
     reason = []
     # Parse the failed nodes first
-    for sut in _node_parser(soup_summary):
+    for job in summary["jobs"]:
+        sut = job[1]
         # get the failed page for the sut
         if sut in issues[testname]:
-            # jump to the sut
+            # Get the summary page for SUT
             suthtml = sut + '.html'
-            try:
-                #### FIXME, if there are multiple test results, this one will fail, especially with the first one passed, the second one failed
-                head = soup_summary.find('a', {'href': suthtml}).parent
-                ####
-            except:
-                pass
-            report = head.find_next('td', {'align': 'center'}).find_next('td', {'align': 'center'}).next_element.get('href')
-            baseurl = os.path.dirname(link)
-            target = baseurl + '/' + report
-            # parse the target page
-            soup = utils.soup_generator(target)
-            # jump to the test, and update the report link
-            head = soup.find('div', {'class': 'dash-section'}).find_next('div')
-            # update the baseurl for those sub-pages here, as the target will be updated later
-            baseurl = os.path.dirname(target)
-            # find all failed test case by using the color, the link before the color is what we want
-            for sub_head in head.find_all('td', {'style': "color: red"}):
-                # push the head back to the hyperlink from the font style
-                sub_head = sub_head.find_previous('a')
-                sub_test = sub_head.text
-                # check the sub-test-case name here
-                try:
-                    if sub_test in issues[testname][sut]:
-                        report = sub_head.get('href')
-                        target = baseurl + '/' + report
-                        # finally we can parse the real test report
-                        soup = utils.soup_generator(target)
-                        for item in soup.find_all('td', {'valign': 'top'}):
-                            # filter out the column number section
-                            if item.has_attr('width'):
-                                continue
-                            # check the error from all the message
-                            # tried to focus on stdout/stderr before, but some error will be in Traceback
-                            # tried to focus on message without stdout/stderr, but if the test times out this will not work
-                            text = item.get_text()
-                            for errmsg in issues[testname][sut][sub_test]:
-                                if errmsg in text:
-                                    # don't append duplicated error message
-                                    if issues[testname][sut][sub_test][errmsg] not in reason:
-                                        reason.append(issues[testname][sut][sub_test][errmsg])
-                                    break
-                        if reason == []:
-                            unused[testname] = [sut, sub_test, errmsg]
-#                        The following check is not valid, sometime a same bug report will be used for different err msg
-#                        if len(set(reason)) != len(issues[testname][sut][sub_test]):
-#                            reason.append("SOME ERROR DID NOT MATCH, PLZ CHECK")
-                except TypeError:
-                    print("Issue {} for {} is empty, malformated database?".format(testname, sut))
+            target = os.path.dirname(link) + '/' + job[0] + '/' + 'results.json'
+            report = json.load(urllib.request.urlopen(target))
+            # find all failed test case
+            for suite in report['results']['suites']:
+                for item in suite['cases']:
+                    sub_test = item['name']
+                    if item['failedSince'] != 0:
+                        try:
+                            if sub_test in issues[testname][sut]:
+                                for errmsg in issues[testname][sut][sub_test]:
+                                    if errmsg in item['errorStackTrace']:
+                                        # don't append duplicated error message
+                                        if issues[testname][sut][sub_test][errmsg] not in reason:
+                                            reason.append(issues[testname][sut][sub_test][errmsg])
+                                        break
+                                if reason == []:
+                                    unused[testname] = [sut, sub_test, errmsg]
+                            else:
+                                print("Test failed but not record!")
+                        except TypeError:
+                            print("Issue {} for {} is empty, malformated database?".format(testname, sut))
     return ' '.join(reason), unused
