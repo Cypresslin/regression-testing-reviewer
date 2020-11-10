@@ -8,7 +8,7 @@ import utils
 def testsuite_validator(fullname, arch, testcases):
     try:
         with open('db-testcases.yaml', 'r') as stream:
-            db = yaml.load(stream)
+            db = yaml.load(stream, Loader=yaml.FullLoader)
             expected = db['full-list']
     except FileNotFoundError:
         print("db-testcases.yaml does not exist")
@@ -53,7 +53,7 @@ def analyze_that(link, testname, distro):
     unused = {}
     try:
         with open(fn, 'r') as stream:
-            issues = yaml.load(stream)
+            issues = yaml.load(stream, Loader=yaml.FullLoader)
     except FileNotFoundError:
         print("database file {} does not exist".format(fn))
         raise SystemExit
