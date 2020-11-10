@@ -129,18 +129,39 @@ for kernel in report[target_distro]:
         for testcase in sorted(report[target_distro][kernel]['suites-results'][arch]):
             # FIXME: this part does not consider the test passed after re-run
             if report[target_distro][kernel]['suites-results'][arch][testcase]['totals'][1] > 0:
-                # FIXME: if there are duplicated nodes, ignore the older one (or the test with bad result)
-                highlighted = True
-                reason = ''
-                # Call the advanced test result analyzer here
-                if not args.template_only:
-                    link = report[target_distro][kernel]['suites-results'][arch][testcase]['link'].replace("index.html", "suite-results.json")
-                    reason, unused = analyzer.analyze_that(url_root + link, testcase, fn)
-                    if unused != {}:
-                        unused_all.append(unused)
-                print('  {} - {}'.format(testcase, reason))
-                # advanced test result analyzer
-                detail.append(report[target_distro][kernel]['suites-results'][arch][testcase]['link'])
+                # Reconstruct the failed tests to filter out duplicated runs
+                op = []
+                report[target_distro][kernel]['suites-results'][arch][testcase]['jobs'].sort()
+                (prev_dirname, prev_host, prev_passed, prev_failed) = report[target_distro][kernel]['suites-results'][arch][testcase]['jobs'][0]
+                first_host = prev_host
+                for job in report[target_distro][kernel]['suites-results'][arch][testcase]['jobs']:
+                    (dirname, host, passed, failed) = job
+                    if prev_host != host:
+                        op.append([prev_dirname, prev_host, prev_passed, prev_failed])
+                        (prev_dirname, prev_host, prev_passed, prev_failed) = job
+                    else:
+                        # Replace repeatitive run with more passed results or newer run
+                        if passed > prev_passed:
+                            (prev_dirname, prev_host, prev_passed, prev_failed) = job
+                        elif passed == prev_passed and dirname > prev_dirname:
+                            (prev_dirname, prev_host, prev_passed, prev_failed) = job
+                op.append([prev_dirname, prev_host, prev_passed, prev_failed])
+                # Get an updated failure number here from reconstructed op
+                failed = 0
+                for run in op:
+                     failed += run[3]
+                if failed > 0:
+                    highlighted = True
+                    reason = ''
+                    # Call the advanced test result analyzer here
+                    if not args.template_only:
+                        link = report[target_distro][kernel]['suites-results'][arch][testcase]['link'].replace("index.html", "suite-results.json")
+                        reason, unused = analyzer.analyze_that(url_root + link, testcase, fn)
+                        if unused != {}:
+                            unused_all.append(unused)
+                    print('  {} - {}'.format(testcase, reason))
+                    # advanced test result analyzer
+                    detail.append(report[target_distro][kernel]['suites-results'][arch][testcase]['link'])
         if not highlighted:
             print("  None")
         elif args.link:
