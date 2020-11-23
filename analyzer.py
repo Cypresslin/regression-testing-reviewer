@@ -74,15 +74,21 @@ def analyze_that(link, testname, distro):
             suthtml = sut + '.html'
             target = os.path.dirname(link) + '/' + job[0] + '/' + 'results.json'
             report = json.load(urllib.request.urlopen(target))
-            # find all failed test case
+            # iterate through all failed test suites, only process it when the test name matches
             for suite in report['results']['suites']:
+                if suite['name'].replace('autotest.', '') != testname:
+                    continue
                 for item in suite['cases']:
                     sub_test = item['name']
-                    if item['failedSince'] != 0:
+                    if 'errorStackTrace' in item:
                         try:
                             if sub_test in issues[testname][sut]:
                                 for errmsg in issues[testname][sut][sub_test]:
-                                    if errmsg in item['errorStackTrace']:
+                                    # Do not use errorStackTrace content here, as it probably does not contain the complete output
+                                    _fullname = testname + '.' + sub_test
+                                    debug_link = os.path.dirname(target) + '/' + testname + '/results/' + _fullname + '/debug/' + _fullname + '.DEBUG'
+                                    debug_txt = urllib.request.urlopen(debug_link)
+                                    if any(errmsg in _line.decode("utf-8") for _line in debug_txt):
                                         # don't append duplicated error message
                                         if issues[testname][sut][sub_test][errmsg] not in reason:
                                             reason.append(issues[testname][sut][sub_test][errmsg])
@@ -90,7 +96,9 @@ def analyze_that(link, testname, distro):
                                 if reason == []:
                                     unused[testname] = [sut, sub_test, errmsg]
                             else:
-                                print("Test failed but not record!")
+                                print("Test failed for {}/{} on {} but not recorded!".format(testname, sub_test, sut))
                         except TypeError:
                             print("Issue {} for {} is empty, malformated database?".format(testname, sut))
+        else:
+            print("Test failed for {} on {} but not recorded!".format(testname, sut))
     return ' '.join(reason), unused
