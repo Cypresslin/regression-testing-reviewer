@@ -85,7 +85,11 @@ unused_all = []
 
 if args.all:
     url = url_root
-report = json.load(urllib.request.urlopen(url))
+try:
+    report = json.load(urllib.request.urlopen(url))
+except json.decoder.JSONDecodeError:
+    print('Unable to decode the target json file {}, file empty?'.format(url))
+    sys.exit(1)
 target_distro = args.release.lower()
 
 if target_distro not in report.keys():
