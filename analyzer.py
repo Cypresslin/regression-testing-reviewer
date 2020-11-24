@@ -92,7 +92,6 @@ def analyze_that(link, testname, distro):
                                         # don't append duplicated error message
                                         if issues[testname][sut][sub_test][errmsg] not in reason:
                                             reason.append(issues[testname][sut][sub_test][errmsg])
-                                        break
                                 if reason == []:
                                     unused[testname] = [sut, sub_test, errmsg]
                             else:
