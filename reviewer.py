@@ -160,6 +160,7 @@ for kernel in report[target_distro]:
                     # Call the advanced test result analyzer here
                     if not args.template_only:
                         link = report[target_distro][kernel]['suites-results'][arch][testcase]['link'].replace("index.html", "suite-results.json")
+                        link = re.sub(' ', '%20', link)
                         reason, unused = analyzer.analyze_that(url_root + link, testcase, fn)
                         if unused != {}:
                             unused_all.append(unused)
