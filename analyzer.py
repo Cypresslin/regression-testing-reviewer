@@ -83,11 +83,11 @@ def analyze_that(link, testname, distro):
                     if 'errorStackTrace' in item:
                         try:
                             if sub_test in issues[testname][sut]:
+                                # Do not use errorStackTrace content here, as it probably does not contain the complete output
+                                _fullname = testname + '.' + sub_test
+                                debug_link = os.path.dirname(target) + '/' + testname + '/results/' + _fullname + '/debug/' + _fullname + '.DEBUG'
+                                debug_txt = urllib.request.urlopen(debug_link)
                                 for errmsg in issues[testname][sut][sub_test]:
-                                    # Do not use errorStackTrace content here, as it probably does not contain the complete output
-                                    _fullname = testname + '.' + sub_test
-                                    debug_link = os.path.dirname(target) + '/' + testname + '/results/' + _fullname + '/debug/' + _fullname + '.DEBUG'
-                                    debug_txt = urllib.request.urlopen(debug_link)
                                     if any(errmsg in _line.decode("utf-8") for _line in debug_txt):
                                         # don't append duplicated error message
                                         if issues[testname][sut][sub_test][errmsg] not in reason:
