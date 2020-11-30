@@ -1,0 +1,15 @@
+gcp-5.8.0-1012.12 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test - enable disable fan test failed with unknown underlay network format (bug 1840904)
+  ubuntu_k8s_unit_tests - preflight (bug 1900653) podautoscaler (bug 1855810) persistentvolume (bug 1900655) master (bug 1884038) csidriver/storage (bug 1900657) csi (bug 1900658) spdy (bug 1824136) proxy (bug 1884045)
+  ubuntu_kernel_selftests - memory-hotplug test timeout on some instances n1-highcpu-4 / n1-highcpu-16 / n1-highcpu-32 (bug 1866846) tls in net (bug 1900644) test_bpf in net (bug 1812189) kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421) test_blackhole_dev in net (bug 1851619) psock_snd.sh (bug 1892213) icmp_redirect.sh in net (bug 1880645) ftrace failed with restricts events based on pid notrace filtering (bug 1900660)
+  ubuntu_kvm_unit_tests	- failed to build on Groovy (bug 1900646)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - kill11 (bug 1865965) msgstress03 (bug 1797341) msgstress04 (bug 1797348)
+  ubuntu_lxc - lxc-test-usernsexec (bug 1900662)
+  ubuntu_vfat_stress - failed on some instances
+
+Skipped / blacklisted:
+ * libhugetlbfs
