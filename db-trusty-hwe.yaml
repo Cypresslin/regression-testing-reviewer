@@ -49,16 +49,18 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all
-            "fanotify06.c:220: FAIL: group 3 got event":
+            "fanotify06.c:220: TFAIL: group 3 got event":
                 fanotify06 (bug 1833028)
-            "group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "group 0 (0) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
             "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
                 prctl07 (bug 1839064)
-            "Blacklisted test cases: fanotify07":
-                fanotify07 won't fix (bug 1775165)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     pepe:
         syscalls:
             <<: *syscalls-all

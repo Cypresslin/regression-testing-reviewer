@@ -61,6 +61,7 @@ eoan:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le: &e-non-x86
         <<: *e-amd64
@@ -97,6 +98,7 @@ disco:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le: &d-non-x86
         <<: *d-amd64
@@ -125,6 +127,7 @@ cosmic:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le: &c-non-x86
         <<: *c-amd64
@@ -168,6 +171,7 @@ bionic:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le: &b-non-x86
         <<: *b-amd64
@@ -239,6 +243,7 @@ bionic-hwe:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le: &b-hwe-non-x86
         <<: *b-hwe-amd64
@@ -259,6 +264,7 @@ bionic-edge:
         ? ubuntu_cve_kernel
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
     ppc64le:
         <<: *b-hwe-non-x86
@@ -279,6 +285,7 @@ xenial:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
     ppc64le: &x-non-x86
         <<: *x-amd64
         ? iosched_bugs
@@ -307,6 +314,7 @@ xenial-hwe:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
     ppc64le: &x-hwe-non-x86
         <<: *x-hwe-amd64
         ? iosched_bugs
@@ -331,6 +339,7 @@ xenial-edge:
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
     ppc64le: &x-edge-non-x86
         <<: *x-edge-amd64
         ? iosched_bugs
@@ -385,6 +394,7 @@ trusty:
         ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
@@ -414,6 +424,7 @@ trusty-hwe:
         ? ubuntu_sysdig_smoke_test
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
@@ -454,6 +465,7 @@ precise-hwe:
         ? ubuntu_unionmount_ovlfs
         ? ubuntu_zfs_fstest
         ? ubuntu_zfs_smoke_test
+        ? ubuntu_zfs_stress
         ? ubuntu_zfs_xfs_generic
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
@@ -555,6 +567,7 @@ full-list: [
     ubuntu_vfat_stress,
     ubuntu_zfs_fstest,
     ubuntu_zfs_smoke_test,
+    ubuntu_zfs_stress,
     ubuntu_zfs_xfs_generic,
     ubuntu_zram_smoke_test,
     wb_kupdate,

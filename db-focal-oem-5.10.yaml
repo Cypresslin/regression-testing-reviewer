@@ -143,8 +143,8 @@ ubuntu_qrt_kernel_security:
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:
-            "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                failed to trace read / write (bug 1844493)
+            "Error! Bad return status for module build on kernel":
+                sysdig module build failed on F-OEM-5.6 (bug 1879336)
     glameow:
         <<: *sysdig
 ubuntu_xfstests_btrfs:

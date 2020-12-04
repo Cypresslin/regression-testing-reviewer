@@ -17,30 +17,20 @@ monotonic_time:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
 ubuntu_bpf:
-    onza:
-        ubuntu-bjf:
-            "#146/p unpriv: spill/fill of different pointers ldx FAIL":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-            "check bpf_perf_event_data->sample_period":
-                Some test in test_verifier failed on i386 Bionic (bug 1788578)
-            "test_maps: test_maps.c:963: run_parallel: Assertion `status == 0' failed.":
-                test_map failed on i386 Bionic (bug 1788580)
-    gonzo:
+    gonzo: &ubuntu-bpf
         test_maps:
             "Allowed update sockmap '0:8' not in ESTABLISHED":
                 test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
     rizzo:
-        test_maps:
-            "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
-    s2lp6g001: &ubuntu-bpf-s390x
-        test_maps:
-            "Allowed update sockmap '0:8' not in ESTABLISHED":
-                test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
+        <<: *ubuntu-bpf
+    lagalla:
+        <<: *ubuntu-bpf
+    s2lp6g001:
+        <<: *ubuntu-bpf
     s2lp6g002:
-        <<: *ubuntu-bpf-s390x
+        <<: *ubuntu-bpf
     s2lp6g003:
-        <<: *ubuntu-bpf-s390x
+        <<: *ubuntu-bpf
 ubuntu_bpf_jit:
     s2lp6g002:
         ubuntu-bjf-jit:
@@ -56,23 +46,13 @@ ubuntu_bpf_jit:
                 ubuntu_bpf_jit test failed on Bionic s390x (bug 1753941)
 ubuntu_btrfs_kernel_fixes:
     amaura: &btrfs_kernel_fixes
-        2365dd3ca02bbb6d3412404482e1d85752549953:
-            "mount -o degraded /dev/loop0 /tmp/mnt-2365dd3ca02bbb6d3412404482e1d85752549953 was expected to fail":
-                2365dd3 failed (bug 1809870)
         6113077cd319e747875ec71227d2b5cb54e08c76:
             "btrfs_free_reserved_data_space_noquota+0xcb/0xe0":
                 6113077 failed (bug 1810384)
     daedalus:
         <<: *btrfs_kernel_fixes
 ubuntu_kernel_selftests:
-    fozzie:
-        ftrace:
-            "Kprobe event string type argument	[FAIL]":
-                Kprobe event string type argument in ftrace (bug 1812645)
     rizzo:
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "raw_skew [FAIL]":
                 raw_skew in timers bail out (bug 1882511)
@@ -175,6 +155,8 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
                 keyctl05 failed with FIPS mode on (bug 1892444)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
     secchi:

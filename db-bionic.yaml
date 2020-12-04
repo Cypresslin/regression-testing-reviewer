@@ -55,6 +55,8 @@ ubuntu_bpf:
         <<: *ubuntu_bpf
     rizzo:
         <<: *ubuntu_bpf
+    lagalla:
+        <<: *ubuntu_bpf
     onza:
         test_verifier: &bpf-test-verifier-i386
             "#146/p unpriv: spill/fill of different pointers ldx FAIL":
@@ -77,6 +79,8 @@ ubuntu_bpf:
     modoc:
         <<: *ubuntu_bpf
     starmie-kernel:
+        <<: *ubuntu_bpf
+    wright-kernel:
         <<: *ubuntu_bpf
     ms10-34-mcdivittB0-kernel:
         <<: *ubuntu_bpf
@@ -118,21 +122,19 @@ ubuntu_fan_smoke_test:
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     baltar:
         <<: *ubuntu_fan_smoke_test
+    entei:
+        <<: *ubuntu_fan_smoke_test
 ubuntu_kernel_selftests:
     hotdog-kernel: &kselftest-arm64
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         memory-hotplug:
             "mem-on-off-test.sh: Permission denied":
                 memory-hotplug not executable on arm64 (bug 1892816)
     starmie-kernel:
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         ftrace:
             "test for function traceon/off triggers	[FAIL]":
                 traceon/off triggers in ftace (bug 1837040)
+    wright-kernel:
+        <<: *kselftest-arm64
     ms10-34-mcdivittB0-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
@@ -140,17 +142,7 @@ ubuntu_kernel_selftests:
         ftrace:
             "test for function traceon/off triggers	[FAIL]":
                 function traceon/off triggers in ftace (bug 1837040)
-    fozzie:
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
-        ftrace:
-            "Kprobe event string type argument	[FAIL]":
-                Kprobe event string type argument in ftrace (bug 1812645)
     rizzo:
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         timers:
             "Bail out!":
                 raw_skew test in timers bail out (bug 1882511)
@@ -160,30 +152,23 @@ ubuntu_kernel_selftests:
                 reuseport_bpf_numa in net (bug 1812638)
             "reuseport_bpf_cpu [FAIL]":
                 reuseport_bpf_cpu in net (bug 1872652)
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         powerpc:
             "failure: tm_unavailable_test":
                 tm-unavailable in powerpc (bug 1895506)
+    entei:
+        <<: *kernel-selftests-p8
+        powerpc:
+            "alignment_handler [FAIL]":
+                alignment_handler in powerpc (bug 1906346)
     baltar:
         net:
             "reuseport_bpf_numa [FAIL]":
                 reuseport_bpf_numa in net (bug 1812638)
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
         powerpc:
             "selftests:  subpage_prot [FAIL]":
                 subpage_prot in powerpc/mm (bug 1813140)
             "dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc on P9 (bug 1880833)
-    s2lp6g002: &kernel-selftests-s390x
-        net:
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
-    kernel02:
-        <<: *kernel-selftests-s390x
-    s2lp3:
-        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -479,6 +464,8 @@ ubuntu_ltp:
             <<: *ltp-fs
         mm:
             <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
         cpuhotplug:
             <<: *ltp-cpuhotplug
         net.ipv6_lib:
@@ -576,6 +563,21 @@ ubuntu_ltp:
                 af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
+    entei:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
+            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+                zram03 failed to close file (bug 1887742)
     amaura:
         fs:
             <<: *ltp-fs
@@ -591,6 +593,9 @@ ubuntu_ltp:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
+        cve:
+            "TBROK: tst_checkpoint_wait(0, 100000) failed: ETIMEDOUT (110)":
+                cve-2020-11494 (bug 1906334)
         kernel_misc:
             <<: *ltp-misc
     s2lp3:
@@ -648,6 +653,8 @@ ubuntu_ltp_syscalls:
                 shmctl04 (bug 1895276)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
+            "Unknown:0: TBROK: tst_exit() executed from newlib!":
+                move_pages12 failed with new lib (bug 1906220)
     pepe:
         syscalls:
             <<: *syscalls
@@ -677,8 +684,6 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL  :  msgstress04":
                 msgstress04 (bug 1797348)
-            "FAIL: add_key call failed unexpectedly":
-                add_key01 (bug 1862878)
             "FAIL: CLOCK_REALTIME_COARSE: Difference between successive readings greater than 5 ms":
                 clock_gettime04 (bug 1892181)
             "BROK: timer_create() failed: EOPNOTSUPP":
@@ -736,6 +741,8 @@ ubuntu_lxc:
             "ERROR: Unable to fetch GPG key from keyserver":
                 failed to fetch GPG key
     hotdog-kernel:
+        <<: *lxc-arm64
+    wright-kernel:
         <<: *lxc-arm64
 ubuntu_seccomp:
     pepe: &ubuntu-seccomp-i386

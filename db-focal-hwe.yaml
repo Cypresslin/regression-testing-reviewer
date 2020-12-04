@@ -58,6 +58,8 @@ ubuntu_bpf:
         setup:
             "libbpf: failed to open format: No such file or directory":
                 test failed to build (bug 1894964)
+    rizzo:
+        <<: *bpf
     starmie-kernel:
         <<: *bpf
     hotdog-kernel:
@@ -92,6 +94,9 @@ ubuntu_kernel_selftests:
         net: &kselftests-net
             "libbpf: failed to open format: No such file or directory":
                 net test failed to build (bug 1894964)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
     gonzo:
         net:
             <<: *kselftests-net
@@ -481,8 +486,10 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls-all
-            "madvise06.c:161: TFAIL: Bug has been reproduced":
+            "TFAIL: less than 102400 Kb were moved to the swap cache":
                 madvise06 (bug 1900714)
+            "Unknown:0: TBROK: tst_exit() executed from newlib!":
+                move_pages12 failed with new lib (bug 1906220)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
@@ -536,6 +543,8 @@ ubuntu_lttng_smoke_test:
         lttng-smoke-test:
             "DKMS failed to install":
                 lttng-modules-dkms failed to build (bug 1900684)
+    kili:
+        <<: *lttng
     baltar:
         <<: *lttng
     modoc:
@@ -595,8 +604,12 @@ ubuntu_sysdig_smoke_test:
         sysdig-smoke-test:
             "some warnings being treated as errors":
                 sysdig dkms failed to build on F-5.8 (bug 1900685)
-    baltar:
+    kili:
         <<: *sysdig_smoke
+    baltar:
+        sysdig-smoke-test:
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.4 / 5.8 (bug 1844493)
     modoc:
         <<: *sysdig_smoke
     s2lp4:

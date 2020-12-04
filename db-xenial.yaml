@@ -166,10 +166,12 @@ ubuntu_kvm_unit_tests:
         skey:
             "FAIL skey (2 tests)":
                 skey failed on zVM (bug 1778705)
-    onza:
+    onza: &kvm-unit-i386
         setup:
             "cc1plus: error: unrecognized command line option ‘-Wno-frame-address’":
                 unable to build on X/T i386 (bug 1798007)
+    fozzie:
+        <<: *kvm-unit-i386
     fili:
         apic:
             "FAIL apic":
@@ -191,12 +193,18 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "fanotify06.c:220: FAIL: group 8 got event":
+            "fanotify06.c:220: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
-            "FAIL: group 0 (prio 1) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
+            "FAIL: group 0 (0) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
-                sched_rr_get_interval01 (bug 1886890)
+            "Failed to open FILE '/proc/sys/vm/stat_refresh'":
+                madvise06 (bug 1905689)
+            "Unknown:0: TBROK: tst_exit() executed from newlib!":
+                move_pages12 failed with new lib (bug 1906220)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls
@@ -230,8 +238,10 @@ ubuntu_ltp_syscalls:
                 clock_gettime03 (bug 1891013)
             "FAIL: timer_delete() failed!: EINVAL":
                 timer_settime01 (bug 1887469) timer_settime02 (bug 1887473)
-            "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
+            "TBROK: ioctl(8,LOOP_SET_DIRECT_IO,...) failed: EINVAL (22)":
                 ioctl_loop05 (bug 1887114)
+            "msgstress04    1  TFAIL":
+                msgstress04 (bug 1797348)
     s2lp6g001:
         syscalls:
             <<: *syscalls

@@ -290,6 +290,8 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
     baltar: &syscalls-ppc

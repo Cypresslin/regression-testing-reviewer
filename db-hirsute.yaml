@@ -1,4 +1,4 @@
-# 5.4 Focal
+# 5.8 Hirsute
 # Format:
 # test-suite:
 #   sut:
@@ -11,32 +11,15 @@
 #       "errmsg2":
 #         reason
 #
-hwclock:
-    baltar: &hwclock-ppc
-        hwclock:
-            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
-            "hwclock: Timed out waiting for time change.":
-                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
-    modoc:
-        <<: *hwclock-ppc
-    hotdog-kernel:
-        hwclock:
-            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
-                hwclock test failed due to 0.x sec differences (bug 1802233)
-    ms10-34-mcdivittB0-kernel: &hwclock-moonshot
-        hwclock:
-            "Failed to set hwclock back to Warthog's birthday.":
-                issue for HP m400 (bug 1716603)
-    ms10-35-mcdivittB0-kernel:
-        <<: *hwclock-moonshot
+aio_dio_bugs:
+    baltar: &aio-dio-ppc
+        aio-dio-invalidate-failure:
+            "open dio failed: 20":
+                aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+        aio-dio-extend-stat:
+            "failed to open test file file":
+                aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
 ubuntu_boot:
-    ms10-34-mcdivittB0-kernel: &boot-moonshots
-        log_check:
-            "WARNING: x1-x3 nonzero in violation of boot protocol:":
-                kernel warning message on boot with Moonshot nodes (bug 1888218)
-    ms10-35-mcdivittB0-kernel:
-        <<: *boot-moonshots
     s2lp4: &boot-s390x
         kernel_tainted:
             "ERROR: kernel tainted flag != 0: 4097":
@@ -48,33 +31,6 @@ ubuntu_bpf:
         test_maps:
             "Failed sockmap unexpected timeout":
                 timeout on lagalla (bug 1874029)
-    starmie-kernel: &bpf-arm64
-        test_verifier:
-            "#13/p valid read map access into a read-only array 2 FAIL":
-                test_verifier failed for valid read map access into a read-only array (bug 1874387)
-    hotdog-kernel:
-        <<: *bpf-arm64
-    ms10-34-mcdivittB0-kernel:
-        <<: *bpf-arm64
-    s2lp6g003: &bpf-s390x
-        test_verifier:
-            "Failed to load prog 'Success'":
-                test_verifier failed with 'Failed to load prog' on D s390x (bug 1845646)
-        test_maps:
-            "Failed to load SK_SKB parse prog":
-                test_maps faile to load SK_SKB (bug 1845643)
-    kernel04:
-        test_verifier:
-            "#592/p ld_abs: vlan + abs, test 1 FAIL":
-                5 tests failed in test_verifier (bug 1893035)
-            "#594/p ld_abs: jump around ld_abs FAIL":
-                5 tests failed in test_verifier (bug 1893035)
-            "#599/p ld_dw: xor semi-random 64 bit imms, test 5 FAIL":
-                5 tests failed in test_verifier (bug 1893035)
-            "#774/p scale: scale test 1 FAIL":
-                5 tests failed in test_verifier (bug 1893035)
-            "#775/p scale: scale test 2 FAIL":
-                5 tests failed in test_verifier (bug 1893035)
 ubuntu_fan_smoke_test:
     modoc: &ubuntu_fan_smoke_test
         fan-smoke-test:
@@ -89,18 +45,12 @@ ubuntu_fan_smoke_test:
 ubuntu_kernel_selftests:
     rizzo:
         net: &kselftests-net
-            "ip_defrag.sh # exit=255":
-                ip_defrag needs module to be loaded in net (bug 1892070)
+            "FAIL ] tls.12.multi_chunk_sendfile":
+                tls in net (bug 1900644)
             "psock_snd.sh # exit=1":
-                psock_snd.sh in net (bug 1892213)
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
-        timers:
-            "raw_skew # exit=1":
-                raw_skew test in timers bail out (bug 1882511)
-    gonzo:
-        net:
-            <<: *kselftests-net
+                psock_snd.sh in net (bug 1884234)
+            "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
+                icmp_redirect.sh (bug 1880645)
     starmie-kernel: &kernel-selftests-arm64
         memory-hotplug:
             "Warning: file mem-on-off-test.sh is not executable, correct this.":
@@ -110,63 +60,35 @@ ubuntu_kernel_selftests:
         timers:
            "nsleep-lat # exit=1":
                nsleep-lat in timers bail out (bug 1884884)
-    ms10-34-mcdivittB0-kernel:
-        <<: *kernel-selftests-arm64
-        cpu-hotplug:
-            "unexpected fail":
-                cpu-hotplug failed on moonshot (bug 1809701)
     hotdog-kernel:
         <<: *kernel-selftests-arm64
     modoc:
         net:
-            "reuseport_bpf_cpu # exit=1":
-                reuseport_bpf_cpu in net (bug 1872652)
-            "reuseport_bpf_numa # exit=1":
-                reuseport_bpf_numa in net (bug 1867570)
-            "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
-                pmtu.sh in net (bug 1881643)
-            "psock_snd.sh # exit=1":
-                psock_snd.sh in net (bug 1892213)
+            "Error: failed to load BTF":
+                net test failed to build (bug 1894964)
+        powerpc:
+            "failure: tm_unavailable_test":
+                tm_unavailable_test (bug 1895506)
+            "failure: tm_trap_test":
+                tm-trap (bug 1897891)
+            "eeh-basic.sh # TIMEOUT":
+                eeh-basic.sh timeout (bug 1882503)
         ftrace:
             "(instance)  Change the ringbuffer size	[FAIL]":
                 Change the ringbuffer size in ftrace (bug 1897762)
     baltar:
         net:
-            "reuseport_bpf_numa # exit=1":
-                reuseport_bpf_numa in net (bug 1867570)
-            "psock_snd.sh # exit=1":
-                psock_snd.sh in net (bug 1892213)
-            "TEST: ipv6: cleanup of cached exceptions - nexthop objects          [FAIL]":
-                pmtu.sh in net (bug 1881643)
+            <<: *kselftests-net
+            "./reuseport_bpf_numa: failed to pin to node: No such file or directory":
+                reuseport_bpf_numa in net (bug 1812638)
+            "can't delete veth device in a timely manner, PMTU dst likely leaked":
+                pmtu.sh on PowerPC in net (bug 1881643)
         powerpc:
-            "failure: dscr_sysfs_test":
-                dscr_sysfs_test in powerpc for P9 (bug 1880833)
-            "futex_bench # TIMEOUT":
-                futex_bench timeout in powerpc (bug 1864642)
-            "eeh-basic.sh # TIMEOUT":
-                 eeh-basic.sh timeout in powerpc (bug 1882503)
+            "`lmw' invalid when little-endian";
+                powerpc failed to build (bug 1906386)
     s2lp6g003: &selftest-s390x
         net:
-            "reuseport_dualstack [FAIL]":
-                reuseport_dualstack in net (bug 1812843)
-            "msg_zerocopy.sh [FAIL]":
-                msg_zerocopy in net (bug 1812620)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
-            "selftests: net: ip_defrag.sh [FAIL]":
-                ip_defrag in net (bug 1826848)
-            "test_bpf: [FAIL]":
-                test_bpf in net (bug 1827845)
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
-            "FAIL: ipsec_offload incorrect driver data":
-                ipsec_offload from rtnetlink.sh in net (bug 1893921)
+            <<: *kselftests-net
         ftrace:
             "Register/unregister many kprobe events	[FAIL]":
                 Register/unregister many kprobe events in ftrace (bug 1866972)
@@ -176,19 +98,6 @@ ubuntu_kernel_selftests:
                 Kprobe event user-memory access in ftrace (bug 1869227)
     s2lp4:
         <<: *selftest-s390x
-    kernel04:
-        memory-hotplug:
-            "FAILED - unable to offline some memory blocks, device busy?":
-                mem-on-off-test.sh in memory-hotplug failed (bug 1897764)
-        net:
-            "udpgso_bench_tx: connect: Connection refused":
-                udpgso_bench.sh in net (bug 1897759)
-            "FAIL: can't add fou port 7777":
-                kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
-            "FAIL: ipsec_offload incorrect driver data":
-                ipsec_offload from rtnetlink.sh in net (bug 1893921)
-            "./psock_snd: recv: Resource temporarily unavailable":
-                psock_snd in net (bug 1812618)
 ubuntu_kvm_smoke_test:
     ms10-35-mcdivittB0-kernel: &1765668
         kvm_smoke_test:
@@ -203,63 +112,10 @@ ubuntu_kvm_smoke_test:
     entei:
         <<: *kvm-smoke-ppc
 ubuntu_kvm_unit_tests:
-    ms10-34-mcdivittB0-kernel:
-        gicv2-mmio-3p:
-            "FAIL gicv2-mmio-3p":
-                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
-        gicv2-mmio-up:
-            "FAIL gicv2-mmio-up":
-                gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
-    kernel04:
-        skey:
-            "FAIL skey (2 tests)":
-                skey failed (bug 1778705)
-    s2lp6g003: &kvm-unit-s390x
-        setup:
-            "this systems does not have KVM extension support":
-                No KVM support on zKVM
-    gonzo:
-        realmode:
-            "FAIL realmode":
-                realmode failed (bug 1850653)
     rizzo:
-        realmode:
-            "FAIL realmode":
-                realmode failed (bug 1850653)
-    fili:
-        realmode:
-            "FAIL realmode":
-                realmode failed (bug 1850653)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
-        vmx_apicv_test:
-            "FAIL vmx_apicv_test":
-                vmx_apicv_test (bug 1827866)
-    modoc: &kvm-unit-ppc
         setup:
-            "error: PHDR segment not covered by LOAD segment":
-                fail to build on PowerPC (bug 1879328)
-        emulator:
-            "FAIL emulator":
-                emulator on P8 (bug 1862951)
-        rtas-get-time-of-day:
-            "FAIL rtas-get-time-of-day":
-                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
-        rtas-get-time-of-day-base:
-            "FAIL rtas-get-time-of-day-base":
-                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
-        rtas-set-time-of-day:
-            "FAIL rtas-set-time-of-day":
-                rtas-get-time-of-day, rtas-get-time-of-day-base, rtas-set-time-of-day on P8 (bug 1862956)
-        selftest-setup:
-            "FAIL selftest-setup":
-                selftest-setup on P8 (bug 1862955)
-        spapr_hcall:
-            "FAIL spapr_hcall":
-                spapr_hcall on P8 (bug 1862953)
-    baltar:
-        <<: *kvm-unit-ppc
+            "collect2: error: ld returned 1 exit status":
+                test failed to build (bug 1900646)
 ubuntu_ltp:
     amaura: &ltp-all
         fs: &ltp-fs
@@ -271,18 +127,16 @@ ubuntu_ltp:
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "TFAIL: mems: Test result - 0 Expected string - \"1\"":
+                cpuset_inherit (bug 1897531)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
-            "memcg_stat_rss 7 TFAIL: rss is":
-                memcg_stat_rss (bug 1837035)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-            "memcg_subgroup_charge 1 TBROK: timeouted on memory.usage_in_bytes":
-                memcg_subgroup_charge (bug 1847982)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
@@ -297,76 +151,18 @@ ubuntu_ltp:
         kernel_misc: &ltp-misc
             "Failed test cases : tpci":
                 tpci (bug 1878389)
-            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
-                zram03 failed to close file (bug 1887742)
     lagalla:
-        <<: *ltp-all
-    appleton-kernel:
         fs:
             <<: *ltp-fs
         mm:
             <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
-        commands:
-            <<: *ltp-commands
-        cpuhotplug:
-            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
-                cpuhotplug02 (bug 1836166)
-            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
-                cpuhotplug04 (bug 1836169)
-            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
-                cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
         cve:
-            "fchownat() failed to fail, kernel may be vulnerable":
-                af_alg07 / cve-2019-8912 (bug 1892860)
-        crypto:
-            <<: *ltp-crypto
-            "fchownat() failed to fail, kernel may be vulnerable":
-                af_alg07 / cve-2019-8912 (bug 1892860)
-        kernel_misc:
-            <<: *ltp-misc
-            "zram01 1 TBROK: test killed, timeout!":
-                zram01 / zram02 / zram03 timeout (bug 1854706)
-    hotdog-kernel:
-        fs:
-            <<: *ltp-fs
-        mm:
-            <<: *ltp-mm
-        controllers:
-            <<: *ltp-controllers
-        commands:
-            <<: *ltp-commands
-        cpuhotplug:
-            "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
-                cpuhotplug02 (bug 1836166)
-            "cpuhotplug03 1 TBROK: CPU1 cannot be offlined":
-                cpuhotplug03 (bug 1836167)
-            "cpuhotplug04 1 TFAIL: Could not offline cpu0":
-                cpuhotplug04 (bug 1836169)
-            "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
-                cpuhotplug06 (bug 1836170)
-        net.ipv6_lib:
-            <<: *ltp-net
-        kernel_misc:
-            <<: *ltp-misc
-            "zram01 1 TBROK: test killed, timeout!":
-                zram01 / zram02 / zram03 timeout (bug 1854706)
-    ms10-35-mcdivittB0-kernel:
-        fs:
-            <<: *ltp-fs
-        mm:
-            <<: *ltp-mm
-        controllers:
-            <<: *ltp-controllers
-        commands:
-            <<: *ltp-commands
-        net.ipv6_lib:
-            <<: *ltp-net
+            "TBROK: tst_checkpoint_wait(0, 100000) failed: ETIMEDOUT (110)":
+                cve-2020-11494 ETIMEDOUT (bug 1906334)
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -374,6 +170,8 @@ ubuntu_ltp:
     baltar:
         fs:
             <<: *ltp-fs
+            "BROK: Test killed! (timeout?)":
+                fs_fill (bug 1878763)
         mm:
             <<: *ltp-mm
         controllers:
@@ -411,7 +209,6 @@ ubuntu_ltp:
             "fchownat() failed to fail, kernel may be vulnerable":
                 af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
-            <<: *ltp-misc
             "cpufreq_boost 1 TBROK":
                 cpufreq_boost on P9 (bug 1842032)
     modoc:
@@ -516,6 +313,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls-all
+            "TFAIL: less than 102400 Kb were moved to the swap cache":
+                madvise06 (bug 1900714)
             "Unknown:0: TBROK: tst_exit() executed from newlib!":
                 move_pages12 failed with new lib (bug 1906220)
     appleton-kernel:
@@ -566,6 +365,17 @@ ubuntu_ltp_syscalls:
         <<: *syscall-s390x
     s2lp6g001:
         <<: *syscall-s390x
+ubuntu_lttng_smoke_test:
+    onibi: &lttng
+        lttng-smoke-test:
+            "DKMS failed to install":
+                lttng-modules-dkms failed to build (bug 1900684)
+    kili:
+        <<: *lttng
+    baltar:
+        <<: *lttng
+    modoc:
+        <<: *lttng
 ubuntu_lxc:
     kernel04:
         exercise:
@@ -619,10 +429,14 @@ ubuntu_seccomp:
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig_smoke
         sysdig-smoke-test:
-            "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                Failed on 5.4 (bug 1844493)
-    baltar:
+            "some warnings being treated as errors":
+                sysdig dkms failed to build on F-5.8 (bug 1900685)
+    kili:
         <<: *sysdig_smoke
+    baltar:
+        sysdig-smoke-test:
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.4 / 5.8 (bug 1844493)
     modoc:
         <<: *sysdig_smoke
     s2lp4:

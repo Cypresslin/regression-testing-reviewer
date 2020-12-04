@@ -262,6 +262,8 @@ xenial:
                     getxattr04 in LTP syscall test failed with X/X-LTS kernel (bug 1774595)
                 "killed by signal SIGSEGV":
                     pivot_root01 (bug 1852966)
+                "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
+                    sched_rr_get_interval01 (bug 1886890)
         s2lp3:
             syscalls:
                 <<: *syscalls-x
@@ -756,10 +758,11 @@ bionic:
             fan-smoke-test:
                 "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
                     fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
-        s2lp4:
-            <<: *1775847-b
     ubuntu_kernel_selftests:
-        ms10-34-mcdivittB0-kernel: &1680507-b
+        ms10-34-mcdivittB0-kernel:
+            net:
+                "FAIL: can't add fou port 7777":
+                    kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
@@ -844,6 +847,8 @@ bionic:
             net:
                 "reuseport_bpf_numa [FAIL]":
                     reuseport_bpf_numa in net (bug 1812638)
+                "FAIL: can't add fou port 7777":
+                    kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
             ftrace:
                 "Kprobe event string type argument  [FAIL]":
                     Kprobe event string type argument in ftrace (bug 1812645)
@@ -950,6 +955,8 @@ bionic:
                     acct02 (bug 1839836)
                 "BROK: ioctl(21,LOOP_SET_DIRECT_IO,...) failed: EINVAL":
                     ioctl_loop05 on s390x (bug 1879236)
+                "FAIL: add_key call failed unexpectedly":
+                    add_key01 (bug 1862878)
     ubuntu_lxc:
         amaura: &exercise-b
             setup:
@@ -1411,6 +1418,10 @@ bionic-edge:
     ubuntu_ltp_syscalls:
         daedalus:
             syscalls:
+                "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                    btrfs fill_fs test in fallocate06 (bug 1866323)
+                "FAIL: group 0 got event: mask 1020 (expected 1000)":
+                    fanotify10 case 16 (bug 1882717)
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
                 "failed: ENOPROTOOPT":
@@ -1446,11 +1457,18 @@ bionic-edge:
                 "FAIL: test_096_boot_symbols_unreadable":
                     test_096_boot_symbols_unreadable (bug 1845634)
 bionic-fips:
+    ubuntu_btrfs_kernel_fixes:
+        amaura:
+            2365dd3ca02bbb6d3412404482e1d85752549953:
+                "mount -o degraded /dev/loop0 /tmp/mnt-2365dd3ca02bbb6d3412404482e1d85752549953 was expected to fail":
+                    2365dd3 failed (bug 1809870)
     ubuntu_kernel_selftests:
         gonzo:
             net:
                 "reuseport_bpf_numa [FAIL]":
                     reuseport_bpf_numa in net (bug 1812638)
+                "FAIL: can't add fou port 7777":
+                    kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
             seccomp:
                 "FAIL ] global.get_metadata":
                     global.get_metadata in seccomp (bug 1811057)
@@ -1762,6 +1780,8 @@ focal:
                     fanotify10 case 16 (bug 1882717)
                 "FAIL: group 0 (4) with FAN_MARK_MOUNT and FAN_MARK_INODE ignore mask got event":
                     fanotify9 case 20 (bug 1895273)
+                "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
+                    btrfs fill_fs test in fallocate06 (bug 1866323)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
@@ -1869,6 +1889,11 @@ focal-oem:
             test-kernel-security.py:
                 "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
                     test_400_refcount_config (bug 1879339)
+    ubuntu_sysdig_smoke_test:
+        glameow:
+            sysdig-smoke-test:
+                "Error! Bad return status for module build on kernel":
+                    sysdig module build failed on F-OEM-5.6 (bug 1879336)
 focal-fips:
     ubuntu_kernel_selftests:
         rizzo:

@@ -87,15 +87,19 @@ ubuntu_kernel_selftests:
             "Kprobe event user-memory access	[FAIL]":
                 Kprobe event user-memory access (bug 1878784)
     hotdog-kernel:
-        memory-hotplug:
+        memory-hotplug: &memhp-arm64
             "Warning: file mem-on-off-test.sh is not executable, correct this.":
                 memory-hotplug not executable on arm64 (bug 1892816)
         net:
             <<: *net-kselftests
     starmie-kernel:
         memory-hotplug:
-            "Warning: file mem-on-off-test.sh is not executable, correct this.":
-                memory-hotplug not executable on arm64 (bug 1892816)
+            <<: *memhp-arm64
+        net:
+            <<: *net-kselftests
+    wright-kernel:
+        memory-hotplug:
+            <<: *memhp-arm64
         net:
             <<: *net-kselftests
     modoc:
@@ -134,6 +138,8 @@ ubuntu_fan_smoke_test:
         fan-smoke-test:
             "Unable to locate package iputils-ping":
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+    entei:
+        <<: *ubuntu_fan_smoke_test
     baltar:
         <<: *ubuntu_fan_smoke_test
 ubuntu_kvm_smoke_test:
@@ -226,6 +232,9 @@ ubuntu_ltp:
             <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "TBROK: tst_checkpoint_wait(0, 100000) failed: ETIMEDOUT (110)":
+                cve-2020-11494 ETIMEDOUT (bug 1906334)
         crypto:
             <<: *ltp-crypto
         kernel_misc:
@@ -307,13 +316,21 @@ ubuntu_ltp:
                 cpuset_sched_domains (bug 1830361)
             "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
                 cpuset_syscall (bug 1862908)
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on CPU1":
+                cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             "cpufreq_boost    1  TBROK":
                 cpufreq_boost (bug 1842032)
-        crypto:
-            <<: *ltp-crypto
     modoc:
         fs:
             <<: *ltp-fs
@@ -346,15 +363,15 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
-            "FAIL: group 0 got event: mask 1020 (expected 1000)":
-                fanotify10 case 16 (bug 1882717)
             "msgstress03    1  TFAIL":
                 msgstress03 (bug 1797341)
+            "Unknown:0: TBROK: tst_exit() executed from newlib!":
+                move_pages12 failed with new lib (bug 1906220)
     pepe:
         syscalls:
             <<: *syscalls
+            "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
+                futex_wake04 on i386 (bug 1892165)
             "FAIL: copy_file_range failed unexpectedly; expected EOVERFLOW, but got: EFBIG (27)":
                 copy_file_range02 (bug 1851653)
     hotdog-kernel:
@@ -387,6 +404,8 @@ ubuntu_lxc:
         exercise:
             "ERROR: Unable to fetch GPG key from keyserver":
                 failed to fetch GPG key
+    wright-kernel:
+        <<: *lxc-arm64
     hotdog-kernel:
         <<: *lxc-arm64
 ubuntu_qrt_kernel_security:

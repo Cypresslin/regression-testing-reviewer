@@ -59,7 +59,7 @@ ubuntu_ltp:
             "BROK: unexpected error binding AF_ALG socket to hash algorithm 'md5': ELIBBAD":
                 af_alg01 / cve-2017-17805 on F-fips (bug 1897704)
             "BROK: unexpected error binding AF_ALG socket to skcipher algorithm 'salsa20': ELIBBAD":
-                af_alg01 in crypto / cve-2017-17805 (bug 1897705)
+                af_alg02 in crypto / cve-2017-17806 (bug 1897705)
         crypto:
             "BROK: unexpected error from tst_crypto_del_alg(): EBUSY (16)":
                 crypto_user02 (bug 1837543)
