@@ -1,0 +1,17 @@
+4.4.0-1082.86 aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906) umip (1821905) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_apicv_test (bug 1827866) vmx_eoi_bitmap_ioapic_scan (bug 1860515) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on bare metal nodes
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) move_pages12 (bug 1831043) on some instances openat03 (bug 1798027) prctl07 (bug 1839064)
+
+Skipped / blacklisted:
+ * ubuntu_fan_smoke_test
+ * ubuntu_kernel_selftests
+ * ubuntu_ltp
+ * ubuntu_lttng_smoke_test
+ * ubuntu_nbd_smoke_test
+ * ubuntu_quota_smoke_test
+ * ubuntu_sysdig_smoke_test
+ * ubuntu_zfs_smoke_test
+ * ubuntu_zram_smoke_test

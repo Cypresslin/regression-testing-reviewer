@@ -1,0 +1,10 @@
+4.15.0-1076.85 - ibm-gt
+Regression test CMPL, RTB.
+
+36 / 61 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_smoke_test, ubuntu_zram_smoke_test
+Issue to note in amd64:
+  ubuntu_bpf - test_maps failed (bug 1839912)
+  ubuntu_ltp - cpuset_hotplug (bug 1834006) crypto_user02 (bug 1837543) getaddrinfo_01 (bug 1829995) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) proc01 (bug 1829849) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+* Leverage test result from 4.15.0-1075.84 - ibm-gt

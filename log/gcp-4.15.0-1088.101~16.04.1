@@ -1,0 +1,10 @@
+4.15.0-1088.101~16.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp

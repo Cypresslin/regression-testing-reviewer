@@ -1,0 +1,49 @@
+5.4.0-56.62 - generic
+Regression test CMPL, RTB.
+
+36 / 61 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_smoke_test, ubuntu_zram_smoke_test
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - psock_snd.sh in net (bug 1892213)
+  ubuntu_ltp - cpuset_hotplug (bug 1834006) crypto_user02 (bug 1837543) getaddrinfo_01 (bug 1829995) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) proc01 (bug 1829849) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - move_pages12 failed with new lib (bug 1906220)
+
+53 / 57 tests were run, missing: ubuntu_boot, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - eeh-basic.sh timeout in powerpc (bug 1882503) pmtu.sh in net (bug 1881643) psock_snd.sh in net (bug 1892213) reuseport_bpf_numa in net (bug 1867570)
+  ubuntu_kvm_unit_tests - fail to build on PowerPC (bug 1879328)
+  ubuntu_ltp - af_alg07 / cve-2019-8912 (bug 1892860) cpuhotplug03 (bug 1836167) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_hotplug (bug 1834006) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) cpuset_syscall (bug 1862908) crypto_user02 (bug 1837543) getaddrinfo_01 (bug 1829995) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) proc01 (bug 1829849)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+51 / 53 tests were run, missing: ubuntu_boot, ubuntu_bpf
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_fan_smoke_test - docker still configured (bug 1879299)
+  ubuntu_kernel_selftests - ipsec_offload from rtnetlink.sh in net (bug 1893921) psock_snd in net (bug 1812618)
+  ubuntu_ltp - cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) proc01 (bug 1829849) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - move_pages12 failed with new lib (bug 1906220)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+52 / 53 tests were run, missing: ubuntu_boot
+Issue to note in s390x (zVM):
+  ubuntu_bpf - 5 tests failed in test_verifier (bug 1893035)
+  ubuntu_kernel_selftests - ipsec_offload from rtnetlink.sh in net (bug 1893921) psock_snd in net (bug 1812618)
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) proc01 (bug 1829849)
+  ubuntu_ltp_syscalls - move_pages12 failed with new lib (bug 1906220) msgstress03 (bug 1797341) msgstress04 (bug 1797348)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+5.4.0-56.62 - lowlatency
+Regression test CMPL, RTB.
+
+36 / 61 tests were run, missing: ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kvm_smoke_test, ubuntu_loop_smoke_test, ubuntu_lttng_smoke_test, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_smoke_test, ubuntu_zram_smoke_test
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - psock_snd.sh in net (bug 1892213)
+  ubuntu_ltp - cpuset_hotplug (bug 1834006) crypto_user02 (bug 1837543) getaddrinfo_01 (bug 1829995) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) proc01 (bug 1829849) tpci (bug 1878389) pty04 failed on amaura with lowlatency but passed with generic
+  ubuntu_ltp_syscalls - move_pages12 failed with new lib (bug 1906220)
+
+* Note: missing amd64 test was caused by broken node onibi

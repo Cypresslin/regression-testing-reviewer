@@ -1,0 +1,29 @@
+4.4.0-197.229~14.04.1 - generic
+Regression test CMPL, RTB.
+
+13 / 48 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, iosched_bugs, iperf, ipv6connect, monotonic_time, rmaptest, rtc, signaltest, synctest, ubuntu_32_on_64, ubuntu_aufs_smoke_test, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_ecryptfs, ubuntu_ftrace_smoke_test, ubuntu_futex, ubuntu_kvm_smoke_test, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_vfat_stress, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) umip should be skipped (bug 1821905) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+46 / 47 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064) ptrace10 (bug 1900951) shmctl04 (bug 1895276) futex_wake04 on i386 (bug 1892165)
+  ubuntu_vfat_stress - failed with perl tool in Trusty ESM proposed pocket (bug 1905705)
+
+4.4.0-197.229~14.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+13 / 48 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, iosched_bugs, iperf, ipv6connect, monotonic_time, rmaptest, rtc, signaltest, synctest, ubuntu_32_on_64, ubuntu_aufs_smoke_test, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_docker_smoke_test, ubuntu_ecryptfs, ubuntu_ftrace_smoke_test, ubuntu_futex, ubuntu_kvm_smoke_test, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_vfat_stress, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) umip should be skipped (bug 1821905) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+41 / 47 tests were run, missing: ubuntu_boot, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - fanotify06 (bug 1833028) fanotify10 (bug 1802454) openat03 (bug 1798027) prctl07 (bug 1839064) ptrace10 (bug 1900951) shmctl04 (bug 1895276) futex_wake04 on i386 (bug 1892165)
+  ubuntu_vfat_stress - failed with perl tool in Trusty ESM proposed pocket (bug 1905705)
+
+* Note: this is a respin, leverage the result from 4.4.0-195.227~14.04.1
