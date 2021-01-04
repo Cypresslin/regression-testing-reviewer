@@ -1,0 +1,12 @@
+5.8.0-1014.15 - kvm
+Regression test CMPL, RTB.
+
+Test case ubuntu_fs_fio_perf does not exist in the database, please check
+14 / 64 tests were run, missing: aio_dio_bugs, aiostress, fips_test, fs_mark, fsx, hwclock, iperf, ipv6connect, libhugetlbfs, monotonic_time, rtc, signaltest, ubuntu_aufs_smoke_test, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_btrfs_kernel_fixes, ubuntu_cts_kernel, ubuntu_docker_smoke_test, ubuntu_ecryptfs, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kernel_selftests, ubuntu_loop_smoke_test, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_lxc, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_ramfs_stress, ubuntu_seccomp, ubuntu_squashfs_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_unionmount_ovlfs, ubuntu_vfat_stress, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zfs_stress, ubuntu_zfs_xfs_generic, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in amd64:
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) hackbench01 (bug 1830675) netns_sysfs (bug 1830678) cpuacct_100_100 (bug 1829978) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) tpci (bug 1868707)
+
+Note:
+ * The test white list has been changed, that's why there are so many missing tests.

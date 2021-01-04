@@ -1,0 +1,29 @@
+5.8.0-1017.18 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_bpf - test_maps timeout on some instances, c5n.xlarge, m5.xlarge, m5a.large
+  ubuntu_kernel_selftests - memory-hotplug on some instances tls in net (bug 1900644) psock_snd.sh in net (bug 1892213) icmp_redirect.sh in net (bug 1880645)
+  ubuntu_kvm_unit_tests - failed to build (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) mtest06 on t2.small (bug 1854722) cpuacct_100_100 (bug 1829978) cpuset_inherit on some instances (bug 1906504) cpuset_hotplug (bug 1834006) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) on t2.small mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) msgstress04 on some nodes (bug 1797348)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Issue to note in arm64 (aws):
+  aio_dio_bugs - aio-dio-invalidate-failure / aio-dio-extend-stat (bug 1900791)
+  ubuntu_bpf - valid read map access into a read-only array failed on ARM64 in test_verifier (bug 1845870)
+  ubuntu_kernel_selftests - instance crash with ftracetest (bug 1882669)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge on some instance (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) msgstress04 on some nodes (bug 1797348)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

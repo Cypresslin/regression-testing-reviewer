@@ -1,0 +1,62 @@
+5.8.0-34.37+21.04.1 - generic
+Regression test CMPL, RTB.
+
+59 / 62 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+Test failed for ubuntu_bpf on rizzo but not recorded!
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kernel_selftests - tls in net (bug 1900644) psock_snd.sh in net (bug 1884234) icmp_redirect.sh (bug 1880645)
+  ubuntu_kvm_unit_tests - test failed to build (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1897531) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+Test failed for ubuntu_seccomp on rizzo but not recorded!
+  ubuntu_seccomp - 
+
+45 / 57 tests were run, missing: ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_seccomp, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  aio_dio_bugs - aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kvm_smoke_test - failed with qemu unexpectedly closed the monitor (bug 1862944)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1897531) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lttng_smoke_test - test failed to start on PowerPC (bug 1909508)
+
+49 / 57 tests were run, missing: ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  aio_dio_bugs - aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - tls in net (bug 1900644) psock_snd.sh in net (bug 1884234) icmp_redirect.sh (bug 1880645) reuseport_bpf_numa in net (bug 1812638) pmtu.sh on PowerPC in net (bug 1881643) powerpc failed to build (bug 1906386)
+  ubuntu_kvm_unit_tests - test failed to build (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1897531) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) cpuset_syscall (bug 1862908) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lttng_smoke_test - test failed to start on PowerPC (bug 1909508)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+
+51 / 53 tests were run, missing: ubuntu_boot, ubuntu_bpf
+Issue to note in s390x (Ubuntu on LPAR):
+  ubuntu_kernel_selftests - tls in net (bug 1900644) psock_snd.sh in net (bug 1884234) icmp_redirect.sh (bug 1880645)
+  ubuntu_kvm_smoke_test - failed with permission denied on s390x (bug 1906405)
+  ubuntu_kvm_unit_tests - test failed to build (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1897531) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lxc - lxc-test-api-reboot failed (bug 1776381)
+
+5.8.0-34.37+21.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+59 / 62 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kernel_selftests - tls in net (bug 1900644) psock_snd.sh in net (bug 1884234) icmp_redirect.sh (bug 1880645)
+  ubuntu_kvm_unit_tests - test failed to build (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1897531) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+
+Note:
+  * Missing QRT test results were caused by i18n test in ubuntu_qrt_apparmor (bug 1909704), this failure is causing the reporting tool fail to process the result, it looks like they're missing in previous cycle as well.
+

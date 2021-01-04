@@ -1,0 +1,12 @@
+5.4.0-1034.36~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - memory-hotplug timeout on BM.Standard2.52 (bug 1866846) test_bpf failed with cloud kernels in net (bug 1812189) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) test_blackhole_dev in net (bug 1851619) pmtu.sh marked as failed (bug 1887661) psock_snd.sh in net (bug 1892213) seccomp_bpf in seccomp failed to build (bug 1896420) Kprobe event user-memory access in ftrace (bug 1893024)
+  ubuntu_kvm_unit_tests - 6 failures: apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) pmu (bug 1853797) port80 (bug 1845688) vmx (bug 1821394) vmx_apicv_test (bug 1827866)
+  ubunut_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuset_inherit (bug 1849825) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) cve-2018-1000204 timeout on VM.DenseIO2.8 (bug 1899413) crypto_user02 (bug 1837543) tpci (bug 1868707) zram03 on VM.DenseIO2.8 (bug 1887742)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

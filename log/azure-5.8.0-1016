@@ -1,0 +1,13 @@
+5.8.0-1016.17 - azure
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (azure):
+  ubuntu_kernel_selftests - cpu-hotplug (bug 1814232) memory-hotplug on some instance tls in net (bug 1900644) test_blackhole_dev in net (bug 1851619) psock_snd.sh in net (bug 1884234) icmp_redirect.sh in net (bug 1880645)
+  ubuntu_kvm_unit_tests	- failed to build on Groovy (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh mkfs01_ext4_sh nm01_sh from commands (bug 1853610) cpuhotplug02 (bug 1836166) cpuhotplug03 (bug 1836167) cpuhotplug04 (bug 1836169) cpuhotplug06 (bug 1836170) getaddrinfo_01 (bug 1829995) cve-2018-1000204 (bug 1899413) crypto_user02 (bug 1837543) rtc01 on Standard_DS4_v2 (bug 1899416)
+  ubuntu_ltp_syscalls - msgstress03 on some instances (bug 1797341) msgstress04 on some instances (bug 1797348) getrusage04 on some instances (bug 1841425) clock_gettime04 failed on Basic_A2
+  ubuntu_lttng_smoke_test - module failed to build on Standard-B1ms only
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+
+Skipped / blacklisted:
+ * libhugetlbfs

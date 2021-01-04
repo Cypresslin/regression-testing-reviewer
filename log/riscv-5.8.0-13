@@ -1,0 +1,7 @@
+5.8.0-13.15 - generic
+Regression test CMPL, RTB.
+
+Issue to note in riscv64:
+  ubuntu_ftrace_smoke_test - test timeout (bug 1909422)
+  ubuntu_lttng_smoke_test - lttng-modules-dkms failed to build due to kernel config unmatch (bug 1909419)
+  ubuntu_sysdig_smoke_test - no sysdig package available (bug 1909421)

@@ -1,0 +1,25 @@
+4.15.0-1091.96~16.04.1 - aws
+Regression test CMPL, RTB.
+
+Issue to note in amd64 (aws):
+  ubuntu_kvm_unti_tests - 9 failures: 2 failures in apic (bug 1853433) vmx (bug 1821394) 1 failure in vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on bare-metal nodes
+  ubuntu_ltp_syscalls - clock_nanosleep02 on some instances (bug 1872388) btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) futex_wake04 on some instances like i3en.24xlarge (bug 1892165) move_pages12 on some instances like i3en.24xlarge (bug 1831043) msgctl06 (bug 1908238) pkey01 on some instances like i3en.24xlarge (bug 1849093) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+  ubuntu_lxc - lxc-test-autostart failed with Unable to fetch GPG key from keyserver on r5.metal, c5.large, m3.large passed on the rest
+
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp
+
+Issue to note in arm64 (aws):
+  ubuntu_kernel_selftests - memory-hotplug non-executable (bug 1892816)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgctl06 (bug 1908238) shmctl04 (bug 1895276)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * monotonic_time
+ * ubuntu_32_on_64
+ * ubuntu_bpf
+ * ubuntu_ltp
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

@@ -1,0 +1,12 @@
+4.4.0-1085.94 - kvm
+Regression test CMPL, RTB.
+
+54 / 55 tests were run, missing: ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  ubuntu_ecryptfs - miscdev-bad-count.sh and lp-994247 on 5 filesystems (bug 1837523)
+  ubuntu_kernel_selftests - test_bpf in net (bug 1812189) skip return code treated as failure on X (bug 1851486)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) fcntl38 / fcntl38_64 (bug 1896624) madvise06 (bug 1905689) msgstress03 (bug 1797341) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
+

@@ -1,0 +1,70 @@
+5.4.0-59.65~18.04.1 - generic
+Regression test CMPL, RTB.
+
+58 / 61 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) seccomp_bpf failed to build (bug 1896420) Kprobe event user-memory access in ftrace (bug 1893024)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  ubuntu_bpf - Test 13 in test_verifier (bug 1845870) Failed sockmap unexpected timeout on ARM64 (bug 1805806)
+  ubuntu_kernel_selftests - memory-hotplug not executable on arm64 (bug 1892816) pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) Kprobe event user-memory access in ftrace (bug 1893024)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cpuset_load_balance (bug 1830360) memcg_subgroup_charge (bug 1847982) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860)
+  ubuntu_lxc - failed to fetch GPG key
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps FAIL:failed to create hashmap on i386
+  ubuntu_kernel_selftests - pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) Kprobe event user-memory access (bug 1878784)
+  ubuntu_kvm_unit_tests - hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855) vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - futex_wake04 on i386 (bug 1892165)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+50 / 57 tests were run, missing: ubuntu_cts_kernel, ubuntu_kernel_selftests, ubuntu_kvm_unit_tests, ubuntu_seccomp, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_boot - log_check / kernel_tainted failed with WARNING in log (bug 1909279)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1906504) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) zram03 (bug 1887742)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+54 / 57 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) reuseport_bpf_numa in net (bug 1812638) seccomp_bpf failed to build (bug 1896420) dscr_sysfs_test in powerpc for P9 (bug 1880833) eeh-basic.sh timeout in powerpc (bug 1882503)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) cpuset_syscall (bug 1862908) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - clock_nanosleep02 (bug 1872388)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+5.4.0-59.65~18.04.1 - lowlatency
+Regression test CMPL, RTB.
+
+58 / 61 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) seccomp_bpf failed to build (bug 1896420) Kprobe event user-memory access in ftrace (bug 1893024)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389) cpuset_hotplug (bug 1834006)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+52 / 55 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_bpf - test_maps FAIL:failed to create hashmap on i386
+  ubuntu_kernel_selftests - pmtu.sh failed without error message in net (bug 1887661) psock_snd.sh in net (bug 1892213) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) Kprobe event user-memory access (bug 1878784)
+  ubuntu_kvm_unit_tests - hyperv_connections / hyperv_stimer / hyperv_synic timeout on i386 (bug 1892855) vmexit* on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) cve-2015-3290 (bug 1837005) crypto_user02 (bug 1837543) tpci (bug 1878389) zram02 (bug 1878896)
+  ubuntu_ltp_syscalls - futex_wake04 on i386 (bug 1892165)
+  ubuntu_lxc - lxc-test-device-add-remove (bug 1884024)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+Note:
+* Missing tests in P8 due to test interrupted with kselftest/net/reuseport_bpf_cpu, reuseport_bpf_numa (bug 1909286)

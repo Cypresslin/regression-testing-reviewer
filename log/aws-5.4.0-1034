@@ -1,0 +1,26 @@
+5.4.0-1034.35 - aws
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_bpf - test_maps timeout on some instances, c5n.xlarge, m5.xlarge, m5a.large
+  ubuntu_kernel_selftests - memory-hotplug on some instances test_blackhole_dev in net (bug 1851619) psock_snd.sh in net (bug 1892213) Kprobe event user-memory access in ftracetest (bug 1878784)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) mtest06 on t2.small (bug 1854722) cpuacct_100_100 (bug 1829978) cpuset_hotplug (bug 1834006) cpuset_inherit on some instances (bug 1906504) cpuset_sched_domains (bug 1830361) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_subgroup_charge (bug 1847982) memcg_stat_rss on some instances (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) cgroup_fj_* failure caused by memcg_test_3 (bug 1836694) on t2.small mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - msgstress03 on some nodes (bug 1783881) msgstress04 on some nodes (bug 1797348)
+  ubuntu_sysdig_smoke_test - test failed with 0 read / write event from dd (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Issue to note in arm64 (aws):
+  ubuntu_bpf - valid read map access into a read-only array failed on ARM64 in test_verifier (bug 1845870)
+  ubuntu_kernel_selftests - memory-hotplug not executable on arm64 (bug 1892816) test_blackhole_dev in net (bug 1851619) psock_snd.sh in net (bug 1892213) Kprobe event user-memory access in ftracetest (bug 1878784)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate (bug 1837037) memcg_stat (bug 1829983) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh in commands (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - clock_nanosleep02 on a1.2xlarge (bug 1872388) msgstress03 on some nodes (bug 1783881) msgstress04 on some nodes (bug 1797348) perf_event_open02 on a1.medium (bug 1909187)
+
+Skipped / blacklisted:
+ * iosched_bugs
+ * libhugetlbfs
+ * tsc
+ * ubuntu_32_on_64
+ * ubuntu_seccomp
+ * ubuntu_sysdig_smoke_test

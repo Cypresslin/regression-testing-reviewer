@@ -1,0 +1,55 @@
+5.8.0-34.37~20.04.2 - generic
+Regression test CMPL, RTB.
+
+58 / 61 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test failed to build (bug 1894964)
+  ubuntu_kernel_selftests - net test failed to build (bug 1894964) raw_skew test in timers bail out (bug 1882511)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 / 5.8 (bug 1844493)
+
+14 / 55 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, hwclock, iperf, ipv6connect, rmaptest, rtc, signaltest, synctest, ubuntu_aufs_smoke_test, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_bpf, ubuntu_cts_kernel, ubuntu_docker_smoke_test, ubuntu_fan_smoke_test, ubuntu_futex, ubuntu_kernel_selftests, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_ltp, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_lxc, ubuntu_nbd_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_vfat_stress, ubuntu_zfs_smoke_test, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in arm64:
+  ubuntu_boot - kernel warning message on boot with Moonshot nodes (bug 1888218)
+
+54 / 57 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P8):
+  aio_dio_bugs - aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test failed to build (bug 1894964)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+Test failed for ubuntu_kernel_selftests/memory-hotplug on dryden but not recorded!
+  ubuntu_kernel_selftests - net test failed to build (bug 1894964) script issue in eeh-basic.sh (bug 1909428) ftracetest timeout (bug 1909521)
+  ubuntu_kvm_unit_tests - fail to build on PowerPC (bug 1879328)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1906504) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lttng_smoke_test - test failed to start on PowerPC (bug 1909508)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 / 5.8 (bug 1844493)
+
+54 / 57 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in ppc64le (P9):
+  aio_dio_bugs - aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+  hwclock - hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+  ubuntu_bpf - test failed to build (bug 1894964)
+  ubuntu_fan_smoke_test - Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
+  ubuntu_kernel_selftests - net test failed to build (bug 1894964) dscr_sysfs_test in powerpc for P9 (bug 1880833) eeh-basic.sh timeout in powerpc (bug 1882503)
+  ubuntu_kvm_unit_tests - fail to build on PowerPC (bug 1879328)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) cpuset_exclusive (bug 1862901) cpuset_hierarchy (bug 1862903) cpuset_load_balance (bug 1830360) cpuset_memory (bug 1862904) cpuset_memory_spread (bug 1862905) cpuset_regression_test (bug 1862906) cpuset_syscall (bug 1862908) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 / cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_lttng_smoke_test - test failed to start on PowerPC (bug 1909508)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 / 5.8 (bug 1844493)
+
+5.8.0-34.37~20.04.2 - lowlatency
+Regression test CMPL, RTB.
+
+58 / 61 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_bpf - test failed to build (bug 1894964)
+  ubuntu_kernel_selftests - net test failed to build (bug 1894964)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - madvise06 (bug 1900714)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 / 5.8 (bug 1844493)
+
+Note:
+  * ARM64 test result not complete due to broken node and F-5.8 issue on Moonshots (bug 1900796)
