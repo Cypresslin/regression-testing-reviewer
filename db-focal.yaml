@@ -521,34 +521,24 @@ ubuntu_ltp_syscalls:
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     hotdog-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     modoc:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     baltar:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     kernel04: &syscall-s390x

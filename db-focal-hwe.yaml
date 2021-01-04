@@ -21,6 +21,8 @@ aio_dio_bugs:
                 aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
     modoc:
         <<: *aio-dio-ppc
+    dryden:
+        <<: *aio-dio-ppc
 hwclock:
     baltar: &hwclock-ppc
         hwclock:
@@ -29,6 +31,8 @@ hwclock:
             "hwclock: Timed out waiting for time change.":
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
+        <<: *hwclock-ppc
+    dryden:
         <<: *hwclock-ppc
     hotdog-kernel:
         hwclock:
@@ -66,14 +70,14 @@ ubuntu_bpf:
         <<: *bpf
     ms10-34-mcdivittB0-kernel:
         <<: *bpf
-    modoc:
+    modoc: &bpf-ppc
         setup:
             "Error: failed to load BTF":
                 test failed to build (bug 1894964)
     baltar:
-        setup:
-            "Error: failed to load BTF":
-                test failed to build (bug 1894964)
+        <<: *bpf-ppc
+    dryden:
+        <<: *bpf-ppc
     s2lp6g003:
         <<: *bpf
     kernel04:
@@ -84,6 +88,8 @@ ubuntu_fan_smoke_test:
             "Unable to locate package iputils-ping":
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     baltar:
+        <<: *ubuntu_fan_smoke_test
+    dryden:
         <<: *ubuntu_fan_smoke_test
     s2lp4:
         fan-smoke-test:
@@ -130,6 +136,13 @@ ubuntu_kernel_selftests:
         ftrace:
             "(instance)  Change the ringbuffer size	[FAIL]":
                 Change the ringbuffer size in ftrace (bug 1897762)
+    dryden:
+        net:
+            "Error: failed to load BTF":
+                net test failed to build (bug 1894964)
+        powerpc:
+            "./eeh-basic.sh: 89: test: 0: unexpected operator":
+                script issue in eeh-basic.sh (bug 1909428)
     baltar:
         net:
             "Error: failed to load BTF":
@@ -230,6 +243,8 @@ ubuntu_kvm_unit_tests:
                 spapr_hcall on P8 (bug 1862953)
     baltar:
         <<: *kvm-unit-ppc
+    dryden:
+        <<: *kvm-unit-ppc
 ubuntu_ltp:
     amaura: &ltp-all
         fs: &ltp-fs
@@ -241,6 +256,8 @@ ubuntu_ltp:
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "cpuset_inherit 23 TFAIL: mems: Test result -":
+                cpuset_inherit (bug 1906504)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -431,6 +448,51 @@ ubuntu_ltp:
                 af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
+    dryden:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 1 TFAIL: set /dev/cpuset/0/cupset.cpus as 0 fail":
+                cpuset_syscall (bug 1862908)
+            "cpuset_hotplug 1 TFAIL: root group's cpus isn't expected":
+                cpuset_hotplug (bug 1834006)
+            "cpuset_memory_pressure 5 TFAIL: set general group parameter failed.":
+                cpuset_memory_pressure (bug 1897748)
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        kernel_misc:
+            <<: *ltp-misc
     s2lp4:
         fs:
             <<: *ltp-fs
@@ -488,39 +550,30 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls-all
             "TFAIL: less than 102400 Kb were moved to the swap cache":
                 madvise06 (bug 1900714)
-            "Unknown:0: TBROK: tst_exit() executed from newlib!":
-                move_pages12 failed with new lib (bug 1906220)
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     hotdog-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     modoc:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
+    dryden:
+        syscalls:
+            <<: *syscalls-all
     baltar:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     kernel04: &syscall-s390x
@@ -539,15 +592,13 @@ ubuntu_ltp_syscalls:
     s2lp6g001:
         <<: *syscall-s390x
 ubuntu_lttng_smoke_test:
-    onibi: &lttng
+    baltar: &lttng
         lttng-smoke-test:
-            "DKMS failed to install":
-                lttng-modules-dkms failed to build (bug 1900684)
-    kili:
-        <<: *lttng
-    baltar:
-        <<: *lttng
+            "fcntl lock file: Resource temporarily unavailable ":
+                test failed to start on PowerPC (bug 1909508)
     modoc:
+        <<: *lttng
+    dryden:
         <<: *lttng
 ubuntu_lxc:
     kernel04:
@@ -602,15 +653,15 @@ ubuntu_seccomp:
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig_smoke
         sysdig-smoke-test:
-            "some warnings being treated as errors":
-                sysdig dkms failed to build on F-5.8 (bug 1900685)
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                Failed on 5.4 / 5.8 (bug 1844493)
     kili:
         <<: *sysdig_smoke
     baltar:
-        sysdig-smoke-test:
-            "FAILED (trace at least 25 reads of /dev/zero by dd)":
-                Failed on 5.4 / 5.8 (bug 1844493)
+        <<: *sysdig_smoke
     modoc:
+        <<: *sysdig_smoke
+    dryden:
         <<: *sysdig_smoke
     s2lp4:
         <<: *sysdig_smoke

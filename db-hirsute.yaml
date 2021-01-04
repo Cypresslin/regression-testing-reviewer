@@ -19,6 +19,15 @@ aio_dio_bugs:
         aio-dio-extend-stat:
             "failed to open test file file":
                 aio-dio-invalidate-failure / aio-dio-extend-stat on ppc (bug 1900791)
+    dryden:
+        <<: *aio-dio-ppc
+hwclock:
+    dryden: &hwclock-ppc
+        hwclock:
+            "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
+            "hwclock: Timed out waiting for time change.":
+                hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
 ubuntu_boot:
     s2lp4: &boot-s390x
         kernel_tainted:
@@ -37,6 +46,8 @@ ubuntu_fan_smoke_test:
             "Unable to locate package iputils-ping":
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     baltar:
+        <<: *ubuntu_fan_smoke_test
+    dryden:
         <<: *ubuntu_fan_smoke_test
     s2lp4:
         fan-smoke-test:
@@ -84,7 +95,7 @@ ubuntu_kernel_selftests:
             "can't delete veth device in a timely manner, PMTU dst likely leaked":
                 pmtu.sh on PowerPC in net (bug 1881643)
         powerpc:
-            "`lmw' invalid when little-endian";
+            "`lmw' invalid when little-endian":
                 powerpc failed to build (bug 1906386)
     s2lp6g003: &selftest-s390x
         net:
@@ -111,11 +122,26 @@ ubuntu_kvm_smoke_test:
                failed with qemu unexpectedly closed the monitor (bug 1862944)
     entei:
         <<: *kvm-smoke-ppc
+    dryden:
+        <<: *kvm-smoke-ppc
+    s2lp4:
+        kvm_smoke_test:
+            "PermissionError: [Errno 13] Permission denied:":
+                failed with permission denied on s390x (bug 1906405)
 ubuntu_kvm_unit_tests:
-    rizzo:
+    rizzo: &kvm-unit
         setup:
             "collect2: error: ld returned 1 exit status":
                 test failed to build (bug 1900646)
+    dryden:
+        <<: *kvm-unit
+    baltar:
+        setup:
+            "powerpc/emulator.o] Error 1":
+                test failed to build (bug 1900646)
+        <<: *kvm-unit
+    s2lp4:
+        <<: *kvm-unit
 ubuntu_ltp:
     amaura: &ltp-all
         fs: &ltp-fs
@@ -127,7 +153,7 @@ ubuntu_ltp:
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
-            "TFAIL: mems: Test result - 0 Expected string - \"1\"":
+            "cpuset_inherit 23 TFAIL: mems: Test result":
                 cpuset_inherit (bug 1897531)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
@@ -160,6 +186,8 @@ ubuntu_ltp:
             <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
+        commands:
+            <<: *ltp-commands
         cve:
             "TBROK: tst_checkpoint_wait(0, 100000) failed: ETIMEDOUT (110)":
                 cve-2020-11494 ETIMEDOUT (bug 1906334)
@@ -258,6 +286,49 @@ ubuntu_ltp:
                 af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
+    dryden:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
+                cpuset_base_ops (bug 1830359)
+            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
+                cpuset_exclusive (bug 1862901)
+            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
+                cpuset_hierarchy (bug 1862903)
+            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
+                cpuset_load_balance (bug 1830360)
+            "cpuset_memory 17 TFAIL: set general group parameter failed.":
+                cpuset_memory (bug 1862904)
+            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
+                cpuset_memory_spread (bug 1862905)
+            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
+                cpuset_regression_test (bug 1862906)
+            "cpuset_check_domains    1  TFAIL":
+                cpuset_sched_domains (bug 1830361)
+            "cpuset_syscall 1 TFAIL: set /dev/cpuset/0/cupset.cpus as 0 fail":
+                cpuset_syscall (bug 1862908)
+            "cpuset_hotplug 1 TFAIL: root group's cpus isn't expected":
+                cpuset_hotplug (bug 1834006)
+            "cpuset_memory_pressure 5 TFAIL: set general group parameter failed.":
+                cpuset_memory_pressure (bug 1897748)
+        commands:
+            <<: *ltp-commands
+        cpuhotplug:
+            "cpuhotplug03 1 TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 (bug 1836167)
+        net.ipv6_lib:
+            <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
+        crypto:
+            <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
     s2lp4:
         fs:
             <<: *ltp-fs
@@ -320,36 +391,21 @@ ubuntu_ltp_syscalls:
     appleton-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
     hotdog-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
     ms10-35-mcdivittB0-kernel:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     modoc:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
+    dryden:
+        syscalls:
+            <<: *syscalls-all
     baltar:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
     kernel04: &syscall-s390x
         syscalls:
             <<: *syscalls-all
@@ -357,8 +413,6 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "msgstress04    1  TFAIL":
                 msgstress04 (bug 1797348)
-            "BROK: timer_create() failed: EOPNOTSUPP":
-                clock_settime03 (bug 1891013)
     s2lp4:
         <<: *syscall-s390x
     s2lp6g003:
@@ -366,17 +420,23 @@ ubuntu_ltp_syscalls:
     s2lp6g001:
         <<: *syscall-s390x
 ubuntu_lttng_smoke_test:
-    onibi: &lttng
+    baltar: &lttng
         lttng-smoke-test:
-            "DKMS failed to install":
-                lttng-modules-dkms failed to build (bug 1900684)
-    kili:
-        <<: *lttng
-    baltar:
-        <<: *lttng
+            "fcntl lock file: Resource temporarily unavailable ":
+                test failed to start on PowerPC (bug 1909508)
     modoc:
         <<: *lttng
+    dryden:
+        <<: *lttng
 ubuntu_lxc:
+    rizzo: &lxc-myuidgid
+        exercise:
+            "ERRORS: myuidgid":
+                myuidgid in lxc-test-usernsexec (bug 1900662)
+    dryden:
+        <<: *lxc-myuidgid
+    baltar:
+        <<: *lxc-myuidgid
     kernel04:
         exercise:
             "FAIL: lxc-tests: lxc-test-api-reboot":
@@ -389,28 +449,6 @@ ubuntu_lxc:
                 lxc-test-api-reboot failed (bug 1776381)
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    s2lp6g003:
-        exercise:
-            "Container \"reboot\" is defined":
-                Container "reboot" is defined (bug 1788574)
-    s2lp6g001:
-        exercise:
-            "Container \"reboot\" is defined":
-                Container "reboot" is defined (bug 1788574)
-    baltar: &lxc
-        exercise:
-            "Failed to fetch http://ports.ubuntu.com/":
-                failed to fetch file from ports.ubuntu.com in lxc-test-no-new-privs test
-    entei:
-        <<: *lxc
-    modoc:
-        <<: *lxc
-    starmie-kernel: &lxc-arm64
-        exercise:
-            "ERROR: Unable to fetch GPG key from keyserver":
-                failed to fetch GPG key
-    hotdog-kernel:
-        <<: *lxc-arm64
 ubuntu_seccomp:
     s2lp4: &ubuntu_seccomp
         seccomp:

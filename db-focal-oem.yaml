@@ -39,7 +39,7 @@ ubuntu_kernel_selftests:
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "ip_defrag.sh # exit=1":
-                ip_defrag in net (bug 1826848)
+                ip_defrag in net (bug 1908498)
             "Warning: file l2tp.sh is not executable, correct this.":
                 l2tp.sh in net not executable (bug 1880631)
             "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
@@ -119,8 +119,11 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
+            "pages were faulted out of 2 max":
+                madvise06 (bug 1900714)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+
     glameow:
         <<: *ltp-syscalls
 ubuntu_qrt_kernel_security:

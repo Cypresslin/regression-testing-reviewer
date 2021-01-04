@@ -1,4 +1,46 @@
 # Tests here are the one that need to be excluded from the full-list below
+hirsute:
+    amd64: &h-amd64
+        ? fips_test
+        ? libhugetlbfs
+        ? ubuntu_ecryptfs
+    ppc64le: &h-non-x86
+        <<: *h-amd64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+    arm64:
+        <<: *h-non-x86
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+    s390x:
+        <<: *h-non-x86
+        ? ubuntu_btrfs_kernel_fixes
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
+groovy:
+    amd64: &g-amd64
+        ? fips_test
+        ? libhugetlbfs
+        ? ubuntu_ecryptfs
+    ppc64le: &g-non-x86
+        <<: *g-amd64
+        ? iosched_bugs
+        ? monotonic_time
+        ? ubuntu_32_on_64
+        ? ubuntu_cve_kernel
+    arm64:
+        <<: *g-non-x86
+        ? ubuntu_seccomp
+        ? ubuntu_sysdig_smoke_test
+    s390x:
+        <<: *g-non-x86
+        ? ubuntu_btrfs_kernel_fixes
+        ? ubuntu_xfstests_btrfs
+        ? ubuntu_xfstests_ext4
+        ? ubuntu_xfstests_xfs
 focal:
     amd64: &f-amd64
         ? fips_test

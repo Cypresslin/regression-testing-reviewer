@@ -63,6 +63,12 @@ ubuntu_kernel_selftests:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
+        memory-hotplug: &kselftests-memhp-arm
+            "./mem-on-off-test.sh: Permission denied":
+                memory-hotplug not executable (bug 1892816)
+    starmie-kernel:
+        memory-hotplug:
+            <<: *kselftests-memhp-arm
     s2lp6g001: &kernel-selftests-s390x
         net:
             "selftests: test_bpf.sh [FAIL]":
@@ -193,19 +199,22 @@ ubuntu_ltp_syscalls:
         syscalls: &syscalls
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "fanotify06.c:220: TFAIL: group 8 got event":
+            "fanotify06.c:206: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (0) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "Failed to open FILE '/proc/sys/vm/stat_refresh'":
-                madvise06 (bug 1905689)
             "Unknown:0: TBROK: tst_exit() executed from newlib!":
                 move_pages12 failed with new lib (bug 1906220)
-            "FAIL: SHM_INFO haven't returned a valid index:":
-                shmctl04 (bug 1895276)
+            "TFAIL: MSG_INFO haven't returned a valid index:":
+                msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
+            "FAIL: SHM_INFO haven't returned a valid index:":
+                shmctl04 (bug 1895276)
     ms10-35-mcdivittB0-kernel:
+        syscalls:
+            <<: *syscalls
+    starmie-kernel:
         syscalls:
             <<: *syscalls
     wright-kernel:
@@ -262,14 +271,19 @@ ubuntu_lxc:
         <<: *exercise
 ubuntu_xfstests_btrfs:
     vickers-armstrong:
-        btrfs:
+        btrfs: &xfstest-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
                 no scratch drive for the test
+    douglas:
+        btrfs:
+            <<: *xfstest-sdb
 ubuntu_xfstests_xfs:
     vought:
         xfs:
-            "Error: Could not stat device /dev/sdb - No such file or directory.":
-                no scratch drive for the test
+            <<: *xfstest-sdb
+    douglas:
+        xfs:
+            <<: *xfstest-sdb
 xfstests:
     rizzo:
         xfs:

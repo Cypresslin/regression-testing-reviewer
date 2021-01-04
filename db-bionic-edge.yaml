@@ -20,6 +20,10 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
+    entei:
+        <<: *hwclock-ppc
+    dryden:
+        <<: *hwclock-ppc
     hotdog-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
@@ -28,6 +32,14 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
+ubuntu_boot:
+    entei:
+        kernel_tainted:
+            "opal_flush_console":
+                log_check / kernel_tainted failed with WARNING in log (bug 1909279)
+        log_check:
+            "opal_flush_console":
+                log_check / kernel_tainted failed with WARNING in log (bug 1909279)
 ubuntu_bpf:
     lagalla:
         test_maps:
@@ -140,6 +152,8 @@ ubuntu_fan_smoke_test:
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
     entei:
         <<: *ubuntu_fan_smoke_test
+    dryden:
+        <<: *ubuntu_fan_smoke_test
     baltar:
         <<: *ubuntu_fan_smoke_test
 ubuntu_kvm_smoke_test:
@@ -201,6 +215,8 @@ ubuntu_ltp:
         controllers: &ltp-controllers
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "cpuset_inherit 23 TFAIL: mems: Test result -":
+                cpuset_inherit (bug 1906504)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -274,7 +290,7 @@ ubuntu_ltp:
                 cpuset_sched_domains (bug 1830361)
             "memcg_stat_rss 4 TFAIL: Process":
                 memcg_stat_rss (bug 1837035)
-            "memcg_subgroup_charge 1 TFAIL: rss is":
+            "memcg_subgroup_charge 5 TBROK: timeouted on memory.usage_in_bytes":
                 memcg_subgroup_charge (bug 1847982)
         cpuhotplug:
             "cpuhotplug02 1 TFAIL: process did not change from CPU 1":
@@ -287,8 +303,13 @@ ubuntu_ltp:
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
             <<: *ltp-net
+        cve:
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
         crypto:
             <<: *ltp-crypto
+            "fchownat() failed to fail, kernel may be vulnerable":
+                af_alg07 / cve-2019-8912 (bug 1892860)
     baltar:
         fs:
             <<: *ltp-fs
@@ -331,35 +352,21 @@ ubuntu_ltp:
         kernel_misc:
             "cpufreq_boost    1  TBROK":
                 cpufreq_boost (bug 1842032)
-    modoc:
+    entei:
         fs:
             <<: *ltp-fs
         mm:
             <<: *ltp-mm
         controllers:
             <<: *ltp-controllers
-            "cpuset_base_ops 37 TFAIL: cpuset.cpus: Test result":
-                cpuset_base_ops (bug 1830359)
-            "cpuset_exclusive 29 TFAIL: Break the exclusive feature.":
-                cpuset_exclusive (bug 1862901)
-            "cpuset_hierarchy 45 TFAIL: Break the hierarchy limit.":
-                cpuset_hierarchy (bug 1862903)
-            "cpuset_load_balance 1 TFAIL: set general group parameter failed.":
-                cpuset_load_balance (bug 1830360)
-            "cpuset_memory 17 TFAIL: set general group parameter failed.":
-                cpuset_memory (bug 1862904)
-            "cat: /sys/devices/system/node/node1/meminfo: No such file or directory":
-                cpuset_memory_spread (bug 1862905)
-            "/opt/ltp/testcases/bin/cpuset_regression_test.sh":
-                cpuset_regression_test (bug 1862906)
-            "cpuset_check_domains    1  TFAIL":
-                cpuset_sched_domains (bug 1830361)
-            "cpuset_syscall 15 TFAIL: set /dev/cpuset/0/cpuset.mems as 0-1 fail":
-                cpuset_syscall (bug 1862908)
         net.ipv6_lib:
             <<: *ltp-net
         crypto:
             <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
+            "Failed to close FILE '/sys/block/zram0/disksize'":
+                zram03 (bug 1887742)
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
@@ -383,6 +390,8 @@ ubuntu_ltp_syscalls:
     baltar:
         syscalls:
             <<: *syscalls
+            "TFAIL: clock_nanosleep() slept for too long":
+               clock_nanosleep02 (bug 1872388)
 ubuntu_lxc:
     rizzo:
         exercise: &lxc-test-device-add-remove
@@ -448,6 +457,10 @@ ubuntu_sysdig_smoke_test:
     baltar:
         <<: *sysdig
     modoc:
+        <<: *sysdig
+    entei:
+        <<: *sysdig
+    dryden:
         <<: *sysdig
     pepe:
         <<: *sysdig

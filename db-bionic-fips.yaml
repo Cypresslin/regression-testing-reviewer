@@ -147,6 +147,8 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
+            "Constrain 'CONFIG_TIME_NS=y' not satisfied!":
+                clock_nanosleep02 because of kernel config
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
@@ -155,6 +157,8 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
                 keyctl05 failed with FIPS mode on (bug 1892444)
+            "TFAIL: MSG_INFO haven't returned a valid index:":
+                msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
             "FAIL: SHM_INFO haven't returned a valid index:":

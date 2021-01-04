@@ -87,6 +87,8 @@ ubuntu_ltp:
         controllers:
             "/opt/ltp/testcases/bin/cpuacct.sh":
                 cpuacct_100_100 (bug 1829978)
+            "cpuset_inherit 23 TFAIL: mems: Test result -":
+                cpuset_inherit (bug 1906504)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes_test (bug 1897560)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -113,6 +115,8 @@ ubuntu_ltp:
     gummo:
         <<: *ltp
     larry:
+        <<: *ltp
+    crdvm2:
         <<: *ltp
 ubuntu_ltp_syscalls:
     autovm3: &syscalls

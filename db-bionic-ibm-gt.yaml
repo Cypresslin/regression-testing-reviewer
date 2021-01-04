@@ -27,6 +27,8 @@ ubuntu_bpf:
         test_maps: &bpf-test-map
             "Allowed update sockmap '0:8' not in ESTABLISHED":
                 test_maps failed (bug 1839912)
+    lagalla:
+        <<: *ubuntu_bpf
     gonzo:
         <<: *ubuntu_bpf
     rizzo:
@@ -155,6 +157,8 @@ ubuntu_ltp:
                 cpuacct_100_100 (bug 1829978)
             "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
                 cpuset_hotplug (bug 1834006)
+            "FAIL: mems: Test result - 0 Expected string":
+                cpuset_inherit (bug 1906504)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
             "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
@@ -286,10 +290,14 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura:
         syscalls: &syscalls
+            "FAIL: clock_nanosleep() slept for too long":
+                clock_nanosleep02 (bug 1872388)
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "FAIL: group 1 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "TFAIL: MSG_INFO haven't returned a valid index:":
+                msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
             "FAIL: SHM_INFO haven't returned a valid index:":

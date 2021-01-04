@@ -49,6 +49,8 @@ ubuntu_ecryptfs:
         <<: *ubuntu_ecryptfs
     harpo:
         <<: *ubuntu_ecryptfs
+    crdvm3:
+        <<: *ubuntu_ecryptfs
 ubuntu_kernel_selftests:
     autovm1: &kernel_selftests
         net:
@@ -108,16 +110,16 @@ ubuntu_ltp_syscalls:
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                 btrfs fill_fs test in fallocate06 (bug 1866323)
-            "fanotify06.c:220: TFAIL: group 8 got event":
+            "fanotify06.c:206: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "TFAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "TBROK: F_NOTIFY failed errno = 22 : Invalid argument":
                 fcntl38 / fcntl38_64 (bug 1896624)
-            "mmap18.c:167: TFAIL: Child: killed by SIGSEGV":
-                mmap18 (bug 1897361)
             "msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
+                ptrace10 (bug 1900951)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
     autovm3:
@@ -127,6 +129,8 @@ ubuntu_ltp_syscalls:
     larry:
         <<: *syscalls
     zeppo:
+        <<: *syscalls
+    crdvm2:
         <<: *syscalls
 ubuntu_lxc:
     autovm1: &lxc-intel
@@ -158,6 +162,9 @@ ubuntu_xfstests_btrfs:
         btrfs:
             <<: *xfstest-no-sdb
     moe:
+        btrfs:
+            <<: *xfstest-no-sdb
+    crdvm2:
         btrfs:
             <<: *xfstest-no-sdb
 ubuntu_xfstests_ext4:

@@ -143,14 +143,12 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
                 keyctl05 with FIPS mode on (bug 1892444)
-            "fanotify06.c:220: TFAIL: group 8 got event":
+            "fanotify06.c:206: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
             "BROK: Failed to open FILE 'mntpoint":
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
-            "madvise06.c:78: TWARN: Failed to open FILE '/proc/sys/vm/stat_refresh'":
-                madvise06 (bug 1905689)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
@@ -165,12 +163,10 @@ ubuntu_ltp_syscalls:
                 chdir01, fallocate04, fsetxattr01, fdatasync03, fgetxattr01, fremovexattr01, fremovexattr02, fspick01, fspick02, fsync01, fsync04, fanotify13, fanotify14, fanotify15, fanotify16, lremovexattr01, msync04, open_tree01, open_tree02, preadv03, preadv03_64, preadv203, preadv203_64, pwritev03, pwritev03_64, setxattr01, sync03, syncfs01, sync_file_range02, copy_file_range01 (bug 1842270)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
                 keyctl05 (bug 1892444)
-            "fanotify06.c:220: TFAIL: group 8 got event":
+            "fanotify06.c:206: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
-            "madvise06.c:78: TWARN: Failed to open FILE '/proc/sys/vm/stat_refresh'":
-                madvise06 (bug 1905689)
             "move_pages12.c:95: FAIL: madvise failed: EIO (5)":
                 move_pages12 (bug 1831043)
             "FAIL: SHM_INFO haven't returned a valid index:":

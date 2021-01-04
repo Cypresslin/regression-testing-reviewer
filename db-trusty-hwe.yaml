@@ -49,10 +49,12 @@ ubuntu_kvm_unit_tests:
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all
-            "fanotify06.c:220: TFAIL: group 3 got event":
+            "fanotify06.c:206: TFAIL: group 3 got event":
                 fanotify06 (bug 1833028)
             "group 0 (0) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
+            "Failed to open FILE '/proc/sys/vm/stat_refresh'":
+                madvise06 (bug 1905689)
             "openat03.c:223: file mode read 0, but expected 7777":
                 openat03 (bug 1798027)
             "FAIL: PR_CAP_AMBIENT_RAISE succeeded unexpectedly because of NO_RAISE_SECBIT set":
@@ -64,8 +66,6 @@ ubuntu_ltp_syscalls:
     pepe:
         syscalls:
             <<: *syscalls-all
-            "mkdir(test_dir,0700) failed: EEXIST":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
                 futex_wake04 on i386 (bug 1892165)
 ubuntu_lxc:
@@ -80,3 +80,13 @@ ubuntu_qrt_kernel_security:
         test-kernel-security.py:
             "FAIL: test_ulimit_stack_small":
                 test_ulimit_stack_small not stable on i386 (bug 1816467)
+ubuntu_vfat_stress:
+    onza: &vfat
+        setup:
+            "server certificate verification failed":
+                failed with perl tool in Trusty ESM proposed pocket (bug 1905705)
+        vfat-stress:
+            "server certificate verification failed":
+                failed with perl tool in Trusty ESM proposed pocket (bug 1905705)
+    gonzo:
+        <<: *vfat

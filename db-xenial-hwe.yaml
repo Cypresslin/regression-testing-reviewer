@@ -19,10 +19,12 @@ hwclock:
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock
 ubuntu_boot:
-    ms10-34-mcdivittB0-kernel:
+    ms10-34-mcdivittB0-kernel: &boot-moonshots
         log_check:
             "WARNING: x1-x3 nonzero in violation of boot protocol:":
                 kernel warning message on boot with Moonshot nodes (bug 1888218)
+    ms10-35-mcdivittB0-kernel:
+        <<: *boot-moonshots
 ubuntu_fan_smoke_test:
     modoc:
         fan-smoke-test:
@@ -39,7 +41,7 @@ ubuntu_kernel_selftests:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
     modoc:
-        net:
+        net: &kselftest-p8-net
             "reuseport_bpf_cpu [FAIL]":
                 reuseport_bpf_cpu in net (bug 1872652)
             "reuseport_bpf_numa [FAIL]":
@@ -53,6 +55,12 @@ ubuntu_kernel_selftests:
                 tm-resched-dscr (bug 1888334)
             "failure: ptrace_tar":
                 ptrace-tar (bug 1888339)
+    entei:
+        net:
+            <<: *kselftest-p8-net
+        powerpc:
+            "alignment_handler [FAIL]":
+                alignment_handler on node entei (bug 1906346)
 ubuntu_kvm_smoke_test:
     ms10-34-mcdivittB0-kernel: &1749427
         kvm_smoke_test:
@@ -151,6 +159,8 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: group 2 got event: mask 10":
                 fanotify09 case 3 (bug 1876684)
+            "TFAIL: MSG_INFO haven't returned a valid index:":
+                msgctl06 (bug 1908238)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
@@ -162,24 +172,18 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     modoc:
         <<: *syscalls-ppc
     ms10-35-mcdivittB0-kernel:
         syscalls:
            <<: *syscalls
-           "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     pepe:
         syscalls:
             <<: *syscalls
-            "BROK: preadv203.c":
+            "preadv203.c:258: TBROK:":
                 preadv203 / preadv203_64 failed on X-i386 with ENOSPC (bug 1864425)
             "FAIL: Bug: wait_thread2 did not wake after 30 secs.: EINVAL":
                 futex_wake04 on i386 (bug 1892165)
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     secchi:
         <<: *syscalls-amd64
     wright-kernel:

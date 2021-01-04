@@ -669,8 +669,6 @@ ubuntu_ltp_syscalls:
                 move_pages12 (bug 1831043)
             "move_pages12.c:95: TFAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
             "BROK: timer_create() failed: EOPNOTSUPP":
                 clock_settime03 (bug 1891013)
     entei:
@@ -699,8 +697,6 @@ ubuntu_ltp_syscalls:
             <<: *syscalls
             "move_pages12.c:95: TFAIL: madvise failed: EIO ":
                 move_pages12 (bug 1831043)
-            "mkdir(test_dir,0700) failed: EEXIST (17)":
-                utimensat01 mkdir failure on non-amd64 (bug 1892812)
     hotdog-kernel:
         syscalls:
             <<: *syscalls-arm64

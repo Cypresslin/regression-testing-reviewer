@@ -114,6 +114,8 @@ trusty-hwe:
                     open14 (bug 1798061)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+                "mkdir(test_dir,0700) failed: EEXIST":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
         onibi:
             syscalls:
                 <<: *syscalls-t-hwe
@@ -264,6 +266,8 @@ xenial:
                     pivot_root01 (bug 1852966)
                 "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
                     sched_rr_get_interval01 (bug 1886890)
+                "Failed to open FILE '/proc/sys/vm/stat_refresh'":
+                    madvise06 (bug 1905689)
         s2lp3:
             syscalls:
                 <<: *syscalls-x
@@ -382,6 +386,8 @@ xenial-hwe:
                     fallocate05 (bug 1783880)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
                     timer_create01 (bug 1838961)
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
     ubuntu_qrt_kernel_security:
         modoc: &kernel-security-ppc
             test-kernel-security.py:
@@ -494,6 +500,8 @@ xenial-fips:
                     add_key05 (bug 1869644)
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM: ???":
                     timer_create01 (bug 1838961)
+                "madvise06.c:78: TWARN: Failed to open FILE '/proc/sys/vm/stat_refresh'":
+                    madvise06 (bug 1905689)
     ubuntu_unionmount_ovlfs:
         rizzo: &ovlfs
             overlayfs:
@@ -536,6 +544,8 @@ xenial-kvm:
                     ptrace08 (bug 1873781)
                 "FAIL: /proc/sys/kernel/sched_rr_timeslice_ms":
                     sched_rr_get_interval01 (bug 1886890)
+                "Failed to open FILE '/proc/sys/vm/stat_refresh'":
+                    madvise06 (bug 1905689)
     ubuntu_lttng_smoke_test:
         chico: &1760647-x-kvm
             lttng-smoke-test:
@@ -907,6 +917,8 @@ bionic:
             syscalls:
                 "BROK: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE): ENOSPC":
                     fallocate05 (bug 1783880)
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
         onibi:
             syscalls:
                 "failed: ENOPROTOOPT":
@@ -1782,6 +1794,10 @@ focal:
                     fanotify9 case 20 (bug 1895273)
                 "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
                     btrfs fill_fs test in fallocate06 (bug 1866323)
+        modoc:
+            syscalls:
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
     ubuntu_kernel_selftests:
         amaura:
             seccomp:
@@ -1816,6 +1832,26 @@ focal:
                     Kprobe event user-memory access in ftrace (bug 1869227)
                 "not ok 30 selftests: net: tcp_fastopen_backup_key.sh":
                     tcp_fastopen_backup_key.sh in net on s390x (bug 1869134)
+focal-hwe:
+    ubuntu_ltp_syscalls:
+        amaura:
+            syscalls:
+                "Unknown:0: TBROK: tst_exit() executed from newlib!":
+                    move_pages12 failed with new lib (bug 1906220)
+        modoc:
+            syscalls:
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
+    ubuntu_lttng_smoke_test:
+        onibi: &lttng
+            lttng-smoke-test:
+                "DKMS failed to install":
+                    lttng-modules-dkms failed to build (bug 1900684)
+    ubuntu_sysdig_smoke_test:
+        onibi:
+            sysdig-smoke-test:
+                "some warnings being treated as errors":
+                    sysdig dkms failed to build on F-5.8 (bug 1900685)
 focal-kvm:
     ubuntu_kernel_selftests:
         autovm4: &ubuntu_kernel_selftests
@@ -1907,3 +1943,16 @@ focal-fips:
                     fanotify09 case 3 (bug 1876684)
                 "FAIL: group 0 got event: mask 1020 (expected 1000)":
                     fanotify10 case 16 (bug 1882717)
+hirsute:
+    ubuntu_ltp_syscalls:
+        modoc:
+            syscalls:
+                "mkdir(test_dir,0700) failed: EEXIST (17)":
+                    utimensat01 mkdir failure on non-amd64 (bug 1892812)
+                "BROK: timer_create() failed: EOPNOTSUPP":
+                    clock_settime03 (bug 1891013)
+    ubuntu_lttng_smoke_test:
+        onibi: &lttng
+            lttng-smoke-test:
+                "DKMS failed to install":
+                    lttng-modules-dkms failed to build (bug 1900684)
