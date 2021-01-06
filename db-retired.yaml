@@ -1920,6 +1920,8 @@ focal-oem:
                     fanotify09 case 3 (bug 1876684)
                 "FAIL: group 0 got event: mask 1020 (expected 1000)":
                     fanotify10 case 16 (bug 1882717)
+                "pages were faulted out of 2 max":
+                    madvise06 (bug 1900714)
     ubuntu_qrt_kernel_security:
         onibi:
             test-kernel-security.py:
