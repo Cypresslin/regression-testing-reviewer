@@ -86,8 +86,15 @@ def analyze_that(link, testname, distro):
                                 # Do not use errorStackTrace content here, as it probably does not contain the complete output
                                 _fullname = testname + '.' + sub_test
                                 debug_link = os.path.dirname(target) + '/' + testname + '/results/' + _fullname + '/debug/' + _fullname + '.DEBUG'
-                                debug_txt = urllib.request.urlopen(debug_link)
+                                debug_link.replace(' ', '%20')
+                                try:
+                                    urllib.request.urlopen(debug_link)
+                                except urllib.error.HTTPError:
+                                    _fullname = testname
+                                    debug_link = os.path.dirname(target) + '/' + testname + '/results/' + _fullname + '/debug/' + _fullname + '.DEBUG'
+                                debug_link.replace(' ', '%20')
                                 for errmsg in issues[testname][sut][sub_test]:
+                                    debug_txt = urllib.request.urlopen(debug_link)
                                     if any(errmsg in _line.decode("utf-8") for _line in debug_txt):
                                         # don't append duplicated error message
                                         if issues[testname][sut][sub_test][errmsg] not in reason:
