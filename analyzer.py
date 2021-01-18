@@ -67,6 +67,9 @@ def analyze_that(link, testname, distro):
     reason = []
     # Parse the failed nodes first
     for job in summary["jobs"]:
+        # Only process the link with failed test cases, so skip the report with no failures
+        if job[3] == 0:
+            continue
         sut = job[1]
         # get the failed page for the sut
         if sut in issues[testname]:
