@@ -1,0 +1,27 @@
+4.4.0-201.233 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+
+11 / 12 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+
+Issue to note in s390x:
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+
+4.4.0-201.233 - lowlatency
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+
+11 / 12 tests were run, missing: ubuntu_boot
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+
+Note:
+ * Missing ARM64 / PowerPC results due to testing node issue

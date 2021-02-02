@@ -1,0 +1,9 @@
+4.15.0-1083.92 - ibm-gt
+Regression test CMPL, RTB.
+
+13 / 15 tests were run, missing: ubuntu_blkdev_directio, ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - failed with libvirt - unsupported configuration (bug 1896153)
+
+Note:
+ * Missing tests due to broken nodes

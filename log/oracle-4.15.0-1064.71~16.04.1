@@ -1,0 +1,11 @@
+4.15.0-1064.71~16.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kvm_unit_tests - 12 failures: apic timeouted (bug 1748103) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1748105) vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test timeout (bug 1872419) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgctl06 (bug 1908238) futex_wake04 on BM.Standard2.52 only (bug 1904706) move_pages12 on some instance (bug 1831043) msync01 msync02 (bug 1913371) ptrace10 (bug 1900951) semctl09 (bug 1910312) shmctl04 (bug 1895276)
+  ubuntu_lxc - unable to fetch GPG key from keyserver failed on VM.Standard2.1 only
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp

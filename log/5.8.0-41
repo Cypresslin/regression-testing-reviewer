@@ -1,0 +1,28 @@
+5.8.0-41.46 - generic
+Regression test CMPL, RTB.
+
+14 / 15 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+
+11 / 12 tests were run, missing: ubuntu_ltp
+Issue to note in arm64:
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+
+Test case iosched_bugs, ubuntu_32_on_64, ubuntu_cve_kernel does not exist in the database, please check
+5 / 12 tests were run, missing: ebizzy, rmaptest, synctest, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_boot, ubuntu_futex, ubuntu_kvm_smoke_test, ubuntu_leap_seconds, ubuntu_ltp
+Issue to note in ppc64le:
+  iosched_bugs - should be skipped
+  ubuntu_32_on_64 - should be skipped
+  ubuntu_cve_kernel - should be skipped
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+
+5.8.0-41.46 - lowlatency
+Regression test CMPL, RTB.
+
+12 / 15 tests were run, missing: iosched_bugs, ubuntu_futex, ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+
+Note:
+ * Missing tests due to broken nodes.

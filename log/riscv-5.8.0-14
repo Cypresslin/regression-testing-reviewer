@@ -1,0 +1,12 @@
+5.8.0-14.16 - generic
+Regression test CMPL, RTB.
+
+12 / 15 tests were run, missing: ubuntu_boot, ubuntu_cve_kernel, ubuntu_ltp
+Issue to note in riscv64:
+  iosched_bugs - should be skipped
+  ubuntu_32_on_64 - should be skipped
+  ubuntu_kvm_smoke_test - should be skipped
+  ubuntu_kvm_unit_tests - should be skipped
+
+Note:
+ * The test plan for RISCV should be changed

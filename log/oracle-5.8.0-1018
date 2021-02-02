@@ -1,0 +1,20 @@
+5.8.0-1018.19 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_docker_smoke_test- test failed with Cannot connect to the Docker daemon (bug 1909195)
+  ubuntu_fan_smoke_test - test failed with Cannot connect to the Docker daemon (bug 1909195)
+  ubuntu_kernel_selftests - tls in net (bug 1900644) test_blackhole_dev in net (bug 1851619) psock_snd.sh in net (bug 1884234) icmp_redirect.sh in net (bug 1880645)
+  ubuntu_kvm_smoke_test - test failed with Inappropriate ioctl for device (bug 1909196)
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+  ubunut_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - failed to start because of systemd-timesyncd.service issue (bug 1896732)
+  ubuntu_lxc - myuidgid in lxc-test-usernsexec (bug 1900662)
+  ubuntu_qrt_apparmor - test_utils_testsuite, test_entries_since_login, test_entries_since_login_verbose, test_utils_testsuite3, test_entries_since_login, test_entries_since_login_verbose (bug 1906342)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+ * Instance BM.Standard2.52 and VM.DenseIO2.8 were not tested
+ * ubuntu_kernel_selftests needs to be reviewed on jenkins directly

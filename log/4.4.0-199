@@ -1,0 +1,61 @@
+4.4.0-199.231 - generic
+Regression test CMPL, RTB.
+
+Test case ubuntu_fs_fio_perf does not exist in the database, please check
+58 / 60 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316) WARNING reported in dmesg (bug 1912316)
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+2 / 55 tests were run, missing: aio_dio_bugs, aiostress, ebizzy, fs_mark, fsx, hwclock, iperf, ipv6connect, libhugetlbfs, rmaptest, rtc, signaltest, synctest, ubuntu_aufs_smoke_test, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_bpf_jit, ubuntu_btrfs_kernel_fixes, ubuntu_cts_kernel, ubuntu_docker_smoke_test, ubuntu_ecryptfs, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_futex, ubuntu_kernel_selftests, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_loop_smoke_test, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_lxc, ubuntu_nbd_smoke_test, ubuntu_overlayfs_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_ramfs_stress, ubuntu_squashfs_smoke_test, ubuntu_stress_smoke_test, ubuntu_unionmount_ovlfs, ubuntu_vfat_stress, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zfs_stress, ubuntu_zram_smoke_test, wb_kupdate
+Issue to note in arm64:
+  ubuntu_boot - kernel warning message on boot with Moonshot nodes (bug 1888218)
+
+Test case ubuntu_fs_fio_perf does not exist in the database, please check
+52 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) ptrace10 (bug 1900951) shmctl04 (bug 1895276) futex_wake04 (bug 1892165)
+
+Issue to note in s390x (Ubuntu on LPAR):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_32_on_64 - should be skipped
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop from ubuntu_bpf_jit will fail on X s390x (bug 1868243)
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kernel_selftests - ld_abs+vlan_push/pop in test_bpf from net will fail on X s390x (bug 1868243)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) shmctl04 (bug 1895276) ioctl_loop05 (bug 1887114) msgstress04 (bug 1797348)
+
+Issue to note in s390x (zVM):
+  libhugetlbfs - failed 5 (Address is not hugepage, Heap not on hugepages) killed by signal 1 bad config 1
+  ubuntu_32_on_64 - should be skipped
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_bpf_jit - ld_abs+vlan_push/pop from ubuntu_bpf_jit will fail on X s390x (bug 1868243)
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+  ubuntu_kernel_selftests - ld_abs+vlan_push/pop in test_bpf from net will fail on X s390x (bug 1868243)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+  ubuntu_kvm_unit_tests - skey failed on zVM (bug 1778705)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) shmctl04 (bug 1895276)
+
+4.4.0-199.231 - lowlatency
+Regression test CMPL, RTB.
+
+57 / 60 tests were run, missing: ubuntu_ecryptfs, ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316) WARNING reported in dmesg (bug 1912316)
+  ubuntu_fs_fio_perf - failed with ERROR: No device specified (bug 1909451)
+Test failed for ubuntu_kvm_unit_tests on grumman but not recorded!
+  ubuntu_kvm_unit_tests - apic (bug 1748103) debug (bug 1821906) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nm_test (bug 1866587) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) ptrace10 (bug 1900951) shmctl04 (bug 1895276)
+
+51 / 54 tests were run, missing: ubuntu_xfstests_btrfs, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - unable to build on X/T i386 (bug 1798007)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify06 (bug 1833028) fanotify10 (bug 1802454) msgctl06 (bug 1908238) ptrace10 (bug 1900951) shmctl04 (bug 1895276) futex_wake04 (bug 1892165)
+
+* Note: missing arm64 test was caused by maas issue
+* Note: missing tests due to the recent test plan adjustment

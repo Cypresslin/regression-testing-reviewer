@@ -1,0 +1,6 @@
+5.4.0-1032.33 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_ltp - memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) tpci (bug 1868707)
+

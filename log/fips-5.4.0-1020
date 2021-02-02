@@ -1,0 +1,15 @@
+5.4.0-1020.24 - fips
+Regression test CMPL, RTB.
+
+Test case aio_dio_bugs, aiostress, fips_test, fs_mark, fsx, hwclock, iperf, rtc, signaltest, ubuntu_aufs_smoke_test, ubuntu_bpf, ubuntu_bpf_jit, ubuntu_btrfs_kernel_fixes, ubuntu_cts_kernel, ubuntu_fan_smoke_test, ubuntu_ftrace_smoke_test, ubuntu_kernel_selftests, ubuntu_loop_smoke_test, ubuntu_ltp_syscalls, ubuntu_lttng_smoke_test, ubuntu_lxc, ubuntu_nbd_smoke_test, ubuntu_qrt_apparmor, ubuntu_qrt_kernel_aslr_collisions, ubuntu_qrt_kernel_hardening, ubuntu_qrt_kernel_panic, ubuntu_qrt_kernel_security, ubuntu_quota_smoke_test, ubuntu_seccomp, ubuntu_squashfs_smoke_test, ubuntu_sysdig_smoke_test, ubuntu_unionmount_ovlfs, ubuntu_vfat_stress, ubuntu_xfstests_ext4, ubuntu_xfstests_xfs, ubuntu_zfs_fstest, ubuntu_zfs_smoke_test, ubuntu_zfs_stress, ubuntu_zfs_xfs_generic, wb_kupdate does not exist in the database, please check
+51 / 15 tests were run, missing: ebizzy, ubuntu_blkdev_directio, ubuntu_leap_seconds, ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_bpf - timeout on lagalla (bug 1874029)
+  ubuntu_kernel_selftests - psock_snd.sh failed in net (bug 1884234) Kprobe event user-memory access in ftrace (bug 1878784)
+  ubuntu_ltp_syscalls - keyctl05 failed with FIPS mode on (bug 1892444) semctl09 (bug 1910312)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - test timeout at generic/245
+
+Note:
+ * Test plan has changed, thus the number of test is different here

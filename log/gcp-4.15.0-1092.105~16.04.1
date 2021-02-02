@@ -1,0 +1,12 @@
+4.15.0-1092.105~16.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
+  ubuntu_kernel_selftests - memory-hotplug failed on n1-highmem-8 only
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) msgctl06 (bug 1908238) ptrace10 (bug 1900951) semctl09 (bug 1910312) shmctl04 (bug 1895276)
+  ubuntu_lxc - Unable to fetch GPG key from keyserver on n1-highcpu-4, n1-highcpu-16, f1-micro only
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp

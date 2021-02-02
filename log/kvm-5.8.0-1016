@@ -1,0 +1,7 @@
+5.8.0-1016.18 - kvm
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - failed to build on Groovy (bug 1900646)
+  ubuntu_ltp - proc01 (bug 1829849) cpuset_inherit (bug 1906504) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) tpci (bug 1868707)
+
