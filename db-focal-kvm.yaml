@@ -71,7 +71,7 @@ ubuntu_ltp:
             "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
         net.ipv6_lib:
-            "getaddrinfo_01 2 TFAIL":
+            "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
         cve:
             "BROK: ptrace08.c:39: fopen(/proc/kallsyms,r) failed: ENOENT (2)":
@@ -88,6 +88,8 @@ ubuntu_ltp:
     larry:
         <<: *ubuntu_ltp
     moe:
+        <<: *ubuntu_ltp
+    crdvm1:
         <<: *ubuntu_ltp
 ubuntu_ltp_syscalls:
     autovm2: &ubuntu_ltp_syscalls

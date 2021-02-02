@@ -111,45 +111,26 @@ ubuntu_kvm_unit_tests:
                 unable to build on X/T i386 (bug 1798007)
     fozzie:
         <<: *kvm_unit_tests_i386
-    gonzo:
+    rizzo: &kvm_unit_tests_amd64
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
-    rizzo:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
         vmx_host_state_area:
             "FAIL vmx_host_state_area (timeout; duration=30)":
                 vmx_host_state_area (bug 1866585)
         vmx_intr_window_test:
             "FAIL vmx_intr_window_test (timeout; duration=30)":
                 vmx_intr_window_test (bug 1866586)
-        vmx_nm_test:
-            "FAIL vmx_nm_test (timeout; duration=30)":
-                vmx_nm_test (bug 1866587)
         vmx_nmi_window_test:
             "FAIL vmx_nmi_window_test (timeout; duration=30)":
                 vmx_nmi_window_test (bug 1866588)
         vmx_pending_event_test:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
-    fili:
-        apic:
-            "FAIL apic":
-                apic timeouted (bug 1748103)
-        vmx:
-            "FAIL vmx":
-                vmx (bug 1821394)
-        vmx_apic_passthrough_thread:
-            "FAIL vmx_apic_passthrough_thread":
-                vmx_apic_passthrough_thread (bug 1822309)
-        vmx_hlt_with_rvi_test:
-            "FAIL vmx_hlt_with_rvi_test":
-                vmx_hlt_with_rvi_test (bug 1822308)
+    onibi:
+        <<: *kvm_unit_tests_amd64
+    grumman:
+        <<: *kvm_unit_tests_amd64
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls: &syscalls

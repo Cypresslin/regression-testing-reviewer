@@ -44,6 +44,13 @@ ubuntu_boot:
                 kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
     kernel01:
         <<: *boot-s390x
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
 ubuntu_bpf_jit:
     s2lp3: &ubuntu_bpf_jit
         ubuntu-bjf-jit:
@@ -101,7 +108,7 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    rizzo:
+    rizzo: &kvm-unit-tests-amd64
         apic:
             "FAIL apic":
                 apic (bug 1748103)
@@ -126,6 +133,8 @@ ubuntu_kvm_unit_tests:
         vmx_pending_event_test:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
+    onibi:
+        <<: *kvm-unit-tests-amd64
     entei:
         sprs:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
@@ -205,10 +214,14 @@ ubuntu_ltp_syscalls:
                 fanotify10 (bug 1802454)
             "Unknown:0: TBROK: tst_exit() executed from newlib!":
                 move_pages12 failed with new lib (bug 1906220)
+            "14 pages were faulted out of 2 max":
+                madvise06 (bug 1900714)
             "TFAIL: MSG_INFO haven't returned a valid index:":
                 msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
+            "TFAIL: SEM_INFO haven't returned a valid index: SUCCESS":
+                semctl09 (bug 1910312)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
     ms10-35-mcdivittB0-kernel:

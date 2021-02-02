@@ -116,6 +116,8 @@ ubuntu_ltp:
         <<: *ltp
     larry:
         <<: *ltp
+    crdvm1:
+        <<: *ltp
     crdvm2:
         <<: *ltp
 ubuntu_ltp_syscalls:

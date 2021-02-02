@@ -143,7 +143,7 @@ ubuntu_ltp_syscalls:
                 btrfs fill_fs test in fallocate06 (bug 1866323)
             "unexpected error adding 'asymmetric' key: EINVAL (22)":
                 keyctl05 with FIPS mode on (bug 1892444)
-            "fanotify06.c:206: TFAIL: group 8 got event":
+            "fanotify06.c:205: TFAIL: group 8 got event":
                 fanotify06 (bug 1833028)
             "FAIL: group 0 (4) with FAN_MARK_INODE and FAN_MARK_MOUNT ignore mask got event":
                 fanotify10 (bug 1802454)
@@ -151,10 +151,16 @@ ubuntu_ltp_syscalls:
                 fsetxattr01, fgetxattr01, fanotify13, fanotify14, lremovexattr01, setxattr01 (bug 1842270)
             "msgstress04 1 TFAIL : msgstress04":
                 msgstress04 (bug 1786737)
+            "TFAIL: MSG_INFO haven't returned a valid index:":
+                msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":
                 ptrace10 (bug 1900951)
+            "TFAIL: SEM_INFO haven't returned a valid index: SUCCESS":
+                semctl09 (bug 1910312)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
+    kili:
+        <<: *syscalls
     entei: &syscalls-p8
         syscalls:
             "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
@@ -224,6 +230,9 @@ ubuntu_xfstests_xfs:
         xfs:
             <<: *xfstest-no-sdb
     douglas:
+        xfs:
+            <<: *xfstest-no-sdb
+    onibi:
         xfs:
             <<: *xfstest-no-sdb
 xfstests:

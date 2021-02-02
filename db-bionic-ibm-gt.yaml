@@ -136,8 +136,10 @@ ubuntu_kernel_selftests:
 ubuntu_kvm_smoke_test:
     onibi: &ubuntu_kvm_smoke_test
         kvm_smoke_test:
-            "libvirt: unsupported configuration":
+            "Unable to initialize gcrypt":
                 failed with libvirt - unsupported configuration (bug 1896153)
+    amaura:
+        <<: *ubuntu_kvm_smoke_test
     harpo:
         <<: *ubuntu_kvm_smoke_test
     baltar:

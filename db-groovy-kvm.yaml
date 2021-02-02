@@ -39,10 +39,12 @@ ubuntu_kernel_selftests:
     zeppo:
        <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
-    autovm2:
+    autovm2: &kvm_unit_tests
         setup:
             "ld returned 1 exit status":
                 failed to build on Groovy (bug 1900646)
+    autovm4:
+        <<: *kvm_unit_tests
 ubuntu_ltp:
     autovm1: &ubuntu_ltp
         fs:
@@ -95,6 +97,8 @@ ubuntu_ltp:
     larry:
         <<: *ubuntu_ltp
     moe:
+        <<: *ubuntu_ltp
+    crdvm1:
         <<: *ubuntu_ltp
     crdvm2:
         <<: *ubuntu_ltp

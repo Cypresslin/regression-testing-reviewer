@@ -12,10 +12,12 @@
 #         reason
 #
 ubuntu_bpf:
-    lagalla:
+    lagalla: &test-maps-timeout
         test_maps:
             "Failed sockmap unexpected timeout":
                 timeout on lagalla (bug 1874029)
+    rumford:
+        <<: *test-maps-timeout
 ubuntu_kernel_selftests:
     rizzo:
         net:
@@ -26,6 +28,9 @@ ubuntu_kernel_selftests:
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
+        ftrace:
+            "Kprobe event user-memory access	[FAIL]":
+                Kprobe event user-memory access in ftrace (bug 1878784)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -102,11 +107,17 @@ ubuntu_ltp_syscalls:
                 msgstress03 (bug 1797341)
             "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
                 keyctl05 failed with FIPS mode on (bug 1892444)
+            "TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel":
+                semctl09 (bug 1910312)
+    rizzo:
+        <<: *syscalls-amd64
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig_smoke
         sysdig-smoke-test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 Failed on 5.4 (bug 1844493)
+    rizzo:
+        <<: *sysdig_smoke
 ubuntu_xfstests_btrfs:
     bavor:
         btrfs:
@@ -146,9 +157,12 @@ ubuntu_xfstests_ext4:
             "generic/440	- output mismatch":
                 generic/440 (bug 1846297)
     vought:
-        ext4:
+        ext4: &xfstests-sdb
             "Error: Could not stat device /dev/sdb - No such file or directory.":
-                no scratch drive for the test on Intel KVM nodes
+                no scratch drive for the test
+    onibi:
+        ext4:
+            <<: *xfstests-sdb
 ubuntu_xfstests_xfs:
     bavor:
         xfs:
@@ -164,5 +178,7 @@ ubuntu_xfstests_xfs:
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
     douglas:
         xfs:
-            "Error: Could not stat device /dev/sdb - No such file or directory.":
-                no scratch drive for the test on Intel KVM nodes
+            <<: *xfstests-sdb
+    rumford:
+        xfs:
+            <<: *xfstests-sdb

@@ -229,6 +229,9 @@ ubuntu_kvm_unit_tests:
         hyperv_stimer:
             "FAIL hyperv_stimer":
                 hyperv_stimer on i386 (bug 1822235)
+        hyperv_synic:
+            "FAIL hyperv_synic":
+                hyperv_synic timeout on i386 (bug 1892855)
         kvmclock_test:
             "FAIL kvmclock_test":
                 kvmclock_test on i386 (bug 1822235)

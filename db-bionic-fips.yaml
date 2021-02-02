@@ -23,6 +23,8 @@ ubuntu_bpf:
                 test_maps failed with Allowed update sockmap '0:8' not in ESTABLISHED (bug 1839912)
     rizzo:
         <<: *ubuntu-bpf
+    rumford:
+        <<: *ubuntu-bpf
     lagalla:
         <<: *ubuntu-bpf
     s2lp6g001:
@@ -77,22 +79,30 @@ ubuntu_kvm_unit_tests:
         setup:
             "This systems does not have KVM extension support":
                 No KVM support on zKVM
-    rizzo:
+    rizzo: &kvm-unit-test
+        vmx:
+            "FAIL vmx (timeout":
+                vmx timeout (bug 1821394)
+        vmx_apic_passthrough_thread:
+            "FAIL vmx_apic_passthrough_thread (5 tests, 1 unexpected failures)":
+                vmx_apic_passthrough_thread (bug 1822309)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test (timeout":
+                vmx_hlt_with_rvi_test timeout (bug 1822308)
         vmx_host_state_area:
             "FAIL vmx_host_state_area (timeout; duration=30)":
                 vmx_host_state_area (bug 1866585)
         vmx_intr_window_test:
             "FAIL vmx_intr_window_test (timeout; duration=30)":
                 vmx_intr_window_test (bug 1866586)
-        vmx_nm_test:
-            "FAIL vmx_nm_test (timeout; duration=30)":
-                vmx_nm_test (bug 1866587)
         vmx_nmi_window_test:
             "FAIL vmx_nmi_window_test (timeout; duration=30)":
                 vmx_nmi_window_test (bug 1866588)
         vmx_pending_event_test:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
+    lagalla:
+       <<: *kvm-unit-test
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -194,6 +204,9 @@ ubuntu_xfstests_btrfs:
     s2lp6g003:
         btrfs:
             <<: *xfstest-no-sdb
+    amaura:
+        btrfs:
+            <<: *xfstest-no-sdb
     bavor:
         btrfs:
             "btrfs/172	- output mismatch":
@@ -224,6 +237,9 @@ ubuntu_xfstests_ext4:
             "generic/430":
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
     vought:
+        ext4:
+            <<: *xfstest-no-sdb
+    onibi:
         ext4:
             <<: *xfstest-no-sdb
     s2lp6g002:

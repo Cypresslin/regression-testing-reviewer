@@ -41,14 +41,6 @@ groovy:
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
-groovy-kvm:
-    amd64:
-        <<: *g-amd64
-        ? monotonic_time
-        ? ubuntu_blktrace_smoke_test
-        ? ubuntu_fan_smoke_test
-        ? ubuntu_ftrace_smoke_test
-        ? ubuntu_lttng_smoke_test
 focal:
     amd64: &f-amd64
         ? fips_test
@@ -560,19 +552,68 @@ precise:
         ? ubuntu_loop_smoke_test
         ? ubuntu_seccomp
 full-list: [
+    aio_dio_bugs,
+    aiostress,
     ebizzy,
+    fips_test,
+    fs_mark,
+    fsx,
+    hwclock,
     iosched_bugs,
+    iperf,
+    ipv6connect,
+    libhugetlbfs,
+    monotonic_time,
     rmaptest,
+    rtc,
+    signaltest,
     synctest,
     ubuntu_32_on_64,
+    ubuntu_aufs_smoke_test,
     ubuntu_blkdev_directio,
     ubuntu_blktrace_smoke_test,
     ubuntu_boot,
+    ubuntu_bpf,
+    ubuntu_bpf_jit,
+    ubuntu_btrfs_kernel_fixes,
+    ubuntu_cts_kernel,
     ubuntu_cve_kernel,
+    ubuntu_docker_smoke_test,
+    ubuntu_ecryptfs,
+    ubuntu_fan_smoke_test,
+    ubuntu_ftrace_smoke_test,
     ubuntu_futex,
+    ubuntu_kernel_selftests,
     ubuntu_kvm_smoke_test,
     ubuntu_kvm_unit_tests,
     ubuntu_leap_seconds,
+    ubuntu_loop_smoke_test,
     ubuntu_ltp,
+    ubuntu_ltp_syscalls,
+    ubuntu_lttng_smoke_test,
+    ubuntu_lxc,
+    ubuntu_nbd_smoke_test,
+    ubuntu_overlayfs_smoke_test,
+    ubuntu_qrt_apparmor,
+    ubuntu_qrt_kernel_aslr_collisions,
+    ubuntu_qrt_kernel_hardening,
+    ubuntu_qrt_kernel_panic,
+    ubuntu_qrt_kernel_security,
+    ubuntu_quota_smoke_test,
+    ubuntu_ramfs_stress,
+    ubuntu_seccomp,
+    ubuntu_squashfs_smoke_test,
     ubuntu_stress_smoke_test,
+    ubuntu_sysdig_smoke_test,
+    ubuntu_unionmount_ovlfs,
+    ubuntu_vfat_stress,
+    ubuntu_zfs_fstest,
+    ubuntu_zfs_smoke_test,
+    ubuntu_zfs_stress,
+    ubuntu_zfs_xfs_generic,
+    ubuntu_zram_smoke_test,
+    wb_kupdate,
+    ubuntu_xfstests_btrfs,
+    ubuntu_xfstests_ext4,
+    ubuntu_xfstests_xfs
 ]
