@@ -18,7 +18,7 @@ ubuntu_kvm_unit_tests:
                 unable to build on X/T i386 (bug 1798007)
     fozzie:
         <<: *kvm_unit_tests_i386
-    rizzo:
+    rizzo: &kvm_unit_tests_amd64
         apic:
             "FAIL apic":
                 apic (bug 1748103)
@@ -46,6 +46,8 @@ ubuntu_kvm_unit_tests:
         vmx_pending_event_test:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
+    onibi:
+       <<: *kvm_unit_tests_amd64
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all

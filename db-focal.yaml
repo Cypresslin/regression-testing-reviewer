@@ -43,6 +43,13 @@ ubuntu_boot:
                 kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
     kernel04:
         <<: *boot-s390x
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
 ubuntu_bpf:
     lagalla:
         test_maps:
@@ -616,6 +623,8 @@ ubuntu_sysdig_smoke_test:
             "FAILED (trace at least 25 reads of /dev/zero by dd)":
                 Failed on 5.4 (bug 1844493)
     rizzo:
+        <<: *sysdig_smoke
+    riccioli:
         <<: *sysdig_smoke
     baltar:
         <<: *sysdig_smoke

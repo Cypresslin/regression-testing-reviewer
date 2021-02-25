@@ -11,6 +11,14 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_boot:
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
 ubuntu_bpf:
     lagalla:
         test_maps: &bpf-test-maps
@@ -113,6 +121,8 @@ ubuntu_ltp:
             "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
                 zram03 failed to close file (bug 1887742)
     glameow:
+        <<: *ltp
+    gonzo:
         <<: *ltp
 ubuntu_ltp_syscalls:
     amaura: &ltp-syscalls
