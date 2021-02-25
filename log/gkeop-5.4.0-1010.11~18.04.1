@@ -1,0 +1,14 @@
+5.4.0-1010.11~18.04.1 - gkeop
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_fan_smoke_test - enable disable fan test failed (bug 1840904)
+  ubuntu_k8s_unit_tests - scheduler and spdy (bug 1824136)
+  ubuntu_kernel_selftests - memory-hotplug on some instances (bug 1866846) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) vxlan in rtnetlink.sh from net (bug 1905956) pmtu.sh marked as failed (bug 1887661) psock_snd.sh in net (bug 1892213) seccomp_bpf in seccomp failed to build (bug 1896420)
+  ubuntu_ltp - test timeouted with 4 hours threshold on jenkins (bug 1837206)
+  ubuntu_ltp_syscalls - msgstress03 (bug 1797341) semctl09 (bug 1910312)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs

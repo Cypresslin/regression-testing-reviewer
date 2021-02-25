@@ -1,0 +1,9 @@
+5.6.0-1048.52 - oem
+Regression test CMPL, RTB.
+
+15 / 16 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+
+Note:
+ * ubuntu_ltp unable to finish in time on Intel node

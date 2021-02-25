@@ -1,0 +1,9 @@
+5.10.0-1014.15 - oem
+Regression test CMPL, RTB.
+
+14 / 15 tests were run, missing: ubuntu_futex
+Issue to note in amd64:
+  ubuntu_ltp - ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_usage_in_bytes (bug 1829984) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+
+Note:
+ * Missing test due to deployment issue in CKCT

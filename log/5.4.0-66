@@ -1,0 +1,26 @@
+5.4.0-66.74 - generic
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+  ubuntu_ltp - ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+  ubuntu_sysdig_smoke_test - Failed on 5.4 (bug 1844493)
+
+3 / 13 tests were run, missing: rmaptest, synctest, ubuntu_blkdev_directio, ubuntu_blktrace_smoke_test, ubuntu_futex, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_ltp, ubuntu_stress_smoke_test
+Issue to note in arm64:
+  None
+
+Test case ubuntu_32_on_64 does not exist in the database, please check
+5 / 13 tests were run, missing: synctest, ubuntu_blkdev_directio, ubuntu_boot, ubuntu_kvm_smoke_test, ubuntu_kvm_unit_tests, ubuntu_leap_seconds, ubuntu_ltp, ubuntu_ramfs_stress, ubuntu_stress_smoke_test
+Issue to note in ppc64le:
+  ubuntu_32_on_64 - should be skipped on ppc
+
+5.4.0-66.74 - lowlatency
+Regression test CMPL, RTB.
+
+15 / 16 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+
+Note:
+  * Missing tests on PowerPC / ARM64 caused by broken nodes (gulpin, helo)
