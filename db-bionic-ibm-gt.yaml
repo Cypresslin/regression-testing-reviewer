@@ -155,20 +155,10 @@ ubuntu_ltp:
             "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
                 ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
-            "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
-                cpuacct_100_100 (bug 1829978)
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
-            "FAIL: mems: Test result - 0 Expected string":
-                cpuset_inherit (bug 1906504)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
-            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
-                memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
-            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
-                memcg_use_hierarchy (bug 1829989)
         net.ipv6_lib: &ltp-net
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -193,6 +183,19 @@ ubuntu_ltp:
             <<: *ltp-misc
             "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
                 zram03 failed to close file (bug 1887742)
+    gonzo:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        crypto:
+            <<: *ltp-crypto
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
     larry:
         fs:
             <<: *ltp-fs

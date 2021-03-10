@@ -19,12 +19,26 @@ hwclock:
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock
 ubuntu_boot:
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
     ms10-34-mcdivittB0-kernel: &boot-moonshots
         log_check:
             "WARNING: x1-x3 nonzero in violation of boot protocol:":
                 kernel warning message on boot with Moonshot nodes (bug 1888218)
     ms10-35-mcdivittB0-kernel:
         <<: *boot-moonshots
+    grumman:
+        log_check:
+            "drivers/dma/ioat/dca.c:342 ioat_dca_init":
+                log_check APICID_TAG_MAP set incorrectly by BIOS, disabling DCA (bug 1918686)
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
 ubuntu_fan_smoke_test:
     modoc:
         fan-smoke-test:
@@ -115,6 +129,8 @@ ubuntu_kvm_unit_tests:
         apic:
             "FAIL apic":
                 apic timeouted (bug 1748103)
+            "FAIL: x2apic id matches cpuid":
+                x2apic id does not match cpuid (bug 1918689)
         vmx_host_state_area:
             "FAIL vmx_host_state_area (timeout; duration=30)":
                 vmx_host_state_area (bug 1866585)
@@ -131,6 +147,17 @@ ubuntu_kvm_unit_tests:
         <<: *kvm_unit_tests_amd64
     grumman:
         <<: *kvm_unit_tests_amd64
+    rumford:
+        <<: *kvm_unit_tests_amd64
+        vmx:
+            "FAIL vmx (timeout; duration=90s)":
+                Subtest report for vmx_hlt_with_rvi_test (bug 1918691)
+        vmx_apic_passthrough_thread:
+            "FAIL: x86/vmx_tests.c:7705: Assertion failed":
+                ioapic_read_redir().remote_irr (bug 1918692)
+        vmx_hlt_with_rvi_test:
+            "FAIL vmx_hlt_with_rvi_test (timeout; duration=10)":
+                Test timed out without error message (bug 1918691)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls: &syscalls

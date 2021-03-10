@@ -16,6 +16,11 @@ monotonic_time:
         tsc:
             "TestFail: FAIL: tsc-worst-warp":
                 lodygin constantly failed with tsc test (bug 1732620)
+ubuntu_boot:
+    s2lp3:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 4097":
+                kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
 ubuntu_bpf:
     gonzo: &ubuntu-bpf
         test_maps:
@@ -103,6 +108,10 @@ ubuntu_kvm_unit_tests:
                 vmx_pending_event_test (bug 1866591)
     lagalla:
        <<: *kvm-unit-test
+    riccioli:
+        pcid:
+            "FAIL: Test on INVPCID when disabled":
+                pcid (bug 1827979)
 ubuntu_ltp:
     amaura:
         fs: &ltp-fs
@@ -154,6 +163,17 @@ ubuntu_ltp:
             <<: *ltp-controllers
         net.ipv6_lib:
             <<: *ltp-net
+    s2lp3:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+        net.ipv6_lib:
+            <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
 ubuntu_ltp_syscalls:
     amaura: &syscalls-amd64
         syscalls:
@@ -165,8 +185,6 @@ ubuntu_ltp_syscalls:
                 fanotify09 case 3 (bug 1876684)
             "msgstress03    1  TFAIL  :  msgstress03":
                 msgstress03 (bug 1797341)
-            "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
-                keyctl05 failed with FIPS mode on (bug 1892444)
             "TFAIL: MSG_INFO haven't returned a valid index:":
                 msgctl06 (bug 1908238)
             "TFAIL: The rd0 wasn't set on second PTRACE_POKEUSER":

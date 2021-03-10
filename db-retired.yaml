@@ -1152,6 +1152,14 @@ bionic-kvm:
             <<: *1765005-b-kvm
         gummo:
             <<: *1765005-b-kvm
+    ubuntu_kvm_unit_tests:
+        autovm1:
+            tsc_adjust:
+                "FAIL: MSR_IA32_TSC_ADJUST msr adjustment on tsc write":
+                    tsc_adjust (bug 1845902)
+            vmx_nm_test:
+                "FAIL vmx_nm_test (timeout; duration=30)":
+                    vmx_nm_test (bug 1872401)
     ubuntu_ltp:
         chico:
             fs:
@@ -1168,6 +1176,22 @@ bionic-kvm:
             kernel_misc:
                 "ltp_acpi 9 TFAIL":
                     ltp_acpi (bug 1830676)
+            sched:
+                "fork() (error: Resource temporarily unavailable)":
+                    hackbench01, hackbench02 (bug 1830675)
+                "thread_create failed: Resource temporarily unavailable (11)":
+                    hackbench01, hackbench02 (bug 1830675)
+            controllers:
+                "/opt/ltp/testcases/bin/cpuacct.sh: Cannot fork":
+                    cpuacct_100_100 (bug 1829978)
+                "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
+                    cpuset_hotplug (bug 1834006)
+                "FAIL: mems: Test result - 0 Expected string":
+                    cpuset_inherit (bug 1906504)
+                "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+                    memcg_stat (bug 1829983)
+                "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+                    memcg_use_hierarchy (bug 1829989)
     ubuntu_ltp_syscalls:
         chico:
             syscalls:
@@ -1526,6 +1550,8 @@ bionic-fips:
                     inotify08 (bug 1775784)
                 "fanotify09.c:202: FAIL: first group got more than 2 events":
                     fanotify09-2 (bug 1804594)
+                "FAIL: unexpected error adding 'asymmetric' key: EINVAL":
+                    keyctl05 failed with FIPS mode on (bug 1892444)
         s2lp6g002:
             syscalls:
                 "FAIL: Failed to create timer for CLOCK_BOOTTIME_ALARM":
@@ -1909,6 +1935,11 @@ focal-oem:
             setup:
                 "BPF obj compilation failed":
                     ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+    ubuntu_kernel_selftests:
+        rizzo:
+            net:
+                "ip_defrag.sh # exit=1":
+                    ip_defrag in net (bug 1908498)
     ubuntu_ltp_syscalls:
         rizzo:
             syscalls:
@@ -1927,6 +1958,8 @@ focal-oem:
             test-kernel-security.py:
                 "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
                     test_400_refcount_config (bug 1879339)
+                "FAIL: test_120_smep_works":
+                    test_120_smep_works on kili (bug 1880659)
     ubuntu_sysdig_smoke_test:
         glameow:
             sysdig-smoke-test:
