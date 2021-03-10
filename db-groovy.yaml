@@ -57,6 +57,10 @@ ubuntu_boot:
                 kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
     kernel04:
         <<: *boot-s390x
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
 ubuntu_bpf:
     lagalla: &bpf
         setup:
@@ -193,6 +197,14 @@ ubuntu_kvm_unit_tests:
     dryden:
         <<: *kvm_unit_tests_build
     wright-kernel:
+        <<: *kvm_unit_tests_build
+    grumman:
+        <<: *kvm_unit_tests_build
+    rumford:
+        <<: *kvm_unit_tests_build
+    entei:
+        <<: *kvm_unit_tests_build
+    kernel03:
         <<: *kvm_unit_tests_build
 ubuntu_ltp:
     amaura: &ltp-all
@@ -397,6 +409,29 @@ ubuntu_ltp:
                 af_alg07 / cve-2019-8912 (bug 1892860)
         kernel_misc:
             <<: *ltp-misc
+    entei:
+        fs:
+            <<: *ltp-fs
+            "tst_test.c:1334: TBROK: Test killed! (timeout?)":
+                fs_fill timeout with btrfs (bug 1878763)
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "TFAIL: unevictable is 0, 65536 expected":
+                memcg_stat failing to end a process (!nobug)
+            "TFAIL : ltpapicmd.c:188: failed to mount cpu subsystem...":
+                memcg_stat failure to mount /dev/cpuctl
+            "memcg_control 1 TFAIL : ltpapicmd.c:188: Test #1: failed":
+                That probably is above
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            <<: *ltp-net
+        crypto:
+            <<: *ltp-crypto
+        kernel_misc:
+            <<: *ltp-misc
     dryden:
         fs:
             <<: *ltp-fs
@@ -456,6 +491,24 @@ ubuntu_ltp:
                 cpuhotplug03 (bug 1836167)
         net.ipv6_lib:
             <<: *ltp-net
+        kernel_misc:
+            <<: *ltp-misc
+    kernel03:
+        fs:
+            <<: *ltp-fs
+        mm:
+            <<: *ltp-mm
+        controllers:
+            <<: *ltp-controllers
+            "/opt/ltp/testcases/bin/cpuacct.sh":
+                cpuacct_100_100 (bug 1829978)
+            "memcg_stat_rss 4 TBROK: timeouted":
+                memcg_stat_rss (bug 1837035)
+        commands:
+            <<: *ltp-commands
+        net.ipv6_lib:
+            "getaddrinfo_01   12 TFAIL":
+                getaddrinfo_01 (bug 1829995)
         kernel_misc:
             <<: *ltp-misc
     kernel04:
