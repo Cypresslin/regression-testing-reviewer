@@ -47,7 +47,12 @@ ubuntu_kvm_unit_tests:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
     onibi:
-       <<: *kvm_unit_tests_amd64
+        <<: *kvm_unit_tests_amd64
+    gonzo:
+        <<: *kvm_unit_tests_amd64
+        svm:
+            "FAIL: tsc_adjust":
+                svm (tsc_adjust) on gonzo (bug 1821903)
 ubuntu_ltp_syscalls:
     amaura: &syscalls-x86
         syscalls: &syscalls-all

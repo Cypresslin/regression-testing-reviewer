@@ -34,21 +34,21 @@ ubuntu_kernel_selftests:
     zeppo:
         <<: *ubuntu_kernel_selftests
 ubuntu_kvm_unit_tests:
-    autovm1:
+    autovm1: &kvm-unit-test
         apic:
             "FAIL apic (timeout":
                 apic timeouted (bug 1748103)
+        apic-split:
+            "FAIL apic-split (timeout; duration=90s)":
+                apic-split timeouted (bug 1821390)
         memory:
             "FAIL memory":
                 memory (bug 1845687)
         port80:
             "FAIL port80":
                 port80 timeouted (bug 1748105)
-        tsc_adjust:
-            "FAIL: MSR_IA32_TSC_ADJUST msr adjustment on tsc write":
-                tsc_adjust (bug 1845902)
         vmx:
-            "FAIL vmx (timeout; duration=90s)":
+            "FAIL vmx":
                 vmx (bug 1821394)
         vmx_apic_passthrough_thread:
             "FAIL vmx_apic_passthrough_thread":
@@ -62,25 +62,19 @@ ubuntu_kvm_unit_tests:
         vmx_intr_window_test:
             "FAIL vmx_intr_window_test (timeout; duration=30)":
                 vmx_intr_window_test (bug 1866586)
-        vmx_nm_test:
-            "FAIL vmx_nm_test (timeout; duration=30)":
-                vmx_nm_test (bug 1866587)
         vmx_nmi_window_test:
             "FAIL vmx_nmi_window_test (timeout; duration=30)":
                 vmx_nmi_window_test (bug 1866588)
         vmx_pending_event_test:
             "FAIL: x86/vmx_tests.c:":
                 vmx_pending_event_test (bug 1866591)
+    autovm4:
+        <<: *kvm-unit-test
 ubuntu_ltp:
     autovm1: &ltp
         fs:
             "proc01      1  TFAIL":
                 proc01 (bug 1829849)
-        sched:
-            "fork() (error: Resource temporarily unavailable)":
-                hackbench01, hackbench02 (bug 1830675)
-            "thread_create failed: Resource temporarily unavailable (11)":
-                hackbench01, hackbench02 (bug 1830675)
         containers:
             "netns_sysfs 1 TBROK: failed to add a new (host) dummy device":
                 netns_sysfs (bug 1830678)
@@ -108,8 +102,6 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1868707)
-            "zram01 1 TBROK: test killed":
-                zram01 / zram02 / zram03 failed on slow system (bug 1854706)
     autovm4:
         <<: *ltp
     gummo:

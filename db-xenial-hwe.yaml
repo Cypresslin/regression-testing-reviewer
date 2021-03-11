@@ -19,6 +19,13 @@ hwclock:
     ms10-35-mcdivittB0-kernel:
         <<: *hwclock
 ubuntu_boot:
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
     ms10-34-mcdivittB0-kernel: &boot-moonshots
         log_check:
             "WARNING: x1-x3 nonzero in violation of boot protocol:":
