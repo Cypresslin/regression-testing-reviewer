@@ -420,10 +420,10 @@ ubuntu_ltp:
             <<: *ltp-controllers
             "TFAIL: unevictable is 0, 65536 expected":
                 memcg_stat failing to end a process (!nobug)
-            "TFAIL : ltpapicmd.c:188: failed to mount cpu subsystem...":
-                memcg_stat failure to mount /dev/cpuctl
-            "memcg_control 1 TFAIL : ltpapicmd.c:188: Test #1: failed":
-                That probably is above
+            "/opt/ltp/testcases/bin/run_cpuacct_test.sh: No such file or directory":
+                controllers test (bug 1918610)
+            "memcg_control    1  TFAIL  :  ltpapicmd.c:188: Test #1: failed":
+                memcg_control (!nobug, controller test in under rework)
         commands:
             <<: *ltp-commands
         net.ipv6_lib:
