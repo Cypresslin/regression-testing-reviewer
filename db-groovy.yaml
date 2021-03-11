@@ -61,6 +61,13 @@ ubuntu_boot:
         kernel_tainted:
             "ERROR: kernel tainted flag != 0: 2048":
                 kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+    starmie-kernel:
+        log_check:
+            "WARNING: CPU: 0 PID: 1 at arch/arm64/kernel/efi.c":
+                generic-64k kernel cause warning (bug 1918620)
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 512":
+                kernel tainted because of warning issued for this generic-64k kernel (bug 1918620)
 ubuntu_bpf:
     lagalla: &bpf
         setup:
