@@ -1,0 +1,16 @@
+5.4.0-1039.42~18.04.1 - oracle
+Regression test CMPL, RTB.
+
+Issue to note in oracle (amd64):
+  ubuntu_kernel_selftests - memory-hotplug timeout on BM.Standard2.52 (bug 1866846) test_bpf failed with cloud kernels in net (bug 1812189) ip6gretap / erspan / ip6erspan in rtnetlink.sh from net (bug 1896448) test_blackhole_dev in net (bug 1851619) pmtu.sh marked as failed (bug 1887661) psock_snd.sh in net (bug 1892213) seccomp_bpf in seccomp failed to build (bug 1896420)
+  ubuntu_kvm_unit_tests - 2,11 failures: apic timeouted (bug 1748103) apic-split timeouted (bug 1821390) ept (bug 1824228) hyperv_stimer (bug 1827982) hyperv_synic (bug 1827980) memory (bug 1831449) pcid (bug 1827979) port80 (bug 1845688) vmx (bug 1821394) vmx_host_state_area (bug 1866585) vmx_nm_test (bug 1872419) vmx_apicv_test (bug 1827866)
+  ubunut_ltp - ksm03 ksm03_1 ksm04 ksm04_1 in mm (bug 1884742) cpuacct_100_100 (bug 1829978) memcg_max_usage_in_bytes (bug 1829979) memcg_stat_rss (bug 1837035) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) cve-2018-1000204 timeout on VM.DenseIO2.8 (bug 1899413) crypto_user02 (bug 1837543) tpci (bug 1868707) zram03 on VM.DenseIO2.8 (bug 1887742)
+  ubuntu_ltp_syscalls - semctl09 (bug 1910312)
+  ubuntu_lxc - lxc-test-device-add-remove from ubuntu_lxc (bug 1884024)
+  ubuntu_sysdig_smoke_test - failed to trace read / write (bug 1844493)
+
+Skipped / blacklisted:
+ * libhugetlbfs
+
+Note:
+ * ubuntu_kernel_selftests needs to be reviewed on jenkins directly (bug 1909057)

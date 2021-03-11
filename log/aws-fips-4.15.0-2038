@@ -1,0 +1,12 @@
+4.15.0-2038.40 - aws-fips
+Regression test CMPL, RTB.
+
+Issue to note in x86_64 (aws):
+  ubuntu_bpf - test_map in ubuntu_bpf failed with "Allowed update sockmap 'x:x' not in ESTABLISHED (bug 1839912)
+  ubuntu_kernel_selftests - raw_skew test in timers bail out on some instances (bug 1882511) memory-hotplug failed on t3a.2xlarge only
+  ubuntu_kvm_unit_tests - 7 failures: vmx (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) on bare-metal nodes
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuacct_100_100 (bug 1829978) cpuset_hotplug on some instances (bug 1834006) memcg_max_usage_in_bytes (bug 1829979) memcg_usage_in_bytes (bug 1829984) cgroup_fj_function_memory cause cgroup_fj_stress_memory* failed on i3en.24xlarge and t2.small (bug 1899465) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1868707)
+  ubuntu_ltp_syscalls - clock_nanosleep02 on c5.metal btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) move_pages12 on some instances like i3en.24xlarge (bug 1831043) futex_wake04 on c5.metal (bug 1892165) msgctl06 (bug 1908238) msgstress03 on some instances (bug 1783881) move_pages12 on some instance (bug 1831043) pkey01 on bare-metal instances (c5.metal) ptrace10 (bug 1900951) semctl09 (bug 1910312) shmctl04 (bug 1895276)
+
+Skipped / blacklisted:
+ * libhugetlbfs

@@ -1,0 +1,13 @@
+4.15.0-1054.62 - fips
+Regression test CMPL, RTB.
+
+16 / 17 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - pcid (bug 1827979)
+
+Issue to note in s390x:
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+
+Note:
+* ubuntu_ltp timeout on node rizzo

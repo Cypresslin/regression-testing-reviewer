@@ -1,0 +1,9 @@
+4.4.0-1089.98 - kvm
+Regression test CMPL, RTB.
+
+13 / 14 tests were run, missing: ubuntu_kvm_unit_tests
+Issue to note in amd64:
+  None
+
+Note:
+ * ubuntu_kvm_unit_tests crashed with vmx_nm_tests (bug 1872401)
