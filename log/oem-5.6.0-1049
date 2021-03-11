@@ -1,0 +1,9 @@
+5.6.0-1049.53 - oem
+Regression test CMPL, RTB.
+
+14 / 16 tests were run, missing: ubuntu_boot, ubuntu_ltp
+Issue to note in amd64:
+  None
+
+Note:
+ * ubuntu_ltp unable to finish in time on Intel node

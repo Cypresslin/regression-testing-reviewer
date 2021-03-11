@@ -1,0 +1,11 @@
+4.15.0-1094.107~16.04.1 - gcp
+Regression test CMPL, RTB.
+
+Issue to note in gcp:
+  ubuntu_k8s_unit_tests - test failed with context package not found in go (bug 1850105)
+  ubuntu_ltp_syscalls - btrfs fill_fs test in fallocate06 (bug 1866323) fanotify09 case 3 (bug 1876684) mallinfo01 (bug 1917425) msgctl06 (bug 1908238) ptrace10 (bug 1900951) semctl09 (bug 1910312) shmctl04 (bug 1895276)
+  ubuntu_lxc - Unable to fetch GPG key from keyserver on n1-highcpu-32, n1-highmem-16, n1-standard-8 only
+
+Skipped / blacklisted:
+ * ubuntu_bpf
+ * ubuntu_ltp

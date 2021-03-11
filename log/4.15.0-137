@@ -1,0 +1,42 @@
+4.15.0-137.141 - generic
+Regression test CMPL, RTB.
+
+15 / 16 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+  ubuntu_kvm_unit_tests - vmx timeout (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test timeout (bug 1822308) vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591)
+
+12 / 13 tests were run, missing: ubuntu_ltp
+Issue to note in arm64:
+  None
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - hyperv_connections on i386 (bug 1822235) hyperv_stimer on i386 (bug 1822235) hyperv_synic timeout on i386 (bug 1892855) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_move_charge_at_immigrate_test (bug 1837037) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) zram02 (bug 1878896) tpci (bug 1878389)
+
+Test case iosched_bugs, ubuntu_32_on_64, ubuntu_cve_kernel does not exist in the database, please check
+Issue to note in ppc64le:
+  iosched_bugs - should be skipped on PowerPC
+  ubuntu_32_on_64 - should be skipped on PowerPC
+  ubuntu_cve_kernel - should be skipped on PowerPC
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543)
+
+12 / 13 tests were run, missing: ubuntu_boot
+Issue to note in s390x:
+  ubuntu_kvm_unit_tests - skey failed (bug 1778705)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) cpuset_hotplug (bug 1834006) tpci (bug 1878389) memcg_max_usage_in_bytes (bug 1829979) getaddrinfo_01 (bug 1829995)
+
+4.15.0-137.141 - lowlatency
+Regression test CMPL, RTB.
+
+15 / 16 tests were run, missing: ubuntu_ltp
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+  ubuntu_kvm_unit_tests - vmx_host_state_area (bug 1866585) vmx_intr_window_test (bug 1866586) vmx_nmi_window_test (bug 1866588) vmx_pending_event_test (bug 1866591) vmx timeout (bug 1821394) vmx_apic_passthrough_thread (bug 1822309) vmx_hlt_with_rvi_test timeout (bug 1822308)
+
+Issue to note in i386:
+  ubuntu_kvm_unit_tests - hyperv_connections on i386 (bug 1822235) hyperv_stimer on i386 (bug 1822235) hyperv_synic timeout on i386 (bug 1892855) msr on i386 (bug 1822235) vmexit_cpuid on i386 (bug 1822235) vmexit_inl_pmtimer on i386 (bug 1822235) vmexit_ipi on i386 (bug 1822235) vmexit_ipi_halt on i386 (bug 1822235) vmexit_mov_from_cr8 on i386 (bug 1822235) vmexit_mov_to_cr8 on i386 (bug 1822235) vmexit_ple_round_robin on i386 (bug 1822235) vmexit_tscdeadline on i386 (bug 1822235) vmexit_tscdeadline_immed on i386 (bug 1822235) vmexit_vmcall on i386 (bug 1822235)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) zram02 (bug 1878896) tpci (bug 1878389)
+
+Note:
+* ubuntu_ltp timeout on some nodes

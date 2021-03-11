@@ -1,0 +1,14 @@
+4.4.0-1057.63 - fips
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_unit_tests - apic timeouted (bug 1748103) debug (bug 1821906)
+
+Issue to note in ppc64le:
+  None
+
+Issue to note in s390x:
+  ubuntu_boot - kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
+  ubuntu_kvm_smoke_test - uvtool issue (bug 1729854)
+
+

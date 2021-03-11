@@ -1,0 +1,7 @@
+4.15.0-1085.94 - ibm-gt
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kvm_smoke_test - failed with libvirt - unsupported configuration (bug 1896153)
+  ubuntu_ltp - proc01 (bug 1829849) ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_usage_in_bytes (bug 1829984) getaddrinfo_01 (bug 1829995) crypto_user02 (bug 1837543) tpci (bug 1878389)
+
