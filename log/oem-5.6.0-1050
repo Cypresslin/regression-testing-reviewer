@@ -1,0 +1,8 @@
+5.6.0-1050.54 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_boot - kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+  ubuntu_kernel_selftests - xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010) ip_defrag in net failed with 255 (bug 1919147) l2tp.sh in net not executable (bug 1880631) icmp_redirect.sh (bug 1880645) psock_snd.sh failed in net (bug 1884234) Kprobe event parser error log check in ftrace (bug 1879345)
+  ubuntu_ltp - ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742) memcg_max_usage_in_bytes (bug 1829979) memcg_usage_in_bytes (bug 1829984) cpuset_memory_spread (bug 1830585) mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610) cpuhotplug03 in cpuhotplug (bug 1836167) getaddrinfo_01 (bug 1829995) af_alg07 and cve-2019-8912 (bug 1892860) crypto_user02 (bug 1837543) tpci (bug 1878389)
+
