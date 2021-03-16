@@ -1935,6 +1935,11 @@ focal-oem:
             setup:
                 "BPF obj compilation failed":
                     ubuntu_bpf failed to build on F-OEM-5.6 (bug 1879360)
+    ubuntu_kernel_selftests:
+        rizzo:
+            net:
+                "ip_defrag.sh # exit=1":
+                    ip_defrag in net (bug 1908498)
     ubuntu_ltp_syscalls:
         rizzo:
             syscalls:
@@ -1953,6 +1958,8 @@ focal-oem:
             test-kernel-security.py:
                 "FAIL: test_400_refcount_config (__main__.KernelSecurityConfigTest)":
                     test_400_refcount_config (bug 1879339)
+                "FAIL: test_120_smep_works":
+                    test_120_smep_works on kili (bug 1880659)
     ubuntu_sysdig_smoke_test:
         glameow:
             sysdig-smoke-test:

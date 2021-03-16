@@ -1,4 +1,4 @@
-# 5.6 Focal OEM
+# 5.6 / 5.10 Focal OEM
 # Format:
 # test-suite:
 #   sut:
@@ -46,8 +46,8 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "ip_defrag.sh # exit=1":
-                ip_defrag in net (bug 1908498)
+            "ip_defrag.sh # exit=255":
+                ip_defrag in net failed with 255 (bug 1919147)
             "Warning: file l2tp.sh is not executable, correct this.":
                 l2tp.sh in net not executable (bug 1880631)
             "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
@@ -66,6 +66,12 @@ ubuntu_kernel_selftests:
                 traceon/off triggers in ftrace (bug 1876687)
     glameow:
         <<: *kselftests
+    spitfire:
+        <<: *kselftests
+#    spitfire:
+#        net:
+#            "Cannot find a vmlinux for VMLINUX_BTF ":
+#                net test failed to build due to bpf (bug 1919122)
 ubuntu_kvm_unit_tests:
     rizzo:
         vmx_host_state_area:
@@ -84,12 +90,14 @@ ubuntu_ltp:
                 cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
-            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+            "memcg_stat_test 5 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
-            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+            "memcg_use_hierarchy_test 1 TFAIL: process  is not killed":
                 memcg_use_hierarchy (bug 1829989)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
             "memcg_stat_rss 7 TFAIL: rss is":
                 memcg_stat_rss (bug 1837035)
             "cpuset_check_domains    1  TFAIL":
@@ -124,6 +132,8 @@ ubuntu_ltp:
         <<: *ltp
     gonzo:
         <<: *ltp
+    spitfire:
+        <<: *ltp
 ubuntu_ltp_syscalls:
     amaura: &ltp-syscalls
         syscalls:
@@ -147,8 +157,6 @@ ubuntu_qrt_kernel_security:
     kili:
         test-kernel-security.py:
             <<: *qrt_kernel_security
-            "FAIL: test_120_smep_works":
-                test_120_smep_works on kili (bug 1880659)
     glameow:
         test-kernel-security.py:
             <<: *qrt_kernel_security

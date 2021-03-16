@@ -212,7 +212,6 @@ focal:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -1308,6 +1307,7 @@ full-list: [
     ubuntu_leap_seconds,
     ubuntu_loop_smoke_test,
     ubuntu_ltp,
+    ubuntu_ltp_stable,
     ubuntu_ltp_syscalls,
     ubuntu_lttng_smoke_test,
     ubuntu_lxc,
