@@ -269,7 +269,10 @@ focal-hwe:
         ? ubuntu_xfstests_btrfs
         ? ubuntu_xfstests_ext4
         ? ubuntu_xfstests_xfs
-focal-oem:
+focal-oem-5.6:
+    amd64:
+        <<: *f-amd64
+focal-oem-5.10:
     amd64:
         <<: *f-amd64
 focal-fips:

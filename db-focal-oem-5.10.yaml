@@ -11,6 +11,14 @@
 #       "errmsg2":
 #         reason
 #
+ubuntu_boot:
+    grumman:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 2048":
+                kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1912316)
 ubuntu_bpf:
     lagalla:
         test_maps: &bpf-test-maps
@@ -32,31 +40,14 @@ ubuntu_bpf:
 ubuntu_kernel_selftests:
     rizzo: &kselftests
         net:
-            "selftests: net: xfrm_policy.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: pmtu.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "selftests: net: udpgso_bench.sh # TIMEOUT":
-                xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "ip_defrag.sh # exit=1":
-                ip_defrag in net (bug 1826848)
-            "Warning: file l2tp.sh is not executable, correct this.":
-                l2tp.sh in net not executable (bug 1880631)
-            "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
-                icmp_redirect.sh (bug 1880645)
-            "net: fib_nexthop_multiprefix.sh # exit=1":
-                fib_nexthop_multiprefix.sh (bug 1880648)
-            "psock_snd.sh # exit=1":
-                psock_snd.sh failed in net (bug 1884234)
+            "Cannot find a vmlinux for VMLINUX_BTF ":
+                net test failed to build due to bpf (bug 1919122)
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
-        ftrace:
-            "Kprobe event parser error log check	[FAIL]":
-                Kprobe event parser error log check in ftrace (bug 1879345)
-            "ftrace - test for function traceon/off triggers	[FAIL]":
-                traceon/off triggers in ftrace (bug 1876687)
     glameow:
+        <<: *kselftests
+    spitfire:
         <<: *kselftests
 ubuntu_kvm_unit_tests:
     rizzo:
@@ -65,37 +56,26 @@ ubuntu_kvm_unit_tests:
                 vmx_host_state_area (bug 1866585)
 ubuntu_ltp:
     amaura: &ltp
-        fs: &ltp-fs
-            "proc01      1  TFAIL":
-                proc01 (bug 1829849)
         mm: &ltp-mm
             "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
                 ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
         controllers: &ltp-controllers
-            "cpuset_hotplug 1 TFAIL: task's allowed list isn't expected.":
-                cpuset_hotplug (bug 1834006)
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
-            "memcg_stat_test 6 TFAIL: hierarchical_memory_limit is":
+            "memcg_stat_test 5 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
                 memcg_usage_in_bytes (bug 1829984)
-            "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
+            "memcg_use_hierarchy_test 1 TFAIL: process  is not killed":
                 memcg_use_hierarchy (bug 1829989)
-            "memcg_stat_rss 7 TFAIL: rss is":
-                memcg_stat_rss (bug 1837035)
-            "cpuset_check_domains    1  TFAIL":
-                cpuset_sched_domains (bug 1830361)
-            "cpuset_load_balance 1 TFAIL: load balance test failed.":
-                cpuset_load_balance (bug 1830360)
-        cpuhotplug:
-            "TFAIL: No cpuhotplug_do_spin_loop processes found on":
-                cpuhotplug03 in cpuhotplug (bug 1836167)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
             "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 in cpuhotplug (bug 1836167)
         net.ipv6_lib: &ltp-net-ipv6-lib
             "getaddrinfo_01    2  TFAIL":
                 getaddrinfo_01 (bug 1829995)
@@ -110,9 +90,9 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
-            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
-                zram03 failed to close file (bug 1887742)
     glameow:
+        <<: *ltp
+    spitfire:
         <<: *ltp
 ubuntu_ltp_syscalls:
     amaura: &ltp-syscalls

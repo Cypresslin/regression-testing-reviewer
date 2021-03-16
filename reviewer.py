@@ -54,8 +54,10 @@ parser.add_argument('--edge', action='store_const', dest='flag', const='-edge',
                     help='Get only Edge kernel result')
 parser.add_argument('--kvm', action='store_const', dest='flag', const='-kvm',
                     help='Get only KVM kernel result')
-parser.add_argument('--oem', action='store_const', dest='flag', const='-oem',
-                    help='Get only OEM kernel result')
+parser.add_argument('--oem-5.6', action='store_const', dest='flag', const='-oem-5.6',
+                    help='Get only 5.6 OEM kernel result')
+parser.add_argument('--oem-5.10', action='store_const', dest='flag', const='-oem-5.10',
+                    help='Get only 5.10 OEM kernel result')
 parser.add_argument('--oem-osp1', action='store_const', dest='flag', const='-oem-osp1',
                     help='Get only OEM OSP1 kernel result')
 parser.add_argument('--fips', action='store_const', dest='flag', const='-fips',
@@ -75,8 +77,9 @@ args = parser.parse_args()
 filters = {'-hwe': '~',
            '-edge': '5.4.0-.*~',
            '-kvm': ' - kvm',
-           '-oem': ' - oem',
-           '-oem-osp1': ' - oem-osp1',
+           '-oem-5.6': '5.6.0-.* - oem',
+           '-oem-5.10': '5.10.0-.* - oem',
+           '-oem-osp1': '.* - oem-osp1',
            '-fips': ' - fips',
            '-ibm-gt': ' - ibm-gt'}
 highlighted = False
@@ -106,7 +109,7 @@ for kernel in report[target_distro]:
     # flavour filter
     if args.flag:
         if 'oem' in filters[args.flag]:
-            if not kernel.endswith(filters[args.flag]):
+            if not re.match(filters[args.flag], kernel):
                 continue
         elif args.flag == '-edge':
             if not re.match(filters[args.flag], kernel):

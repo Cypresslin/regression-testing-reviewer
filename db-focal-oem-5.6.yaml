@@ -1,4 +1,4 @@
-# 5.6 / 5.10 Focal OEM
+# 5.6 Focal OEM
 # Format:
 # test-suite:
 #   sut:
@@ -68,10 +68,6 @@ ubuntu_kernel_selftests:
         <<: *kselftests
     spitfire:
         <<: *kselftests
-#    spitfire:
-#        net:
-#            "Cannot find a vmlinux for VMLINUX_BTF ":
-#                net test failed to build due to bpf (bug 1919122)
 ubuntu_kvm_unit_tests:
     rizzo:
         vmx_host_state_area:
