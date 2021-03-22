@@ -1050,13 +1050,23 @@ trusty:
         ? hwclock
         ? iperf
         ? ipv6connect
+        ? libhugetlbfs
+        ? rtc
+        ? signaltest
+        ? ubuntu_aufs_smoke_test
         ? ubuntu_bpf
         ? ubuntu_bpf_jit
+        ? ubuntu_btrfs_kernel_fixes
+        ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
+        ? ubuntu_docker_smoke_test
+        ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
+        ? ubuntu_ftrace_smoke_test
         ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -1068,7 +1078,6 @@ trusty:
         ? ubuntu_qrt_kernel_panic
         ? ubuntu_qrt_kernel_security
         ? ubuntu_quota_smoke_test
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_squashfs_smoke_test
         ? ubuntu_sysdig_smoke_test
