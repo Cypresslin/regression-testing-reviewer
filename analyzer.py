@@ -20,6 +20,10 @@ def testsuite_validator(fullname, arch, testcases):
         if arch in db[fullname]:
             exclude = db[fullname][arch].keys()
             expected = list(set(expected) - set(exclude))
+        else:
+            print("Arch {} not recorded in db-testcases.yaml, possible reason:".format(arch))
+            print("    1. You might need to be add this to db-testcases.yaml")
+            print("    2. This kernel should not be tested with this arch, e.g. non-x86 on T-ESM")
     total = len(expected)
     tested = len(testcases)
     extra = list(set(testcases) - set(expected))
