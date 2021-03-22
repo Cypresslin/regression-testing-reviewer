@@ -21,7 +21,6 @@ hirsute:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -87,7 +86,6 @@ groovy:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -162,6 +160,7 @@ groovy:
         ? ubuntu_kvm_unit_tests
         ? ubuntu_leap_seconds
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lxc
         ? ubuntu_qrt_apparmor
@@ -589,7 +588,6 @@ bionic:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -835,9 +833,9 @@ xenial:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -925,6 +923,7 @@ xenial-edge:
         ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -979,6 +978,7 @@ xenial-kvm:
         ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_lttng_smoke_test
 xenial-fips:
     amd64: &x-fips-amd64
@@ -1004,6 +1004,7 @@ xenial-fips:
         ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -1040,6 +1041,7 @@ xenial-fips:
         ? ubuntu_btrfs_kernel_fixes
         ? ubuntu_cve_kernel
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
 trusty:
     amd64: &t-amd64
         ? aio_dio_bugs
@@ -1130,6 +1132,7 @@ trusty-hwe:
         ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -1194,6 +1197,7 @@ precise-hwe:
         ? ubuntu_kvm_unit_tests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
@@ -1245,6 +1249,7 @@ precise-hwe:
         ? ubuntu_kvm_unit_tests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
+        ? ubuntu_ltp_stable
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
         ? ubuntu_lxc
