@@ -28,7 +28,7 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
                 hwclock test failed due to 0.x sec differences / time out waiting for time change (bug 1802233)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)

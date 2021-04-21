@@ -110,7 +110,7 @@ ubuntu_kernel_selftests:
     s2lp4:
         <<: *selftest-s390x
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
+    mcdivitt35-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
@@ -394,7 +394,7 @@ ubuntu_ltp_syscalls:
     hotdog-kernel:
         syscalls:
             <<: *syscalls-all
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         syscalls:
             <<: *syscalls-all
     modoc:

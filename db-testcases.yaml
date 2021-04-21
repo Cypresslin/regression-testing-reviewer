@@ -273,7 +273,9 @@ focal-oem-5.6:
         <<: *f-amd64
 focal-oem-5.10:
     amd64:
-        <<: *f-amd64
+        ? libhugetlbfs
+        ? fips_test
+        ? ubuntu_ecryptfs
 focal-fips:
     amd64: &f-fips-amd64
         ? libhugetlbfs
@@ -1001,7 +1003,6 @@ xenial-fips:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
         ? ubuntu_ltp_stable
@@ -1097,15 +1098,6 @@ trusty:
     i386:
         <<: *t-amd64
         ? ubuntu_32_on_64
-    ppc64le: &t-non-x86
-        <<: *t-amd64
-        ? iosched_bugs
-        ? monotonic_time
-        ? ubuntu_32_on_64
-    arm64:
-        <<: *t-non-x86
-        ? ubuntu_ftrace_smoke_test
-        ? ubuntu_seccomp
 trusty-hwe:
     amd64: &t-hwe-amd64
         ? aio_dio_bugs
@@ -1190,6 +1182,7 @@ precise-hwe:
         ? ubuntu_cts_kernel
         ? ubuntu_cve_kernel
         ? ubuntu_docker_smoke_test
+        ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_futex
         ? ubuntu_kernel_selftests
@@ -1209,7 +1202,6 @@ precise-hwe:
         ? ubuntu_qrt_kernel_panic
         ? ubuntu_qrt_kernel_security
         ? ubuntu_quota_smoke_test
-        ? ubuntu_ramfs_stress
         ? ubuntu_seccomp
         ? ubuntu_squashfs_smoke_test
         ? ubuntu_sysdig_smoke_test

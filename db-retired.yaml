@@ -21,7 +21,7 @@ precise-hwe:
                     test_095_kernel_symbols_missing_proc_self_stack (bug 1813001)
 trusty:
     ubuntu_qrt_kernel_security:
-        ms10-35-mcdivittB0-kernel:
+        mcdivitt35-kernel:
             test-kernel-security.py:
                 "skipped: ARM64 older than 4.4 has READ_IMPLIES_EXEC personality set) FAIL":
                     test 060 should be skipped (bug 1712038)
@@ -134,7 +134,7 @@ trusty-hwe:
                 "There is no download available":
                     failed because no cloud image for non-x86 (bug 1855871)
     ubuntu_qrt_apparmor:
-        ms10-35-mcdivittB0-kernel:
+        mcdivitt35-kernel:
             test-apparmor.py:
                 "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
                     test_old_trusty_regression_testsuite failed to build (bug 1699987)
@@ -143,7 +143,7 @@ trusty-hwe:
             test-kernel-security.py:
                 "AssertionError: BINFMT_AOUT option was expected to be set in the kernel config":
                     BINFMT_AOUT should be set (bug 1824306)
-        ms10-35-mcdivittB0-kernel:
+        mcdivitt35-kernel:
             test-kernel-security.py:
                 "AssertionError: CC_STACKPROTECTOR option was expected to be unset in the kernel config":
                     STACKPROTECTOR should be unset (bug 1789353)
@@ -237,7 +237,7 @@ xenial:
                 "SECURITY_SELINUX_DISABLE option was expected to be set":
                     SECURITY_SELINUX_DISABLE option should be enable on X s390x (bug 1813721)
     ubuntu_ltp_syscalls:
-        ms10-35-mcdivittB0-kernel:
+        mcdivitt35-kernel:
             syscalls: &syscalls-x
                 "FAIL: add_key(test_max) failed unexpectedly: EDQUOT (122)":
                     add_key05 (bug 1869644)
@@ -310,7 +310,7 @@ xenial:
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             <<: *1732370-x
 xenial-hwe:
     monotonic_time:
@@ -400,7 +400,7 @@ xenial-hwe:
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             <<: *1732370-x-hwe
 xenial-edge:
     ubuntu_kernel_selftests:
@@ -452,7 +452,7 @@ xenial-edge:
             <<: *1765673-x-edge
         entei:
             <<: *1765673-x-edge
-        ms10-35-mcdivittB0-kernel:
+        mcdivitt35-kernel:
             <<: *1765673-x-edge
         wright-kernel:
             <<: *1765673-x-edge
@@ -481,7 +481,7 @@ xenial-edge:
             <<: *1751243-x-edge
         starmie-kernel:
             <<: *1751243-x-edge
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             <<: *1751243-x-edge
 xenial-fips:
     ubuntu_kernel_selftests:
@@ -641,7 +641,7 @@ artful:
         s2lp6g004:
             <<: *1689240-a
     ubuntu_kernel_selftests:
-        ms10-34-mcdivittB0-kernel: &1680507-a
+        mcdivitt34-kernel: &1680507-a
             breakpoints:
                 "error: ‘TRAP_HWBKPT’ undeclared":
                     breakpoint test failed to build (bug 1680507)
@@ -652,7 +652,7 @@ artful:
             079:
                 "acl: Function not implemented":
                     failed with test 079 (bug 1732370)
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             <<: *1732370-a
 bionic:
     aio_dio_bugs:
@@ -744,7 +744,7 @@ bionic:
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
                 "error: field ‘regs’ has incomplete type":
                     failed to build on ARM64 (bug 1675395)
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             ubuntu-bjf:
                 "libbpf: failed to open ./sockmap_parse_prog.o: No such file or directory":
                     test_maps in ubuntu_bpf failed on Bionic (bug 1775837)
@@ -769,7 +769,7 @@ bionic:
                 "fanatic docker test(--dns=10.245.80.1): FAILED (fanatic enable-docker returned 1)":
                     fanatic docker test in ubuntu_fan_smoke_test failed on Bionic s390x (bug 1775847)
     ubuntu_kernel_selftests:
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             net:
                 "FAIL: can't add fou port 7777":
                     kci_test_encap_fou() from rtnetlink.sh in net (bug 1891421)
@@ -1032,7 +1032,7 @@ bionic:
             079:
                 "acl: Function not implemented":
                     failen with test 079 (bug 1732370)
-        ms10-34-mcdivittB0-kernel:
+        mcdivitt34-kernel:
             <<: *1732370-b
 bionic-ibm-gt:
     ubuntu_kvm_smoke_test:
@@ -1924,7 +1924,7 @@ focal-kvm:
                     fanotify09 case 3 (bug 1876684)
                 "FAIL: got unnecessary event:":
                     fanotify15 (bug 1878748)
-focal-oem:
+focal-oem-5.6:
     ubuntu_aufs_smoke_test:
         onibi:
             aufs-smoke-test:
@@ -1940,6 +1940,10 @@ focal-oem:
             net:
                 "ip_defrag.sh # exit=1":
                     ip_defrag in net (bug 1908498)
+                "ip_defrag.sh # exit=255":
+                    ip_defrag in net failed with 255 (bug 1919147)
+                "Warning: file l2tp.sh is not executable, correct this.":
+                    l2tp.sh in net not executable (bug 1880631)
     ubuntu_ltp_syscalls:
         rizzo:
             syscalls:

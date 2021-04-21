@@ -37,6 +37,10 @@ ubuntu_bpf:
             <<: *bpf-test-verifier
         test_maps:
             <<: *bpf-test-maps
+    spitfire:
+        setup:
+            "make: *** [Makefile:163: all] Error 1":
+                bpf test failed to build (bug 1919122)
 ubuntu_kernel_selftests:
     rizzo: &kselftests
         net:
@@ -45,6 +49,9 @@ ubuntu_kernel_selftests:
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
+        ftrace:
+            "test synthetic_events syntax parser errors	[FAIL]":
+                ftrace failed with test synthetic_events syntax parser errors (bug 1921745)
     glameow:
         <<: *kselftests
     spitfire:
@@ -97,12 +104,19 @@ ubuntu_ltp:
 ubuntu_ltp_syscalls:
     amaura: &ltp-syscalls
         syscalls:
-            "FAIL: fallocate(FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE) failed unexpectedly":
-                btrfs fill_fs test in fallocate06 (bug 1866323)
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel":
+                semctl09 (bug 1910312)
     glameow:
         <<: *ltp-syscalls
+    spitfire:
+        <<: *ltp-syscalls
+ubuntu_lttng_smoke_test:
+    spitfire:
+        lttng-smoke-test:
+            "DKMS failed to install":
+                DKMS failed to build on 5.10 (bug 1921728)
 ubuntu_qrt_kernel_security:
     onibi:
         test-kernel-security.py: &qrt_kernel_security
@@ -123,9 +137,11 @@ ubuntu_qrt_kernel_security:
 ubuntu_sysdig_smoke_test:
     onibi: &sysdig
         sysdig-smoke-test:
-            "Error! Bad return status for module build on kernel":
-                sysdig module build failed on F-OEM-5.6 (bug 1879336)
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                failed to trace read / write (bug 1844493)
     glameow:
+        <<: *sysdig
+    spitfire:
         <<: *sysdig
 ubuntu_xfstests_btrfs:
     bavor:
@@ -142,6 +158,10 @@ ubuntu_xfstests_btrfs:
                 btrfs/182 (bug 1848418)
             "generic/001	- output mismatch":
                 generic/001 (bug 1878356)
+    spitfire:
+        btrfs: &xfstests-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
 ubuntu_xfstests_ext4:
     bavor:
         ext4:
@@ -167,6 +187,9 @@ ubuntu_xfstests_ext4:
                 generic/440 (bug 1846297)
             "generic/471	- output mismatch":
                 generic/471 (bug 1880655)
+    spitfire:
+        ext4:
+            <<: *xfstests-sdb
 ubuntu_xfstests_xfs:
     bavor:
         xfs:
@@ -180,3 +203,6 @@ ubuntu_xfstests_xfs:
                 timed out on ext4 generic/430 test (bug 1755999)
             "generic/430":
                 YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    spitfire:
+        xfs:
+            <<: *xfstests-sdb

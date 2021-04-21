@@ -59,6 +59,8 @@ ubuntu_kernel_selftests:
         <<: *kernel-selftests-s390x
     s2lp6g003:
         <<: *kernel-selftests-s390x
+    s2lp3:
+        <<: *kernel-selftests-s390x
 ubuntu_kvm_smoke_test:
     s2lp3: &s390x-kvm-smoke
         kvm_smoke_test:

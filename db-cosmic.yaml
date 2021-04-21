@@ -20,7 +20,7 @@ hwclock:
                 hwclock test failed on Power9 system with Bionic kernel (bug 1775858)
     modoc:
         <<: *hwclock-ppc
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
@@ -123,7 +123,7 @@ ubuntu_kernel_selftests:
         ftrace:
             "Kprobe dynamic event - probing module	[FAIL]":
                 Kprobe probing module in ftrace (bug 1812636)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
@@ -211,7 +211,7 @@ ubuntu_kernel_selftests:
     kernel03:
         <<: *selftest-s390x
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
+    mcdivitt35-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
@@ -228,7 +228,7 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
@@ -382,7 +382,7 @@ ubuntu_ltp:
             <<: *ltp-ipv6
         kernel_misc:
             <<: *ltp-km
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         fs:
             <<: *ltp-fs
         containers: &ltp-containers
@@ -472,7 +472,7 @@ ubuntu_ltp_syscalls:
         <<: *syscalls-amd64
     lodygin:
         <<: *syscalls-amd64
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         <<: *syscalls-amd64
     wright-kernel:
         <<: *syscalls-amd64
@@ -519,7 +519,7 @@ ubuntu_lxc:
         exercise:
             "Container \"reboot\" is defined":
                 Container "reboot" is defined (bug 1788574)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         exercise:
             "ERROR: Failed to download http://images.linuxcontainers.org":
                 Firewall issue, RT#113132

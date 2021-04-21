@@ -12,11 +12,11 @@
 #         reason
 #
 hwclock:
-    ms10-35-mcdivittB0-kernel: &hwclock
+    mcdivitt35-kernel: &hwclock
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is":
                 issue for HP m400 (bug 1716603)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         <<: *hwclock
 libhugetlbfs:
     kernel01: &libhugetlbfs
@@ -32,11 +32,11 @@ libhugetlbfs:
     s2lp6g001:
         <<: *libhugetlbfs
 ubuntu_boot:
-    ms10-34-mcdivittB0-kernel: &boot-moonshots
+    mcdivitt34-kernel: &boot-moonshots
         log_check:
             "WARNING: x1-x3 nonzero in violation of boot protocol:":
                 kernel warning message on boot with Moonshot nodes (bug 1888218)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         <<: *boot-moonshots
     s2lp3: &boot-s390x
         kernel_tainted:
@@ -44,13 +44,20 @@ ubuntu_boot:
                 kernel tainted because of the zfs module on manual provisioned system (bug 1892124)
     kernel01:
         <<: *boot-s390x
-    grumman:
+    grumman: &boot-intel
         kernel_tainted:
             "ERROR: kernel tainted flag != 0: 2048":
                 kernel tainted because of workaround for bug in platform firmware applied (bug 1912316)
         log_check:
             "WARNING":
                 WARNING reported in dmesg (bug 1912316)
+    spitfire:
+        kernel_tainted:
+            "ERROR: kernel tainted flag != 0: 512":
+                kernel tainted because of warning in arch/x86/events/intel/core.c:3656 intel_pmu_init (bug 1918620)
+        log_check:
+            "WARNING":
+                WARNING reported in dmesg (bug 1918620)
 ubuntu_bpf_jit:
     s2lp3: &ubuntu_bpf_jit
         ubuntu-bjf-jit:
@@ -66,7 +73,7 @@ ubuntu_fan_smoke_test:
             "Unable to locate package iputils-ping":
                 Failed to fetch file from http://ports.ubuntu.com (bug 1864140)
 ubuntu_kernel_selftests:
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
@@ -89,10 +96,12 @@ ubuntu_kvm_smoke_test:
         kvm_smoke_test:
             "uvt-kvm: error: libvirt domain 'bjf-test' is not running.":
                 unable to create KVM with uvtool (bug 1755118)
-    ms10-34-mcdivittB0-kernel: &kvm-smoke-arm64
+    mcdivitt34-kernel: &kvm-smoke-arm64
         kvm_smoke_test:
             "qemu-system-aarch64: Cirrus VGA not available":
                 unable to create KVM with uvtool (bug 1749427)
+    mcdivitt35-kernel:
+        <<: *kvm-smoke-arm64
     wright-kernel:
         <<: *kvm-smoke-arm64
     s2lp3: &1729854
@@ -149,7 +158,7 @@ ubuntu_kvm_unit_tests:
         sprs:
             "MIGRATION=yes TESTNAME=sprs TIMEOUT=90s":
                 sprs timed out (bug 1740017)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         gicv2-mmio:
             "FAIL gicv2-mmio":
                 gicv2-mmio on X-ARM64 (bug 1828165)
@@ -161,7 +170,7 @@ ubuntu_kvm_unit_tests:
                 gicv2-mmio-3p (bug 1828027)
         pmu:
             "FAIL pmu":
-                pmu on ms10-34-mcdivittB0-kernel (bug 1751000)
+                pmu on mcdivitt34-kernel (bug 1751000)
     starmie-kernel: &kvm-unit-thunderX
         gicv2-active:
             "FAIL gicv2-active":
@@ -218,7 +227,7 @@ ubuntu_ltp_syscalls:
                 semctl09 (bug 1910312)
             "FAIL: SHM_INFO haven't returned a valid index:":
                 shmctl04 (bug 1895276)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         syscalls:
             <<: *syscalls
     starmie-kernel:

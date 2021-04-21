@@ -20,7 +20,7 @@ hwclock:
                 hwclock test failed on Power9 due to 0.x sec differences / time out waiting for time change (bug 1802233)
     modoc:
         <<: *hwclock-ppc
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
@@ -64,7 +64,7 @@ ubuntu_btrfs_kernel_fixes:
         <<: *btrfs_kernel_fixes
     gonzo:
         <<: *btrfs_kernel_fixes
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         <<: *btrfs_kernel_fixes
     modoc:
         <<: *btrfs_kernel_fixes
@@ -134,7 +134,7 @@ ubuntu_fan_smoke_test:
     baltar:
         <<: *ubuntu_fan_smoke_test
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
+    mcdivitt35-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
@@ -188,7 +188,7 @@ ubuntu_kvm_unit_tests:
         all:
             "FAIL psci":
                 psci (bug 1828545)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
                 gicv2-mmio-3p (bug 1828027)

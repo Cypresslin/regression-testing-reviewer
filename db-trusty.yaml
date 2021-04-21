@@ -12,12 +12,12 @@
 #         reason
 #
 hwclock:
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
 libhugetlbfs:
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         libhugetlbfs:
             "noresv-preserve-resv-page (2M: 64):	FAIL	Steal reserved page":
                 noresv-preserve-resv-page failed (bug 1747823)
@@ -33,7 +33,7 @@ ubuntu_btrfs_kernel_fixes:
         9f03740a956d7ac6a1b8f8c455da6fa5cae11c22:
             "At subvol /tmp/mnt-9f03740a956d7ac6a1b8f8c455da6fa5cae11c22/btrfs/snap2":
                 9f03740a956d7ac6a1b8f8c455da6fa5cae11c22 hang (bug 1809879)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         <<: *btrfs_kernel_fixes
     pepe:
         <<: *btrfs_kernel_fixes
@@ -42,7 +42,7 @@ ubuntu_cts_kernel:
         lp1262692:
             "Error: either \"dev\" is duplicate, or \"enP34p1s0f0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         lp1262692:
             "Error: either \"dev\" is duplicate, or \"enp1s0\" is a garbage.":
                 lp1262692 failed, bug for iproute2 (bug 1715376)
@@ -65,7 +65,7 @@ ubuntu_kvm_smoke_test:
                 no supported architecture for 'hvm' (bug 1752550)
     modoc:
        <<: *kvm-smoke-ppc
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         kvm_smoke_test:
             "OSError: [Errno 25] Inappropriate ioctl for device":
                 getlogin will fail to open /proc/self/loginuid (bug 1770245)
@@ -155,7 +155,7 @@ ubuntu_ltp_syscalls:
                 prctl04 (bug 1836839)
     modoc:
         <<: *syscalls-ppc
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         syscalls:
             <<: *syscalls
             "open14.c:58: open() failed: errno=EINVAL(22): Invalid argument":
@@ -163,12 +163,12 @@ ubuntu_ltp_syscalls:
             "openat03.c:59: openat() failed: errno=EINVAL(22): Invalid argument":
                 openat03 (bug 1798027)
 ubuntu_qrt_apparmor:
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         test-apparmor.py:
             "ptrace.c:92:14: error: ‘PTRACE_GETREGS’ undeclared":
                 test_old_trusty_regression_testsuite failed to build (bug 1699987)
 ubuntu_qrt_kernel_security:
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         test-kernel-security.py:
             "FAIL: ASLR not functional (libs always at 0x0000200002f130)":
                 test 021, 022 (bug 1747847)

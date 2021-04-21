@@ -46,10 +46,6 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: udpgso_bench.sh # TIMEOUT":
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
-            "ip_defrag.sh # exit=255":
-                ip_defrag in net failed with 255 (bug 1919147)
-            "Warning: file l2tp.sh is not executable, correct this.":
-                l2tp.sh in net not executable (bug 1880631)
             "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
                 icmp_redirect.sh (bug 1880645)
             "net: fib_nexthop_multiprefix.sh # exit=1":

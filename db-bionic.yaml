@@ -22,11 +22,11 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
                 hwclock test failed on PowerPC due to 0.x sec difference (bug 1802233)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
@@ -89,7 +89,7 @@ ubuntu_bpf:
         <<: *ubuntu_bpf
     wright-kernel:
         <<: *ubuntu_bpf
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         <<: *ubuntu_bpf
     s2lp3:
         <<: *ubuntu_bpf
@@ -142,7 +142,7 @@ ubuntu_kernel_selftests:
                 traceon/off triggers in ftace (bug 1837040)
     wright-kernel:
         <<: *kselftest-arm64
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
@@ -177,7 +177,7 @@ ubuntu_kernel_selftests:
             "dscr_sysfs_test [FAIL]":
                 dscr_sysfs_test in powerpc on P9 (bug 1880833)
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
+    mcdivitt35-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
@@ -221,7 +221,7 @@ ubuntu_kvm_unit_tests:
         vmx_hlt_with_rvi_test:
             "FAIL vmx_hlt_with_rvi_test (timeout":
                 vmx_hlt_with_rvi_test timeout (bug 1822308)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
          gicv3-active:
             "gicv3-active":
                     gicv3-ipi and gicv3-active failed on Moonshot (bug 1790825)
@@ -455,7 +455,7 @@ ubuntu_ltp:
                 memcg_usage_in_bytes (bug 1829984)
             "memcg_use_hierarchy_test 2 TFAIL: echo 1 > memory.use_hierarchy passed unexpectedly":
                 memcg_use_hierarchy (bug 1829989)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         fs:
             <<: *ltp-fs
         mm:
@@ -477,7 +477,7 @@ ubuntu_ltp:
             "cpuhotplug06 1 TBROK: CPU1 cannot be offlined":
                 cpuhotplug06 (bug 1836170)
         net.ipv6_lib:
-            "getaddrinfo IPv6 basic lookup (\"ms10-35-mcdivittB0-kernel\") returns -5 (\"No address associated with hostname\")":
+            "getaddrinfo IPv6 basic lookup (\"mcdivitt35-kernel\") returns -5 (\"No address associated with hostname\")":
                 getaddrinfo_01 (bug 1829995)
         crypto:
             <<: *ltp-crypto

@@ -24,11 +24,11 @@ hwclock:
         hwclock:
             "Failed to set hwclock back to Warthog's birthday. Output of hwclock is '2004-10-20 04:09:59.":
                 hwclock test failed due to 0.x sec differences (bug 1802233)
-    ms10-34-mcdivittB0-kernel: &hwclock-moonshot
+    mcdivitt34-kernel: &hwclock-moonshot
         hwclock:
             "Failed to set hwclock back to Warthog's birthday.":
                 issue for HP m400 (bug 1716603)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         <<: *hwclock-moonshot
 ubuntu_bpf:
     lagalla:
@@ -54,7 +54,7 @@ ubuntu_bpf:
         test_maps:
             "Failed sockmap unexpected timeout":
                 Failed sockmap unexpected timeout on ARM64 (bug 1805806)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         <<: *bpf-arm64
     s2lp6g003: &bpf-s390x
         test_verifier:
@@ -115,7 +115,7 @@ ubuntu_kernel_selftests:
                 xfrm_policy.sh / pmtu.sh / udpgso_bench.sh timeout in net (bug 1856010)
             "selftests: net: ip_defrag.sh [FAIL]":
                 ip_defrag in net (bug 1826848)
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         cpu-hotplug:
             "echo: write error: Operation not supported":
                 cpu-hotplug failed on moonshot (bug 1809701)
@@ -233,7 +233,7 @@ ubuntu_kernel_selftests:
     s2lp6g001:
         <<: *selftest-s390x
 ubuntu_kvm_smoke_test:
-    ms10-35-mcdivittB0-kernel: &1765668
+    mcdivitt35-kernel: &1765668
         kvm_smoke_test:
             "uvt-kvm: error: timed out waiting for dnsmasq lease for":
                 Unable to boot Xenial cloud image on Bionic ARM64 ThunderX / Azure (bug 1765668)
@@ -252,7 +252,7 @@ ubuntu_kvm_smoke_test:
             "timed out waiting for dnsmasq lease":
                 timed out waiting for dnsmasq lease (bug 1802056)
 ubuntu_kvm_unit_tests:
-    ms10-34-mcdivittB0-kernel:
+    mcdivitt34-kernel:
         gicv2-mmio-3p:
             "FAIL gicv2-mmio-3p":
                 gicv2-mmio-up and gicv2-mmio-3p failed on Moonshot ARM64 (bug 1802492)
@@ -381,7 +381,7 @@ ubuntu_ltp:
             <<: *ltp-misc
             "zram01 1 TBROK: test killed, timeout!":
                 zram01 / zram02 / zram03 timeout (bug 1854706)
-    ms10-35-mcdivittB0-kernel:
+    mcdivitt35-kernel:
         fs:
             <<: *ltp-fs
         controllers:
