@@ -1,0 +1,7 @@
+3.2.0-150.197 - generic
+Regression test CMPL, RTB.
+
+10 / 11 tests were run, missing: ubuntu_boot
+Issue to note in amd64:
+  None
+
