@@ -1,0 +1,13 @@
+5.10.0-1028.29 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - bpf test failed to build (bug 1919122)
+  ubuntu_kernel_selftests - net test failed to build due to bpf (bug 1919122) ftrace failed with test synthetic_events syntax parser errors (bug 1921745)
+  ubuntu_ltp - memcg_max_usage_in_bytes (bug 1829979) memcg_stat (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) getaddrinfo_01 (bug 1829995) tpci (bug 1878389)
+  ubuntu_ltp_syscalls - semctl09 (bug 1910312) fallocate05 (bug 1929816)
+  ubuntu_lttng_smoke_test - DKMS failed to build on 5.10 (bug 1921728)
+  ubuntu_seccomp - timeout issue
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
