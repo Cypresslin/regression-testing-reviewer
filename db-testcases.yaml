@@ -155,7 +155,6 @@ groovy:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_futex
-        ? ubuntu_kernel_selftests
         ? ubuntu_kvm_smoke_test
         ? ubuntu_kvm_unit_tests
         ? ubuntu_leap_seconds
@@ -290,7 +289,6 @@ focal-fips:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -691,7 +689,6 @@ bionic-fips:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -750,7 +747,6 @@ bionic-hwe:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp_syscalls
         ? ubuntu_lttng_smoke_test
@@ -1066,7 +1062,6 @@ trusty:
         ? ubuntu_ecryptfs
         ? ubuntu_fan_smoke_test
         ? ubuntu_ftrace_smoke_test
-        ? ubuntu_kernel_selftests
         ? ubuntu_loop_smoke_test
         ? ubuntu_ltp
         ? ubuntu_ltp_stable
