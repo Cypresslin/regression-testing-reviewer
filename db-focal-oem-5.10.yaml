@@ -31,8 +31,18 @@ ubuntu_bpf:
 ubuntu_kernel_selftests:
     rizzo: &kselftests
         net:
-            "Cannot find a vmlinux for VMLINUX_BTF ":
-                net test failed to build due to bpf (bug 1919122)
+            "tls.12.multi_chunk_sendfile":
+                tls in net (bug 1900644)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh failed in net (bug 1884234)
+            "Missing xdp_dummy helper. Build bpf selftest first":
+                udpgro_bench.sh / udpgro.sh failed to start due to bpf build failure (bug 1919122)
+            "mtu exception plus redirect [FAIL]":
+                icmp_redirect.sh (bug 1880645)
+            "devlink_port_split.py # exit=1":
+                devlink_port_split.py (bug 1928889)
+            "Ping received ICMP Packet too big [FAIL]":
+                vrf_route_leaking.sh in net (bug 1928890)
         timers:
             "raw_skew # exit=1":
                 raw_skew test in timers bail out (bug 1882511)
@@ -44,6 +54,8 @@ ubuntu_kernel_selftests:
     spitfire:
         <<: *kselftests
     kili:
+        <<: *kselftests
+    vought:
         <<: *kselftests
 ubuntu_kvm_unit_tests:
     rizzo:
@@ -101,6 +113,8 @@ ubuntu_ltp_syscalls:
         syscalls:
             "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
                 msgstress03 (bug 1797341)
+            "fallocate05.c:134: TFAIL: write(): ENOSPC (28)":
+                fallocate05 (bug 1929816)
             "TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel":
                 semctl09 (bug 1910312)
     glameow:

@@ -1969,6 +1969,12 @@ focal-oem-5.6:
             sysdig-smoke-test:
                 "Error! Bad return status for module build on kernel":
                     sysdig module build failed on F-OEM-5.6 (bug 1879336)
+focal-oem-5.10
+    ubunut_kernel_selftests:
+        rizzo:
+            net:
+                "Cannot find a vmlinux for VMLINUX_BTF ":
+                    net test failed to build due to bpf (bug 1919122)
 focal-fips:
     ubuntu_kernel_selftests:
         rizzo:
