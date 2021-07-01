@@ -1,0 +1,8 @@
+5.11.0-1005.5 - intel
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_kernel_selftests - net test failed to build due to bpf (bug 1919122)
+  ubuntu_kvm_unit_tests - vmx_preemption_timer_expiry_test in vmx (bug 1931384)
+  ubuntu_ltp - cpuset_memory_spread (bug 1830585) memcg_max_usage_in_bytes (bug 1829979) memcg_stat on spitfire (bug 1829983) memcg_usage_in_bytes (bug 1829984) memcg_use_hierarchy (bug 1829989) memcg_subgroup_charge (bug 1847982) cpuhotplug03 in cpuhotplug (bug 1836167) cpufreq_boost in kernel_misc (bug 1842032) tpci in kernel_misc (bug 1878389) zram03 in kernel_misc (bug 1887742)
+
