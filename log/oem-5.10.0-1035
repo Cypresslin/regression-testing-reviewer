@@ -1,0 +1,13 @@
+5.10.0-1035.36 - oem
+Regression test CMPL, RTB.
+
+Issue to note in amd64:
+  ubuntu_bpf - bpf test failed to build (bug 1919122)
+  ubuntu_kernel_selftests - tls in net (bug 1900644) psock_snd.sh failed in net (bug 1884234) udpgro_bench.sh / udpgro.sh failed to start due to bpf build failure (bug 1919122) icmp_redirect.sh (bug 1880645) devlink_port_split.py (bug 1928889) vrf_route_leaking.sh in net (bug 1928890) ftrace failed with test synthetic_events syntax parser errors (bug 1921745)
+  ubuntu_kvm_unit_tests - vmx_cr4_osxsave_test in vmx (bug 1932237)
+  ubuntu_ltp - memcg_max_usage_in_bytes memory.memsw.max_usage_in_bytes (bug 1934429) memcg_stat (bug 1829983) memcg_use_hierarchy (bug 1829989) tpci (bug 1878389) zram03 failed to close file (bug 1887742)
+  ubuntu_ltp_syscalls - fallocate05 (bug 1929816) shmget02 / shmget03 (bug 1934432)
+  ubuntu_lttng_smoke_test - DKMS failed to build on 5.10 (bug 1921728)
+  ubuntu_xfstests_btrfs - no scratch drive for the test
+  ubuntu_xfstests_ext4 - no scratch drive for the test
+  ubuntu_xfstests_xfs - no scratch drive for the test
