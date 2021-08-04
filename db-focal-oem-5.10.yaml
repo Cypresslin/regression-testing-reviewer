@@ -37,11 +37,11 @@ ubuntu_kernel_selftests:
                 psock_snd.sh failed in net (bug 1884234)
             "Missing xdp_dummy helper. Build bpf selftest first":
                 udpgro_bench.sh / udpgro.sh failed to start due to bpf build failure (bug 1919122)
-            "mtu exception plus redirect [FAIL]":
+            "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
                 icmp_redirect.sh (bug 1880645)
             "devlink_port_split.py # exit=1":
                 devlink_port_split.py (bug 1928889)
-            "Ping received ICMP Packet too big [FAIL]":
+            "# TEST: Ping received ICMP Packet too big                             [FAIL]":
                 vrf_route_leaking.sh in net (bug 1928890)
         timers:
             "raw_skew # exit=1":
@@ -62,6 +62,10 @@ ubuntu_kvm_unit_tests:
         vmx_host_state_area:
             "FAIL vmx_host_state_area":
                 vmx_host_state_area (bug 1866585)
+    vought:
+        vmx:
+            "Assertion failed: cpuid_osxsave()":
+                vmx_cr4_osxsave_test in vmx (bug 1932237)
 ubuntu_ltp:
     amaura: &ltp
         mm: &ltp-mm
@@ -70,6 +74,8 @@ ubuntu_ltp:
         controllers: &ltp-controllers
             "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
                 memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_max_usage_in_bytes_test 4 TFAIL: memory.memsw.max_usage_in_bytes":
+                memcg_max_usage_in_bytes memory.memsw.max_usage_in_bytes (bug 1934429)
             "memcg_stat_test 5 TFAIL: hierarchical_memory_limit is":
                 memcg_stat (bug 1829983)
             "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
@@ -78,6 +84,8 @@ ubuntu_ltp:
                 memcg_use_hierarchy (bug 1829989)
             "memcg_subgroup_charge 1 TBROK: timed out on memory.usage_in_bytes":
                 memcg_subgroup_charge (bug 1847982)
+            "cpuset_memory_spread 7 TFAIL: hog the memory on the unexpected node":
+                cpuset_memory_spread (bug 1830585)
         commands: &ltp-commands
             "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
                 mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
@@ -100,7 +108,7 @@ ubuntu_ltp:
         kernel_misc:
             "Failed test cases : tpci":
                 tpci (bug 1878389)
-            "Failed to close FILE '/sys/block/zram0/disksize' at zram03":
+            "Failed to close FILE '/sys/block/zram0/disksize'":
                 zram03 failed to close file (bug 1887742)
     glameow:
         <<: *ltp
@@ -117,6 +125,8 @@ ubuntu_ltp_syscalls:
                 fallocate05 (bug 1929816)
             "TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel":
                 semctl09 (bug 1910312)
+            "shmget03.c:46: TBROK: shmget failed unexpectedly: ENOSPC (28)":
+                shmget02 / shmget03 (bug 1934432)
     glameow:
         <<: *ltp-syscalls
     spitfire:
@@ -125,12 +135,16 @@ ubuntu_ltp_syscalls:
         <<: *ltp-syscalls
     boeing:
         <<: *ltp-syscalls
+    vought:
+        <<: *ltp-syscalls
 ubuntu_lttng_smoke_test:
     spitfire: &lttng-build-fail
         lttng-smoke-test:
             "DKMS failed to install":
                 DKMS failed to build on 5.10 (bug 1921728)
     rizzo:
+      <<: *lttng-build-fail
+    vought:
       <<: *lttng-build-fail
 ubuntu_qrt_kernel_security:
     onibi:
@@ -185,6 +199,9 @@ ubuntu_xfstests_btrfs:
     boeing:
         btrfs:
             <<: *xfstests-sdb
+    vought:
+        btrfs:
+            <<: *xfstests-sdb
 ubuntu_xfstests_ext4:
     bavor:
         ext4:
@@ -232,6 +249,9 @@ ubuntu_xfstests_ext4:
     boeing:
         ext4:
             <<: *xfstests-sdb
+    vought:
+        ext4:
+            <<: *xfstests-sdb
 ubuntu_xfstests_xfs:
     bavor:
         xfs:
@@ -252,5 +272,8 @@ ubuntu_xfstests_xfs:
         xfs:
             <<: *xfstests-sdb
     boeing:
+        xfs:
+            <<: *xfstests-sdb
+    vought:
         xfs:
             <<: *xfstests-sdb

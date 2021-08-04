@@ -1299,6 +1299,7 @@ full-list: [
     ubuntu_bpf_jit,
     ubuntu_btrfs_kernel_fixes,
     ubuntu_cts_kernel,
+    ubuntu_cve2_kernel,
     ubuntu_cve_kernel,
     ubuntu_docker_smoke_test,
     ubuntu_ecryptfs,
