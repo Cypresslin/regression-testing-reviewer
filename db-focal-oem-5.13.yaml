@@ -1,0 +1,261 @@
+# 5.13 Focal OEM
+# Format:
+# test-suite:
+#   sut:
+#     sub-test-case1:
+#       "errmsg":
+#         reason
+#     sub-test-case2:
+#       "errmsg1":
+#         reason
+#       "errmsg2":
+#         reason
+#
+ubuntu_bpf:
+    spitfire: &bpf-setup
+        setup:
+            "Cannot find a vmlinux for VMLINUX_BTF at any of":
+                bpf test failed to build (bug 1919122)
+    rumford:
+        <<: *bpf-setup
+    boeing:
+        <<: *bpf-setup
+ubuntu_kernel_selftests:
+    rizzo: &kselftests
+        net:
+            "tls.12.multi_chunk_sendfile":
+                tls in net (bug 1900644)
+            "psock_snd.sh # exit=1":
+                psock_snd.sh failed in net (bug 1884234)
+            "Missing xdp_dummy helper. Build bpf selftest first":
+                udpgro_bench.sh / udpgro.sh failed to start due to bpf build failure (bug 1919122)
+            "TEST: IPv6: mtu exception plus redirect                             [FAIL]":
+                icmp_redirect.sh (bug 1880645)
+            "devlink_port_split.py # exit=1":
+                devlink_port_split.py (bug 1928889)
+            "# TEST: Ping received ICMP Packet too big                             [FAIL]":
+                vrf_route_leaking.sh in net (bug 1928890)
+        timers:
+            "raw_skew # exit=1":
+                raw_skew test in timers bail out (bug 1882511)
+        ftrace:
+            "test synthetic_events syntax parser errors	[FAIL]":
+                ftrace failed with test synthetic_events syntax parser errors (bug 1921745)
+    glameow:
+        <<: *kselftests
+    spitfire:
+        <<: *kselftests
+    kili:
+        <<: *kselftests
+    vought:
+        <<: *kselftests
+ubuntu_kvm_unit_tests:
+    rizzo:
+        vmx_host_state_area:
+            "FAIL vmx_host_state_area":
+                vmx_host_state_area (bug 1866585)
+    vought:
+        vmx:
+            "Assertion failed: cpuid_osxsave()":
+                vmx_cr4_osxsave_test in vmx (bug 1932237)
+ubuntu_ltp:
+    amaura: &ltp
+        mm: &ltp-mm
+            "Failed test cases : ksm03 ksm03_1 ksm04 ksm04_1":
+                ksm03 ksm03_1 ksm04 ksm04_1 failed with file close (bug 1884742)
+        controllers: &ltp-controllers
+            "memcg_max_usage_in_bytes_test 1 TFAIL: memory.max_usage_in_bytes":
+                memcg_max_usage_in_bytes (bug 1829979)
+            "memcg_max_usage_in_bytes_test 4 TFAIL: memory.memsw.max_usage_in_bytes":
+                memcg_max_usage_in_bytes memory.memsw.max_usage_in_bytes (bug 1934429)
+            "memcg_stat_test 5 TFAIL: hierarchical_memory_limit is":
+                memcg_stat (bug 1829983)
+            "memcg_usage_in_bytes_test 1 TFAIL: memory.usage_in_bytes is":
+                memcg_usage_in_bytes (bug 1829984)
+            "memcg_use_hierarchy_test 1 TFAIL: process  is not killed":
+                memcg_use_hierarchy (bug 1829989)
+            "memcg_subgroup_charge 1 TBROK: timed out on memory.usage_in_bytes":
+                memcg_subgroup_charge (bug 1847982)
+        commands: &ltp-commands
+            "mkfs01 2 TFAIL: 'mkfs -t ext3  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+            "mkfs01 2 TFAIL: 'mkfs -t ext4  /dev/loop":
+                mkfs01_ext3_sh, mkfs01_ext4_sh (bug 1853610)
+        cpuhotplug:
+            "TFAIL: No cpuhotplug_do_spin_loop processes found on":
+                cpuhotplug03 in cpuhotplug (bug 1836167)
+        net.ipv6_lib: &ltp-net-ipv6-lib
+            "getaddrinfo_01    2  TFAIL":
+                getaddrinfo_01 (bug 1829995)
+        cve:
+            "FAIL: fchownat() failed to fail":
+                af_alg07 and cve-2019-8912 (bug 1892860)
+        crypto: &ltp-crypto
+            "BROK: unexpected error from tst_crypto_del_alg(): EBUSY":
+                crypto_user02 (bug 1837543)
+            "FAIL: fchownat() failed to fail":
+                af_alg07 and cve-2019-8912 (bug 1892860)
+        kernel_misc:
+            "Failed test cases : tpci":
+                tpci (bug 1878389)
+            "Failed to close FILE '/sys/block/zram0/disksize'":
+                zram03 failed to close file (bug 1887742)
+    glameow:
+        <<: *ltp
+    spitfire:
+        <<: *ltp
+    rumford:
+        <<: *ltp
+ubuntu_ltp_syscalls:
+    amaura: &ltp-syscalls
+        syscalls:
+            "msgstress03    1  TFAIL  :  msgstress03.c:157: 	Fork failed (may be OK if under stress)":
+                msgstress03 (bug 1797341)
+            "fallocate05.c:134: TFAIL: write(): ENOSPC (28)":
+                fallocate05 (bug 1929816)
+            "TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel":
+                semctl09 (bug 1910312)
+            "shmget03.c:46: TBROK: shmget failed unexpectedly: ENOSPC (28)":
+                shmget02 / shmget03 (bug 1934432)
+    glameow:
+        <<: *ltp-syscalls
+    spitfire:
+        <<: *ltp-syscalls
+    kili:
+        <<: *ltp-syscalls
+    boeing:
+        <<: *ltp-syscalls
+ubuntu_lttng_smoke_test:
+    spitfire: &lttng-build-fail
+        lttng-smoke-test:
+            "DKMS failed to install":
+                DKMS failed to build on 5.10 (bug 1921728)
+    rizzo:
+      <<: *lttng-build-fail
+    vought:
+      <<: *lttng-build-fail
+ubuntu_qrt_kernel_security:
+    onibi:
+        test-kernel-security.py: &qrt_kernel_security
+            "FAIL: test_310_config_security_perf_events_restrict":
+                test_310_config_security_perf_events_restrict (bug 1879339)
+            "FAIL: test_072_strict_devmem":
+                test_072_strict_devmem (bug 1879340)
+            "FAIL: test_350_retpolined_modules":
+                test_350_retpolined_modules (bug 1879341)
+    kili:
+        test-kernel-security.py:
+            <<: *qrt_kernel_security
+            "FAIL: test_120_smep_works":
+                test_120_smep_works on kili (bug 1880659)
+    glameow:
+        test-kernel-security.py:
+            <<: *qrt_kernel_security
+ubuntu_sysdig_smoke_test:
+    onibi: &sysdig
+        sysdig-smoke-test:
+            "FAILED (trace at least 25 reads of /dev/zero by dd)":
+                failed to trace read / write (bug 1844493)
+    glameow:
+        <<: *sysdig
+    spitfire:
+        <<: *sysdig
+    rizzo:
+        <<: *sysdig
+ubuntu_xfstests_btrfs:
+    bavor:
+        btrfs:
+            "btrfs/136	[failed":
+                btrfs/136 (bug 1878347)
+            "btrfs/139	- output mismatch":
+                btrfs/139 (bug 1878349)
+            "btrfs/153	- output mismatch":
+                btrfs/153 (bug 1848409)
+            "btrfs/172	- output mismatch":
+                btrfs/172 (bug 1848417)
+            "btrfs/182	- output mismatch":
+                btrfs/182 (bug 1848418)
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+    spitfire:
+        btrfs: &xfstests-sdb
+            "Error: Could not stat device /dev/sdb - No such file or directory.":
+                no scratch drive for the test
+    onibi:
+        btrfs:
+            <<: *xfstests-sdb
+    boeing:
+        btrfs:
+            <<: *xfstests-sdb
+ubuntu_xfstests_ext4:
+    bavor:
+        ext4:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/397	- output mismatch":
+                generic/397 (bug 1846305)
+            "generic/398	- output mismatch":
+                generic/398 (bug 1846304)
+            "generic/399	- output mismatch":
+                generic/399 (bug 1846303)
+            "generic/419	- output mismatch":
+                generic/419 (bug 1846302)
+            "generic/429	- output mismatch":
+                generic/429 (bug 1846301)
+            "generic/435	- output mismatch":
+                generic/435 (bug 1846298)
+            "generic/440	- output mismatch":
+                generic/440 (bug 1846297)
+            "generic/471	- output mismatch":
+                generic/471 (bug 1880655)
+    rumford:
+        ext4:
+            "ext4/002	[failed, exit status 1]- output mismatch":
+                ext4/002 (bug 1926582)
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/397	- output mismatch":
+                generic/397 (bug 1846305)
+            "generic/398- output mismatch":
+                generic/398 (bug 1846304)
+            "generic/399	- output mismatch":
+                generic/399 (bug 1846303)
+    spitfire:
+        ext4:
+            <<: *xfstests-sdb
+    boeing:
+        ext4:
+            <<: *xfstests-sdb
+    vought:
+        ext4:
+            <<: *xfstests-sdb
+ubuntu_xfstests_xfs:
+    bavor:
+        xfs:
+            "generic/001	- output mismatch":
+                generic/001 (bug 1878356)
+            "generic/228	- output mismatch":
+                generic/228 (bug 1846308)
+            "generic/394	- output mismatch":
+                generic/394 (bug 1846306)
+            "generic/429	[not run]":
+                timed out on ext4 generic/430 test (bug 1755999)
+            "generic/430":
+                YOU SHOULD NOT SEE THIS, ext4 generic/430 DIDN'T HANG, PLEASE CHECK
+    spitfire:
+        xfs:
+            <<: *xfstests-sdb
+    riccioli:
+        xfs:
+            <<: *xfstests-sdb
+    boeing:
+        xfs:
+            <<: *xfstests-sdb
