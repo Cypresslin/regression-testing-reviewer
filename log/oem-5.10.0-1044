@@ -1,0 +1,7 @@
+All known issues have been hinted accordingly.
+Leverage test result from 5.10.0-1043, as 1044 includes just a LED quirk.
+
+Un-hinted issues as follows:
+* ubuntu_kvm_unit_tests - vmx vmx_cr4_osxsave_test (bug 1932237) vmx_preemption_timer_expiry_test (bug 1931384)
+
+Nothing outstanding, flipping the RT result.
