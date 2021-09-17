@@ -1,0 +1,8 @@
+All known issues have been hinted accordingly.
+
+Un-hinted issues as follows:
+* net test in ubuntu_kernel_selftests - psock_snd.sh(bug 1884234) udpgro_bench.sh (bug 1932239) udpgro.sh (bug 1932239) vrf_route_leaking.sh (bug 1928890) udpgro_fwd.sh (bug 1938671) veth.sh (bug 1932239)
+* ubuntu_ltp - controller/cpuset_memory_spread (bug 1830585) kernel_misc/zram03 (bug 1887742)
+* ubuntu_ltp_syscalls - fallocate05 (bug 1929816)
+
+Nothing outstanding, flipping the RT result.

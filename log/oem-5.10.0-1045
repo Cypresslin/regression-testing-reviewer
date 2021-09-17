@@ -1,0 +1,6 @@
+All known issues have been hinted accordingly.
+
+Un-hinted issues as follows:
+* ubuntu_kvm_unit_tests - vmx vmx_cr4_osxsave_test (bug 1932237)
+
+Nothing outstanding, flipping the RT result.
