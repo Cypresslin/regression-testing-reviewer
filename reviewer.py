@@ -123,7 +123,6 @@ for kernel in report[target_distro]:
     target_found = True
 
     print(kernel)
-    print('Regression test CMPL, RTB.')
     print()
     for arch in sorted(report[target_distro][kernel]['suites-results']):
         # Validate the test case number here
